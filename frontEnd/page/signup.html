@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+    <div class="container0">
+        <div class="container1">
+            <div class="logo">LINKee</div>
+            <h2>Sign up to see photos and videos from your friends.</h2>
+            <form action="http://127.0.0.1:8080/signup" method="post">
+                <label for="">
+                    <span class="labelText">ID</span>
+                    <input type="text" name="user_id" aria-label="ID" aria-required="true">
+                </label>
+                <label for="">
+                    <span class="labelText">Full Name</span>
+                    <input type="text" name="user_name" aria-label="ID" aria-required="true">
+                </label>
+                <label for="">
+                    <span class="labelText">Nickname</span>
+                    <input type="text" name="nickname" aria-label="ID" aria-required="true">
+                </label>
+                <label for="">
+                    <span class="labelText">Password</span>
+                    <input type="password" name="user_pw" aria-label="ID" aria-required="true">
+                </label>
+                <p>People who use our service may have uploaded your contact information to Instagram. <span>Learn More</span></p>
+                <button>Sign up</button>
+            </form>
+        </div>
+        <div class="container2">
+            <p>Have an account? <a href="/page/login.html">Login</a></p>
+        </div>
+    </div>
+</body>
+</html>

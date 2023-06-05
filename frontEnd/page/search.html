@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search</title>
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/search.css">
+</head>
+<body>
+    <!-- 실시간 알림창 -->
+    <div class="live_chat_noti_container">
+        <div class="live_chat_noti">
+            <p>OOO님이</p>
+            <p>대화를 요청하였습니다.</p>
+            <p>승인 버튼을 누르면 대화방으로 이동합니다.</p>
+            <div class="btns">
+                <div class="appBtn">승인</div>
+                <div class="rejBtn">거절</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="middle_body">
+        <div class="search_container">
+            <form action="/search" method="post">
+                <div class="no_searched">NO SEARCHED :(</div>
+                <input type="text" class="keyword_input" placeholder="Search">
+                <button class= "search_btn"></button>
+            </form>
+        </div>
+        <div class="search_container2">
+            <div class="autocomplete_wrap">
+                <div>
+                    <div class="profile_img"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></div>
+                    <div class="nickname">Nickname</div>
+                </div>
+                <div>#어쩌구</div>
+            </div>
+            <div class="allPosts">
+                <div><img src="../post_img/KakaoTalk_Photo_2023-05-15-10-33-57 006.jpeg" alt=""></div>
+                <div><img src="../post_img/KakaoTalk_Photo_2023-05-15-10-33-57 006.jpeg" alt=""></div>
+                <div><img src="../post_img/KakaoTalk_Photo_2023-05-15-10-33-57 006.jpeg" alt=""></div>
+                <div><img src="../post_img/KakaoTalk_Photo_2023-05-15-10-33-57 006.jpeg" alt=""></div>
+                <div><img src="../post_img/KakaoTalk_Photo_2023-05-15-10-33-57 006.jpeg" alt=""></div>
+                <div><img src="../post_img/KakaoTalk_Photo_2023-05-15-10-33-57 006.jpeg" alt=""></div>
+                <div><img src="../post_img/KakaoTalk_Photo_2023-05-15-10-33-57 006.jpeg" alt=""></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- noti / dm -->
+    <div class="top_nav_container">
+        <div class="top_nav">
+            <div class="logo">LINKee</div>
+            <div class="noti"><img src="../nav_icon_img/icon_noti.png" alt=""></div>
+            <div class="live_chat"><img src="../nav_icon_img/icon_dm.png" alt=""></div>
+        </div>
+    </div>
+
+    <!-- home / search / insert / mypage -->
+    <div class="bottom_nav_container">
+        <div class="bottom_nav">
+            <div class="icon"><img src="../nav_icon_img/icon_home.webp" alt=""></div>
+            <div class="icon"><img src="../nav_icon_img/icon_search.png" alt=""></div>
+            <div class="icon"><img src="../nav_icon_img/icon_plus.png" alt=""></div>
+            <div class="profile_img"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></div>
+        </div>
+    </div>
+</body>
+</html>
