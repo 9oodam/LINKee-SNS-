@@ -6,6 +6,9 @@ class Livechat extends Sequelize.Model {
             people : {
                 type : Sequelize.STRING(50),
                 allowNull : false
+            },
+            activated : {
+                type : Sequelize.INTEGER
             }
         }, {
             sequelize,

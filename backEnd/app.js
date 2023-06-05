@@ -109,4 +109,9 @@ io.on("connection", (socket) => {
 
         io.emit("userIn", socketID, userID);
     });
+
+    // 채팅 방 요청 알림창
+    socket.on("requestChat", (senderID, receiverID) => {
+        io.emit("requestChat", senderID, receiverID);
+    })
 });

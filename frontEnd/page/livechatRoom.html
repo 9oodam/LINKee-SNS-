@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>room</title>
+    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/livechatRoom.css">
+</head>
+<body>
+    <!-- 실시간 알림창 -->
+    <div class="live_chat_noti_container">
+        <div class="live_chat_noti">
+            <p>OOO님이</p>
+            <p>대화를 요청하였습니다.</p>
+            <p>승인 버튼을 누르면 대화방으로 이동합니다.</p>
+            <div class="btns">
+                <div class="appBtn">승인</div>
+                <div class="rejBtn">거절</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 게시글 보여지는 부분 -->
+    <div id="middle_body" class="middle_body">
+        <div class="user1_chat_wrap">
+            <p>안해???왜이래이거넝라ㅣ먼ㅇ리ㅏㄴ멍리;ㅏㅓㅁㄴㅇ리ㅓㅁ나ㅣㅇ러ㅏㅁㄴ;ㅣ어라ㅣㄴ;ㅁ어라;ㅣㅁ넝ㄹ;ㅣㅏㅓㄴㅁㄴㅇㄹㄴㅁㅇ러ㅏㄴ밍러ㅏ;ㅁ넝리ㅏㅓㅏ민;ㅇ리;ㅓㄴ마ㅣ;얼;ㅣ</p>
+            <div class="profile_img">
+                <img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt="">
+            </div>
+        </div>
+        <div class="user2_chat_wrap">
+            <div class="profile_img">
+                <img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt="">
+            </div>
+            <p>믱머르게따</p>
+        </div>
+        
+    </div>
+    <div class="input_wrap">
+        <input class="chat_input" name="chat" type="text" placeholder="메시지 보내기...">
+        <div class="chat_btn">전송</div>
+    </div>
+
+
+    <!-- 상단 nav -->
+    <div class="top_nav_container">
+        <div class="top_nav">
+            <div class="logo"><img src="../nav_icon_img/icon_back.png" alt="" onclick="pageBack()"></div>
+            <div>상대방의 닉네임</div>
+        </div>
+    </div>
+</body>
+<script>
+    window.onload = async () => {
+        try {
+            const {data} = await axios.get('http://127.0.0.1:8080/chat/makeRoom', {
+                withCredentials : true
+            });
+
+
+
+            // 모든 페이지에 다 들어갈 부분!!!
+            const socket = io.connect('localhost:8080'); // 소켓 연결 시도
+            socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
+  
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    function pageBack() {
+        if(confirm("확인을 누르시면 현재 대화 방은 사라지고 이전 대화 내용은 확인할 수 없습니다. 방을 나가시겠습니까?") == true) {
+            history.back();
+        }else {
+            return;
+        }
+    }
+</script>
+</html>
