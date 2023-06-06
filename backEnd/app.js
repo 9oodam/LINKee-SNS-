@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const cors = require("cors"); // front & back 연결
+const session = require("express-session");
 
 const {sequelize} = require("./models");
 
@@ -22,6 +23,13 @@ app.use(cors({
 // body-parser 사용
 app.use(express.urlencoded({extended : false}));
 
+// session 사용
+app.use(session({
+    secret : process.env.SESSION_KEY,
+    resave : false,
+    saveUninitialized : false
+}));
+
 // sequelize 연결
 sequelize.sync({force : false}).then((e) => {
     console.log("Sequelize 연결 성공")
@@ -32,7 +40,7 @@ sequelize.sync({force : false}).then((e) => {
 
 // 정적 폴더 경로
 app.use("/post_img", express.static(path.join(__dirname, "post_img")));
-app.use("/user_ing", express.static(path.join(__dirname, "user_img")));
+app.use("/user_img", express.static(path.join(__dirname, "user_img")));
 
 // router 연결
 app.use("/signup", signupRouter);

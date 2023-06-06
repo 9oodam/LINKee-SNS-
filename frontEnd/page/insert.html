@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>nav</title>
-<<<<<<< HEAD
-=======
+    <title>insert</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
->>>>>>> di
     <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/insert.css">
 </head>
 <body>
     <!-- 실시간 알림창 -->
@@ -26,6 +24,17 @@
     </div>
     
     <div class="middle_body">
+        <form action="http://127.0.0.1:8080/insert">
+            <div class="form_top">
+                <h4>새 게시물</h4>
+                <button>공유</button>
+            </div>
+            <div id="inputFile" class="inputFile">
+                <img id="preview" onerror="style.display='none'">
+                <label class="fileUpload" for="fileUpload">파일 선택</label>
+                <input type="file" id="fileUpload" style="display: none">
+            </div>
+        </form>
     </div>
 
     <!-- noti / dm -->
@@ -40,15 +49,6 @@
     <!-- home / search / insert / mypage -->
     <div class="bottom_nav_container">
         <div class="bottom_nav">
-<<<<<<< HEAD
-            <div class="icon"><img src="../nav_icon_img/icon_home.webp" alt=""></div>
-            <div class="icon"><img src="../nav_icon_img/icon_search.png" alt=""></div>
-            <div class="icon"><img src="../nav_icon_img/icon_plus.png" alt=""></div>
-            <div class="profile_img"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></div>
-        </div>
-    </div>
-</body>
-=======
             <div class="icon"><a href="./main.html"><img src="../nav_icon_img/icon_home.webp" alt=""></a></div>
             <div class="icon"><a href="./search.html"><img src="../nav_icon_img/icon_search.png" alt=""></a></div>
             <div class="icon"><a href="./insert.html"><img src="../nav_icon_img/icon_plus.png" alt=""></a></div>
@@ -56,23 +56,5 @@
         </div>
     </div>
 </body>
-<script>
-    async function getProfile() {
-        try {
-            const {data} = await axios.get('http://127.0.0.1:8080/main/getProfile', {
-                // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
-                withCredentials : true
-            });
-
-            console.log(data);
-
-            profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
-
-        } catch (error) {
-            console.log(error);
-        }
-    }
-    getProfile();
-</script>
->>>>>>> di
+<script src="../js/insert.js"></script>
 </html>
