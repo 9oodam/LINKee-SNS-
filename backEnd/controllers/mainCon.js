@@ -1,7 +1,7 @@
 const {User, Post, LikePost} = require("../models");
 
 exports.viewPost = async (req, res) => {
-    const {user_id} = acc.decoded;
+    const {user_id} = acc_decoded;
 
     try {
         const user = await User.findOne({where : {user_id}});
@@ -25,7 +25,7 @@ exports.viewPost = async (req, res) => {
 }
 
 exports.getProfile = async (req, res) => {
-    const {user_id} = acc.decoded;
+    const {user_id} = acc_decoded;
 
     try {
         const user = await User.findOne({where : {user_id}});
