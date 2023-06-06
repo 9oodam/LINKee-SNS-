@@ -17,8 +17,8 @@ exports.signUp1 = async (req,res)=>{
             user_pw : hash,
             user_id : user_id,
             level : 0,
-            follower : 0,
-            following : 0,
+            follower : "",
+            following : "",
         });
         
         res.redirect("http://127.0.0.1:5500/frontEnd/page/login.html");
@@ -31,6 +31,7 @@ exports.login1 = async (req,res)=>{
     try {
         const {user_id, user_pw} = req.body;
         const user = await User.findOne({where:{user_id:user_id}});
+        const id = user.id;
         if(user == null){
             return res.send("가입 안한 아이디임!");
         }
@@ -39,6 +40,7 @@ exports.login1 = async (req,res)=>{
         // const {name, age} = user;
         if(same){
             let token = jwt.sign({
+                id,
                 user_id,
             },process.env.ACCESS_TOKEN_KEY,{
                 expiresIn : "60m"

@@ -2,9 +2,9 @@ const {Post} = require("../models");
 
 exports.myPost = async (req,res)=>{
     const {acc_decoded} = req;
-    const writer = acc_decoded.username;
+    const {id} = acc_decoded;
     Post.findAll({
-        where : {by : writer}
+        where : {user_id : id}
     }).then(posts=>{
         const post = posts.map(user => user.get({plain : true}));
         res.json(post);

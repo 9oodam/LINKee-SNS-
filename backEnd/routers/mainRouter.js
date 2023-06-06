@@ -1,11 +1,12 @@
 const router = require("express").Router();
 // isLogin 가져오기
+const {isLogin} = require("../middleware/isLogin");
 // levelCheck 가져오기
 
 const {viewPost, getProfile} = require("../controllers/mainCon");
 
-router.get('/', viewPost);
+router.get('/',isLogin, viewPost);
 
-router.get('/getProfile', getProfile);
+router.get('/getProfile',isLogin, getProfile);
 
 module.exports = router;
