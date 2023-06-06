@@ -51,9 +51,8 @@
                 </div>
             </div>
         </div>
-
-        <div class="post_container">
-            <!-- 게시글 유저 프로필, 닉네임, 게시글 업뎃 시간 -->
+        
+        <!-- <div class="post_container">
             <div class="post_top">
                 <div class="profile_img"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></div>
                 <div class="profile_text">
@@ -62,11 +61,9 @@
                     <p class="updated_time">2h</p>
                 </div>
             </div>
-            <!-- 사진, 동영상 -->
             <div class="post_body">
                 <video class="video" src="../post_img/KakaoTalk_Video_2023-06-04-23-42-29.mp4" autoplay muted controls></video>
             </div>
-            <!-- 좋아요 수, 게시글 텍스트, 더보기 버튼 -->
             <div class="post_bottom">
                 <div class="likes"><img src="../nav_icon_img/icon_noti.png" alt=""><p>9 likes</p></div>
                 <div class="content">
@@ -76,7 +73,7 @@
                     <p class="more">Add a comment...</p>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
 
@@ -102,15 +99,26 @@
 </body>
 <script src="../js/main.js"></script>
 <script>
-        async function getPost() {
+    async function getProfile() {
         try {
-            const {data} = await axios.get('http://127.0.0.1:8080/main', {
-                // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
+            const {data} = await axios.get('http://127.0.0.1:8080/main/getProfile', {
                 withCredentials : true
             });
-            // const {data2} = await axios.get('http://127.0.0.1:9019/', {
-            //     withCredentials : true
-            // });
+            console.log(data);
+
+            profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    getProfile();
+
+    async function getPost() {
+        try {
+            const {data} = await axios.get('http://127.0.0.1:8080/main', {
+                withCredentials : true
+            });
 
             user_name.innerHTML = data?.name;
             user_age.innerHTML = data?.age;
@@ -121,5 +129,6 @@
             console.log(error);
         }
     }
+    getPost();
 </script>
 </html>
