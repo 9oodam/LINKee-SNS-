@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>insert</title>
+    <title>detail</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <link rel="stylesheet" href="../css/nav.css">
-    <link rel="stylesheet" href="../css/insert.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/detail.css">
 </head>
 <body>
     <!-- 실시간 알림창 -->
@@ -24,18 +26,42 @@
     </div>
     
     <div class="middle_body">
-        <form>
-            <div class="form_top">
-                <h4>새 게시물</h4>
-                <button id="uploadBtn" type="button">공유</button>
+        <div class="post_container">
+            <div class="post_top">
+                <div class="profile_img"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></div>
+                <div class="profile_text">
+                    <p class="nickname">Nickname</p>
+                    <span>·</span>
+                    <p class="updated_time">2h</p>
+                </div>
             </div>
-            <div id="inputFile" class="inputFile">
-                <img id="preview" onerror="style.display='none'">
-                <label class="fileUpload" for="fileUpload">파일 선택</label>
-                <input name="img" type="file" id="fileUpload" style="display: none">
+            <div class="post_body">
+                <video class="video" src="../post_img/KakaoTalk_Video_2023-06-04-23-42-29.mp4" autoplay muted controls></video>
             </div>
-            <textarea name="content" id="content" cols="50" rows="10" placeholder="문구 입력...&#13;&#10;태그를 사용하면 다른 사용자가 게시물을 검색할 수 있습니다.&#13;&#10;&#13;&#10;ex)&#13;&#10;안녕안녕&#13;&#10;#링키 #LINKee #룰루"></textarea>
-        </form>
+            <div class="post_bottom">
+                <div class="likes"><img src="../nav_icon_img/icon_noti.png" alt=""><p>9 likes</p></div>
+                <div class="content">
+                    <p><span class="nickname">Nickname</span>
+                    <span>blahblahblah<br>sfjasklf;jsdf;</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="reply_container">
+            <div class="comments_wrap">
+                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                <div>
+                    <div class="nickname">9oodam</div>
+                    <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
+                    <details>
+                        <summary>답글 달기</summary>
+                    </details>
+                </div>
+                <div class="likes_btn"><img src="../nav_icon_img/icon_noti.png" alt=""></div>
+            </div>
+
+            <input class="comment_input" name="content" type="text" placeholder="댓글 달기...">
+            <button></button>
+        </div>
     </div>
 
     <!-- noti / dm -->
@@ -53,12 +79,11 @@
             <div class="icon"><a href="./main.html"><img src="../nav_icon_img/icon_home.webp" alt=""></a></div>
             <div class="icon"><a href="./search.html"><img src="../nav_icon_img/icon_search.png" alt=""></a></div>
             <div class="icon"><a href="./insert.html"><img src="../nav_icon_img/icon_plus.png" alt=""></a></div>
-            <div id="profile_img" class="profile_img"></div>
+            <div id = "profile_img" class="profile_img"></div>
         </div>
     </div>
 </body>
 <script>
-    // 로그인 된 유저 프로필 가져오기
     async function getProfile() {
         try {
             const {data} = await axios.get('http://127.0.0.1:8080/main/getProfile', {
@@ -79,31 +104,5 @@
         }
     }
     getProfile();
-
-    uploadBtn.onclick = () => {
-        if(!content.value) {
-            content.style.border = "1px solid red";
-        }else {
-            content.style.border = "1px solid black";
-            const form = new FormData();
-            form.append("img", fileUpload.files[0]);
-            form.append("content", content.value);
-    
-            axios.post('http://127.0.0.1:8080/insert', form, {
-                "Content-Type" : "multipart/form-data",
-                withCredentials : true
-            }).then((e) => {
-                console.log("전달 완료");
-                console.log(e.data);
-            }).catch((err) => {
-                console.log(error);
-            });
-    
-            content.value = "";
-            content.innerHTML = "";
-        }
-    }
-
 </script>
-<script src="../js/insert.js"></script>
 </html>

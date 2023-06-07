@@ -1,9 +1,11 @@
 const {User, Post, LikePost} = require("../models");
 
-exports.viewAllPost = async (req, res) => {
+exports.viewAll = async (req, res) => {
     try {
-        const data = await Post.findAll();
-        res.json(data);
+        const users = await User.findAll({where : {level : 1}});
+        const posts = await Post.findAll();
+
+        res.json({users, posts});
     } catch (error) {
         console.log(error);
     }
@@ -11,7 +13,7 @@ exports.viewAllPost = async (req, res) => {
 
 exports.searchThings = async (req, res) => {
     try {
-        
+
     } catch (error) {
         console.log(error);
     }

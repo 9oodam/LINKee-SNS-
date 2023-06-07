@@ -1,0 +1,33 @@
+.reply_container {
+    width: 100%; height: auto;
+    border: 1px solid;
+}
+.reply_container .comments_wrap {
+    display: flex; flex-direction: row;
+}
+.reply_container .comments_wrap .profile_img,
+.reply_container .comments_wrap .likes_btn {
+    width: 40px; height: auto;
+    border: 1px solid;
+}
+.reply_container .comments_wrap .profile_img img {
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 27px; height: 27px;
+    display: flex; justify-content: center; align-items: center;
+}
+.reply_container .comments_wrap .likes_btn img {
+    width: 27px; height: 27px;
+
+}
+.reply_container .comments_wrap div {
+    width: calc(100% - 60px);
+}
+
+
+
+
+.reply_container .comment_input {
+    display: fixed; bottom: 0;
+    width: 100%; height: 20px;
+}
