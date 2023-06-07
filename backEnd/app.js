@@ -9,8 +9,8 @@ const {sequelize} = require("./models");
 // router
 const signupRouter = require("./routers/signupRouter");
 const loginRouter = require("./routers/loginRouter");
-
 const mainRouter = require("./routers/mainRouter");
+const mypageRouter = require("./routers/mypageRouter");
 
 const app = express();
 
@@ -46,6 +46,7 @@ app.use("/user_img", express.static(path.join(__dirname, "user_img")));
 app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
 app.use("/main", mainRouter);
+app.use("/mypage",mypageRouter);
 
 
 

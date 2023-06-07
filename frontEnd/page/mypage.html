@@ -5,8 +5,75 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mypage</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
-    
+    <h2>mypage</h2>
+
+    <!-- noti / dm -->
+    <div class="top_nav_container">
+        <div class="top_nav">
+            <div class="logo">LINKee</div>
+            <div class="noti"><img src="../nav_icon_img/icon_noti.png" alt=""></div>
+            <div class="live_chat"><img src="../nav_icon_img/icon_dm.png" alt=""></div>
+        </div>
+    </div>
+
+    <div class="middle_body">
+        <div class="post_container">
+            <!-- 게시글 유저 프로필, 닉네임, 게시글 업뎃 시간 -->
+            <div class="post_top">
+                <div class="profile_img"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></div>
+                <div class="profile_text">
+                    <p class="nickname">Nickname</p>
+                    <span>·</span>
+                    <p class="updated_time">2h</p>
+                </div>
+            </div>
+            <!-- 사진, 동영상 -->
+            <div class="post_body">
+                <img src="../post_img/KakaoTalk_Photo_2023-05-15-10-33-57 006.jpeg" alt="">
+            </div>
+            <!-- 좋아요 수, 게시글 텍스트, 더보기 버튼 -->
+            <div class="post_bottom">
+                <div class="likes"><img src="../nav_icon_img/icon_noti.png" alt=""><p>9 likes</p></div>
+                <div class="content">
+                    <p><span class="nickname">Nickname</span>
+                    <span>blahblahblah<br>sfjasklf;jsdf;</span></p>
+                    <p class="more">more</p>
+                    <p class="more">Add a comment...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- home / search / insert / mypage -->
+    <div class="bottom_nav_container">
+        <div class="bottom_nav">
+            <div class="icon"><img src="../nav_icon_img/icon_home.webp" alt=""></div>
+            <div class="icon"><img src="../nav_icon_img/icon_search.png" alt=""></div>
+            <div class="icon"><img src="../nav_icon_img/icon_plus.png" alt=""></div>
+            <div class="profile_img"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></div>
+        </div>
+    </div>
+
+
 </body>
+<script src="../js/main.js"></script>
+<script>
+    async function myPost(){
+        try {
+            const {data} = axios.get("http://127.0.0.1:8080/mypage",{
+                withCredentials : true
+            });
+            console.log(data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    myPost();
+</script>
 </html>

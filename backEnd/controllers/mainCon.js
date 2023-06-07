@@ -4,7 +4,7 @@ exports.viewPost = async (req, res) => {
     const {acc_decoded} = req;
     // console.log(acc_decoded);
     const {id,user_id} = acc_decoded;
-    console.log(id);
+    // console.log(id);
 
     try {
         const user = await User.findOne({where : {user_id}});
