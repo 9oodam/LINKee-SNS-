@@ -1,6 +1,12 @@
 const router = require("express").Router();
-// isLogin 가져오기
-// levelCheck 가져오기
-const {getProfile} = require("../controllers/mainCon");
 
-router.get('/', )
+const {isLogin} = require("../middleware/isLogin");
+// levelCheck 가져오기
+
+const {uploadImg} = require("../middleware/uploadImg");
+const {insertPost} = require("../controllers/insertCon");
+
+router.post('/', isLogin, uploadImg.single("upload"), insertPost);
+// router.post('/upload', isLogin, insertPost);
+
+module.exports = router;

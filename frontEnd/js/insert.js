@@ -1,23 +1,3 @@
-// 로그인 된 유저 프로필 가져오기
-async function getProfile() {
-    let profile_img = document.querySelector("#profile_img");
-    try {
-        const {data} = await axios.get('http://127.0.0.1:8080/main/getProfile', {
-            // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
-            withCredentials : true
-        });
-
-        console.log(data);
-
-        profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
-
-    } catch (error) {
-        console.log(error);
-    }
-}
-getProfile();
-
-
 // 업로드 한 이미지 미리 보여주기
 let fileUpload = document.querySelector('#fileUpload');
 let label = document.querySelector(".fileUpload");

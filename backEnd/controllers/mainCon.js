@@ -1,13 +1,13 @@
 const {User, Post, LikePost} = require("../models");
 
 exports.viewPost = async (req, res) => {
-    const {user_id} = acc.decoded;
+    const {user_id} = req.acc_decoded;
 
     try {
         const user = await User.findOne({where : {user_id}});
-        console.log(user);
+        // console.log(user);
         const following = user.following;
-        console.log(following);
+        // console.log(following);
 
         const data = [];
 
@@ -16,7 +16,7 @@ exports.viewPost = async (req, res) => {
             data.push(followingPost);
         });
 
-        console.log(data);
+        // console.log(data);
 
         res.json(data);
     } catch (error) {
@@ -25,11 +25,11 @@ exports.viewPost = async (req, res) => {
 }
 
 exports.getProfile = async (req, res) => {
-    const {user_id} = acc.decoded;
+    console.log(req.acc_decoded);
+    const {user_id} = req.acc_decoded;
 
     try {
         const user = await User.findOne({where : {user_id}});
-        console.log("get: ", user);
         res.json(user);
 
     } catch (error) {
