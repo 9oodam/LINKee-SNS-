@@ -1,15 +1,40 @@
-const {Post} = require("../models");
+const {User,Post} = require("../models");
 
 exports.myPost = async (req,res)=>{
     const {acc_decoded} = req;
-    const {id} = acc_decoded;
-    Post.findAll({
-        where : {user_id : id}
-    }).then(posts=>{
-        const post = posts.map(user => user.get({plain : true}));
-        res.json(post);
-    }).catch((error)=>{
+    const {id,user_id} = acc_decoded;
+    // console.log(id);
+    // await Post.findAll({
+    //     where : {user_id : id}
+    // }).then(posts=>{
+    //     const data = posts.map(user => user.get({plain : true}));
+    //     // console.log(data);
+    //     const user = User.findOne({where : {user_id}});
+    //     console.log(user);
+    //     const response = {
+    //         data : data,
+    //         // userInfo : userInfo
+    //     };
+    //     // console.log(response);
+    //     res.json(response);
+    // }).catch((error)=>{
+    //     console.log(error);
+    //     console.log("unable to show the table in controller");
+    // });
+    try {
+        const posts = await Post.findAll({where : {user_id : id}});
+        const data = posts.map((user)=>user.get({plain : true}));
+
+        const user = await User.findOne({where : {user_id}});
+        // console.log(user.user_id);
+
+        const response = {
+            data : data,
+            user : user
+        };
+        res.json(response);
+    } catch (error) {
         console.log(error);
-        console.log("unable to show the table in controller");
-    });
+        console.log("Unable to show the table in the controller");
+    }
 };

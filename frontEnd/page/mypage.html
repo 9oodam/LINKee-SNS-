@@ -9,6 +9,64 @@
 
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/search.css">
+    <style>
+        .mypage_middle_body {
+            width: 470px; height: auto;
+        }
+        .mypage_middle_body .mypage_post_container {
+            width: 100%; height: auto;
+            border-bottom: 1px solid silver;
+            padding: 20px 0 20px 0;
+        }
+
+        .mypage_post_container .mypage_post_top { /* 상단 유저 프로필, 이름 */
+            width: 100%; height: 60px;
+            position: relative;
+        }
+        .post_top .mypage_profile_img {
+            width: 100px; height: 100px;
+            position: absolute; left: 0;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .post_top .mypage_profile_img img{
+            width: 70px; height: 70px;
+            border-radius: 50%;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+        .mypage_post_top .mypage_profile_text {
+            width: calc(100%-60px); height: 60px;
+            position: absolute;
+            left: 60px;
+            display: flex; flex-direction: row;
+            justify-content: center; align-items: center;
+        }
+        .profile_text .mypage_nickname {
+            font-weight: 900;
+            font-size: 16px;
+            position: absolute;
+            top: 100px;
+            cursor: pointer
+        }
+        .mypage_profile_text span {
+            margin: 0 5px 0 5px;
+            color: rgb(170, 170, 170);
+        }
+        .profile_text .updated_time {
+            color: rgb(170, 170, 170);
+        }
+        .mypage_search_container2 {
+            width: 100%; height: auto;
+            position: relative; top: 50px;
+            border: 1px solid;
+        }
+        /* 전체 게시글 */
+        .mypage_search_container2 .allPosts {
+            width: 100%; height: 100%;
+            display: flex; flex-wrap: wrap;
+        }
+    </style>
 </head>
 <body>
     <!-- <h2>mypage</h2> -->
@@ -24,27 +82,20 @@
 
     <div class="middle_body">
         <div class="post_container">
-            <!-- 게시글 유저 프로필, 닉네임, 게시글 업뎃 시간 -->
             <div class="post_top">
-                <div class="profile_img"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></div>
+                <div class="mypage_profile_img"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></div>
                 <div class="profile_text">
-                    <p class="nickname">Nickname</p>
-                    <span>·</span>
-                    <p class="updated_time">2h</p>
+                    <span>posts</span>
+                    <span>followers</span>
+                    <span>following</span>
+                </div>
+                <div class="profile_info">
+                    <p class="mypage_nickname">Nickname</p>
                 </div>
             </div>
-            <!-- 사진, 동영상 -->
-            <div class="post_body">
-                <img src="../post_img/KakaoTalk_Photo_2023-05-15-10-33-57 006.jpeg" alt="">
-            </div>
-            <!-- 좋아요 수, 게시글 텍스트, 더보기 버튼 -->
-            <div class="post_bottom">
-                <div class="likes"><img src="../nav_icon_img/icon_noti.png" alt=""><p>9 likes</p></div>
-                <div class="content">
-                    <p><span class="nickname">Nickname</span>
-                    <span>blahblahblah<br>sfjasklf;jsdf;</span></p>
-                    <p class="more">more</p>
-                    <p class="more">Add a comment...</p>
+            <div class="mypage_search_container2">
+                <div class="allPosts">
+                    
                 </div>
             </div>
         </div>
@@ -53,10 +104,10 @@
     <!-- home / search / insert / mypage -->
     <div class="bottom_nav_container">
         <div class="bottom_nav">
-            <div class="icon"><img src="../nav_icon_img/icon_home.webp" alt=""></div>
-            <div class="icon"><img src="../nav_icon_img/icon_search.png" alt=""></div>
-            <div class="icon"><img src="../nav_icon_img/icon_plus.png" alt=""></div>
-            <div class="profile_img"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></div>
+            <div class="icon"><a href="./main.html"><img src="../nav_icon_img/icon_home.webp" alt=""></a></div>
+            <div class="icon"><a href="./search.html"><img src="../nav_icon_img/icon_search.png" alt=""></a></div>
+            <div class="icon"><a href="./insert.html"><img src="../nav_icon_img/icon_plus.png" alt=""></a></div>
+            <div class="profile_img"><a href="./mypage.html"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></a></div>
         </div>
     </div>
 
@@ -66,13 +117,112 @@
 <script>
     async function myPost(){
         try {
-            const {data} = axios.get("http://127.0.0.1:8080/mypage",{
+            const response = await axios.get("http://127.0.0.1:8080/mypage",{
                 withCredentials : true
             });
-            console.log(data);
+            // console.log(response.data.data);
+            // console.log(response.data.user);
+            // console.log(response.data.user.user_id);
+            const myPosts = response.data.data;
+            const allPosts = document.querySelector(".allPosts");
+            myPosts.forEach((el,index)=>{
+                // console.log(el);
+                if(el.img === ""){
+                    const post = document.createElement("div");
+                    post.innerHTML = el.content;
+                    console.log(post);
+                    allPosts.append(post);
+                }else{
+                    const post = document.createElement("div");
+                    post.innerHTML = `<img src="${el.img}" alt="">`;
+                    console.log(post);
+                    allPosts.append(post);
+                };
+            });
+
+            const userID = response.data.user.user_id;
+
         } catch (error) {
             console.log(error);
         }
+        // try {
+        //     const response = await axios.get("http://127.0.0.1:8080/mypage",{
+        //         withCredentials : true
+        //     });
+        //     console.log(response.data.data);
+        //     console.log(response.data.user);
+        //     console.log(response.data.user.user_id);
+        //     const posts = response.data.data;
+        //     const userID = response.data.user.user_id;
+        //     posts.forEach((el,index)=>{
+        //         console.log(el);
+        //         console.log(Date.now());
+        //         console.log(new Date(el.createdAt).getTime());
+        //         console.log(Date.now() - new Date(el.createdAt).getTime());
+        //         const timeDiff = Date.now() - new Date(el.createdAt).getTime();
+        //         const timeDiffHR = timeDiff / 1000 / 60 / 60;
+        //         console.log(Math.floor(timeDiffHR));
+
+        //         const postTop = document.createElement("div");
+        //         postTop.classList.add("post_top");
+        //         const profileImg = document.createElement("div");
+        //         profileImg.classList.add("profile_img");
+        //         profileImg.innerHTML = '<img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt="">'
+        //         const profileText = document.createElement("div");
+        //         profileText.classList.add("profile_text");
+        //         const nickname = document.createElement("p");
+        //         nickname.classList.add("nickname");
+        //         nickname.innerHTML = userID;
+        //         const spanDot = document.createElement("span");
+        //         spanDot.innerHTML = "·";
+        //         const updatedTime = document.createElement("p");
+        //         updatedTime.classList.add("updated_time");
+        //         updatedTime.innerHTML = Math.floor(timeDiffHR);
+        //         profileText.appendChild(nickname);
+        //         profileText.appendChild(spanDot);
+        //         profileText.appendChild(updatedTime);
+        //         postTop.appendChild(profileImg);
+        //         postTop.appendChild(profileText);
+
+        //         const postBody = document.createElement("div");
+        //         postBody.classList.add("post_body");
+        //         postBody.innerHTML = el.img;
+        //         postTop.appendChild(postBody);
+        //         if(el.img === ""){
+        //             postBody.style.display = "none";
+        //         };
+
+        //         const postBottom = document.createElement("div");
+        //         postBottom.classList.add("post_bottom");
+        //         const likes = document.createElement("div");
+        //         likes.classList.add("likes");
+        //         const likeNum = document.createElement("p");
+        //         likeNum.innerHTML = `<img src="../nav_icon_img/icon_noti.png" alt=""><p>${el.likes}</p>`;
+
+
+        //         const mainContent = document.createElement("p");
+        //         const nicknameContent = document.createElement("span");
+        //         nicknameContent.classList.add("nickname");
+        //         const content = document.createElement("span");
+
+        //         const more = document.createElement("p");
+        //         more.classList.add("more");
+        //         const addComment = document.createElement("p");
+        //         addComment.classList.add("more");
+
+        //         mypostTable.appendChild(row);
+        //         row.appendChild(postNum);
+        //         row.appendChild(postTitle);
+        //         row.appendChild(postWriter);
+        //         row.appendChild(postDate);
+        //         postNum.innerHTML = el.id;
+        //         postTitle.innerHTML = el.title;
+        //         postWriter.innerHTML = el.by;
+        //         postDate.innerHTML = el.createdAt;
+        //     });
+        // } catch (error) {
+        //     console.log(error);
+        // }
     };
     myPost();
 </script>

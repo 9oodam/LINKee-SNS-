@@ -35,6 +35,7 @@ exports.getProfile = async (req, res) => {
     try {
         const user = await User.findOne({where : {user_id}});
         // console.log("get: ", user);
+        // console.log(user);
         res.json(user);
 
     } catch (error) {
