@@ -90,10 +90,10 @@
     <!-- home / search / insert / mypage -->
     <div class="bottom_nav_container">
         <div class="bottom_nav">
-            <div class="icon"><img src="../nav_icon_img/icon_home.webp" alt=""></div>
-            <div class="icon"><img src="../nav_icon_img/icon_search.png" alt=""></div>
-            <div class="icon"><img src="../nav_icon_img/icon_plus.png" alt=""></div>
-            <div class="profile_img"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></div>
+            <div class="icon"><a href="./main.html"><img src="../nav_icon_img/icon_home.webp" alt=""></a></div>
+            <div class="icon"><a href="./search.html"><img src="../nav_icon_img/icon_search.png" alt=""></a></div>
+            <div class="icon"><a href="./insert.html"><img src="../nav_icon_img/icon_plus.png" alt=""></a></div>
+            <div id = "profile_img" class="profile_img"></div>
         </div>
     </div>
 </body>
@@ -102,6 +102,7 @@
     async function getProfile() {
         try {
             const {data} = await axios.get('http://127.0.0.1:8080/main/getProfile', {
+                // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
                 withCredentials : true
             });
             // console.log(data);

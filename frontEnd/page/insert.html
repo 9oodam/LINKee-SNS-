@@ -24,16 +24,17 @@
     </div>
     
     <div class="middle_body">
-        <form action="http://127.0.0.1:8080/insert">
+        <form action="http://127.0.0.1:8080/insert" method="post">
             <div class="form_top">
                 <h4>새 게시물</h4>
-                <button>공유</button>
+                <button id="uploadBtn">공유</button>
             </div>
             <div id="inputFile" class="inputFile">
                 <img id="preview" onerror="style.display='none'">
                 <label class="fileUpload" for="fileUpload">파일 선택</label>
-                <input type="file" id="fileUpload" style="display: none">
+                <input name="img" type="file" id="fileUpload" style="display: none">
             </div>
+            <textarea name="content" id="content" cols="50" rows="10" placeholder="문구 입력..."></textarea>
         </form>
     </div>
 
@@ -52,9 +53,46 @@
             <div class="icon"><a href="./main.html"><img src="../nav_icon_img/icon_home.webp" alt=""></a></div>
             <div class="icon"><a href="./search.html"><img src="../nav_icon_img/icon_search.png" alt=""></a></div>
             <div class="icon"><a href="./insert.html"><img src="../nav_icon_img/icon_plus.png" alt=""></a></div>
-            <div id = "profile_img" class="profile_img"></div>
+            <div id="profile_img" class="profile_img"></div>
         </div>
     </div>
 </body>
+<script>
+    // 로그인 된 유저 프로필 가져오기
+    async function getProfile() {
+        let profile_img = document.querySelector("#profile_img");
+        try {
+            const {data} = await axios.get('http://127.0.0.1:8080/main/getProfile', {
+                // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
+                withCredentials : true
+            });
+
+            console.log(data);
+
+            profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    getProfile();
+
+    uploadBtn.onclick = () => {
+        console.log("작동?");
+        const form = new FormData();
+        form.append("upload", fileUpload.files[0]);
+
+        axios.post('http://127.0.0.1:8080/insert', form, {
+            "Content-Type" : "multipart/form-data",
+            withCredentials : true
+        }).then((e) => {
+            console.log("전달 완료");
+            console.log(e.data);
+        }).catch((err) => {
+            console.log(error);
+        });
+    }
+
+</script>
 <script src="../js/insert.js"></script>
 </html>
