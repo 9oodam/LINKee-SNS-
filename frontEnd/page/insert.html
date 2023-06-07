@@ -24,10 +24,10 @@
     </div>
     
     <div class="middle_body">
-        <form action="http://127.0.0.1:8080/insert" method="post">
+        <form>
             <div class="form_top">
                 <h4>새 게시물</h4>
-                <button id="uploadBtn">공유</button>
+                <button id="uploadBtn" type="button">공유</button>
             </div>
             <div id="inputFile" class="inputFile">
                 <img id="preview" onerror="style.display='none'">
@@ -78,9 +78,9 @@
     getProfile();
 
     uploadBtn.onclick = () => {
-        console.log("작동?");
         const form = new FormData();
-        form.append("upload", fileUpload.files[0]);
+        form.append("img", fileUpload.files[0]);
+        form.append("content", content.value);
 
         axios.post('http://127.0.0.1:8080/insert', form, {
             "Content-Type" : "multipart/form-data",
