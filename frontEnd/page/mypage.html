@@ -11,16 +11,16 @@
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/search.css">
     <style>
-        .mypage_middle_body {
+        .middle_body {
             width: 470px; height: auto;
         }
-        .mypage_middle_body .mypage_post_container {
+        .middle_body .post_container {
             width: 100%; height: auto;
             border-bottom: 1px solid silver;
             padding: 20px 0 20px 0;
         }
 
-        .mypage_post_container .mypage_post_top { /* 상단 유저 프로필, 이름 */
+        .ost_container .post_top { /* 상단 유저 프로필, 이름 */
             width: 100%; height: 60px;
             position: relative;
         }
@@ -35,36 +35,50 @@
             border: 1px solid black;
             cursor: pointer;
         }
-        .mypage_post_top .mypage_profile_text {
+        .post_top .mypage_profile_text {
             width: calc(100%-60px); height: 60px;
             position: absolute;
-            left: 60px;
+            top: 20px;
+            left: 200px;
             display: flex; flex-direction: row;
             justify-content: center; align-items: center;
         }
-        .profile_text .mypage_nickname {
+        .mypage_nickname {
             font-weight: 900;
             font-size: 16px;
             position: absolute;
-            top: 100px;
+            top: 80px;
+            left: 17px;
             cursor: pointer
         }
         .mypage_profile_text span {
             margin: 0 5px 0 5px;
-            color: rgb(170, 170, 170);
         }
         .profile_text .updated_time {
             color: rgb(170, 170, 170);
         }
         .mypage_search_container2 {
             width: 100%; height: auto;
-            position: relative; top: 50px;
+            position: relative; top: 70px;
             border: 1px solid;
         }
         /* 전체 게시글 */
         .mypage_search_container2 .allPosts {
             width: 100%; height: 100%;
             display: flex; flex-wrap: wrap;
+        }
+        .my_post_num{
+            margin-right: 40px;
+
+            text-align: center;
+        }
+        .my_follower_num{
+            margin-right: 35px;
+
+            text-align: center;
+        }
+        .my_following_num{
+            text-align: center;
         }
     </style>
 </head>
@@ -84,10 +98,16 @@
         <div class="post_container">
             <div class="post_top">
                 <div class="mypage_profile_img"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></div>
-                <div class="profile_text">
-                    <span>posts</span>
-                    <span>followers</span>
-                    <span>following</span>
+                <div class="mypage_profile_text">
+                    <div class="my_post_num">
+                        <span>2</span> <br/> <span>posts</span>
+                    </div>
+                    <div class="my_follower_num">
+                        <span>3</span> <br/> <span>followers</span>
+                    </div>
+                    <div class="my_following_num">
+                        <span>5</span> <br/> <span>following</span>
+                    </div>
                 </div>
                 <div class="profile_info">
                     <p class="mypage_nickname">Nickname</p>
@@ -120,8 +140,8 @@
             const response = await axios.get("http://127.0.0.1:8080/mypage",{
                 withCredentials : true
             });
-            // console.log(response.data.data);
-            // console.log(response.data.user);
+            console.log(response.data.data);
+            console.log(response.data.user);
             // console.log(response.data.user.user_id);
             const myPosts = response.data.data;
             const allPosts = document.querySelector(".allPosts");
@@ -141,6 +161,8 @@
             });
 
             const userID = response.data.user.user_id;
+            const myPostNum = document.querySelector(".my_post_num");
+            myPostNum.innerHTML = `<span>${myPosts.length}</span> <br/> <span>posts</span>` 
 
         } catch (error) {
             console.log(error);
