@@ -12,6 +12,7 @@ const loginRouter = require("./routers/loginRouter");
 const mainRouter = require("./routers/mainRouter");
 const mypageRouter = require("./routers/mypageRouter");
 const insertRouter = require("./routers/insertRouter");
+const searchRouter = require("./routers/searchRouter");
 
 const app = express();
 
@@ -49,7 +50,7 @@ app.use("/login", loginRouter);
 app.use("/main", mainRouter);
 app.use("/mypage",mypageRouter);
 app.use("/insert", insertRouter);
-
+app.use("/search", searchRouter);
 
 
 app.listen(8080, () => {

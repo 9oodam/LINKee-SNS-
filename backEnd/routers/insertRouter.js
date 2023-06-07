@@ -6,7 +6,6 @@ const {isLogin} = require("../middleware/isLogin");
 const {uploadImg} = require("../middleware/uploadImg");
 const {insertPost} = require("../controllers/insertCon");
 
-router.post('/', isLogin, uploadImg.single("upload"), insertPost);
-// router.post('/upload', isLogin, insertPost);
+router.post('/', isLogin, uploadImg.single("img"), insertPost);
 
 module.exports = router;
