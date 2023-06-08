@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>detail</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/detail.css">
+</head>
+<body>
+    <!-- 실시간 알림창 -->
+    <div class="live_chat_noti_container">
+        <div class="live_chat_noti">
+            <p>OOO님이</p>
+            <p>대화를 요청하였습니다.</p>
+            <p>승인 버튼을 누르면 대화방으로 이동합니다.</p>
+            <div class="btns">
+                <div class="appBtn">승인</div>
+                <div class="rejBtn">거절</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 중간 -->
+    <div class="middle_body">
+        <!-- 게시글 상세 부분 -->
+        <div class="post_container">
+            <div class="post_top">
+                <div class="profile_img"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></div>
+                <div class="profile_text">
+                    <p class="nickname">Nickname</p>
+                    <span>·</span>
+                    <p class="updated_time">2h</p>
+                </div>
+                <div class="editBtn">수정</div>
+                <div class="delBtn">삭제</div>
+            </div>
+            <div class="post_body">
+                <video class="video" src="../post_img/KakaoTalk_Video_2023-06-04-23-42-29.mp4" autoplay muted controls></video>
+            </div>
+            <div class="post_bottom">
+                <div class="likes"><img src="../nav_icon_img/icon_noti.png" alt=""><p>9 likes</p></div>
+                <div class="content">
+                    <p><span class="nickname">Nickname</span>
+                    <span>blahblahblah<br>sfjasklf;jsdf;</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 댓글 부분 -->
+        <div class="reply_container">
+            <div class="comments_wrap">
+                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                <div>
+                    <div class="nickname">9oodam</div>
+                    <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
+                    <details>
+                        <summary>답글 달기</summary>
+                        <div class="comments_wrap">
+                            <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                            <div>
+                                <div class="nickname">9oodam</div>
+                                <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
+                            </div>
+                        </div>
+                        <div class="comments_wrap">
+                            <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                            <div>
+                                <div class="nickname">9oodam</div>
+                                <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
+                            </div>
+                        </div>
+                        <div class="input_wrap2">
+                            <input class="comment_input2" name="smallComment" type="text" placeholder="대댓글 달기...">
+                            <div class="commentBtn2">전송</div>
+                        </div>
+                    </details>
+                </div>
+                <div class="likes_btn">
+                    <img src="../nav_icon_img/icon_noti.png" alt="">
+                    <img src="../nav_icon_img/icon_heart.png" alt="">
+                    <div clss=""></div>
+                </div>
+            </div>
+            <div class="comments_wrap">
+                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                <div>
+                    <div class="nickname">9oodam</div>
+                    <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
+                    <details>
+                        <summary>답글 달기</summary>
+                        <div class="comments_wrap">
+                            <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                            <div>
+                                <div class="nickname">9oodam</div>
+                                <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
+                            </div>
+                        </div>
+                        <div class="comments_wrap">
+                            <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                            <div>
+                                <div class="nickname">9oodam</div>
+                                <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
+                            </div>
+                        </div>
+                        <div class="input_wrap2">
+                            <input class="comment_input2" name="smallComment" type="text" placeholder="대댓글 달기...">
+                            <div class="commentBtn2">전송</div>
+                        </div>
+                    </details>
+                </div>
+                <div class="likes_btn">
+                    <img src="../nav_icon_img/icon_noti.png" alt="">
+                    <img src="../nav_icon_img/icon_heart.png" alt="">
+                    <div clss=""></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="input_wrap">
+        <input class="comment_input" name="bigComment" type="text" placeholder="댓글 달기...">
+        <div class="commentBtn">전송</div>
+    </div>
+
+    <!-- noti / dm -->
+    <div class="top_nav_container">
+        <div class="top_nav">
+            <div class="logo">LINKee</div>
+            <div class="noti"><img src="../nav_icon_img/icon_noti.png" alt=""></div>
+            <div class="live_chat"><img src="../nav_icon_img/icon_dm.png" alt=""></div>
+        </div>
+    </div>
+
+    <!-- home / search / insert / mypage -->
+    <div class="bottom_nav_container">
+        <div class="bottom_nav">
+            <div class="icon"><a href="./main.html"><img src="../nav_icon_img/icon_home.webp" alt=""></a></div>
+            <div class="icon"><a href="./search.html"><img src="../nav_icon_img/icon_search.png" alt=""></a></div>
+            <div class="icon"><a href="./insert.html"><img src="../nav_icon_img/icon_plus.png" alt=""></a></div>
+            <div id = "profile_img" class="profile_img"></div>
+        </div>
+    </div>
+</body>
+<script>
+    async function getProfile() {
+        try {
+            const {data} = await axios.get('http://127.0.0.1:8080/main/getProfile', {
+                // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
+                withCredentials : true
+            });
+
+            console.log(data);
+
+            if(data.profile_img == null) {
+                profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></a>`;
+            }else {
+                profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    getProfile();
+</script>
+</html>

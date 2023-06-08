@@ -1,32 +1,38 @@
 const {User, Post, LikePost} = require("../models");
 
-exports.viewPost = async (req, res) => {
+exports.getPost = async (req, res) => {
     const {acc_decoded} = req;
     // console.log(acc_decoded);
     const {id,user_id} = acc_decoded;
     // console.log(id);
 
     try {
+        // 로그인 된 유저
         const user = await User.findOne({where : {user_id}});
         // console.log(user);
         const following = user.following;
         // console.log(following);
 
-        const data = [];
+        // 팔로우 하고 있는 유저들의 게시글
+        const followingPost = [];
 
-        // 잠시 주석처리 해놓을게용
-        // following.forEach((e) => {
-        //     const followingPost = Post.fineOne({where : {user_id : e}});
-        //     data.push(followingPost);
-        // });
+        // for of : 순차적
+        // forEach : 비순차적
+        for (const el of following) {
+            const temp = await Post.findAll({ where: { user_id: el } });
+            // const tempArray=temp.map((a)=>{
+            // return a.dataValues;
+            // })
+            followingPost.push(temp);
+        }
 
-        // console.log(data);
-
-        res.json(data);
+        res.json({user, following, followingPost});
+        
     } catch (error) {
         console.log(error);
     }
 }
+
 
 exports.getProfile = async (req, res) => {
     const {acc_decoded} = req;

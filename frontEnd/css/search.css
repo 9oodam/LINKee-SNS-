@@ -11,10 +11,11 @@
 .search_container form .no_searched {
     color: #d7303b;
     text-align: left;
+    font-size: 12px;
     padding: 0 15px 0 15px;
     position: absolute;
     width: 470px;
-    top: 15px; left: 50%;
+    top: 20px; left: 50%;
     transform: translateX(-15%);
     /* display: none; */
 }
@@ -51,7 +52,6 @@
 .search_container2 {
     width: 100%; height: auto;
     position: relative; top: 0;
-    border: 1px solid;
 }
 /* 전체 게시글 */
 .search_container2 .allPosts {
@@ -75,10 +75,13 @@
     width: 350px; height: 500px;
     position: absolute; top: 0; left: 50%;
     transform: translateX(-50%);
-    display: flex; flex-direction: column;
     overflow: scroll;
+    display: none;
 }
-.autocomplete_wrap div {
+.autocomplete_wrap #autoN, .autocomplete_wrap #autoP {
+    border-bottom: 1px solid rgb(230, 230, 230);
+}
+.autocomplete_wrap #autoN div, .autocomplete_wrap #autoP div {
     width: 350px; height: auto;
     padding: 5px  10px 5px 10px;
     box-sizing: border-box;
@@ -86,22 +89,25 @@
     display: flex;
     cursor: pointer;
 }
-.autocomplete_wrap div:hover {
+.autocomplete_wrap #autoN div:hover, .autocomplete_wrap #autoP div:hover {
     background-color: rgb(230, 230, 230);
 }
-.autocomplete_wrap div .profile_img {
+.autocomplete_wrap #autoN div .profile_img {
     background-color: rgba(0, 0, 0, 0);
     width: 40px; height: 40px;
     display: flex; justify-content: center; align-items: center;
 }
-.autocomplete_wrap div .profile_img img {
+.autocomplete_wrap #autoN div .profile_img img {
     width: 35px; height: 35px;
     border-radius: 50%;
     cursor: pointer;
 }
-.autocomplete_wrap div .nickname {
+.autocomplete_wrap #autoN div .nickname {
     width: 290px; height: 40px;
     box-sizing: border-box;
     display: flex; align-items: center;
     background-color: rgba(0, 0, 0, 0);
+}
+.autocomplete_wrap #autoP div p {
+    margin: 5px 10px 5px 10px;
 }

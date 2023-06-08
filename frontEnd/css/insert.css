@@ -45,6 +45,9 @@ form .inputFile label {
     font-weight: 500;
     cursor: pointer;
 }
+form .inputFile label:hover {
+    text-decoration: underline;
+}
 form .inputFile img {
     position: absolute;
     width: 100%; height: auto;
@@ -55,4 +58,5 @@ form textarea {
     width: 100%;
     resize: none;
     box-sizing: border-box;
+    border: 1px solid black;
 }

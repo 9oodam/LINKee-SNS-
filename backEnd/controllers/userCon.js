@@ -15,7 +15,7 @@ exports.signUp1 = async (req,res)=>{
             user_name : user_name,
             nickname : nickname,
             user_pw : hash,
-            user_id : user_id,
+            profile_img : "default_profile.jpeg", // 가입할 때 기본 프로필 이미지
             level : 0,
             follower : "",
             following : "",

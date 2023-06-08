@@ -25,11 +25,17 @@
         </div>
     </div>
 
-    <div class="middle_body">
+    <!-- 첫 가입자 (팔로잉X, 게시글X)일 경우에만 보여줌 -->
+    <div id="forFreshman">
+        <h3></h3>
+        <h5></h5>
+    </div>
+
+    <div id="middle_body" class="middle_body">
         <div class="post_container">
             <!-- 게시글 유저 프로필, 닉네임, 게시글 업뎃 시간 -->
             <div class="post_top">
-                <div class="profile_img"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></div>
+                <div class="profile_img"><img src="" alt="profile"></div>
                 <div class="profile_text">
                     <p class="nickname">Nickname</p>
                     <span>·</span>
@@ -38,7 +44,7 @@
             </div>
             <!-- 사진, 동영상 -->
             <div class="post_body">
-                <img src="../post_img/KakaoTalk_Photo_2023-05-15-10-33-57 006.jpeg" alt="">
+                <img src="" alt="">
             </div>
             <!-- 좋아요 수, 게시글 텍스트, 더보기 버튼 -->
             <div class="post_bottom">
@@ -107,7 +113,11 @@
             });
             console.log(data);
 
-            profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
+            if(data.profile_img == null) {
+                profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></a>`;
+            }else {
+                profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
+            }
 
         } catch (error) {
             console.log(error);
@@ -120,11 +130,48 @@
             const {data} = await axios.get('http://127.0.0.1:8080/main', {
                 withCredentials : true
             });
+            const {user, following, followingPost} = data;
 
-            user_name.innerHTML = data?.name;
-            user_age.innerHTML = data?.age;
+            console.log(following);
+            console.log(followingPost);
 
-            isLoading.classList.add("disable");
+            followingPost[0].forEach((el) => {
+                // 해당 포스트를 작성한 유저의 정보 끌고오기
+                
+                let writer = following.find(item => item == el.user_id);
+                console.log("작성자: ", wirter);
+
+                middle_body.innerHTML += `
+                <div class="post_container">
+                    <div class="post_top">
+                        <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/${writer.profile_img}" alt="profile"></div>
+                        <div class="profile_text">
+                            <p class="nickname">${writer.nickname}</p>
+                            <span>·</span>
+                            <p class="updated_time">2h</p>
+                        </div>
+                    </div>
+
+                    <div class="post_body">
+                        <img src="http://127.0.0.1:8080/post_img/${el.img}" alt="">
+                    </div>
+
+                    <div class="post_bottom">
+                        <div class="likes"><img src="../nav_icon_img/icon_noti.png" alt=""><p>9 likes</p></div>
+                        <div class="content">
+                            <p><span class="nickname">${writer.nickname}</span>
+                            <span>${el.content}</span></p>
+                            <p class="more">more</p>
+                            <p class="more">Add a comment...</p>
+                        </div>
+                    </div>
+                </div>
+                `;
+            });
+
+            if(user.following.length == 0) {
+                forFreshman.style.display = block;
+            }
 
         } catch (error) {
             console.log(error);
