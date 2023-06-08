@@ -76,23 +76,19 @@
             <div class="edit_profile_section">
                 <div>
                     <label for="">Name</label>
-                    <input type="text"> <br/>
+                    <input class="nameInput" type="text" disabled>
                 </div>
                 <div>
-                    <label for="">Username</label>
-                    <input type="text"> <br/>
+                    <label for="">ID</label>
+                    <input class="idInput" type="text" disabled>
                 </div>
                 <div>
                     <label for="">Nickname</label>
-                    <input type="text"> <br/>
+                    <input class="nicknameInput" type="text" name="nickname">
                 </div>
-                <div>
-                    <label for="">Password</label>
-                    <input type="text"> <br/>
-                </div>
-                <div>
-                    <label for="">Password check</label>
-                    <input type="text"> <br/>
+                <div class="userInfoBox" style="height: 200px;">
+                    <label for="">Info</label>
+                    <textarea class="infoInput" name="profile_info" id="" cols="30" rows="10"></textarea>
                 </div>
                 <button>edit my profile</button>
             </form>
@@ -110,8 +106,19 @@
             });
 
             console.log(data);
+
             const profilePic = document.querySelector(".profile_pic");
             profilePic.innerHTML = `<img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt="">`;
+            const nameInput = document.querySelector(".nameInput");
+            nameInput.placeholder = data.user_name;
+            const idInput = document.querySelector(".idInput");
+            idInput.placeholder = data.user_id;
+            const nicknameInput = document.querySelector(".nicknameInput");
+            nicknameInput.placeholder = data.nickname;
+            const infoInput = document.querySelector(".infoInput");
+            if(data.profile_info !== null){
+                infoInput.placeholder = data.profile_info;
+            }
 
             // profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
 
