@@ -219,6 +219,9 @@
             const myPostNum = document.querySelector(".my_post_num");
             myPostNum.innerHTML = `<span>${myPosts.length}</span> <br/> <span>posts</span>`;
 
+            profileImg = document.querySelector(".profile_img");
+            profileImg.innerHTML = `<a href="./mypage.html"><img src="../user_img/${response.data.user.profile_img}" alt=""></a>`
+
         } catch (error) {
             console.log(error);
         }
