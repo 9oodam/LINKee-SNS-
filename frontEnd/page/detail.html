@@ -25,7 +25,9 @@
         </div>
     </div>
     
+    <!-- 중간 -->
     <div class="middle_body">
+        <!-- 게시글 상세 부분 -->
         <div class="post_container">
             <div class="post_top">
                 <div class="profile_img"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></div>
@@ -34,6 +36,8 @@
                     <span>·</span>
                     <p class="updated_time">2h</p>
                 </div>
+                <div class="editBtn">수정</div>
+                <div class="delBtn">삭제</div>
             </div>
             <div class="post_body">
                 <video class="video" src="../post_img/KakaoTalk_Video_2023-06-04-23-42-29.mp4" autoplay muted controls></video>
@@ -46,6 +50,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- 댓글 부분 -->
         <div class="reply_container">
             <div class="comments_wrap">
                 <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
@@ -54,14 +60,70 @@
                     <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
                     <details>
                         <summary>답글 달기</summary>
+                        <div class="comments_wrap">
+                            <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                            <div>
+                                <div class="nickname">9oodam</div>
+                                <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
+                            </div>
+                        </div>
+                        <div class="comments_wrap">
+                            <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                            <div>
+                                <div class="nickname">9oodam</div>
+                                <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
+                            </div>
+                        </div>
+                        <div class="input_wrap2">
+                            <input class="comment_input2" name="smallComment" type="text" placeholder="대댓글 달기...">
+                            <div class="commentBtn2">전송</div>
+                        </div>
                     </details>
                 </div>
-                <div class="likes_btn"><img src="../nav_icon_img/icon_noti.png" alt=""></div>
+                <div class="likes_btn">
+                    <img src="../nav_icon_img/icon_noti.png" alt="">
+                    <img src="../nav_icon_img/icon_heart.png" alt="">
+                    <div clss=""></div>
+                </div>
             </div>
-
-            <input class="comment_input" name="content" type="text" placeholder="댓글 달기...">
-            <button></button>
+            <div class="comments_wrap">
+                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                <div>
+                    <div class="nickname">9oodam</div>
+                    <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
+                    <details>
+                        <summary>답글 달기</summary>
+                        <div class="comments_wrap">
+                            <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                            <div>
+                                <div class="nickname">9oodam</div>
+                                <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
+                            </div>
+                        </div>
+                        <div class="comments_wrap">
+                            <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                            <div>
+                                <div class="nickname">9oodam</div>
+                                <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
+                            </div>
+                        </div>
+                        <div class="input_wrap2">
+                            <input class="comment_input2" name="smallComment" type="text" placeholder="대댓글 달기...">
+                            <div class="commentBtn2">전송</div>
+                        </div>
+                    </details>
+                </div>
+                <div class="likes_btn">
+                    <img src="../nav_icon_img/icon_noti.png" alt="">
+                    <img src="../nav_icon_img/icon_heart.png" alt="">
+                    <div clss=""></div>
+                </div>
+            </div>
         </div>
+    </div>
+    <div class="input_wrap">
+        <input class="comment_input" name="bigComment" type="text" placeholder="댓글 달기...">
+        <div class="commentBtn">전송</div>
     </div>
 
     <!-- noti / dm -->
