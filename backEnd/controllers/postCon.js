@@ -3,24 +3,7 @@ const {User,Post} = require("../models");
 exports.myPost = async (req,res)=>{
     const {acc_decoded} = req;
     const {id,user_id} = acc_decoded;
-    // console.log(id);
-    // await Post.findAll({
-    //     where : {user_id : id}
-    // }).then(posts=>{
-    //     const data = posts.map(user => user.get({plain : true}));
-    //     // console.log(data);
-    //     const user = User.findOne({where : {user_id}});
-    //     console.log(user);
-    //     const response = {
-    //         data : data,
-    //         // userInfo : userInfo
-    //     };
-    //     // console.log(response);
-    //     res.json(response);
-    // }).catch((error)=>{
-    //     console.log(error);
-    //     console.log("unable to show the table in controller");
-    // });
+    console.log(req.session);
     try {
         const posts = await Post.findAll({where : {user_id : id}});
         const data = posts.map((user)=>user.get({plain : true}));
