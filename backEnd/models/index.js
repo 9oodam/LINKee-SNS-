@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const config = require("./config");
 
-const User = require("./users");
+const {User, LoginCount} = require("./users");
 const {Post, LikePost} = require("./posts");
 const {BigComment, LikeBigComment} = require("./bigComments.js")
 const {SmallComment, LikeSmallComment} = require("./smallComment")
@@ -19,6 +19,7 @@ const db = {}
 db.sequelize = sequelize;
 
 db.User = User;
+db.LoginCount = LoginCount;
 db.Post = Post;
 db.LikePost = LikePost;
 db.BigComment = BigComment;
@@ -27,6 +28,7 @@ db.SmallComment = SmallComment;
 db.LikeSmallComment = LikeSmallComment;
 
 User.init(sequelize);
+LoginCount.init(sequelize);
 Post.init(sequelize);
 LikePost.init(sequelize);
 BigComment.init(sequelize);
