@@ -26,62 +26,15 @@
     </div>
 
     <!-- 첫 가입자 (팔로잉X, 게시글X)일 경우에만 보여줌 -->
-    <div id="forFreshman">
-        <h3></h3>
-        <h5></h5>
+    <div id="forFreshman" style="display: none">
+        <h3>뉴비한테 머라 적어줄까</h3>
+        <h5>흥미로운 태그를 검색하거나 게시글을 작성해서 fllowing & follower를 늘려보세요!</h5>
     </div>
 
+
+    <!-- 게시글 보여지는 부분 -->
     <div id="middle_body" class="middle_body">
-        <div class="post_container">
-            <!-- 게시글 유저 프로필, 닉네임, 게시글 업뎃 시간 -->
-            <div class="post_top">
-                <div class="profile_img"><img src="" alt="profile"></div>
-                <div class="profile_text">
-                    <p class="nickname">Nickname</p>
-                    <span>·</span>
-                    <p class="updated_time">2h</p>
-                </div>
-            </div>
-            <!-- 사진, 동영상 -->
-            <div class="post_body">
-                <img src="" alt="">
-            </div>
-            <!-- 좋아요 수, 게시글 텍스트, 더보기 버튼 -->
-            <div class="post_bottom">
-                <div class="likes"><img src="../nav_icon_img/icon_noti.png" alt=""><p>9 likes</p></div>
-                <div class="content">
-                    <p><span class="nickname">Nickname</span>
-                    <span>blahblahblah<br>sfjasklf;jsdf;</span></p>
-                    <p class="more">more</p>
-                    <p class="more">Add a comment...</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- <div class="post_container">
-            <div class="post_top">
-                <div class="profile_img"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></div>
-                <div class="profile_text">
-                    <p class="nickname">Nickname</p>
-                    <span>·</span>
-                    <p class="updated_time">2h</p>
-                </div>
-            </div>
-            <div class="post_body">
-                <video class="video" src="../post_img/KakaoTalk_Video_2023-06-04-23-42-29.mp4" autoplay muted controls></video>
-            </div>
-            <div class="post_bottom">
-                <div class="likes"><img src="../nav_icon_img/icon_noti.png" alt=""><p>9 likes</p></div>
-                <div class="content">
-                    <p><span class="nickname">Nickname</span>
-                    <span>blahblahblah<br>sfjasklf;jsdf;</span></p>
-                    <p class="more">more</p>
-                    <p class="more">Add a comment...</p>
-                </div>
-            </div>
-        </div> -->
     </div>
-
 
 
     <!-- noti / dm -->
@@ -131,25 +84,66 @@
             const {data} = await axios.get('http://127.0.0.1:8080/main', {
                 withCredentials : true
             });
-            const {user, following, followingPost} = data;
+            const {user, userAll, following, followingPost} = data;
 
             console.log(following);
+            followingPost.reverse();
+
+            if(following == 0) {
+                forFreshman.style.display = "block";
+            }
+
             console.log(followingPost);
 
-            followingPost[0].forEach((el) => {
-                // 해당 포스트를 작성한 유저의 정보 끌고오기
-                
+            followingPost.forEach((el) => {
+                // 해당 포스트를 작성한 유저의 nickname & profile_img
                 let writer = following.find(item => item == el.user_id);
-                console.log("작성자: ", wirter);
+                let profile_img = "";
+                userAll.forEach((el2) => {
+                    if(el2.id == writer) {
+                        profile_img = el2.profile_img;
+                    }
+                });
+
+                // 날짜 계산
+                let now = new Date();
+                console.log(now);
+                let posteddate = new Date(el.createdAt);
+                console.log(posteddate)
+                let calc = (now.getTime() - posteddate.getTime()) / 1000;
+                console.log(calc);
+
+                let s = 1;
+                let m = s * 60;
+                let h = m * 60;
+                let d = h * 24;
+    
+                let dateText = "";
+                if(calc < s) {
+                    dateText = "방금 전";
+                }else if(calc < m) {
+                    dateText = calc + "초 전";
+                }else if(calc < h) {
+                    dateText = Math.trunc(calc/m) + "분 전";
+                }else if(calc < d) {
+                    dateText = Math.trunc(calc/h) + "시간 전";
+                }else if(calc < d * 15) {
+                    dateText = Math.trunc(calc/d) + "일 전";
+                }else {
+                    let year = posteddate.getFullYear();
+                    let month = posteddate.getMonth() + 1;
+                    let date = posteddate.getDate();
+                    dateText = `${year}.${month}.${date}`;
+                }
 
                 middle_body.innerHTML += `
                 <div class="post_container">
                     <div class="post_top">
-                        <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/${writer.profile_img}" alt="profile"></div>
+                        <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/${profile_img}" alt="profile"></div>
                         <div class="profile_text">
-                            <p class="nickname">${writer.nickname}</p>
+                            <p class="nickname">${writer}</p>
                             <span>·</span>
-                            <p class="updated_time">2h</p>
+                            <p class="updated_time">${dateText}</p>
                         </div>
                     </div>
 
@@ -158,9 +152,9 @@
                     </div>
 
                     <div class="post_bottom">
-                        <div class="likes"><img src="../nav_icon_img/icon_noti.png" alt=""><p>9 likes</p></div>
+                        <div class="likes"><img src="../nav_icon_img/icon_noti.png" alt=""><p>${el.likes} likes</p></div>
                         <div class="content">
-                            <p><span class="nickname">${writer.nickname}</span>
+                            <p><span class="nickname">${writer}</span>
                             <span>${el.content}</span></p>
                             <p class="more">more</p>
                             <p class="more">Add a comment...</p>
@@ -169,10 +163,6 @@
                 </div>
                 `;
             });
-
-            if(user.following.length == 0) {
-                forFreshman.style.display = block;
-            }
 
         } catch (error) {
             console.log(error);
