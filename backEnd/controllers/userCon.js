@@ -30,6 +30,7 @@ exports.signUp1 = async (req, res) => {
       level: 0,
       follower: 0,
       following: 0,
+      profile_img: "default_profile.jpeg"
     });
     res.redirect("http://127.0.0.1:5500/frontEnd/page/login.html");
     // 수정해야함
@@ -40,7 +41,6 @@ exports.signUp1 = async (req, res) => {
 
 exports.idCheck = async (req, res) => {
   try {
-    console.log("됐음? con");
     let param = req.params.id;
     const idCheck = await User.findOne({ where: { user_id: param } });
     if (idCheck != null) {
@@ -68,6 +68,38 @@ exports.nicknameCheck = async (req, res) => {
   }
 };
 
+exports.login1 = async (req, res) => {
+  try {
+    // const {user_id, user_pw} = req.body;
+
+    // if(user_pw == ""){
+    //     return;
+    // }
+    // const user = await User.findOne({where:{user_id:user_id}});
+    // if(user == null){
+    //     // return res.send("가입 안한 아이디임!");
+    //     return;
+    // }
+
+    // const same = bcrypt.compareSync(user_pw, user.user_pw);
+    // // const {name, age} = user;
+    // if(same){
+    //     let token = jwt.sign({
+    //         user_id,
+    //     },process.env.ACCESS_TOKEN_KEY,{
+    //         expiresIn : "60m"
+    //     });
+    //     req.session.access_token = token;
+    //     req.session.user_id = user_id;
+    //     return res.redirect("http://127.0.0.1:5500/0602_Linkee/frontEnd/page/main.html");
+    // }else{
+    //     // return res.send("비밀번호 틀림");
+    //     return;
+    // }
+  } catch (error) {
+    console.log(error);
+  }
+};
 exports.loginalert = async (req, res) => {
   try {
     let param = req.params.id;
@@ -183,5 +215,4 @@ exports.unAuth = async (req,res)=>{
   await User.update({level: 0}, {where:{user_id:param}});
   res.json("1");
 }
-
 

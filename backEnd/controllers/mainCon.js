@@ -34,10 +34,10 @@ exports.getPost = async (req, res) => {
 
 exports.getProfile = async (req, res) => {
     console.log(req.acc_decoded);
-    const {user_id} = req.acc_decoded;
+    const {id} = req.acc_decoded;
 
     try {
-        const user = await User.findOne({where : {user_id}});
+        const user = await User.findOne({where : {id}});
         res.json(user);
 
     } catch (error) {
