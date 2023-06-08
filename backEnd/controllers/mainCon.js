@@ -14,27 +14,17 @@ exports.getPost = async (req, res) => {
         // 팔로우 하고 있는 유저들의 게시글
         const followingPost = [];
 
-        following.forEach(async (el) => { 
-            console.log(el,'js and el')           
+        // for of : 순차적
+        // forEach : 비순차적
+        for (const el of following) {
             const temp = await Post.findAll({ where: { user_id: el } });
-            const tempArray=temp.map((a)=>{
-            return a.dataValues;
-            })
-            followingPost.push(tempArray);
-            console.log(followingPost,'tempArray')
-        });
-
-
-        console.log(followingPost,'asdasdads');
-        /*
-        following.forEach((e) => {
-            const temp = Post.findOne({where : {user_id : e}});
+            // const tempArray=temp.map((a)=>{
+            // return a.dataValues;
+            // })
             followingPost.push(temp);
-        });
-        */
-        setTimeout(()=>{
-            res.json({user, following, followingPost});
-        },10);
+        }
+
+        res.json({user, following, followingPost});
         
     } catch (error) {
         console.log(error);

@@ -136,9 +136,10 @@
             console.log(following);
             console.log(followingPost);
 
-            followingPost.forEach((el) => {
+            followingPost[0].forEach((el) => {
                 // 해당 포스트를 작성한 유저의 정보 끌고오기
-                let writer = following.find(item => item.id === el.user_id);
+                
+                let writer = following.find(item => item == el.user_id);
                 console.log("작성자: ", wirter);
 
                 middle_body.innerHTML += `
