@@ -107,6 +107,9 @@
 
             console.log(data);
 
+            const profileImg = document.querySelector(".profile_img");
+            profileImg.innerHTML = `<a href="./mypage.html"><img src="../user_img/${data.profile_img}" alt=""></a>`;
+
             const profilePic = document.querySelector(".profile_pic");
             profilePic.innerHTML = `<img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt="">`;
             const nameInput = document.querySelector(".nameInput");
