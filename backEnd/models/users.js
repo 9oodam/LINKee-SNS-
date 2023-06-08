@@ -60,4 +60,27 @@ class User extends Sequelize.Model{
     }
 }
 
-module.exports = User;
+class LoginCount extends Sequelize.Model{
+    static init(seq){
+        return super.init({
+            date : {
+                type : Sequelize.STRING(50),
+                allowNull : false,
+            },
+            cnt : {
+                type : Sequelize.INTEGER,
+                allowNull : false,
+            }
+        },{
+            sequelize : seq,
+            timestamps : false,
+            underscored : false,
+            modelName : "LoginCount",
+            tableName : "logincount",
+            charset : "utf8",
+            collate : "utf8_general_ci"
+        });
+    }
+}
+
+module.exports = {User, LoginCount};

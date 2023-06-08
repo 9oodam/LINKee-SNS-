@@ -35,13 +35,11 @@ exports.getPost = async (req, res) => {
 
 
 exports.getProfile = async (req, res) => {
-    const {acc_decoded} = req;
-    const {user_id} = acc_decoded;
+    console.log(req.acc_decoded);
+    const {id} = req.acc_decoded;
 
     try {
-        const user = await User.findOne({where : {user_id}});
-        // console.log("get: ", user);
-        // console.log(user);
+        const user = await User.findOne({where : {id}});
         res.json(user);
 
     } catch (error) {

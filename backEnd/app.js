@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const cors = require("cors"); // front & back 연결
+const dot = require("dotenv").config();
 const session = require("express-session");
 
 const {sequelize} = require("./models");
@@ -13,6 +14,9 @@ const mainRouter = require("./routers/mainRouter");
 const mypageRouter = require("./routers/mypageRouter");
 const insertRouter = require("./routers/insertRouter");
 const searchRouter = require("./routers/searchRouter");
+const mypageRouter = require("./routers/mypageRouter");
+
+const adminRouter = require("./routers/adminRouter");
 
 const app = express();
 
@@ -51,7 +55,8 @@ app.use("/main", mainRouter);
 app.use("/mypage",mypageRouter);
 app.use("/insert", insertRouter);
 app.use("/search", searchRouter);
-
+app.use("/mypage",mypageRouter);
+app.use("/admin", adminRouter);
 
 app.listen(8080, () => {
     console.log("server opened");
