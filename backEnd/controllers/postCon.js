@@ -3,7 +3,7 @@ const {User,Post} = require("../models");
 exports.myPost = async (req,res)=>{
     const {acc_decoded} = req;
     const {id,user_id} = acc_decoded;
-    console.log(req.session);
+    
     try {
         const posts = await Post.findAll({where : {user_id : id}});
         const data = posts.map((user)=>user.get({plain : true}));
