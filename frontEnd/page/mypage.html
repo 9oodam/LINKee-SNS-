@@ -20,8 +20,8 @@
             padding: 20px 0 20px 0;
         }
 
-        .ost_container .post_top { /* 상단 유저 프로필, 이름 */
-            width: 100%; height: 60px;
+        .post_container .post_top { /* 상단 유저 프로필, 이름 */
+            width: 100%; height: 170px;
             position: relative;
         }
         .post_top .mypage_profile_img {
@@ -43,6 +43,51 @@
             display: flex; flex-direction: row;
             justify-content: center; align-items: center;
         }
+        .post_top .button_box{
+            position: absolute;
+            bottom: 0;
+            width: 100%; height: 30px;
+            background-color: lightgray;
+            border-radius: 5px;
+
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            align-content: center;
+        }
+        .followBtn, .messageBtn{
+            width: 200px; height: 25px;
+        }
+        .followBtn{
+            background-color: lightskyblue;
+            border: none;
+            border-radius: 5px;
+        }
+        .followBtn:hover{
+            cursor: pointer;
+            background-color: rgb(50, 206, 250);
+        }
+        .messageBtn{
+            background-color: lightgray;
+            border: none;
+            border-radius: 5px;
+        }
+        .messageBtn:hover{
+            cursor: pointer;
+            background-color: rgb(159, 159, 159);
+        }
+        .edit_profile_btn{
+            width: 450px; height: 25px;
+        }
+        .edit_profile_btn:hover{
+            cursor: pointer;
+            background-color: rgb(188, 188, 188);
+        }
+        .edit_profile_btn{
+            background-color: lightgray;
+            border: none;
+            border-radius: 5px;
+        }
         .mypage_nickname {
             font-weight: 900;
             font-size: 16px;
@@ -53,19 +98,6 @@
         }
         .mypage_profile_text span {
             margin: 0 5px 0 5px;
-        }
-        .profile_text .updated_time {
-            color: rgb(170, 170, 170);
-        }
-        .mypage_search_container2 {
-            width: 100%; height: auto;
-            position: relative; top: 70px;
-            border: 1px solid;
-        }
-        /* 전체 게시글 */
-        .mypage_search_container2 .allPosts {
-            width: 100%; height: 100%;
-            display: flex; flex-wrap: wrap;
         }
         .my_post_num{
             margin-right: 40px;
@@ -79,6 +111,19 @@
         }
         .my_following_num{
             text-align: center;
+        }
+        .profile_text .updated_time {
+            color: rgb(170, 170, 170);
+        }
+        .mypage_search_container2 {
+            width: 100%; height: auto;
+            position: relative; top: 10px;
+            border: 1px solid;
+        }
+        /* 전체 게시글 */
+        .mypage_search_container2 .allPosts {
+            width: 100%; height: 100%;
+            display: flex; flex-wrap: wrap;
         }
     </style>
 </head>
@@ -100,7 +145,7 @@
                 <div class="mypage_profile_img"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></div>
                 <div class="mypage_profile_text">
                     <div class="my_post_num">
-                        <span>2</span> <br/> <span>posts</span>
+                        
                     </div>
                     <div class="my_follower_num">
                         <span>3</span> <br/> <span>followers</span>
@@ -112,6 +157,16 @@
                 <div class="profile_info">
                     <p class="mypage_nickname">Nickname</p>
                 </div>
+                <!-- <div class="button_box">
+                    <form action="">
+                        <button class="followBtn">Follow</button>
+                    </form>
+                    <form action="">
+                        <button class="messageBtn">Message</button>
+                    </form>
+                </div> -->
+                <!-- <div class="button_box"><a href="./editProfile.html">edit profile</a></div> -->
+                <a style="text-decoration: none; color: black;" href="./editProfile.html"><div class="button_box">edit profile</div></a>
             </div>
             <div class="mypage_search_container2">
                 <div class="allPosts">
@@ -162,89 +217,11 @@
 
             const userID = response.data.user.user_id;
             const myPostNum = document.querySelector(".my_post_num");
-            myPostNum.innerHTML = `<span>${myPosts.length}</span> <br/> <span>posts</span>` 
+            myPostNum.innerHTML = `<span>${myPosts.length}</span> <br/> <span>posts</span>`;
 
         } catch (error) {
             console.log(error);
         }
-        // try {
-        //     const response = await axios.get("http://127.0.0.1:8080/mypage",{
-        //         withCredentials : true
-        //     });
-        //     console.log(response.data.data);
-        //     console.log(response.data.user);
-        //     console.log(response.data.user.user_id);
-        //     const posts = response.data.data;
-        //     const userID = response.data.user.user_id;
-        //     posts.forEach((el,index)=>{
-        //         console.log(el);
-        //         console.log(Date.now());
-        //         console.log(new Date(el.createdAt).getTime());
-        //         console.log(Date.now() - new Date(el.createdAt).getTime());
-        //         const timeDiff = Date.now() - new Date(el.createdAt).getTime();
-        //         const timeDiffHR = timeDiff / 1000 / 60 / 60;
-        //         console.log(Math.floor(timeDiffHR));
-
-        //         const postTop = document.createElement("div");
-        //         postTop.classList.add("post_top");
-        //         const profileImg = document.createElement("div");
-        //         profileImg.classList.add("profile_img");
-        //         profileImg.innerHTML = '<img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt="">'
-        //         const profileText = document.createElement("div");
-        //         profileText.classList.add("profile_text");
-        //         const nickname = document.createElement("p");
-        //         nickname.classList.add("nickname");
-        //         nickname.innerHTML = userID;
-        //         const spanDot = document.createElement("span");
-        //         spanDot.innerHTML = "·";
-        //         const updatedTime = document.createElement("p");
-        //         updatedTime.classList.add("updated_time");
-        //         updatedTime.innerHTML = Math.floor(timeDiffHR);
-        //         profileText.appendChild(nickname);
-        //         profileText.appendChild(spanDot);
-        //         profileText.appendChild(updatedTime);
-        //         postTop.appendChild(profileImg);
-        //         postTop.appendChild(profileText);
-
-        //         const postBody = document.createElement("div");
-        //         postBody.classList.add("post_body");
-        //         postBody.innerHTML = el.img;
-        //         postTop.appendChild(postBody);
-        //         if(el.img === ""){
-        //             postBody.style.display = "none";
-        //         };
-
-        //         const postBottom = document.createElement("div");
-        //         postBottom.classList.add("post_bottom");
-        //         const likes = document.createElement("div");
-        //         likes.classList.add("likes");
-        //         const likeNum = document.createElement("p");
-        //         likeNum.innerHTML = `<img src="../nav_icon_img/icon_noti.png" alt=""><p>${el.likes}</p>`;
-
-
-        //         const mainContent = document.createElement("p");
-        //         const nicknameContent = document.createElement("span");
-        //         nicknameContent.classList.add("nickname");
-        //         const content = document.createElement("span");
-
-        //         const more = document.createElement("p");
-        //         more.classList.add("more");
-        //         const addComment = document.createElement("p");
-        //         addComment.classList.add("more");
-
-        //         mypostTable.appendChild(row);
-        //         row.appendChild(postNum);
-        //         row.appendChild(postTitle);
-        //         row.appendChild(postWriter);
-        //         row.appendChild(postDate);
-        //         postNum.innerHTML = el.id;
-        //         postTitle.innerHTML = el.title;
-        //         postWriter.innerHTML = el.by;
-        //         postDate.innerHTML = el.createdAt;
-        //     });
-        // } catch (error) {
-        //     console.log(error);
-        // }
     };
     myPost();
 </script>

@@ -1,6 +1,7 @@
 const {User, Post} = require("../models");
 
 exports.insertPost = async (req, res) => {
+    console.log(req);
     const filename = req.file.filename;
     const {content} = req.body;
     const {user_id} = req.acc_decoded;
