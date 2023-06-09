@@ -14,8 +14,6 @@ const mainRouter = require("./routers/mainRouter");
 const mypageRouter = require("./routers/mypageRouter");
 const insertRouter = require("./routers/insertRouter");
 const searchRouter = require("./routers/searchRouter");
-const mypageRouter = require("./routers/mypageRouter");
-
 const adminRouter = require("./routers/adminRouter");
 
 const app = express();
@@ -55,7 +53,6 @@ app.use("/main", mainRouter);
 app.use("/mypage",mypageRouter);
 app.use("/insert", insertRouter);
 app.use("/search", searchRouter);
-app.use("/mypage",mypageRouter);
 app.use("/admin", adminRouter);
 
 app.listen(8080, () => {

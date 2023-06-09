@@ -120,7 +120,6 @@ exports.passwordalert = async (req, res) => {
     let id = param.user_id;
     let pw = param.user_pw;
     const user = await User.findOne({ where: { user_id: id } });
-
     if(user.level == 0){
       return res.json("2");
     }

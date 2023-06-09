@@ -3,8 +3,9 @@ const {User, Post, LikePost} = require("../models");
 exports.getPost = async (req, res) => {
     const {acc_decoded} = req;
     // console.log(acc_decoded);
-    const {id,user_id} = acc_decoded;
+    const user_id = acc_decoded.id;
     // console.log(id);
+    // console.log(user_id);
 
     try {
         // 로그인 된 유저
@@ -35,11 +36,12 @@ exports.getPost = async (req, res) => {
 
 
 exports.getProfile = async (req, res) => {
-    console.log(req.acc_decoded);
+    // console.log(req.acc_decoded);
     const {id} = req.acc_decoded;
+    console.log(id);
 
     try {
-        const user = await User.findOne({where : {id}});
+        const user = await User.findOne({where : {user_id : id}});
         res.json(user);
 
     } catch (error) {
