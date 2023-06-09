@@ -107,11 +107,8 @@
 
                 // 날짜 계산
                 let now = new Date();
-                console.log(now);
                 let posteddate = new Date(el.createdAt);
-                console.log(posteddate)
                 let calc = (now.getTime() - posteddate.getTime()) / 1000;
-                console.log(calc);
 
                 let s = 1;
                 let m = s * 60;
@@ -122,7 +119,7 @@
                 if(calc < s) {
                     dateText = "방금 전";
                 }else if(calc < m) {
-                    dateText = calc + "초 전";
+                    dateText = Math.trunc(calc) + "초 전";
                 }else if(calc < h) {
                     dateText = Math.trunc(calc/m) + "분 전";
                 }else if(calc < d) {

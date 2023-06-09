@@ -17,9 +17,11 @@ exports.getPost = async (req, res) => {
 
         // for of : 순차적
         // forEach : 비순차적
-        for await (const el of following) {
-            const temp = await Post.findAll({ where: { user_id: el } });
-            followingPost.push(...temp);
+        if(following.length != 0) {
+            for (const el of following) {
+                const temp = await Post.findAll({ where: { user_id: el } });
+                followingPost.push(...temp);
+            }
         }
 
         res.json({user, userAll, following, followingPost});
@@ -31,10 +33,10 @@ exports.getPost = async (req, res) => {
 
 
 exports.getProfile = async (req, res) => {
-    const {id} = req.acc_decoded;
+    const {user_id} = req.acc_decoded;
 
     try {
-        const user = await User.findOne({where : {id}});
+        const user = await User.findOne({where : {user_id}});
         res.json(user);
 
     } catch (error) {
