@@ -119,7 +119,7 @@ exports.passwordalert = async (req, res) => {
     let param = req.query;
     let user_id = param.user_id;
     let pw = param.user_pw;
-    const user = await User.findOne({ where: { user_id: id } });
+    const user = await User.findOne({ where: { user_id: user_id } });
     if(user.level == 0){
       return res.json("2");
     }
@@ -139,7 +139,7 @@ exports.passwordalert = async (req, res) => {
         },
       );
       req.session.access_token = token;
-      req.session.user_id = id;
+      req.session.user_id = user_id;
       // 여기에다가 만들면 됨
       // let time = new Date();
       // time.setHours(time.getHours() + 9);
