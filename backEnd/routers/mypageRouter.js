@@ -8,7 +8,7 @@ router.get("/",isLogin,myPost);
 
 router.get("/users",isLogin,mypage);
 
-router.post("/edit",isLogin, updateProfileImg.single("img"),editProfile);
+router.post("/edit",isLogin, updateProfileImg.single("img"), editProfile);
 
 // router.post("/editPic",isLogin,updateProfileImg.single("img"),(req,res)=>{
 //     console.log(req);
