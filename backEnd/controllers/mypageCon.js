@@ -2,11 +2,12 @@ const {User,Post} = require("../models");
 
 exports.myPost = async (req,res)=>{
     const {acc_decoded} = req;
-    const {id,user_id} = acc_decoded;
-    console.log(user_id);
+    // console.log(acc_decoded);
+    const {user_id} = acc_decoded;
+    // console.log(user_id);
     
     try {
-        const posts = await Post.findAll({where : {user_id : id}});
+        const posts = await Post.findAll({where : {user_id}});
         const data = posts.map((user)=>user.get({plain : true}));
 
         const user = await User.findOne({where : {user_id}});

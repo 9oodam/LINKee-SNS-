@@ -142,7 +142,7 @@
     <div class="middle_body">
         <div class="post_container">
             <div class="post_top">
-                <div class="mypage_profile_img"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></div>
+                <div class="mypage_profile_img"></div>
                 <div class="mypage_profile_text">
                     <div class="my_post_num">
                         
@@ -215,12 +215,17 @@
                 };
             });
 
+            const mypageProfileImg = document.querySelector(".mypage_profile_img");
+            mypageProfileImg.innerHTML = `<img src="http://127.0.0.1:8080/user_img/${response.data.user.profile_img}" alt="">`
+
             const userID = response.data.user.user_id;
             const myPostNum = document.querySelector(".my_post_num");
             myPostNum.innerHTML = `<span>${myPosts.length}</span> <br/> <span>posts</span>`;
 
+            const myFollowers = document.querySelector(".my_follower_num");
+
             profileImg = document.querySelector(".profile_img");
-            profileImg.innerHTML = `<a href="./mypage.html"><img src="../user_img/${response.data.user.profile_img}" alt=""></a>`
+            profileImg.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${response.data.user.profile_img}" alt=""></a>`
 
         } catch (error) {
             console.log(error);
