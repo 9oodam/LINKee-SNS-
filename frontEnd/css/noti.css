@@ -1,0 +1,15 @@
+.middle_body {
+    margin: 60px 0 0 0;
+    padding: 10px 0 0 0;
+}
+
+.middle_body .noti_wrap {
+    position: relative; left: 50%;
+    transform: translateX(-50%);
+    width: 400px; height: 70px;
+    border: 1px solid;
+    box-sizing: border-box;
+}
+.middle_body .noti_wrap:hover {
+    
+}
