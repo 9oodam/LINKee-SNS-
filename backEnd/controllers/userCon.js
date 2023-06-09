@@ -117,7 +117,7 @@ exports.loginalert = async (req, res) => {
 exports.passwordalert = async (req, res) => {
   try {
     let param = req.query;
-    let id = param.user_id;
+    let user_id = param.user_id;
     let pw = param.user_pw;
     const user = await User.findOne({ where: { user_id: id } });
 
@@ -132,7 +132,7 @@ exports.passwordalert = async (req, res) => {
 
     if (same) {
       let token = jwt.sign({
-          id,
+          user_id,
         },
         process.env.ACCESS_TOKEN_KEY,
         {

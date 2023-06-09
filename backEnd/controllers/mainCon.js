@@ -1,10 +1,10 @@
 const {User, Post, LikePost} = require("../models");
 
 exports.getPost = async (req, res) => {
-    const {id} = req.acc_decoded;
+    const {user_id} = req.acc_decoded;
     try {
         // 로그인 된 유저
-        const user = await User.findOne({where : {id}});
+        const user = await User.findOne({where : {user_id}});
 
         // 모든 유저
         const userAll = await User.findAll();
