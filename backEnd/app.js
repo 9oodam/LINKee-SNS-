@@ -19,7 +19,7 @@ const adminRouter = require("./routers/adminRouter");
 const app = express();
 
 // css content type
-app.use("/",express.static(path.join(__dirname,"..","frontEnd","css"),{
+app.use("/css",express.static(path.join(__dirname,"..","frontEnd","css"),{
     setHeaders : (res,filePath) => {
         if(path.extname(filePath) === ".css"){
             res.setHeader("Content-Type","text/css");
