@@ -18,6 +18,9 @@ const adminRouter = require("./routers/adminRouter");
 
 const app = express();
 
+// view 파일 경로 설정
+app.set("views", path.resolve(__dirname,"views","page"));
+
 // localhost 포트번호와 연결
 app.use(cors({
     origin : "http://127.0.0.1:5500",
