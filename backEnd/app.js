@@ -18,6 +18,15 @@ const adminRouter = require("./routers/adminRouter");
 
 const app = express();
 
+// css content type
+app.use("/",express.static(path.join(__dirname,"..","frontEnd","css"),{
+    setHeaders : (res,filePath) => {
+        if(path.extname(filePath) === ".css"){
+            res.setHeader("Content-Type","text/css");
+        }
+    }
+}));
+
 // localhost 포트번호와 연결
 app.use(cors({
     origin : "http://127.0.0.1:5500",
