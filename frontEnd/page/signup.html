@@ -44,7 +44,7 @@
 <script>
     document.querySelector("input[name='user_id']").addEventListener("input", async function(){
         let abc = document.querySelector("input[name='user_id']").value;
-        const { data } = await axios.get(`http://54.180.164.207:8080/signup/idCheck/${abc}`, {
+        const { data } = await axios.get(`http://127.0.0.1:8080/signup/idCheck/${abc}`, {
             withCredentials: true // 브라우저가 쿠키를 서버로 전달 할 수 있는 옵션
         });
         if(data == 0){
