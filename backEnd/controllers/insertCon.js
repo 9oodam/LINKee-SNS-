@@ -1,11 +1,10 @@
 const {User, Post} = require("../models");
 
 exports.insertPost = async (req, res) => {
-
     try {
         const {content} = req.body;
-        const {id} = req.acc_decoded;
-        const user = await User.findOne({where : {id}});
+        const {user_id} = req.acc_decoded;
+        const user = await User.findOne({where : {user_id}});
 
         if(req.file == undefined) {
             await Post.create({
@@ -29,3 +28,15 @@ exports.insertPost = async (req, res) => {
         console.log(error);
     }
 }
+
+// exports.getOriginalPost = async (req, res) => {
+//     const {id} = req.params; // posts.id
+//     try {
+//         const post = await Post.findOne({where : {id}});
+
+//         res.json(post);
+        
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }

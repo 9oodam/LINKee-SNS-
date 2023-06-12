@@ -31,6 +31,7 @@ app.use(cors({
 // body-parser 사용
 app.use(express.urlencoded({extended : false}));
 
+
 // session 사용
 app.use(session({
     secret : process.env.SESSION_KEY,
@@ -50,6 +51,7 @@ sequelize.sync({force : false}).then((e) => {
 app.use("/post_img", express.static(path.join(__dirname, "post_img")));
 app.use("/user_img", express.static(path.join(__dirname, "user_img")));
 
+
 // router 연결
 app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
@@ -59,6 +61,8 @@ app.use("/search", searchRouter);
 app.use("/mypage",mypageRouter);
 app.use("/noti", notiRouter);
 app.use("/admin", adminRouter);
+
+
 
 app.listen(8080, () => {
     console.log("server opened");

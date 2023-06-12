@@ -8,69 +8,27 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     
     <link rel="stylesheet" href="../css/nav.css">
-    <style>
-        .middle_body{
-            width: 470px; height: auto;
-        }
-        .profile_pic_box{
-            width: 100%; height: 150px;
-            border-bottom: 1px solid silver;
-            display: flex; justify-content: center; align-content:space-evenly;
-            align-items: center; flex-wrap: wrap;
-        }
-        .profile_pic{
-            width: 70px; height: 70px;
-            border: 1px solid silver;
-            border-radius: 50%;
-        }
-        .img_input_box{
-            width: 100%;
-            display: flex; justify-content: center; align-items: center;
-        }
-        .img_input_label{
-            cursor: pointer;
-        }
-        .edit_profile_section{
-            width: 400px; height: auto;
-            margin: 0;
-        }
-        .edit_profile_section div{
-            width: 100%; height: 40px;
-            display: flex; justify-content: space-around;
-            align-items: center;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/editProfile.css">
 </head>
 <body>
-    <!-- noti / dm -->
+    <!-- 상단 nav -->
     <div class="top_nav_container">
         <div class="top_nav">
-            <div class="logo">LINKee</div>
-            <div class="noti"><img src="../nav_icon_img/icon_noti.png" alt=""></div>
-            <div class="live_chat"><img src="../nav_icon_img/icon_dm.png" alt=""></div>
-        </div>
-    </div>
-
-    <!-- home / search / insert / mypage -->
-    <div class="bottom_nav_container">
-        <div class="bottom_nav">
-            <div class="icon"><a href="./main.html"><img src="../nav_icon_img/icon_home.webp" alt=""></a></div>
-            <div class="icon"><a href="./search.html"><img src="../nav_icon_img/icon_search.png" alt=""></a></div>
-            <div class="icon"><a href="./insert.html"><img src="../nav_icon_img/icon_plus.png" alt=""></a></div>
-            <div id = "profile_img" class="profile_img"><a href="./mypage.html"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></a></div>
+            <div class="logo"><img src="../nav_icon_img/icon_back.png" alt="" onclick="history.back()"></div>
+            <div>프로필 편집</div>
+            <div class="editBtn"><img src="../nav_icon_img/icon_check.png" alt=""></div>
         </div>
     </div>
 
     <!-- edit profile -->
     <div class="middle_body">
-        <form action="">
+        <form>
             <div class="profile_pic_box">
-                <div class="profile_pic">
-                    
-                </div>
-                <div class="img_input_box">
-                    <label class="img_input_label" for="img_input">choose picture...</label>
-                    <input id="img_input" type="file" style="display: none;">
+                <div id="inputFile" class="inputFile">
+                    <img id="preview">
+                    <!-- onerror="style.display='none'" -->
+                    <label class="fileUpload" for="fileUpload">choose file</label>
+                    <input name="img" type="file" id="fileUpload" style="display: none">
                 </div>
             </div>
             <div class="edit_profile_section">
@@ -88,9 +46,8 @@
                 </div>
                 <div class="userInfoBox" style="height: 200px;">
                     <label for="">Info</label>
-                    <textarea class="infoInput" name="profile_info" id="" cols="30" rows="10"></textarea>
+                    <textarea class="infoInput" name="profile_info" cols="30" rows="10" style="resize: none;"></textarea>
                 </div>
-                <button>edit my profile</button>
             </form>
         </div>
     </div>
@@ -98,20 +55,16 @@
 <script>
     // 로그인 된 유저 프로필 가져오기
     async function getProfile() {
-        let profile_img = document.querySelector("#profile_img");
         try {
             const {data} = await axios.get('http://127.0.0.1:8080/main/getProfile', {
                 // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
                 withCredentials : true
             });
 
-            console.log(data);
+            // const profileImg = document.querySelector("#preview");
+            // profileImg.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
+            preview.src = `http://127.0.0.1:8080/user_img/${data.profile_img}`;
 
-            const profileImg = document.querySelector(".profile_img");
-            profileImg.innerHTML = `<a href="./mypage.html"><img src="../user_img/${data.profile_img}" alt=""></a>`;
-
-            const profilePic = document.querySelector(".profile_pic");
-            profilePic.innerHTML = `<img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt="">`;
             const nameInput = document.querySelector(".nameInput");
             nameInput.placeholder = data.user_name;
             const idInput = document.querySelector(".idInput");
@@ -130,5 +83,27 @@
         }
     }
     getProfile();
+
+    const editBtn = document.querySelector(".editBtn");
+    editBtn.onclick = ()=>{
+        const nickname = document.querySelector(".nicknameInput");
+        const profileInfo = document.querySelector(".infoInput");
+
+        const form = new FormData();
+        form.append("img", fileUpload.files[0]);
+        form.append("nickname",nickname.value);
+        form.append("profile_info",profileInfo.value);
+
+        axios.post('http://127.0.0.1:8080/mypage/edit', form, {
+            "Content-Type" : "multipart/form-data",
+            withCredentials : true
+        }).then((e) => {
+            console.log("전달 완료");
+            console.log(e.data);
+        }).catch((err) => {
+            console.log(error);
+        });
+    };
 </script>
+<script src="../js/insert.js"></script>
 </html>
