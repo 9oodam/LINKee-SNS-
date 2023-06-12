@@ -3,7 +3,7 @@ const {signUp1, login1, idCheck, nicknameCheck, loginalert, passwordalert, admin
 
 const path = require("path");
 router.get("/",(req,res)=>{
-    const filePath = "/home/ubuntu/frontend/page/login.html";
+    const filePath = "/home/ubuntu/frontEnd/page/login.html";
     res.sendFile(filePath);
 });
 
