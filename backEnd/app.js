@@ -45,6 +45,7 @@ sequelize.sync({force : false}).then((e) => {
 // 정적 폴더 경로
 app.use("/post_img", express.static(path.join(__dirname, "post_img")));
 app.use("/user_img", express.static(path.join(__dirname, "user_img")));
+app.use(express.static("/home/ubuntu/frontEnd/css"));
 
 // router 연결
 app.use("/signup", signupRouter);
