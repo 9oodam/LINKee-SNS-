@@ -3,7 +3,7 @@ const {signUp1, login1, idCheck, nicknameCheck, loginalert, passwordalert, admin
 
 const path = require("path");
 router.get("/",(req,res)=>{
-    const filePath = path.join(__diname,"..","frontend","page","login.html");
+    const filePath = path.join(__dirname,"..","frontend","page","login.html");
 });
 
 router.get("/loginalert/:id", loginalert);
