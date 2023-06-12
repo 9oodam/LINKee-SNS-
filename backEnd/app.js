@@ -29,7 +29,7 @@ app.use("/css",express.static(path.join(__dirname,"..","frontEnd","css"),{
 
 // localhost 포트번호와 연결
 app.use(cors({
-    origin : "http://127.0.0.1:5500",
+    origin : "*",
     credentials : true
 }));
 
