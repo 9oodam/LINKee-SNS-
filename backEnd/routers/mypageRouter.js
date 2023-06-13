@@ -5,11 +5,11 @@ const {myPost,mypage,editProfile,currentUser} = require("../controllers/mypageCo
 const {uploadImg,updateProfileImg} = require("../middleware/uploadImg");
 
 const path = require("path");
-router.get("/:id",isLogin, async (req,res)=>{
+router.get("/",isLogin, async (req,res)=>{
     const {acc_decoded} = req;
     const {user_id} = acc_decoded;
     console.log(user_id);
-    res.sendFile("/home/ubuntu/frontEnd/page/mypage.html");
+    res.json(acc_decoded);
 });
 
 router.get("/mypost",isLogin,myPost);
