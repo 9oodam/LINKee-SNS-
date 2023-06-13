@@ -28,6 +28,18 @@ exports.myPost = async (req,res)=>{
     }
 };
 
+exports.currentUser = async (req,res)=>{
+    const {acc_decoded} = req;
+    const {user_id} = acc_decoded;
+    try {
+        const user = await User.findOne({where : {user_id}});
+        res.json(user);
+    } catch (error) {
+        console.log(error);
+        console.log("Unable to ")
+    }
+};
+
 exports.mypage = async (req,res)=>{
     try {
         const users = await User.findAll();

@@ -1,14 +1,11 @@
 const router = require("express").Router();
 
 const {isLogin} = require("../middleware/isLogin");
-const {myPost,mypage,editProfile} = require("../controllers/mypageCon");
+const {myPost,mypage,editProfile,currentUser} = require("../controllers/mypageCon");
 const {uploadImg,updateProfileImg} = require("../middleware/uploadImg");
 
 const path = require("path");
-router.get("/",(req,res)=>{
-    const filePath = "/home/ubuntu/frontEnd/page/mypage.html";
-    res.sendFile(filePath);
-});
+router.get("/",isLogin,currentUser);
 
 router.get("/mypost",isLogin,myPost);
 
