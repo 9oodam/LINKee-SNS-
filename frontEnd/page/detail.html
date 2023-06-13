@@ -54,21 +54,21 @@
         <!-- 댓글 부분 -->
         <div class="reply_container">
             <div class="comments_wrap">
-                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></div>
                 <div>
                     <div class="nickname">9oodam</div>
                     <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
                     <details>
                         <summary>답글 달기</summary>
                         <div class="comments_wrap">
-                            <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                            <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></div>
                             <div>
                                 <div class="nickname">9oodam</div>
                                 <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
                             </div>
                         </div>
                         <div class="comments_wrap">
-                            <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                            <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></div>
                             <div>
                                 <div class="nickname">9oodam</div>
                                 <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
@@ -87,21 +87,21 @@
                 </div>
             </div>
             <div class="comments_wrap">
-                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></div>
                 <div>
                     <div class="nickname">9oodam</div>
                     <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
                     <details>
                         <summary>답글 달기</summary>
                         <div class="comments_wrap">
-                            <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                            <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></div>
                             <div>
                                 <div class="nickname">9oodam</div>
                                 <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
                             </div>
                         </div>
                         <div class="comments_wrap">
-                            <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                            <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></div>
                             <div>
                                 <div class="nickname">9oodam</div>
                                 <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
@@ -138,9 +138,9 @@
     <!-- home / search / insert / mypage -->
     <div class="bottom_nav_container">
         <div class="bottom_nav">
-            <div class="icon"><a href="./main.html"><img src="../nav_icon_img/icon_home.webp" alt=""></a></div>
-            <div class="icon"><a href="./search.html"><img src="../nav_icon_img/icon_search.png" alt=""></a></div>
-            <div class="icon"><a href="./insert.html"><img src="../nav_icon_img/icon_plus.png" alt=""></a></div>
+            <div class="icon"><a href="/main"><img src="../nav_icon_img/icon_home.webp" alt=""></a></div>
+            <div class="icon"><a href="/search"><img src="../nav_icon_img/icon_search.png" alt=""></a></div>
+            <div class="icon"><a href="/insert"><img src="../nav_icon_img/icon_plus.png" alt=""></a></div>
             <div id = "profile_img" class="profile_img"></div>
         </div>
     </div>
@@ -156,9 +156,9 @@
             console.log(data);
 
             if(data.profile_img == null) {
-                profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></a>`;
+                profile_img.innerHTML = `<a href="./mypage.html"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
             }else {
-                profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
+                profile_img.innerHTML = `<a href="./mypage.html"><img src="https://andybyungjoopark.com/user_img/${data.profile_img}" alt=""></a>`;
             }
 
         } catch (error) {

@@ -29,7 +29,7 @@
     <div class="top_nav_container">
         <div class="top_nav">
             <div class="logo">LINKee</div>
-            <div class="noti"><a href="./noti.html"><img src="../nav_icon_img/icon_noti.png" alt=""></a></div>
+            <div class="noti"><a href="/noti"><img src="../nav_icon_img/icon_noti.png" alt=""></a></div>
             <div class="live_chat"><img src="../nav_icon_img/icon_dm.png" alt=""></div>
         </div>
     </div>
@@ -37,9 +37,9 @@
     <!-- home / search / insert / mypage -->
     <div class="bottom_nav_container">
         <div class="bottom_nav">
-            <div class="icon"><a href="./main.html"><img src="../nav_icon_img/icon_home.webp" alt=""></a></div>
-            <div class="icon"><a href="./search.html"><img src="../nav_icon_img/icon_search.png" alt=""></a></div>
-            <div class="icon"><a href="./insert.html"><img src="../nav_icon_img/icon_plus.png" alt=""></a></div>
+            <div class="icon"><a href="/main"><img src="../nav_icon_img/icon_home.webp" alt=""></a></div>
+            <div class="icon"><a href="/search"><img src="../nav_icon_img/icon_search.png" alt=""></a></div>
+            <div class="icon"><a href="/insert"><img src="../nav_icon_img/icon_plus.png" alt=""></a></div>
             <div id = "profile_img" class="profile_img"></div>
         </div>
     </div>
@@ -55,9 +55,9 @@
             // console.log(data);
 
             if(data.profile_img == null) {
-                profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></a>`;
+                profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
             }else {
-                profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
+                profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/${data.profile_img}" alt=""></a>`;
             }
 
         } catch (error) {

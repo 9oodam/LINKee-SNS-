@@ -50,6 +50,30 @@ app.use("/nav_icon_img",express.static(path.join(__dirname,"..","frontEnd","nav_
     }
 }));
 
+app.use("/user_img",express.static(path.join(__dirname,"user_img"),{
+    setHeaders : (res,filePath) => {
+        if (path.extname(filePath) === ".png" ||
+            path.extname(filePath) === ".webp" ||
+            path.extname(filePath) === ".jpg" ||
+            path.extname(filePath) === ".jpeg" ||
+            path.extname(filePath) === ".gif"){
+            res.setHeader("Content-Type","image/jpeg");
+        }
+    }
+}));
+
+app.use("/post_img",express.static(path.join(__dirname,"post_img"),{
+    setHeaders : (res,filePath) => {
+        if (path.extname(filePath) === ".png" ||
+            path.extname(filePath) === ".webp" ||
+            path.extname(filePath) === ".jpg" ||
+            path.extname(filePath) === ".jpeg" ||
+            path.extname(filePath) === ".gif"){
+            res.setHeader("Content-Type","image/jpeg");
+        }
+    }
+}));
+
 // image content type
 app.use("/socket.io",express.static(path.join(__dirname,"..","frontEnd","js"),{
     setHeaders : (res,filePath) => {

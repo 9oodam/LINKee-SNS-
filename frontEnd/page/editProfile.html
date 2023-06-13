@@ -59,10 +59,10 @@
     <!-- home / search / insert / mypage -->
     <div class="bottom_nav_container">
         <div class="bottom_nav">
-            <div class="icon"><a href="./main.html"><img src="../nav_icon_img/icon_home.webp" alt=""></a></div>
-            <div class="icon"><a href="./search.html"><img src="../nav_icon_img/icon_search.png" alt=""></a></div>
-            <div class="icon"><a href="./insert.html"><img src="../nav_icon_img/icon_plus.png" alt=""></a></div>
-            <div id = "profile_img" class="profile_img"><a href="./mypage.html"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></a></div>
+            <div class="icon"><a href="/main"><img src="../nav_icon_img/icon_home.webp" alt=""></a></div>
+            <div class="icon"><a href="/search"><img src="../nav_icon_img/icon_search.png" alt=""></a></div>
+            <div class="icon"><a href="/insert"><img src="../nav_icon_img/icon_plus.png" alt=""></a></div>
+            <div id = "profile_img" class="profile_img"><a href="/mypage"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></a></div>
         </div>
     </div>
 
@@ -111,14 +111,14 @@
             console.log(data);
 
             if(data.profile_img == null) {
-                profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></a>`;
+                profile_img.innerHTML = `<a href="./mypage.html"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
             }else {
-                profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
+                profile_img.innerHTML = `<a href="./mypage.html"><img src="https://andybyungjoopark.com/user_img/${data.profile_img}" alt=""></a>`;
             }
 
             // const profileImg = document.querySelector("#preview");
             // profileImg.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
-            preview.src = `http://127.0.0.1:8080/user_img/${data.profile_img}`;
+            preview.src = `https://andybyungjoopark.com/user_img/${data.profile_img}`;
 
             const nameInput = document.querySelector(".nameInput");
             nameInput.placeholder = data.user_name;
