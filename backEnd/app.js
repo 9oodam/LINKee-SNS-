@@ -27,6 +27,15 @@ app.use("/css",express.static(path.join(__dirname,"..","frontEnd","css"),{
     }
 }));
 
+// js content type
+app.use("/js",express.static(path.join(__dirname,"..","frontEnd","js"),{
+    setHeaders : (res,filePath) => {
+        if(path.extname(filePath) === ".js"){
+            res.setHeader("Content-Type","application/javascript");
+        }
+    }
+}));
+
 // localhost 포트번호와 연결
 app.use(cors({
     origin : "http://andybyungjoopark.com",

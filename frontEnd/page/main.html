@@ -67,9 +67,9 @@
             console.log(data);
 
             if(data.profile_img == null) {
-                profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></a>`;
+                profile_img.innerHTML = `<a href="./mypage.html"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
             }else {
-                profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
+                profile_img.innerHTML = `<a href="./mypage.html"><img src="https://andybyungjoopark.com/user_img/${data.profile_img}" alt=""></a>`;
             }
 
         } catch (error) {
@@ -138,7 +138,7 @@
                 middle_body.innerHTML += `
                 <div class="post_container">
                     <div class="post_top">
-                        <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/${profile_img}" alt="profile"></div>
+                        <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${profile_img}" alt="profile"></div>
                         <div class="profile_text">
                             <p class="nickname">${writer}</p>
                             <span>·</span>
@@ -147,7 +147,7 @@
                     </div>
 
                     <div class="post_body">
-                        <img src="http://127.0.0.1:8080/post_img/${el.img}" alt="">
+                        <img src="https://andybyungjoopark.com/post_img/${el.img}" alt="">
                     </div>
 
                     <div class="post_bottom">
