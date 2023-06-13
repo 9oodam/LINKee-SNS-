@@ -31,6 +31,7 @@ exports.insertPost = async (req, res) => {
             });
         }
 
+        res.redirect("/main");
     } catch (error) {
         console.log(error);
     }
