@@ -7,12 +7,7 @@ exports.myPost = async (req,res)=>{
         where : {by : writer}
     }).then(posts=>{
         const post = posts.map(user => user.get({plain : true}));
-        const response = {
-            data : post,
-            html : "/home/ubuntu/frontEnd/page/mypage.html"
-        };
-        console.log(response);
-        res.json(response);
+        res.json(post);
     }).catch((error)=>{
         console.log(error);
         console.log("unable to show the table in controller");
