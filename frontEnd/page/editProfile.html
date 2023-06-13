@@ -68,7 +68,7 @@
 
     <!-- edit profile -->
     <div class="middle_body">
-        <form action="http://127.0.0.1:8080/mypage/edit" method="post">
+        <form action="https://andybyungjoopark.com/mypage/edit" method="post">
             <div class="profile_pic_box">
                 <div id="inputFile" class="inputFile">
                     <img id="preview">
@@ -103,7 +103,7 @@
     // 로그인 된 유저 프로필 가져오기
     async function getProfile() {
         try {
-            const {data} = await axios.get('http://127.0.0.1:8080/main/getProfile', {
+            const {data} = await axios.get('https://andybyungjoopark.com/main/getProfile', {
                 // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
                 withCredentials : true
             });
@@ -149,7 +149,7 @@
         form.append("nickname",nickname.value);
         form.append("profile_info",profileInfo.value);
 
-        axios.post('http://127.0.0.1:8080/mypage/edit', form, {
+        axios.post('https://andybyungjoopark.com/mypage/edit', form, {
             "Content-Type" : "multipart/form-data",
             withCredentials : true
         }).then((e) => {

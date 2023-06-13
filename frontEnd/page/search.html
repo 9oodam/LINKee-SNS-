@@ -86,7 +86,7 @@
     async function getProfile() {
       try {
         const { data } = await axios.get(
-          "http://127.0.0.1:8080/main/getProfile",
+          "https://andybyungjoopark.com/main/getProfile",
           {
             // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
             withCredentials: true,
@@ -109,7 +109,7 @@
     // 모든 게시글 가져오기
     async function getAllPost() {
       try {
-        const { data } = await axios.get("http://127.0.0.1:8080/search", {
+        const { data } = await axios.get("https://andybyungjoopark.com/search", {
           withCredentials: true,
         });
         const { users, posts } = data;
@@ -129,7 +129,7 @@
     // 검색 자동완성
     async function searchThings() {
       try {
-        const { data } = await axios.get("http://127.0.0.1:8080/search", {
+        const { data } = await axios.get("https://andybyungjoopark.com/search", {
           withCredentials: true,
         });
         const { users, posts } = data;
