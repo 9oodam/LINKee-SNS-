@@ -11,6 +11,7 @@ exports.myPost = async (req,res)=>{
             data : post,
             html : "/home/ubuntu/frontEnd/page/mypage.html"
         };
+        console.log(response);
         res.json(response);
     }).catch((error)=>{
         console.log(error);
