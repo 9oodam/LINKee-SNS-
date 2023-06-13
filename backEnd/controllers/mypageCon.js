@@ -64,7 +64,7 @@ exports.editProfile = async (req,res)=>{
             {where : {user_id : acc_decoded.user_id}});
         };
 
-        res.redirect("/home/ubuntu/frontEnd/page/mypage.html");
+        res.redirect("/mypage");
     } catch (error) {
         console.log(error);
     };
