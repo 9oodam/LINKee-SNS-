@@ -32,7 +32,7 @@ exports.signUp1 = async (req, res) => {
       following: 0,
       profile_img: "default_profile.jpeg"
     });
-    res.redirect("http://127.0.0.1:5500/frontEnd/page/login.html");
+    res.redirect("/home/ubuntu/frontEnd/page/login.html");
     // 수정해야함
   } catch (error) {
     console.log(error);
