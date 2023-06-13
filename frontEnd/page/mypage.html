@@ -248,7 +248,7 @@
             const myFollowers = document.querySelector(".my_follower_num");
 
             profileImg = document.querySelector(".profile_img");
-            profileImg.innerHTML = `<a href="./mypage.html"><img src="https://andybyungjoopark.com/user_img/${response.data.user.profile_img}" alt=""></a>`
+            profileImg.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/${response.data.user.profile_img}" alt=""></a>`
 
         } catch (error) {
             console.log(error);
