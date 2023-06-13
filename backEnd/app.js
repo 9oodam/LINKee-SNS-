@@ -18,6 +18,7 @@ const adminRouter = require("./routers/adminRouter");
 
 const app = express();
 
+// 파일형식별 미들웨어 세팅 (static path)
 // css content type
 app.use("/css",express.static(path.join(__dirname,"..","frontEnd","css"),{
     setHeaders : (res,filePath) => {
@@ -49,6 +50,15 @@ app.use("/nav_icon_img",express.static(path.join(__dirname,"..","frontEnd","nav_
     }
 }));
 
+// image content type
+app.use("/socket.io",express.static(path.join(__dirname,"..","frontEnd","js"),{
+    setHeaders : (res,filePath) => {
+        if(path.extname(filePath) === ".js"){
+            res.setHeader("Content-Type","application/javascript");
+        }
+    }
+}));
+
 // localhost 포트번호와 연결
 app.use(cors({
     origin : "http://andybyungjoopark.com",
@@ -76,7 +86,6 @@ sequelize.sync({force : false}).then((e) => {
 // 정적 폴더 경로
 app.use("/post_img", express.static(path.join(__dirname, "post_img")));
 app.use("/user_img", express.static(path.join(__dirname, "user_img")));
-app.use("/css",express.static(path.join(__dirname,"css")));
 
 // router 연결
 app.use("/signup", signupRouter);
