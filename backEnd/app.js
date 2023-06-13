@@ -36,6 +36,19 @@ app.use("/js",express.static(path.join(__dirname,"..","frontEnd","js"),{
     }
 }));
 
+// image content type
+app.use("/nav_icon_img",express.static(path.join(__dirname,"..","frontEnd","nav_icon_img"),{
+    setHeaders : (res,filePath) => {
+        if (path.extname(filePath) === ".png" ||
+            path.extname(filePath) === ".webp" ||
+            path.extname(filePath) === ".jpg" ||
+            path.extname(filePath) === ".jpeg" ||
+            path.extname(filePath) === ".gif"){
+            res.setHeader("Content-Type","image/jpeg");
+        }
+    }
+}));
+
 // localhost 포트번호와 연결
 app.use(cors({
     origin : "http://andybyungjoopark.com",
