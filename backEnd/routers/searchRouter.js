@@ -11,7 +11,7 @@ router.get("/",(req,res)=>{
 
 const {viewAll, searchThings} = require("../controllers/searchCon");
 
-router.get('/', isLogin, viewAll);
+router.get('/post', isLogin, viewAll);
 
 router.post('/', isLogin, searchThings);
 

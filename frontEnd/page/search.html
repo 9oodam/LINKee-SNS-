@@ -109,7 +109,7 @@
     // 모든 게시글 가져오기
     async function getAllPost() {
       try {
-        const { data } = await axios.get("https://andybyungjoopark.com/search", {
+        const { data } = await axios.get("https://andybyungjoopark.com/search/post", {
           withCredentials: true,
         });
         const { users, posts } = data;
@@ -129,7 +129,7 @@
     // 검색 자동완성
     async function searchThings() {
       try {
-        const { data } = await axios.get("https://andybyungjoopark.com/search", {
+        const { data } = await axios.get("https://andybyungjoopark.com/search/post", {
           withCredentials: true,
         });
         const { users, posts } = data;

@@ -11,7 +11,7 @@ router.get("/",(req,res)=>{
 
 const {getPost, getProfile} = require("../controllers/mainCon");
 
-router.get('/', isLogin, getPost);
+router.get('/posts', isLogin, getPost);
 
 router.get('/getProfile',isLogin, getProfile);
 

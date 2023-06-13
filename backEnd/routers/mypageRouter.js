@@ -10,9 +10,7 @@ router.get("/",(req,res)=>{
     res.sendFile(filePath);
 });
 
-router.get("/mypost",isLogin,myPost,(req,res)=>{
-    res.sendFile("/home/ubuntu/frontEnd/page/mypage.html");
-});
+router.get("/mypost",isLogin,myPost);
 
 router.get("/users",isLogin,mypage);
 
