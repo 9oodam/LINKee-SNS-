@@ -6,7 +6,9 @@ const {uploadImg,updateProfileImg} = require("../middleware/uploadImg");
 
 const path = require("path");
 router.get("/",isLogin, async (req,res)=>{
-    console.log(req);
+    const {acc_decoded} = req;
+    const {user_id} = acc_decoded;
+    console.log(user_id);
 });
 
 router.get("/mypost",isLogin,myPost);
