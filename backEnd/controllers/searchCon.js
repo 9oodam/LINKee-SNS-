@@ -1,4 +1,5 @@
 const {User, Post, LikePost} = require("../models");
+const {Op} = require("sequelize");
 
 exports.viewAll = async (req, res) => {
     try {
@@ -21,8 +22,10 @@ exports.searchName = async (req, res) => {
         const user = await User.findOne({where : {nickname}});
 
         if(user_id == user.user_id) {
+            // 검색한 이름과 로그인 된 유저 이름이 동일하면 마이페이지로 이동
             res.redirect("http://127.0.0.1:5500/frontEnd/page/mypage.html");
         }else {
+            // 검색한 유저 페이지로 이동
             res.redirect("http://127.0.0.1:5500/frontEnd/page/userpage.html");
         }
     } catch (error) {
@@ -31,23 +34,15 @@ exports.searchName = async (req, res) => {
 }
 
 exports.searchTag = async (req, res) => {
-    const {Op, Sequelize} = require("sequelize");
-
     const {tag} = req.body;
     const tagLength = tag.length;
     console.log(tag);
     console.log(tagLength);
+
     try {
-        const posts = await Post.findAll({
-            where: {
-              content: {
-                [Op.like]: `%#${tag}%`,
-                [Op.and]: Sequelize.literal(`CHAR_LENGTH(content) == ${tagLength+1}`)
-              },
-            },
-          });
+        const posts = await Post.findAll({where: {content: {[Op.like]: `%#${tag} %`,}}});
         console.log(posts);
-        // res.json(posts);
+        res.json(posts);
     } catch (error) {
         console.log(error);
     }

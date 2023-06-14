@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>searched</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+    <!-- 실시간 알림창 -->
+    <div class="live_chat_noti_container">
+        <div class="live_chat_noti">
+            <p>OOO님이</p>
+            <p>대화를 요청하였습니다.</p>
+            <p>승인 버튼을 누르면 대화방으로 이동합니다.</p>
+            <div class="btns">
+                <div class="appBtn">승인</div>
+                <div class="rejBtn">거절</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 게시글 보여지는 부분 -->
+    <div id="middle_body" class="middle_body">
+    </div>
+
+
+    <!-- noti / dm -->
+    <div class="top_nav_container">
+        <div class="top_nav">
+            <div class="logo">LINKee</div>
+            <div class="noti"><a href="./noti.html"><img src="../nav_icon_img/icon_noti.png" alt=""></a></div>
+            <div class="live_chat"><img src="../nav_icon_img/icon_dm.png" alt=""></div>
+        </div>
+    </div>
+
+    <!-- home / search / insert / mypage -->
+    <div class="bottom_nav_container">
+        <div class="bottom_nav">
+            <div class="icon"><a href="./main.html"><img src="../nav_icon_img/icon_home.webp" alt=""></a></div>
+            <div class="icon"><a href="./search.html"><img src="../nav_icon_img/icon_search.png" alt=""></a></div>
+            <div class="icon"><a href="./insert.html"><img src="../nav_icon_img/icon_plus.png" alt=""></a></div>
+            <div id = "profile_img" class="profile_img"></div>
+        </div>
+    </div>
+</body>
+<script src="../js/main.js"></script>
+<script>
+    async function getProfile() {
+        try {
+            const {data} = await axios.get('http://127.0.0.1:8080/main/getProfile', {
+                // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
+                withCredentials : true
+            });
+
+            if(data.profile_img == null) {
+                profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></a>`;
+            }else {
+                profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    getProfile();
+
+    async function getPost() {
+        try {
+            const {data} = await axios.get('http://127.0.0.1:8080/main', {
+                withCredentials : true
+            });
+            const {user, userAll, following, followingPost} = data;
+
+            console.log(following);
+            followingPost.reverse();
+
+            if(following == 0) {
+                forFreshman.style.display = "block";
+            }
+
+            console.log(followingPost);
+
+            followingPost.forEach((el) => {
+                // 해당 포스트를 작성한 유저의 nickname & profile_img
+                let writer = following.find(item => item == el.user_id);
+                let profile_img = "";
+                userAll.forEach((el2) => {
+                    if(el2.id == writer) {
+                        profile_img = el2.profile_img;
+                    }
+                });
+
+                // 날짜 계산
+                let now = new Date();
+                let posteddate = new Date(el.createdAt);
+                let calc = (now.getTime() - posteddate.getTime()) / 1000;
+
+                let s = 1;
+                let m = s * 60;
+                let h = m * 60;
+                let d = h * 24;
+    
+                let dateText = "";
+                if(calc < s) {
+                    dateText = "방금 전";
+                }else if(calc < m) {
+                    dateText = Math.trunc(calc) + "초 전";
+                }else if(calc < h) {
+                    dateText = Math.trunc(calc/m) + "분 전";
+                }else if(calc < d) {
+                    dateText = Math.trunc(calc/h) + "시간 전";
+                }else if(calc < d * 15) {
+                    dateText = Math.trunc(calc/d) + "일 전";
+                }else {
+                    let year = posteddate.getFullYear();
+                    let month = posteddate.getMonth() + 1;
+                    let date = posteddate.getDate();
+                    dateText = `${year}.${month}.${date}`;
+                }
+
+                middle_body.innerHTML += `
+                <div class="post_container">
+                    <div class="post_top">
+                        <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/${profile_img}" alt="profile"></div>
+                        <div class="profile_text">
+                            <p class="nickname">${writer}</p>
+                            <span>·</span>
+                            <p class="updated_time">${dateText}</p>
+                        </div>
+                    </div>
+
+                    <div class="post_body">
+                        <img src="http://127.0.0.1:8080/post_img/${el.img}" alt="">
+                    </div>
+
+                    <div class="post_bottom">
+                        <div class="likes"><img src="../nav_icon_img/icon_noti.png" alt=""><p>${el.likes} likes</p></div>
+                        <div class="content">
+                            <p><span class="nickname">${writer}</span>
+                            <span>${el.content}</span></p>
+                            <p class="more">more</p>
+                            <p class="more">Add a comment...</p>
+                        </div>
+                    </div>
+                </div>
+                `;
+            });
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    getPost();
+</script>
+</html>
