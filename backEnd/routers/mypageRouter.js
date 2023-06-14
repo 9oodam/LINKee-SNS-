@@ -9,7 +9,11 @@ router.get("/",isLogin, async (req,res)=>{
     const {acc_decoded} = req;
     const {user_id} = acc_decoded;
     console.log(user_id);
-    res.redirect(`/${user_id}`);
+    res.redirect(`/mypage/${user_id}`);
+});
+
+router.get("/:id",isLogin,async (req,res)=>{
+    res.sendFile("/home/ubuntu/frontEnd/page/mypage.html");
 });
 
 router.get("/mypost",isLogin,myPost);
