@@ -17,7 +17,7 @@ router.get("/:id",isLogin,async (req,res)=>{
     res.sendFile("/home/ubuntu/frontEnd/page/mypage.html");
 });
 
-router.get("/mypost",isLogin,myPost);
+router.get("/:id/mypost",isLogin,myPost);
 
 router.get("/users",isLogin,mypage);
 
