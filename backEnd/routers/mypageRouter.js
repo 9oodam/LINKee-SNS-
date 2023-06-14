@@ -15,8 +15,7 @@ router.get("/mypost",isLogin,myPost);
 router.get("/users",isLogin,mypage);
 
 router.get("/edit",isLogin,(req,res)=>{
-    const filePath = "/home/ubuntu/frontEnd/page/editProfile.html";
-    res.sendFile(filePath);
+    res.sendFile("/home/ubuntu/frontEnd/page/editProfile.html");
 });
 
 router.post("/edit",isLogin, updateProfileImg.single("img"), editProfile);
