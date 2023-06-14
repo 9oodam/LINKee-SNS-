@@ -10,122 +10,7 @@
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/search.css">
-    <style>
-        .middle_body {
-            width: 470px; height: auto;
-        }
-        .middle_body .post_container {
-            width: 100%; height: auto;
-            border-bottom: 1px solid silver;
-            padding: 20px 0 20px 0;
-        }
-
-        .post_container .post_top { /* 상단 유저 프로필, 이름 */
-            width: 100%; height: 170px;
-            position: relative;
-        }
-        .post_top .mypage_profile_img {
-            width: 100px; height: 100px;
-            position: absolute; left: 0;
-            display: flex; justify-content: center; align-items: center;
-        }
-        .post_top .mypage_profile_img img{
-            width: 70px; height: 70px;
-            border-radius: 50%;
-            border: 1px solid black;
-            cursor: pointer;
-        }
-        .post_top .mypage_profile_text {
-            width: calc(100%-60px); height: 60px;
-            position: absolute;
-            top: 20px;
-            left: 200px;
-            display: flex; flex-direction: row;
-            justify-content: center; align-items: center;
-        }
-        .post_top .button_box{
-            position: absolute;
-            bottom: 0;
-            width: 100%; height: 30px;
-            background-color: lightgray;
-            border-radius: 5px;
-
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            align-content: center;
-        }
-        .followBtn, .messageBtn{
-            width: 200px; height: 25px;
-        }
-        .followBtn{
-            background-color: lightskyblue;
-            border: none;
-            border-radius: 5px;
-        }
-        .followBtn:hover{
-            cursor: pointer;
-            background-color: rgb(50, 206, 250);
-        }
-        .messageBtn{
-            background-color: lightgray;
-            border: none;
-            border-radius: 5px;
-        }
-        .messageBtn:hover{
-            cursor: pointer;
-            background-color: rgb(159, 159, 159);
-        }
-        .edit_profile_btn{
-            width: 450px; height: 25px;
-        }
-        .edit_profile_btn:hover{
-            cursor: pointer;
-            background-color: rgb(188, 188, 188);
-        }
-        .edit_profile_btn{
-            background-color: lightgray;
-            border: none;
-            border-radius: 5px;
-        }
-        .mypage_nickname {
-            font-weight: 900;
-            font-size: 16px;
-            position: absolute;
-            top: 80px;
-            left: 17px;
-            cursor: pointer
-        }
-        .mypage_profile_text span {
-            margin: 0 5px 0 5px;
-        }
-        .my_post_num{
-            margin-right: 40px;
-
-            text-align: center;
-        }
-        .my_follower_num{
-            margin-right: 35px;
-
-            text-align: center;
-        }
-        .my_following_num{
-            text-align: center;
-        }
-        .profile_text .updated_time {
-            color: rgb(170, 170, 170);
-        }
-        .mypage_search_container2 {
-            width: 100%; height: auto;
-            position: relative; top: 10px;
-            border: 1px solid;
-        }
-        /* 전체 게시글 */
-        .mypage_search_container2 .allPosts {
-            width: 100%; height: 100%;
-            display: flex; flex-wrap: wrap;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/mypage.css">
 </head>
 <body>
     <!-- <h2>mypage</h2> -->
@@ -142,20 +27,23 @@
     <div class="middle_body">
         <div class="post_container">
             <div class="post_top">
-                <div class="mypage_profile_img"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></div>
+                <div class="profile_section">
+                    <img class="mypage_profile_img" src="" alt="">
+                </div>
                 <div class="mypage_profile_text">
                     <div class="my_post_num">
                         
                     </div>
                     <div class="my_follower_num">
-                        <span>3</span> <br/> <span>followers</span>
+                        <span></span> <br/> <span>followers</span>
                     </div>
                     <div class="my_following_num">
-                        <span>5</span> <br/> <span>following</span>
+                        <span></span> <br/> <span>following</span>
                     </div>
                 </div>
-                <div class="profile_info">
+                <div class="profile_content">
                     <p class="mypage_nickname">Nickname</p>
+                    <p class="mypage_info"></p>
                 </div>
                 <!-- <div class="button_box">
                     <form action="">
@@ -166,7 +54,7 @@
                     </form>
                 </div> -->
                 <!-- <div class="button_box"><a href="./editProfile.html">edit profile</a></div> -->
-                <a style="text-decoration: none; color: black;" href="./editProfile.html"><div class="button_box">edit profile</div></a>
+                <a style="text-decoration: none; color: black;" href="/mypage/edit"><div class="button_box">edit profile</div></a>
             </div>
             <div class="mypage_search_container2">
                 <div class="allPosts">
@@ -179,10 +67,10 @@
     <!-- home / search / insert / mypage -->
     <div class="bottom_nav_container">
         <div class="bottom_nav">
-            <div class="icon"><a href="./main.html"><img src="../nav_icon_img/icon_home.webp" alt=""></a></div>
-            <div class="icon"><a href="./search.html"><img src="../nav_icon_img/icon_search.png" alt=""></a></div>
-            <div class="icon"><a href="./insert.html"><img src="../nav_icon_img/icon_plus.png" alt=""></a></div>
-            <div class="profile_img"><a href="./mypage.html"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></a></div>
+            <div class="icon"><a href="/main"><img src="../nav_icon_img/icon_home.webp" alt=""></a></div>
+            <div class="icon"><a href="/search"><img src="../nav_icon_img/icon_search.png" alt=""></a></div>
+            <div class="icon"><a href="/insert"><img src="../nav_icon_img/icon_plus.png" alt=""></a></div>
+            <div id="profile_img" class="profile_img"></div>
         </div>
     </div>
 
@@ -190,15 +78,44 @@
 </body>
 <script src="../js/main.js"></script>
 <script>
+    async function getProfile() {
+        try {
+            const {data} = await axios.get('http://127.0.0.1:8080/main/getProfile', {
+                // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
+                withCredentials : true
+            });
+
+            console.log(data);
+
+            if(data.profile_img == null) {
+                profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></a>`;
+            }else {
+                profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    getProfile();
+
     async function myPost(){
         try {
-            const response = await axios.get("http://127.0.0.1:8080/mypage",{
+            const response = await axios.get("https://andybyungjoopark.com/mypage/mypost",{
                 withCredentials : true
             });
             console.log(response.data.data);
             console.log(response.data.user);
+            
+
+            if(response.data.user.profile_img == null) {
+                profile_img.innerHTML = `<a href="/mypage/${response.data.user.user_id}"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
+            }else {
+                profile_img.innerHTML = `<a href="/mypage/${response.data.user.user_id}"><img src="https://andybyungjoopark.com/user_img/${response.data.user.profile_img}" alt=""></a>`;
+            };
+
             // console.log(response.data.user.user_id);
-            const myPosts = response.data.data;
+            const myPosts = response.data.data.reverse();
             const allPosts = document.querySelector(".allPosts");
             myPosts.forEach((el,index)=>{
                 // console.log(el);
@@ -209,18 +126,29 @@
                     allPosts.append(post);
                 }else{
                     const post = document.createElement("div");
-                    post.innerHTML = `<img src="${el.img}" alt="">`;
+                    post.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${el.img}" alt="">`;
                     console.log(post);
                     allPosts.append(post);
                 };
             });
 
+            const mypageProfileImg = document.querySelector(".mypage_profile_img");
+            mypageProfileImg.src = `https://andybyungjoopark.com/user_img/${response.data.user.profile_img}`;
+
+            const mypageNick = document.querySelector(".mypage_nickname");
+            mypageNick.innerHTML = response.data.user.nickname;
+
+            const mypageDescription = document.querySelector(".mypage_info");
+            mypageDescription.innerHTML = response.data.user.profile_info;
+
             const userID = response.data.user.user_id;
             const myPostNum = document.querySelector(".my_post_num");
             myPostNum.innerHTML = `<span>${myPosts.length}</span> <br/> <span>posts</span>`;
 
+            const myFollowers = document.querySelector(".my_follower_num");
+
             profileImg = document.querySelector(".profile_img");
-            profileImg.innerHTML = `<a href="./mypage.html"><img src="../user_img/${response.data.user.profile_img}" alt=""></a>`
+            profileImg.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/${response.data.user.profile_img}" alt=""></a>`
 
         } catch (error) {
             console.log(error);

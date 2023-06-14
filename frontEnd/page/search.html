@@ -150,18 +150,19 @@
         console.log(postContent);
 
         // 그 중 태그만 담는 배열
-        let postTag = [];
-        let regex = /#([\uAC00-\uD7AFa-zA-Z0-9]+)/g;
+        let postTagPrev = [];
+        let regex = /#([\uAC00-\uD7AFa-zA-Z0-9]+) /g;
 
         postContent.forEach((element) => {
             if(typeof element === 'string') {
                 let match;
                 regex.lastIndex = 0;
                 while ((match = regex.exec(element)) !== null) {
-                    postTag.push(match[1]);
+                    postTagPrev.push(match[1]);
                 }
             }
         });
+        let postTag = [...new Set(postTagPrev)]; // 중복제거
         console.log(postTag);
 
         // input 창에 키보드 입력했을 때
@@ -189,20 +190,17 @@
                 autoN.appendChild(div);
                     
                 // 자동완성 탭 누르면 페이지 이동
-                div.onclick = () => {
-                  let input = suggested;
-                  console.log("nickname 검색 : ", input);
-                  const form = new FormData();
-                  form.append("username", input);
-
-                  axios.post('http://127.0.0.1:8080/search/username', form, {
-                    withCredentials : true,
-                  }).then((e) => {
-                      console.log("전달 완료");
-                      console.log(e.data);
-                  }).catch((err) => {
-                      console.log(error);
+                div.onclick = async () => {
+                  const { data } = await axios.get("http://127.0.0.1:8080/main/getProfile", {
+                    withCredentials: true
                   });
+
+                  if(data.nickname == suggested) {
+                    location.href = './mypage.html';
+                  }else {
+                    location.href = `./userpage.html#${suggested}`;
+                  }
+                  console.log(data);
                 }
             });
 
@@ -219,19 +217,7 @@
 
                 // 자동완성 탭 누르면 페이지 이동
                 div.onclick = () => {
-                  let input = suggested;
-                  console.log("tag 검색 : ", input);
-                  const form = new FormData();
-                  form.append("tag", input);
-
-                  axios.post('http://127.0.0.1:8080/search/tag', form, {
-                    withCredentials : true,
-                  }).then((e) => {
-                      console.log("전달 완료");
-                      console.log(e.data);
-                  }).catch((err) => {
-                      console.log(error);
-                  });
+                  location.href = `./searchedPost.html#${suggested}`;
                 }
             });
 

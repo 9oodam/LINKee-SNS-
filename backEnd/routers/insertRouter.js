@@ -8,8 +8,8 @@ const {insertPost, getOriginalPost, editPost} = require("../controllers/insertCo
 
 router.post('/', isLogin, uploadImg.single("img"), insertPost);
 
-// router.get('/editPost/:id', isLogin, getOriginalPost);
-// router.post('/editPost/:id', isLogin, uploadImg.single("img"), editPost);
+router.get('/editPost/:id', isLogin, getOriginalPost);
+router.post('/editPost/:id', isLogin, uploadImg.single("img"), editPost);
 
 
 module.exports = router;

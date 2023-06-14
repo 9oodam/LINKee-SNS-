@@ -169,7 +169,7 @@
                     // 알림을 클릭했을 때 페이지 넘어가는 함수
                     wrapDiv.onclick = () => {
                         if(el.followNoti) {
-                            location.href = `http://127.0.0.1:8080/mypage/${senderID}`;
+                            location.href = `./userpage.html#${senderID}`;
                         }else {
                             let postID = ""
                             if(el.bigCommentNoti) postID = el.bigCommentNoti;
@@ -178,7 +178,7 @@
                             if(el.likeBigNoti) postID = el.likeBigNoti;
                             if(el.likeSmallNoti) postID = el.likeSmallNoti;
 
-                            location.href = `http://127.0.0.1:8080/detail/${postID}`;
+                            location.href = `./detail.html#${postID}`;
                         }
                     }
                     

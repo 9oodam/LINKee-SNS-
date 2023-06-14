@@ -48,8 +48,7 @@ exports.editPost = async (req, res) => {
 
         if(req.file == undefined) {
             await Post.update({
-                content : content,
-                img : ""
+                content : content
             }, {where : {id}});
         }else {
             await Post.update({
@@ -57,6 +56,8 @@ exports.editPost = async (req, res) => {
                 img : req.file.filename
             }, {where : {id}});
         }
+
+        res.redirect(`http://127.0.0.1:5500/frontEnd/page/detail.html#${id}`);
 
     } catch (error) {
         console.log(error);

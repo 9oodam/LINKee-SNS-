@@ -21,28 +21,41 @@ exports.searchName = async (req, res) => {
     try {
         const user = await User.findOne({where : {nickname}});
 
-        if(user_id == user.user_id) {
+        if(user_id === nickname) {
             // 검색한 이름과 로그인 된 유저 이름이 동일하면 마이페이지로 이동
-            res.redirect("http://127.0.0.1:5500/frontEnd/page/mypage.html");
+            res.json("same");
         }else {
             // 검색한 유저 페이지로 이동
-            res.redirect("http://127.0.0.1:5500/frontEnd/page/userpage.html");
+            res.json(user);
         }
     } catch (error) {
         console.log(error);
     }
 }
 
-exports.searchTag = async (req, res) => {
-    const {tag} = req.body;
-    const tagLength = tag.length;
-    console.log(tag);
-    console.log(tagLength);
-
+exports.searchedPost = async (req, res) => {
+    const {id} = req.params;
+    console.log(id);
     try {
-        const posts = await Post.findAll({where: {content: {[Op.like]: `%#${tag} %`,}}});
+        const posts = await Post.findAll({where: {content: {[Op.like]: `%#${id} %`,}}});
+        console.log(posts);
         const userAll = await User.findAll();
 
+        res.json({userAll, posts});
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+exports.searchUser = async (req, res) => {
+    const {id} = req.params;
+    console.log(id);
+    try {
+        const user = await User.findOne({where : {nickname : id}});
+        const posts = await Post.findAll({where : {user_id : user.id}});
+
+        res.json({user, posts});
     } catch (error) {
         console.log(error);
     }
