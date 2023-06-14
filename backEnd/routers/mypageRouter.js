@@ -31,7 +31,9 @@ router.get("/testing",isLogin,mypage,(req,res)=>{
     const users = req.user;
     users.forEach((el,index)=>{
         console.log(el.dataValues.nickname);
+        res.json(el.dataValues.nickname);
     });
+
 });
 
 module.exports = router;
