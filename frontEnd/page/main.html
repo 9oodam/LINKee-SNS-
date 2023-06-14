@@ -52,7 +52,7 @@
             <div class="icon"><a href="/main"><img src="../nav_icon_img/icon_home.webp" alt=""></a></div>
             <div class="icon"><a href="/search"><img src="../nav_icon_img/icon_search.png" alt=""></a></div>
             <div class="icon"><a href="/insert"><img src="../nav_icon_img/icon_plus.png" alt=""></a></div>
-            <div id = "profile_img" class="profile_img"><a href="/mypage"></a></div>
+            <div id = "profile_img" class="profile_img"></div>
         </div>
     </div>
 </body>
@@ -67,9 +67,9 @@
             console.log(data);
 
             if(data.profile_img == null) {
-                profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
+                profile_img.innerHTML = `<a href="/mypage/${data.user_id}"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
             }else {
-                profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/${data.profile_img}" alt=""></a>`;
+                profile_img.innerHTML = `<a href="/mypage/${data.user_id}"><img src="https://andybyungjoopark.com/user_img/${data.profile_img}" alt=""></a>`;
             }
 
         } catch (error) {
