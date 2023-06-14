@@ -29,11 +29,13 @@ router.get("/testing",isLogin,mypage,(req,res)=>{
     console.log("hi");
     console.log(req.user);
     const users = req.user;
+    let arr = [];
     users.forEach((el,index)=>{
         console.log(el.dataValues.nickname);
-        res.json(el.dataValues.nickname);
+        arr.push(el.dataValues.nickname);
     });
-
+    console.log(arr);
+    // res.json(arr);
 });
 
 module.exports = router;
