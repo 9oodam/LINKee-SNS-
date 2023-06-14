@@ -6,9 +6,8 @@ const {uploadImg,updateProfileImg} = require("../middleware/uploadImg");
 
 const path = require("path");
 
-router.get("/",isLogin,async (req,res)=>{
-    // res.sendFile("/home/ubuntu/frontEnd/page/mypage.html");
-    res.render("mypage");
+router.get("/",async (req,res)=>{
+    res.sendFile("/home/ubuntu/frontEnd/page/mypage.html");
 });
 
 router.get("/mypost",isLogin,myPost);
