@@ -29,14 +29,36 @@ exports.insertPost = async (req, res) => {
     }
 }
 
-// exports.getOriginalPost = async (req, res) => {
-//     const {id} = req.params; // posts.id
-//     try {
-//         const post = await Post.findOne({where : {id}});
+exports.getOriginalPost = async (req, res) => {
+    const {id} = req.params; // posts.id
+    try {
+        const post = await Post.findOne({where : {id}});
 
-//         res.json(post);
+        res.json(post);
         
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+exports.editPost = async (req, res) => {
+    try {
+        const {id} = req.params;
+        const {content} = req.body;
+
+        if(req.file == undefined) {
+            await Post.update({
+                content : content,
+                img : ""
+            }, {where : {id}});
+        }else {
+            await Post.update({
+                content : content,
+                img : req.file.filename
+            }, {where : {id}});
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+}

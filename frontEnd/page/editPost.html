@@ -73,7 +73,7 @@
             form.append("img", fileUpload.files[0]);
             form.append("content", content.value);
     
-            axios.post('http://127.0.0.1:8080/insert/editPost', form, {
+            axios.post(`http://127.0.0.1:8080/insert/editPost/${id}`, form, {
                 "Content-Type" : "multipart/form-data",
                 withCredentials : true
             }).then((e) => {

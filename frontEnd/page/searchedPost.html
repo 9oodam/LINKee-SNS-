@@ -72,23 +72,16 @@
 
     async function getPost() {
         try {
-            const {data} = await axios.get('http://127.0.0.1:8080/main', {
+            const {data} = await axios.post('http://127.0.0.1:8080/search/tag', {
                 withCredentials : true
             });
-            const {user, userAll, following, followingPost} = data;
+            const {userAll, posts} = data;
 
-            console.log(following);
-            followingPost.reverse();
+            posts.reverse();
 
-            if(following == 0) {
-                forFreshman.style.display = "block";
-            }
-
-            console.log(followingPost);
-
-            followingPost.forEach((el) => {
+            posts.forEach((el) => {
                 // 해당 포스트를 작성한 유저의 nickname & profile_img
-                let writer = following.find(item => item == el.user_id);
+                let writer = userAll.find(item => item == el.user_id);
                 let profile_img = "";
                 userAll.forEach((el2) => {
                     if(el2.id == writer) {

@@ -41,8 +41,8 @@ exports.searchTag = async (req, res) => {
 
     try {
         const posts = await Post.findAll({where: {content: {[Op.like]: `%#${tag} %`,}}});
-        console.log(posts);
-        res.json(posts);
+        const userAll = await User.findAll();
+
     } catch (error) {
         console.log(error);
     }
