@@ -27,8 +27,10 @@ router.post("/edit",isLogin, updateProfileImg.single("img"), editProfile);
 router.get("/testing",mypage,(req,res)=>{
     const users = req.user;
     console.log(users);
-    
-    res.json(users);
+    const posts = req.post;
+    console.log(posts);
+    const data = {user:users,post:posts};
+    res.json(data);
 });
 
 module.exports = router;

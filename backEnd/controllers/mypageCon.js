@@ -34,6 +34,8 @@ exports.mypage = async (req,res,next)=>{
         // console.log(users[0]);
         // res.json(user);
         req.user = users;
+        const posts = await Post.findAll();
+        req.post = posts;
         next();
     } catch (error) {
         console.log(error);
