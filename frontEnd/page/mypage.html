@@ -202,7 +202,7 @@
 <script>
     async function mypageUsers(){
         try {
-            const {data} = await axios.get("https://andybyungjoopark.com/mypage/testing",{
+            const data = await axios.get("https://andybyungjoopark.com/mypage/testing",{
                 withCredentials : true
             });
             console.log(data);
