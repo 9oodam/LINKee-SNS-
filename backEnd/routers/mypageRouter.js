@@ -5,13 +5,6 @@ const {myPost,mypage,editProfile} = require("../controllers/mypageCon");
 const {uploadImg,updateProfileImg} = require("../middleware/uploadImg");
 
 const path = require("path");
-// router.get("/",isLogin, async (req,res)=>{
-//     const {acc_decoded} = req;
-//     const {user_id} = acc_decoded;
-//     console.log(user_id);
-//     res.redirect(`/mypage/${user_id}`);
-//     // res.sendFile("/home/ubuntu/frontEnd/page/mypage.html");
-// });
 
 router.get("/:id",isLogin,async (req,res)=>{
     res.sendFile("/home/ubuntu/frontEnd/page/mypage.html");
@@ -31,5 +24,9 @@ router.post("/edit",isLogin, updateProfileImg.single("img"), editProfile);
 // router.post("/editPic",isLogin,updateProfileImg.single("img"),(req,res)=>{
 //     console.log(req);
 // });
+
+router.get("/testing",isLogin,mypage,(req,res)=>{
+    console.log(req);
+});
 
 module.exports = router;

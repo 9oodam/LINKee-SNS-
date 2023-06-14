@@ -28,13 +28,15 @@ exports.myPost = async (req,res)=>{
     }
 };
 
-exports.mypage = async (req,res)=>{
+exports.mypage = async (req,res,next)=>{
     const {acc_decoded} = req;
     const {user_id} = acc_decoded;
     try {
-        const user = await User.findOne({where : {user_id}});
+        const users = await User.findAll();
         // console.log(users[0]);
-        res.json(user);
+        // res.json(user);
+        req.user = users;
+        next();
     } catch (error) {
         console.log(error);
     }
