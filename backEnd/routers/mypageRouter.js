@@ -28,6 +28,10 @@ router.post("/edit",isLogin, updateProfileImg.single("img"), editProfile);
 router.get("/testing",isLogin,mypage,(req,res)=>{
     console.log("hi");
     console.log(req.user);
+    const users = req.user;
+    users.forEach((el,index)=>{
+        console.log(el.dataValues.nickname);
+    });
 });
 
 module.exports = router;
