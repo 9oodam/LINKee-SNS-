@@ -24,7 +24,7 @@ router.post("/edit",isLogin, updateProfileImg.single("img"), editProfile);
 //     console.log(req);
 // });
 
-router.get("/testing",isLogin,mypage,(req,res)=>{
+router.get("/testing",mypage,(req,res)=>{
     const users = req.user;
     console.log(users);
     
