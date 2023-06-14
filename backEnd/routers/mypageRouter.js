@@ -25,10 +25,10 @@ router.post("/edit",isLogin, updateProfileImg.single("img"), editProfile);
 // });
 
 router.get("/testing",mypage,(req,res)=>{
-    const {users} = req.user;
+    const users = req.user;
     console.log(users);
     
-    // res.json(users);
+    res.json(users);
 });
 
 module.exports = router;
