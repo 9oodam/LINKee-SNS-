@@ -200,13 +200,6 @@
 </body>
 <script src="../js/main.js"></script>
 <script>
-    async function currentUser(req,res){
-        console.log(req);
-        const user = await axios.get("https://andybyungjoopark.com/mypage");
-        console.log(user);
-    };
-    currentUser();
-
     async function myPost(){
         try {
             const response = await axios.get("https://andybyungjoopark.com/mypage/mypost",{
@@ -269,7 +262,7 @@
                 withCredentials : true
             });
             console.log(data);
-
+            
         } catch (error) {
             console.log(error);
         }

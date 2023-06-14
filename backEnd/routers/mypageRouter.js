@@ -13,6 +13,7 @@ router.get("/",isLogin, async (req,res)=>{
 });
 
 router.get("/:id",isLogin,async (req,res)=>{
+    console.log(req);
     res.sendFile("/home/ubuntu/frontEnd/page/mypage.html");
 });
 
