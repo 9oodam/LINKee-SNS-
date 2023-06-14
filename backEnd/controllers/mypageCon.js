@@ -36,6 +36,7 @@ exports.mypage = async (req,res,next)=>{
         // console.log(users[0]);
         // res.json(user);
         req.user = users;
+        console.log(req);
         next();
     } catch (error) {
         console.log(error);
