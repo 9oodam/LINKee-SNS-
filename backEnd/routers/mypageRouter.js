@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 const {isLogin} = require("../middleware/isLogin");
-const {myPost,mypage,editProfile,currentUser} = require("../controllers/mypageCon");
+const {myPost,mypage,editProfile} = require("../controllers/mypageCon");
 const {uploadImg,updateProfileImg} = require("../middleware/uploadImg");
 
 const path = require("path");
@@ -13,10 +13,10 @@ router.get("/",isLogin, async (req,res)=>{
     res.sendFile("/home/ubuntu/frontEnd/page/mypage.html");
 });
 
-router.get("/:id",isLogin,async (req,res)=>{
-    console.log(req);
-    res.sendFile("/home/ubuntu/frontEnd/page/mypage.html");
-});
+// router.get("/:id",isLogin,async (req,res)=>{
+//     console.log(req);
+//     res.sendFile("/home/ubuntu/frontEnd/page/mypage.html");
+// });
 
 router.get("/mypost",isLogin,myPost);
 
