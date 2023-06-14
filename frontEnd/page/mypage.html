@@ -200,9 +200,22 @@
 </body>
 <script src="../js/main.js"></script>
 <script>
+    async function mypageUsers(){
+        try {
+            const {data} = await axios.get("https://andybyungjoopark.com/mypage/users",{
+                withCredentials : true
+            });
+            console.log(data);
+            
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    mypageUsers();
+
     async function myPost(){
         try {
-            const response = await axios.get("https://andybyungjoopark.com/mypage/:id/mypost",{
+            const response = await axios.get("https://andybyungjoopark.com/mypage/mypost",{
                 withCredentials : true
             });
             console.log(response.data.data);
@@ -255,18 +268,5 @@
         }
     };
     myPost();
-
-    async function mypageUsers(){
-        try {
-            const {data} = await axios.get("https://andybyungjoopark.com/mypage/users",{
-                withCredentials : true
-            });
-            console.log(data);
-            
-        } catch (error) {
-            console.log(error);
-        }
-    };
-    mypageUsers();
 </script>
 </html>
