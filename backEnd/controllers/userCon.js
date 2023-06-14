@@ -68,38 +68,6 @@ exports.nicknameCheck = async (req, res) => {
   }
 };
 
-exports.login1 = async (req, res) => {
-  try {
-    // const {user_id, user_pw} = req.body;
-
-    // if(user_pw == ""){
-    //     return;
-    // }
-    // const user = await User.findOne({where:{user_id:user_id}});
-    // if(user == null){
-    //     // return res.send("가입 안한 아이디임!");
-    //     return;
-    // }
-
-    // const same = bcrypt.compareSync(user_pw, user.user_pw);
-    // // const {name, age} = user;
-    // if(same){
-    //     let token = jwt.sign({
-    //         user_id,
-    //     },process.env.ACCESS_TOKEN_KEY,{
-    //         expiresIn : "60m"
-    //     });
-    //     req.session.access_token = token;
-    //     req.session.user_id = user_id;
-    //     return res.redirect("http://127.0.0.1:5500/0602_Linkee/frontEnd/page/main.html");
-    // }else{
-    //     // return res.send("비밀번호 틀림");
-    //     return;
-    // }
-  } catch (error) {
-    console.log(error);
-  }
-};
 exports.loginalert = async (req, res) => {
   try {
     let param = req.params.id;
@@ -119,7 +87,7 @@ exports.passwordalert = async (req, res) => {
     let param = req.query;
     let user_id = param.user_id;
     let pw = param.user_pw;
-    const user = await User.findOne({ where: { user_id: id } });
+    const user = await User.findOne({ where: { user_id: user_id } });
 
     if(user.level == 0){
       return res.json("2");
@@ -140,7 +108,8 @@ exports.passwordalert = async (req, res) => {
         },
       );
       req.session.access_token = token;
-      req.session.user_id = id;
+      req.session.user_id = user_id;
+      req.session.iidd = user.id;
       // 여기에다가 만들면 됨
       // let time = new Date();
       // time.setHours(time.getHours() + 9);

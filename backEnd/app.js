@@ -17,6 +17,7 @@ const searchRouter = require("./routers/searchRouter");
 const mypageRouter = require("./routers/mypageRouter");
 
 const adminRouter = require("./routers/adminRouter");
+const detailRouter = require("./routers/detailRouter");
 
 const app = express();
 
@@ -28,7 +29,7 @@ app.use(cors({
 
 // body-parser 사용
 app.use(express.urlencoded({extended : false}));
-
+app.use(express.json());
 // session 사용
 app.use(session({
     secret : process.env.SESSION_KEY,
@@ -56,6 +57,7 @@ app.use("/insert", insertRouter);
 app.use("/search", searchRouter);
 app.use("/mypage",mypageRouter);
 app.use("/admin", adminRouter);
+app.use("/detail", detailRouter);
 
 app.listen(8080, () => {
     console.log("server opened");

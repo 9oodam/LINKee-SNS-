@@ -4,8 +4,8 @@ exports.insertPost = async (req, res) => {
 
     try {
         const {content} = req.body;
-        const {id} = req.acc_decoded;
-        const user = await User.findOne({where : {id}});
+        const {user_id} = req.acc_decoded;
+        const user = await User.findOne({where : {user_id}});
 
         if(req.file == undefined) {
             await Post.create({

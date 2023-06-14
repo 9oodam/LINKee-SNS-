@@ -117,7 +117,7 @@
 
         posts.forEach((el) => {
           if (el.img) {
-            allPosts.innerHTML += `<div><img src="http://127.0.0.1:8080/post_img/${el.img}" alt=""></div>`;
+            allPosts.innerHTML += `<div><a href="./detail.html#${el.id}"><img src="http://127.0.0.1:8080/post_img/${el.img}" alt=""> </a></div>`;
           }
         });
       } catch (error) {

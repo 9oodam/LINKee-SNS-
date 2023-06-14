@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/detail.css">
+    <style>
+        #useron{
+            display: none;
+        }
+        .comments_wrap{
+            display: hidden;
+        }
+    </style>
 </head>
 <body>
     <!-- 실시간 알림창 -->
@@ -30,30 +38,33 @@
         <!-- 게시글 상세 부분 -->
         <div class="post_container">
             <div class="post_top">
-                <div class="profile_img"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></div>
+                <div class="profile_img"></div>
                 <div class="profile_text">
                     <p class="nickname">Nickname</p>
                     <span>·</span>
                     <p class="updated_time">2h</p>
                 </div>
-                <div class="editBtn">수정</div>
-                <div class="delBtn">삭제</div>
+                <div id="useron">
+                    <div class="editBtn">수정</div>
+                    <div class="delBtn">삭제</div>
+                </div>
             </div>
             <div class="post_body">
-                <video class="video" src="../post_img/KakaoTalk_Video_2023-06-04-23-42-29.mp4" autoplay muted controls></video>
+                <!-- <video class="video" src="../post_img/KakaoTalk_Video_2023-06-04-23-42-29.mp4" autoplay muted controls></video> -->
             </div>
             <div class="post_bottom">
-                <div class="likes"><img src="../nav_icon_img/icon_noti.png" alt=""><p>9 likes</p></div>
+                <div class="likes"><img id="heartImage" src="../nav_icon_img/icon_noti.png"><p><span id="likecount"></span> likes</p></div>
                 <div class="content">
                     <p><span class="nickname">Nickname</span>
-                    <span>blahblahblah<br>sfjasklf;jsdf;</span></p>
+                    <span id="deContent"><br></span></p>
                 </div>
             </div>
         </div>
 
         <!-- 댓글 부분 -->
-        <div class="reply_container">
-            <div class="comments_wrap">
+        <div id="reply_container" class="reply_container">
+
+            <!-- <div class="comments_wrap">
                 <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
                 <div>
                     <div class="nickname">9oodam</div>
@@ -85,40 +96,7 @@
                     <img src="../nav_icon_img/icon_heart.png" alt="">
                     <div clss=""></div>
                 </div>
-            </div>
-            <div class="comments_wrap">
-                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
-                <div>
-                    <div class="nickname">9oodam</div>
-                    <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
-                    <details>
-                        <summary>답글 달기</summary>
-                        <div class="comments_wrap">
-                            <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
-                            <div>
-                                <div class="nickname">9oodam</div>
-                                <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
-                            </div>
-                        </div>
-                        <div class="comments_wrap">
-                            <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
-                            <div>
-                                <div class="nickname">9oodam</div>
-                                <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
-                            </div>
-                        </div>
-                        <div class="input_wrap2">
-                            <input class="comment_input2" name="smallComment" type="text" placeholder="대댓글 달기...">
-                            <div class="commentBtn2">전송</div>
-                        </div>
-                    </details>
-                </div>
-                <div class="likes_btn">
-                    <img src="../nav_icon_img/icon_noti.png" alt="">
-                    <img src="../nav_icon_img/icon_heart.png" alt="">
-                    <div clss=""></div>
-                </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="input_wrap">
@@ -135,6 +113,7 @@
         </div>
     </div>
 
+
     <!-- home / search / insert / mypage -->
     <div class="bottom_nav_container">
         <div class="bottom_nav">
@@ -146,14 +125,233 @@
     </div>
 </body>
 <script>
+    window.onload = async () =>{
+        let x = location.hash;
+        let xx = x.replace("#", "");
+        const {data} = await axios.get(`http://127.0.0.1:8080/detail/getcontents/${xx},`,{
+            withCredentials : true
+        });
+        if(data.d == 1){
+            document.querySelector("#useron").style.display = "block";
+        }else{
+            document.querySelector("#useron").style.display = "none";
+        }
+
+        // 날짜 계산
+        let now = new Date();
+        let posteddate = new Date(data.a.createdAt);
+        let calc = (now.getTime() - posteddate.getTime()) / 1000;
+        let s = 1;
+        let m = s * 60;
+        let h = m * 60;
+        let d = h * 24;
+        let dateText = "";
+        if(calc < s) {
+            dateText = "방금 전";
+        }else if(calc < m) {
+            dateText = parseInt(calc) + "초 전";
+        }else if(calc < h) {
+            dateText = Math.trunc(calc/m) + "분 전";
+        }else if(calc < d) {
+            dateText = Math.trunc(calc/h) + "시간 전";
+        }else if(calc < d * 15) {
+            dateText = Math.trunc(calc/d) + "일 전";
+        }else {
+            let year = posteddate.getFullYear();
+            let month = posteddate.getMonth() + 1;
+            let date = posteddate.getDate();
+            dateText = `${year}.${month}.${date}`;
+        }
+
+        // 좋아요
+        const likeCheck = await axios.get("http://127.0.0.1:8080/detail/getlike",{
+            withCredentials : true,
+            params : {
+                user_id : data.b.id,
+                post_id : xx,
+            }
+        });
+        if(likeCheck.data == "0"){ // 좋아요 안눌렀으면
+            document.querySelector("#heartImage").src = '../nav_icon_img/icon_noti.png';
+            document.querySelector("#heartImage").dataset.value = "0";
+        }else{
+            document.querySelector("#heartImage").src = '../nav_icon_img/icon_heart.png';
+            document.querySelector("#heartImage").dataset.value = "1";
+        }
+
+        console.log("aa", data.e_content);
+        for(let i=0; i<data.e.length;i++){
+            reply_container.innerHTML += `
+            <div class="comments_wrap">
+                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                <div id="commentlist">
+                    <div class="nickname">${data.e_nick[i]}</div>
+                    <div class="bigCommentText">${data.e_content[i].content}</div>
+                    <details>
+                        <summary>답글 달기</summary>
+
+                        <div class="cw"></div>
+
+
+                        
+                        
+
+
+
+
+                        <div class="input_wrap2">
+                            <input class="comment_input2" name="smallComment" type="text" placeholder="대댓글 달기...">
+                            <div class="commentBtn2">전송</div>
+                        </div>
+                    </details>
+                </div>
+                <div class="likes_btn">
+                    <br>
+                    <img src="../nav_icon_img/icon_noti.png" alt="">
+                    <div clss=""></div>
+                </div>
+            </div>
+            `;
+        }
+        
+        document.querySelector(".updated_time").innerHTML = dateText;
+        document.querySelector("#deContent").innerHTML = data.a.content;
+        document.querySelector("#likecount").innerHTML = data.a.likes;
+        document.querySelector(".post_body").innerHTML = `<img src="../../backEnd/post_img/${data.a.img}">`;
+        document.querySelector(".nickname").innerHTML = data.b.nickname;
+        document.querySelector("p .nickname").innerHTML = data.b.nickname;
+        document.querySelector(".profile_img").innerHTML = `<img src="../user_img/${data.b.profile_img}" alt="">`;
+        
+
+
+
+
+
+        document.querySelector(".delBtn").addEventListener("click", async function(){
+            const {data} = await axios.get(`http://127.0.0.1:8080/detail/delBtn/${xx}`);
+            if(data == 1){
+                window.location.href= "http://127.0.0.1:5500/frontEnd/page/search.html";
+            }
+        });
+        document.querySelector("#heartImage").addEventListener("click", async function(){
+            let checkval = document.querySelector("#heartImage").getAttribute("data-value");
+            let lc = document.querySelector("#likecount").textContent;
+            if(checkval == 0){
+                document.querySelector("#heartImage").src = '../nav_icon_img/icon_heart.png';
+                document.querySelector("#heartImage").dataset.value = "1";
+                
+                let count = Number(lc) + 1;
+                document.querySelector("#likecount").innerHTML = count;
+            }else{
+                document.querySelector("#heartImage").src = '../nav_icon_img/icon_noti.png';
+                document.querySelector("#heartImage").dataset.value = "0";
+
+                let count = Number(lc) - 1;
+                document.querySelector("#likecount").innerHTML = count;
+            }
+            const likeClick = await axios.get("http://127.0.0.1:8080/detail/likeClick",{
+                withCredentials : true,
+                params : {
+                    user_id : data.b.id,
+                    post_id : xx,
+                    check : checkval
+                }
+            });
+        });
+
+        document.querySelector(".commentBtn").addEventListener("click" , async function(){
+            let inputvalue = document.querySelector(".comment_input").value;
+
+            const abc = await axios.get(`http://127.0.0.1:8080/detail/bigComment/${xx}`, {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                withCredentials : true,
+                params : {
+                    bigInputValue : inputvalue,
+                }
+
+                // post
+                // bigInputValue : inputvalue,
+                // data: { bigInputValue : inputvalue},
+                // params:{
+                //     bigInputValue: inputvalue,
+                // }
+            });
+
+            console.log("큰 댓글 남길때 abc : ",abc);
+            reply_container.innerHTML += `
+            <div class="comments_wrap">
+                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/${abc.data.profile_img}" alt=""></div>
+                <div id="commentlist">
+                    <div class="nickname">${abc.data.nickname}</div>
+                    <div class="bigCommentText">${inputvalue}</div>
+                    <details>
+                        <summary>답글 달기</summary>
+
+                        <div class="input_wrap2">
+                            <input class="comment_input2" name="smallComment" type="text" placeholder="대댓글 달기...">
+                            <div class="commentBtn2">전송</div>
+                        </div>
+                    </details>
+                </div>
+                <div class="likes_btn">
+                    <br>
+                    <img src="../nav_icon_img/icon_noti.png" alt="">
+                    <div clss=""></div>
+                </div>
+            </div>
+            `;
+
+        });
+
+
+        const Btn2 = document.querySelectorAll(".commentBtn2");
+        Btn2.forEach(function(el){
+            el.addEventListener("click", async function(event){
+                
+                let smallinputvalue = event.target.closest('.input_wrap2').querySelector(".comment_input2").value;
+                const abc = await axios.get(`http://127.0.0.1:8080/detail/smallComment/${xx}`, {
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    withCredentials : true,
+                    params : {
+                        smallInputValue : smallinputvalue,
+                    }
+
+                    // post
+                    // bigInputValue : inputvalue,
+                    // data: { bigInputValue : inputvalue},
+                    // params:{
+                    //     bigInputValue: inputvalue,
+                    // }
+                });
+                console.log("현재", abc);
+
+                event.target.closest('details').querySelector(".cw").innerHTML += `
+                            <div class="comments_wrap">
+                                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                                <div>
+                                    <div class="nickname">${abc.data.nickname}</div>
+                                    <div class="bigCommentText">${smallinputvalue}</div>
+                                </div>
+                            </div>
+                `;
+
+            });
+        });
+
+
+
+    }
+
     async function getProfile() {
         try {
-            const {data} = await axios.get('http://127.0.0.1:8080/main/getProfile', {
+            const {data} = await axios.get('http://127.0.0.1:8080/detail/getProfile', {
                 // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
                 withCredentials : true
             });
-
-            console.log(data);
 
             if(data.profile_img == null) {
                 profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></a>`;

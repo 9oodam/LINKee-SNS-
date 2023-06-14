@@ -22,7 +22,7 @@ class Post extends Sequelize.Model {
             modelName : "Post",
             tableName : "posts",
             charset : "utf8",
-            collate : "utf8_general_ci"
+            collate : "utf8_general_ci",
         });
     }
 

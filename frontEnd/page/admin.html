@@ -154,7 +154,7 @@
           document.querySelector("#await").innerHTML += `<p id="p${i}"><span>${data[i].user_id}</span> <button onclick="accept(${i}, '${data[i].user_id}')">Auth</button> <button onclick="deny(${i}, ${data[i].user_id})">deny</button></p>`;
         }
         for (let i = 0; i < data22.length; i++) {
-          document.querySelector("#accept").innerHTML += `<p id="p99${i}">${data22[i].user_id} <button onclick="unAuth(99${i} ,${data22[i].user_id})" class="neon">UnAuthorization</button></p>`;
+          document.querySelector("#accept").innerHTML += `<p id="p99${i}">${data22[i].user_id} <button onclick="unAuth(99${i} ,'${data22[i].user_id}')" class="neon">UnAuthorization</button></p>`;
         }
 
 
@@ -168,7 +168,7 @@
         let arr = [];
         let random = day - 7;
 
-        let dayCnt = await axios.get(`http://127.0.0.1:8080/dayCnt`);
+        let dayCnt = await axios.get(`http://127.0.0.1:8080/admin/dayCnt`);
 
         for (let i = 0; i <= 7; i++) {
           arr[i] = random;
@@ -261,7 +261,7 @@
         // document.querySelector("#p" + a).style.display = "none";
         document.querySelector("#p" + a).remove();
         // document.querySelector("#accept").innerHTML += `<p>${id}</p>`;
-        document.querySelector("#accept").innerHTML += `<p id="p${a}">${id} <button onclick="unAuth(${a} ,${id})" class="neon">UnAuthorization</button></p>`;
+        document.querySelector("#accept").innerHTML += `<p id="p${a}">${id} <button onclick="unAuth(${a} ,'${id}')" class="neon">UnAuthorization</button></p>`;
 
       }
       async function deny(a, id) {
