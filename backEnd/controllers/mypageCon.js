@@ -29,6 +29,8 @@ exports.myPost = async (req,res)=>{
 };
 
 exports.mypage = async (req,res)=>{
+    const {acc_decoded} = req;
+    const {user_id} = acc_decoded;
     try {
         const user = await User.findOne({where : {user_id}});
         // console.log(users[0]);
