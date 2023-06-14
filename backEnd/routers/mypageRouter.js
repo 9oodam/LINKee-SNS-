@@ -6,9 +6,9 @@ const {uploadImg,updateProfileImg} = require("../middleware/uploadImg");
 
 const path = require("path");
 router.get("/",isLogin, async (req,res)=>{
-    // const {acc_decoded} = req;
-    // const {user_id} = acc_decoded;
-    // console.log(user_id);
+    const {acc_decoded} = req;
+    const {user_id} = acc_decoded;
+    console.log(user_id);
     // res.redirect(`/mypage/${user_id}`);
     res.sendFile("/home/ubuntu/frontEnd/page/mypage.html");
 });
