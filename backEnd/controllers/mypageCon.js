@@ -30,9 +30,9 @@ exports.myPost = async (req,res)=>{
 
 exports.mypage = async (req,res)=>{
     try {
-        const users = await User.findAll();
+        const user = await User.findOne({where : {user_id}});
         // console.log(users[0]);
-        res.json(users);
+        res.json(user);
     } catch (error) {
         console.log(error);
     }
