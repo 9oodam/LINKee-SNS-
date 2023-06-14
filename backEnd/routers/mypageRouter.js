@@ -14,7 +14,9 @@ router.get("/",isLogin, async (req,res)=>{
 
 router.get("/mypost",isLogin,myPost);
 
-router.get("/users",isLogin,mypage);
+router.get("/users",isLogin,mypage,(req,res)=>{
+    console.log(req);
+});
 
 router.get("/edit",isLogin,(req,res)=>{
     const filePath = "/home/ubuntu/frontEnd/page/editProfile.html";

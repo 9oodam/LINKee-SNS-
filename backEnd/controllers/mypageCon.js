@@ -40,11 +40,12 @@ exports.currentUser = async (req,res)=>{
     }
 };
 
-exports.mypage = async (req,res)=>{
+exports.mypage = async (req,res,next)=>{
     try {
         const users = await User.findAll();
         // console.log(users[0]);
-        res.json(users);
+        // res.json(users);
+        next();
     } catch (error) {
         console.log(error);
     }

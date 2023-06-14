@@ -200,7 +200,8 @@
 </body>
 <script src="../js/main.js"></script>
 <script>
-    async function currentUser(){
+    async function currentUser(req,res){
+        console.log(req);
         const user = await axios.get("https://andybyungjoopark.com/mypage");
         console.log(user);
     };
