@@ -28,12 +28,11 @@ exports.myPost = async (req,res)=>{
     }
 };
 
-exports.mypage = async (req,res,next)=>{
+exports.mypage = async (req,res)=>{
     try {
         const users = await User.findAll();
         // console.log(users[0]);
-        // res.json(users);
-        next();
+        res.json(users);
     } catch (error) {
         console.log(error);
     }
