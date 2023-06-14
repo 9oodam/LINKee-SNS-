@@ -202,7 +202,7 @@
 <script>
     async function myPost(){
         try {
-            const response = await axios.get("https://andybyungjoopark.com/mypage/mypost",{
+            const response = await axios.get("https://andybyungjoopark.com/mypage/:id/mypost",{
                 withCredentials : true
             });
             console.log(response.data.data);
