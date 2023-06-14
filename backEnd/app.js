@@ -18,6 +18,11 @@ const adminRouter = require("./routers/adminRouter");
 
 const app = express();
 
+// view engine
+app.set("view engine","html");
+// view foler
+app.set("views",path.join(__dirname,"..","frontEnd","page"));
+
 // 파일형식별 미들웨어 세팅 (static path)
 // css content type
 app.use("/css",express.static(path.join(__dirname,"..","frontEnd","css"),{

@@ -215,20 +215,22 @@
 
     async function myPost(){
         try {
-            const data = await axios.get("https://andybyungjoopark.com/mypage/testing",{
-                withCredentials : true
-            });
-            console.log(data);
-            data.forEach((el)=>{
-                const response = axios.get(`https://andybyungjoopark.com/mypage/${el}/mypost`,{
-                    withCredentials : true
-                });
-                console.log(response.data.data);
-                console.log(response.data.user);
-            });
-            // const response = await axios.get("https://andybyungjoopark.com/mypage/mypost",{
+            // const data = await axios.get("https://andybyungjoopark.com/mypage/testing",{
             //     withCredentials : true
             // });
+            // console.log(data);
+            // data.forEach((el)=>{
+            //     const response = axios.get(`https://andybyungjoopark.com/mypage/${el}/mypost`,{
+            //         withCredentials : true
+            //     });
+            //     console.log(response.data.data);
+            //     console.log(response.data.user);
+            // });
+            const response = await axios.get("https://andybyungjoopark.com/mypage/mypost",{
+                withCredentials : true
+            });
+            console.log(response.data.data);
+            console.log(response.data.user);
             
 
             if(response.data.user.profile_img == null) {
