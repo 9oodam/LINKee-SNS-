@@ -27,6 +27,7 @@ router.post("/edit",isLogin, updateProfileImg.single("img"), editProfile);
 
 router.get("/testing",isLogin,mypage,(req,res)=>{
     console.log("hi");
+    console.log(req.users);
 });
 
 module.exports = router;
