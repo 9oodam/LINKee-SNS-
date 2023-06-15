@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>livechat</title>
+    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/livechat.css">
+</head>
+<body>
+    <!-- 실시간 알림창 -->
+    <div class="live_chat_noti_container">
+        <div class="live_chat_noti">
+            <p>OOO님이</p>
+            <p>대화를 요청하였습니다.</p>
+            <p>승인 버튼을 누르면 대화방으로 이동합니다.</p>
+            <div class="btns">
+                <div class="appBtn">승인</div>
+                <div class="rejBtn">거절</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 게시글 보여지는 부분 -->
+    <div id="middle_body" class="middle_body">
+        <div id="loginUser"></div>
+        <div id="logoutUser"></div>
+    </div>
+
+
+    <!-- 상단 nav -->
+    <div class="top_nav_container">
+        <div class="top_nav">
+            <div class="logo"><img src="../nav_icon_img/icon_back.png" alt="" onclick="history.back()"></div>
+            <div>라이브 채팅</div>
+        </div>
+    </div>
+</body>
+<script>
+    window.onload = async () => {
+        try {
+            const {data} = await axios.get('http://127.0.0.1:8080/chat/getFriends', {
+                withCredentials : true
+            });
+            const {user, userAll} = data;
+
+            // 로그인 한 유저와 맞팔인 유저 찾기
+            let friendArr = [];
+            // let following = JSON.parse(data.following);
+            // let follower = JSON.parse(data.follower);
+
+            let following = [1, 2, 3, 4, 5];
+            let follower = [1, 3, 5];
+            for (let i = 0; i < following.length; i++) {
+                for (let j = 0; j < follower.length; j++) {
+                    if(following[i] == follower[j]) {
+                        friendArr.push(following[i]);
+                    } 
+                }
+            }
+            console.log("맞팔 : ", friendArr);
+
+
+            // 모든 페이지에 다 들어갈 부분!!!
+            const socket = io.connect('localhost:8080'); // 소켓 연결 시도
+            socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
+            
+            // 접속 중인 유저 배열 가져오기
+            socket.on("userIn", (socketID, userID) => {
+                console.log(userID);
+                if(friendArr.length == 0) {
+                    middle_body.innerHTML = '<div class="no_noti">현재 대화 가능한 상대가 없습니다.<br></div>';
+                }else {
+                    friendArr.forEach((el) => {
+                        let friend = userAll.find(item => item.id == el);
+
+                        if(userID.includes(el)) {
+                            if(!user.id==el) {
+                                // 로그인 한 본인 제외
+                                // 나중에 아래 코드 이 안으로 넣기
+                            }
+                            console.log("접속 중인 친구: ", el);
+                            loginUser.innerHTML += `
+                            <div class="user_wrap">
+                                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/${friend.profile_img}" alt=""></div>
+                                <div class="nickname">${friend.nickname}</div>
+                                <div class="chat_btn">대화 요청하기</div>
+                            </div>`;
+                        }else {
+                            console.log("로그아웃 된 친구: ", el);
+                            logoutUser.innerHTML += `
+                            <div class="user_wrap">
+                                <div class="profile_img_x"><img src="http://127.0.0.1:8080/user_img/${friend.profile_img}" alt=""></div>
+                                <div class="nickname_x">${el}</div>
+                                <div class="chat_btn_x">대화 요청하기</div>
+                            </div>`;
+                        }
+                    });
+                }
+            })
+            
+
+
+
+
+
+            
+
+
+
+            // 대화 요청하기 버튼 클릭시
+            let chatBtn = document.querySelector(".chat_btn");
+            chatBtn.onclick = () => {
+                if(confirm("상대방이 대화 요청을 수락하면 대화방으로 이동합니다.\n대화 요청을 진행 하시겠습니까?") == true) {
+    
+                }
+            }
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+</script>
+</html>
