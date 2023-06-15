@@ -5,7 +5,6 @@ const dot = require("dotenv").config();
 const session = require("express-session");
 
 const {sequelize} = require("./models");
-const socketio = requiire("socket.io");
 
 
 // router
