@@ -17,6 +17,7 @@ const searchRouter = require("./routers/searchRouter");
 const notiRouter = require("./routers/notiRouter");
 const adminRouter = require("./routers/adminRouter");
 const chatRouter = require("./routers/chat");
+const userpageRouter = require("./routers/userpageRouter");
 
 const app = express();
 
@@ -131,6 +132,7 @@ app.use("/mypage",mypageRouter);
 app.use("/noti", notiRouter);
 app.use("/admin", adminRouter);
 app.use("/chat",chatRouter);
+app.use("/userpage",userpageRouter);
 
 app.listen(8080, () => {
     console.log("server opened");
