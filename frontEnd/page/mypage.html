@@ -222,9 +222,9 @@
             
 
             if(response.data.user.profile_img == null) {
-                profile_img.innerHTML = `<a href="/mypage/${response.data.user.user_id}"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
+                profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
             }else {
-                profile_img.innerHTML = `<a href="/mypage/${response.data.user.user_id}"><img src="https://andybyungjoopark.com/user_img/${response.data.user.profile_img}" alt=""></a>`;
+                profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/${response.data.user.profile_img}" alt=""></a>`;
             };
 
             // console.log(response.data.user.user_id);
