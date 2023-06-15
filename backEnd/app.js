@@ -15,10 +15,7 @@ const mainRouter = require("./routers/mainRouter");
 const mypageRouter = require("./routers/mypageRouter");
 const insertRouter = require("./routers/insertRouter");
 const searchRouter = require("./routers/searchRouter");
-const mypageRouter = require("./routers/mypageRouter");
-
 const notiRouter = require("./routers/notiRouter");
-
 const adminRouter = require("./routers/adminRouter");
 const chatRouter = require("./routers/chat");
 
