@@ -48,7 +48,7 @@
         console.log(xx);
 
         try {
-            const {data} = await axios.get(`http://127.0.0.1:8080/search/searched/${xx}`, {
+            const {data} = await axios.get(`https://andybyungjoopark.com/search/searched/${xx}`, {
                 withCredentials : true
             });
             const {userAll, posts} = data;
@@ -94,7 +94,7 @@
                     middle_body.innerHTML += `
                     <div class="post_container">
                         <div class="post_top">
-                            <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/${writer.profile_img}" alt="profile"></div>
+                            <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${writer.profile_img}" alt="profile"></div>
                             <div class="profile_text">
                                 <p class="nickname">${writer.nickname}</p>
                                 <span>·</span>
@@ -103,7 +103,7 @@
                         </div>
 
                         <div class="post_body">
-                            <img src="http://127.0.0.1:8080/post_img/${el.img}" alt="">
+                            <img src="https://andybyungjoopark.com/post_img/${el.img}" alt="">
                         </div>
 
                         <div class="post_bottom">
@@ -121,7 +121,7 @@
                     middle_body.innerHTML += `
                     <div class="post_container">
                         <div class="post_top">
-                            <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/${writer.profile_img}" alt="profile"></div>
+                            <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${writer.profile_img}" alt="profile"></div>
                             <div class="profile_text">
                                 <p class="nickname">${writer.nickname}</p>
                                 <span>·</span>
@@ -130,7 +130,7 @@
                         </div>
     
                         <div class="post_body">
-                            <img src="http://127.0.0.1:8080/post_img/${el.img}" alt="">
+                            <img src="https://andybyungjoopark.com/post_img/${el.img}" alt="">
                         </div>
     
                         <div class="post_bottom">
@@ -152,7 +152,7 @@
     }
 
     function moveToDetail(id) {
-            location.href = `http://127.0.0.1:5500/frontEnd/page/detail.html#${id}`;
+            location.href = `https://andybyungjoopark.com/frontEnd/page/detail.html#${id}`;
         }
 
         function seeMore(id) {
