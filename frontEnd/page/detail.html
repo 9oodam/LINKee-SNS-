@@ -17,6 +17,9 @@
         .comments_wrap{
             display: hidden;
         }
+        #i_comment_id{
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -55,8 +58,10 @@
             <div class="post_bottom">
                 <div class="likes"><img id="heartImage" src="../nav_icon_img/icon_noti.png"><p><span id="likecount"></span> likes</p></div>
                 <div class="content">
-                    <p><span class="nickname">Nickname</span>
-                    <span id="deContent"><br></span></p>
+                    <p>
+                        <span class="nickname">Nickname</span>
+                        <span id="deContent"><br></span>
+                    </p>
                 </div>
             </div>
         </div>
@@ -70,24 +75,26 @@
                     <div class="nickname">9oodam</div>
                     <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
                     <details>
-                        <summary>답글 달기</summary>
-                        <div class="comments_wrap">
-                            <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
-                            <div>
-                                <div class="nickname">9oodam</div>
-                                <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
+                        <div class="cw">
+                            <summary>답글 달기</summary>
+                            <div class="comments_wrap">
+                                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                                <div>
+                                    <div class="nickname">9oodam</div>
+                                    <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="comments_wrap">
-                            <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
-                            <div>
-                                <div class="nickname">9oodam</div>
-                                <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
+                            <div class="comments_wrap">
+                                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                                <div>
+                                    <div class="nickname">9oodam</div>
+                                    <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="input_wrap2">
-                            <input class="comment_input2" name="smallComment" type="text" placeholder="대댓글 달기...">
-                            <div class="commentBtn2">전송</div>
+                            <div class="input_wrap2">
+                                <input class="comment_input2" name="smallComment" type="text" placeholder="대댓글 달기...">
+                                <div class="commentBtn2">전송</div>
+                            </div>
                         </div>
                     </details>
                 </div>
@@ -131,6 +138,7 @@
         const {data} = await axios.get(`http://127.0.0.1:8080/detail/getcontents/${xx},`,{
             withCredentials : true
         });
+
         if(data.d == 1){
             document.querySelector("#useron").style.display = "block";
         }else{
@@ -179,7 +187,7 @@
             document.querySelector("#heartImage").dataset.value = "1";
         }
 
-        console.log("aa", data.e_content);
+        
         for(let i=0; i<data.e.length;i++){
             reply_container.innerHTML += `
             <div class="comments_wrap">
@@ -187,16 +195,11 @@
                 <div id="commentlist">
                     <div class="nickname">${data.e_nick[i]}</div>
                     <div class="bigCommentText">${data.e_content[i].content}</div>
+                    <input type="text" id="i_comment_id" value="${data.d_comment_id[i]}">
                     <details>
                         <summary>답글 달기</summary>
 
-                        <div class="cw"></div>
-
-
-                        
-                        
-
-
+                        <div class="cw">${await add_s_Comment(data.s_comment[i].length, data.s_comment[i])}</div>
 
 
                         <div class="input_wrap2">
@@ -212,6 +215,25 @@
                 </div>
             </div>
             `;
+        }
+        async function add_s_Comment(a, b){
+            let html = "";
+            for(let i=0; i<a;i++){
+                const data = await axios.get(`http://127.0.0.1:8080/detail/c_comment_nick`, {
+                    withCredentials :true,
+                    params : {c_comment_nick : b[i].user_id}
+                });
+                html += `
+                <div class="comments_wrap">
+                    <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/${data.data.profile_img}" alt=""></div>
+                    <div>
+                        <div class="nickname">${data.data.nickname}</div>
+                        <div class="bigCommentText">${b[i].content}</div>
+                    </div>
+                </div>
+                `;
+            }
+            return html;
         }
         
         document.querySelector(".updated_time").innerHTML = dateText;
@@ -271,22 +293,22 @@
                     bigInputValue : inputvalue,
                 }
 
-                // post
                 // bigInputValue : inputvalue,
                 // data: { bigInputValue : inputvalue},
                 // params:{
                 //     bigInputValue: inputvalue,
                 // }
             });
-
-            console.log("큰 댓글 남길때 abc : ",abc);
+            
             reply_container.innerHTML += `
             <div class="comments_wrap">
-                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/${abc.data.profile_img}" alt=""></div>
+                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/${abc.data.a.profile_img}" alt=""></div>
                 <div id="commentlist">
-                    <div class="nickname">${abc.data.nickname}</div>
+                    <div class="nickname">${abc.data.a.nickname}</div>
                     <div class="bigCommentText">${inputvalue}</div>
+                    <input type="text" id="i_comment_id" value="${abc.data.b}">
                     <details>
+                        <div class="cw"></div>
                         <summary>답글 달기</summary>
 
                         <div class="input_wrap2">
@@ -302,48 +324,48 @@
                 </div>
             </div>
             `;
+            btn2();
 
         });
 
-
-        const Btn2 = document.querySelectorAll(".commentBtn2");
-        Btn2.forEach(function(el){
-            el.addEventListener("click", async function(event){
-                
-                let smallinputvalue = event.target.closest('.input_wrap2').querySelector(".comment_input2").value;
-                const abc = await axios.get(`http://127.0.0.1:8080/detail/smallComment/${xx}`, {
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    withCredentials : true,
-                    params : {
-                        smallInputValue : smallinputvalue,
-                    }
-
-                    // post
-                    // bigInputValue : inputvalue,
-                    // data: { bigInputValue : inputvalue},
-                    // params:{
-                    //     bigInputValue: inputvalue,
-                    // }
-                });
-                console.log("현재", abc);
-
-                event.target.closest('details').querySelector(".cw").innerHTML += `
-                            <div class="comments_wrap">
-                                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
-                                <div>
-                                    <div class="nickname">${abc.data.nickname}</div>
-                                    <div class="bigCommentText">${smallinputvalue}</div>
+        function btn2(){
+            const Btn2 = document.querySelectorAll(".commentBtn2");
+            Btn2.forEach(function(el){
+                el.addEventListener("click", async function(event){
+                    let smallinputvalue = event.target.closest('.input_wrap2').querySelector(".comment_input2").value;
+                    let civalue = event.target.closest('.comments_wrap').querySelector('input#i_comment_id').value;
+                    const abc = await axios.get(`http://127.0.0.1:8080/detail/smallComment/${xx}`, {
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        withCredentials : true,
+                        params : {
+                            smallInputValue : smallinputvalue,
+                            comment_id : civalue,
+                        }
+    
+                        // post
+                        // bigInputValue : inputvalue,
+                        // data: { bigInputValue : inputvalue},
+                        // params:{
+                        //     bigInputValue: inputvalue,
+                        // }
+                    });
+    
+                    event.target.closest('details').querySelector(".cw").innerHTML += `
+                                <div class="comments_wrap">
+                                    <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                                    <div>
+                                        <div class="nickname">${abc.data.nickname}</div>
+                                        <div class="bigCommentText">${smallinputvalue}</div>
+                                    </div>
                                 </div>
-                            </div>
-                `;
-
+                    `;
+                });
             });
-        });
 
-
-
+        }
+        btn2();
     }
 
     async function getProfile() {

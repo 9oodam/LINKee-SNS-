@@ -60,6 +60,9 @@ exports.getcontents = async (req,res)=>{
         let e_content;
         let e = [];
         let e_nick = [];
+        let d_comment_id = [];
+        let s_comment = [[]];
+        
 
         // 댓글 가져오기
         
@@ -70,12 +73,21 @@ exports.getcontents = async (req,res)=>{
             e_content = comment;
             for(let i=0; i<comment.length; i++){
                 e[i] = comment[i].user_id;
+                d_comment_id[i] = comment[i].id;
             }
             for(let i=0;i<e.length;i++){
                 const data = await User.findOne({where:{id:e[i]}});
                 e_nick[i] = data.nickname;
             }
-            console.log("맞나",e_nick);
+            for (let i = 0; i <d_comment_id.length; i++) {
+                s_comment[i] = [];
+            }
+            for(let i=0; i<d_comment_id.length;i++){
+                const data = await SmallComment.findAll({where:{comment_id:d_comment_id[i]}});
+                for(let j=0; j<data.length; j++){
+                    s_comment[i][j] = data[j].dataValues;
+                }
+            }
         }
         
         let users_id_ = b.user_id;
@@ -87,7 +99,7 @@ exports.getcontents = async (req,res)=>{
             d = 0;
         }
 
-        res.json({a, b, d, e_content, e, e_nick});
+        res.json({a, b, d, e_content, e, e_nick, d_comment_id, s_comment});
     } catch (error) {
         console.log(error);
     }
@@ -108,8 +120,6 @@ exports.getlike = async (req,res)=>{
     let x = req.session.user_id;
     const val2 = await User.findOne({where:{user_id:x}});
     let val22 = val2.dataValues.id; // 접속한 유저의 id;
-    console.log("접속한유저", val22);
-    console.log("postid", data.post_id);
 
     const val = await LikePost.findOne({where:{user_id:val22, post_id:data.post_id}});
 
@@ -153,14 +163,35 @@ exports.bigComment = async (req,res) =>{
         
         let param = req.params.id;
         let postbody = req.query; // get
-        console.log("확인", postbody.bigInputValue);
         let se = req.session.iidd;
-        console.log("세션", se);
-        await BigComment.create({
+        const createId = await BigComment.create({
             content : postbody.bigInputValue,
             likes : "0",
             user_id : se,
             post_id : param,
+        });
+
+        const data = await User.findOne({where:{id:se}});
+        let a = data.dataValues;
+        let b = createId.id;
+
+        res.json({a, b});
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+exports.smallComment1 = async (req,res) =>{
+    try {
+        let param = req.params.id;
+        let postbody = req.query;
+        let se = req.session.iidd;
+
+        await SmallComment.create({
+            content : postbody.smallInputValue,
+            likes : "0",
+            user_id : se,
+            comment_id : postbody.comment_id,
         })
 
         const data = await User.findOne({where:{id:se}});
@@ -170,21 +201,10 @@ exports.bigComment = async (req,res) =>{
     }
 }
 
-exports.smallComment1 = async (req,res) =>{
-    try {        
-        let param = req.params.id;
-        let postbody = req.query;
-        console.log("확인", postbody.smallInputValue);
-        let se = req.session.iidd;
-        console.log("세션", se);
-        await SmallComment.create({
-            content : postbody.smallInputValue,
-            likes : "0",
-            user_id : se,
-            comment_id : param,
-        })
-
-        const data = await User.findOne({where:{id:se}});
+exports.c_comment_nick1 = async (req,res)=>{
+    try {
+        let param = req.query;
+        const data = await User.findOne({where:{id:param.c_comment_nick}});
         res.json(data.dataValues);
     } catch (error) {
         console.log(error);

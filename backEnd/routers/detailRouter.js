@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const {isLogin} = require("../middleware/isLogin");
 
-const {getProfile, getcontents, delBtn, getlike, likeClick, bigComment, smallComment1} = require("../controllers/mainCon");
+const {getProfile, getcontents, delBtn, getlike, likeClick, bigComment, smallComment1, c_comment_nick1} = require("../controllers/mainCon");
 const { SmallComment } = require("../models");
 
 router.get('/getProfile', isLogin, getProfile);
@@ -18,6 +18,9 @@ router.get('/likeClick', isLogin, likeClick);
 router.get('/bigComment/:id', bigComment);
 
 router.get('/smallComment/:id', smallComment1);
+
+router.get('/c_comment_nick', c_comment_nick1);
+
 
 module.exports = router;
 
