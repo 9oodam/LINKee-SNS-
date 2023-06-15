@@ -5,6 +5,7 @@ const dot = require("dotenv").config();
 const session = require("express-session");
 
 const {sequelize} = require("./models");
+const socketio = requiire("socket.io");
 
 
 // router
@@ -15,6 +16,7 @@ const mypageRouter = require("./routers/mypageRouter");
 const insertRouter = require("./routers/insertRouter");
 const searchRouter = require("./routers/searchRouter");
 const adminRouter = require("./routers/adminRouter");
+const chatRouter = require("./routers/chat");
 
 const app = express();
 
@@ -124,7 +126,12 @@ app.use("/mypage",mypageRouter);
 app.use("/insert", insertRouter);
 app.use("/search", searchRouter);
 app.use("/admin", adminRouter);
+app.use("/chat",chatRouter);
 
-app.listen(8080, () => {
+const server = app.listen(8080, () => {
     console.log("server opened");
 });
+
+
+
+const io = socketio(server);
