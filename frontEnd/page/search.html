@@ -26,14 +26,12 @@
     <div class="middle_body">
       <div class="search_container">
         <form>
-          <div class="no_searched">NO SEARCHED :(</div>
           <input
             type="text"
             id="keyword_input"
             class="keyword_input"
             placeholder="Search"
           />
-          <button type="button" id="search_btn" class="search_btn"></button>
         </form>
       </div>
       <div class="search_container2">
@@ -142,6 +140,7 @@
           userName.push(temp);
         }
         console.log(userName);
+
         // posts.content 담는 배열
         let postContent = [];
         for (let i = 0; i < posts.length; i++) {
@@ -149,31 +148,27 @@
           postContent.push(temp);
         }
         console.log(postContent);
+
         // 그 중 태그만 담는 배열
-        let postTag = [];
-        let regex = /#([\uAC00-\uD7AFa-zA-Z0-9]+)/g;
+        let postTagPrev = [];
+        let regex = /#([\uAC00-\uD7AFa-zA-Z0-9]+) /g;
 
         postContent.forEach((element) => {
             if(typeof element === 'string') {
                 let match;
                 regex.lastIndex = 0;
                 while ((match = regex.exec(element)) !== null) {
-                    postTag.push(match[1]);
+                    postTagPrev.push(match[1]);
                 }
             }
         });
+        let postTag = [...new Set(postTagPrev)]; // 중복제거
         console.log(postTag);
 
+        // input 창에 키보드 입력했을 때
         keyword_input.addEventListener("keyup", function () {
             autocomplete_wrap.style.display = "block";
             allPosts.style.display = "none";
-
-            // enter 누르면 검색됨
-            if (window.event.keyCode === 13) {
-                console.log("enter 눌림");
-                window.event.preventDefault();
-                search_btn.click();
-            }
 
             autoN.innerHTML = "";
             autoP.innerHTML = "";
@@ -194,7 +189,19 @@
                     
                 autoN.appendChild(div);
                     
-                // 자동완성 탭 누르면 상세페이지로 바로 이동하는 함수 만들기
+                // 자동완성 탭 누르면 페이지 이동
+                div.onclick = async () => {
+                  const { data } = await axios.get("http://127.0.0.1:8080/main/getProfile", {
+                    withCredentials: true
+                  });
+
+                  if(data.nickname == suggested) {
+                    location.href = './mypage.html';
+                  }else {
+                    location.href = `./userpage.html#${suggested}`;
+                  }
+                  console.log(data);
+                }
             });
 
             // 태그 자동 완성
@@ -203,10 +210,15 @@
             });
 
             autocompleteP.forEach(function (suggested) {
-                autoP.innerHTML += `
-                <div>
-                    <p>#${suggested}</p>
-                </div>`;
+                let div = document.createElement("div");
+                div.innerHTML = `<p>#${suggested}</p>`;
+
+                autoP.appendChild(div);
+
+                // 자동완성 탭 누르면 페이지 이동
+                div.onclick = () => {
+                  location.href = `./searchedPost.html#${suggested}`;
+                }
             });
 
 
@@ -216,14 +228,6 @@
                 allPosts.style.display = "flex";
             }
         });
-
-
-        // 돋보기 버튼 클릭했을 때 or 엔터 키 눌렀을 때
-        search_btn.onclick = () => {
-            
-        }
-
-
 
       } catch (error) {
         console.log(error);

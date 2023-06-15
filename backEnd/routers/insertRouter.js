@@ -10,8 +10,12 @@ router.get("/",(req,res)=>{
 });
 
 const {uploadImg} = require("../middleware/uploadImg");
-const {insertPost} = require("../controllers/insertCon");
+const {insertPost, getOriginalPost, editPost} = require("../controllers/insertCon");
 
 router.post('/', isLogin, uploadImg.single("img"), insertPost);
+
+router.get('/editPost/:id', isLogin, getOriginalPost);
+router.post('/editPost/:id', isLogin, uploadImg.single("img"), editPost);
+
 
 module.exports = router;

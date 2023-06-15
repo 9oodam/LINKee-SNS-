@@ -3,6 +3,7 @@ const router = require("express").Router();
 const {isLogin} = require("../middleware/isLogin");
 // levelCheck 가져오기
 
+<<<<<<< HEAD
 const path = require("path");
 router.get("/",(req,res)=>{
     const filePath = "/home/ubuntu/frontEnd/page/main.html";
@@ -10,9 +11,26 @@ router.get("/",(req,res)=>{
 });
 
 const {getPost, getProfile} = require("../controllers/mainCon");
+=======
+const {getPost, getProfile, getcontents, delBtn, getlike, likeClick, bigComment, smallComment1} = require("../controllers/mainCon");
+>>>>>>> di
 
 router.get('/posts', isLogin, getPost);
 
 router.get('/getProfile',isLogin, getProfile);
+
+router.get('/getcontents/:id', isLogin, getcontents);
+
+router.get('/delBtn/:id', delBtn);
+
+router.get('/getlike', isLogin, getlike);
+
+router.get('/likeClick', isLogin, likeClick);
+
+// 댓글
+router.get('/bigComment/:id', bigComment);
+
+router.get('/smallComment/:id', smallComment1);
+
 
 module.exports = router;

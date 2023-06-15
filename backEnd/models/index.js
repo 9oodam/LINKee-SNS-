@@ -5,6 +5,7 @@ const {User, LoginCount} = require("./users");
 const {Post, LikePost} = require("./posts");
 const {BigComment, LikeBigComment} = require("./bigComments.js")
 const {SmallComment, LikeSmallComment} = require("./smallComment")
+const {Noti} = require("./noti");
 
 // sequelize 연결
 const sequelize = new Sequelize(
@@ -26,6 +27,7 @@ db.BigComment = BigComment;
 db.LikeBigComment = LikeBigComment;
 db.SmallComment = SmallComment;
 db.LikeSmallComment = LikeSmallComment;
+db.Noti = Noti;
 
 User.init(sequelize);
 LoginCount.init(sequelize);
@@ -35,6 +37,7 @@ BigComment.init(sequelize);
 LikeBigComment.init(sequelize);
 SmallComment.init(sequelize);
 LikeSmallComment.init(sequelize);
+Noti.init(sequelize);
 
 User.associate(db);
 Post.associate(db);

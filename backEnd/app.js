@@ -15,6 +15,10 @@ const mainRouter = require("./routers/mainRouter");
 const mypageRouter = require("./routers/mypageRouter");
 const insertRouter = require("./routers/insertRouter");
 const searchRouter = require("./routers/searchRouter");
+const mypageRouter = require("./routers/mypageRouter");
+
+const notiRouter = require("./routers/notiRouter");
+
 const adminRouter = require("./routers/adminRouter");
 const chatRouter = require("./routers/chat");
 
@@ -99,6 +103,7 @@ app.use(cors({
 // body-parser 사용
 app.use(express.urlencoded({extended : false}));
 
+
 // session 사용
 app.use(session({
     secret : process.env.SESSION_KEY,
@@ -118,6 +123,7 @@ sequelize.sync({force : false}).then((e) => {
 app.use("/post_img", express.static(path.join(__dirname, "post_img")));
 app.use("/user_img", express.static(path.join(__dirname, "user_img")));
 
+
 // router 연결
 app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
@@ -125,13 +131,11 @@ app.use("/main", mainRouter);
 app.use("/mypage",mypageRouter);
 app.use("/insert", insertRouter);
 app.use("/search", searchRouter);
+app.use("/mypage",mypageRouter);
+app.use("/noti", notiRouter);
 app.use("/admin", adminRouter);
 app.use("/chat",chatRouter);
 
-const server = app.listen(8080, () => {
+app.listen(8080, () => {
     console.log("server opened");
 });
-
-
-
-const io = socketio(server);

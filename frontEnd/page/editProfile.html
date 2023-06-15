@@ -8,67 +8,21 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     
     <link rel="stylesheet" href="../css/nav.css">
-    <style>
-        .middle_body{
-            width: 470px; height: auto;
-        }
-        .profile_pic_box{
-            width: 100%; height: 150px;
-            border-bottom: 1px solid silver;
-            display: flex; justify-content: center; align-content:space-evenly;
-            align-items: center; flex-wrap: wrap;
-        }
-        .inputFile{
-            width: 100%; height: 100%;
-            position: relative;
-        }
-        #preview{
-            width: 70px; height: 70px;
-            border-radius: 50%;
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%,-50%);
-        }
-        .fileUpload{
-            position: absolute;
-            bottom: 10px; left: 50%;
-            transform: translate(-50%,0);
-            cursor: pointer;
-        }
-        .edit_profile_section{
-            width: 400px; height: auto;
-            margin: 0;
-        }
-        .edit_profile_section div{
-            width: 100%; height: 40px;
-            display: flex; justify-content: space-around;
-            align-items: center;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/editProfile.css">
 </head>
 <body>
-    <!-- noti / dm -->
+    <!-- 상단 nav -->
     <div class="top_nav_container">
         <div class="top_nav">
-            <div class="logo">LINKee</div>
-            <div class="noti"><img src="../nav_icon_img/icon_noti.png" alt=""></div>
-            <div class="live_chat"><img src="../nav_icon_img/icon_dm.png" alt=""></div>
-        </div>
-    </div>
-
-    <!-- home / search / insert / mypage -->
-    <div class="bottom_nav_container">
-        <div class="bottom_nav">
-            <div class="icon"><a href="/main"><img src="../nav_icon_img/icon_home.webp" alt=""></a></div>
-            <div class="icon"><a href="/search"><img src="../nav_icon_img/icon_search.png" alt=""></a></div>
-            <div class="icon"><a href="/insert"><img src="../nav_icon_img/icon_plus.png" alt=""></a></div>
-            <div id = "profile_img" class="profile_img"><a href="/mypage"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></a></div>
+            <div class="logo"><img src="../nav_icon_img/icon_back.png" alt="" onclick="history.back()"></div>
+            <div>프로필 편집</div>
+            <div class="editBtn"><img src="../nav_icon_img/icon_check.png" alt=""></div>
         </div>
     </div>
 
     <!-- edit profile -->
     <div class="middle_body">
-        <form action="https://andybyungjoopark.com/mypage/edit" method="post">
+        <form>
             <div class="profile_pic_box">
                 <div id="inputFile" class="inputFile">
                     <img id="preview">
@@ -94,7 +48,6 @@
                     <label for="">Info</label>
                     <textarea class="infoInput" name="profile_info" cols="30" rows="10" style="resize: none;"></textarea>
                 </div>
-                <button class="editBtn">edit my profile</button>
             </form>
         </div>
     </div>
@@ -108,17 +61,9 @@
                 withCredentials : true
             });
 
-            console.log(data);
-
-            if(data.profile_img == null) {
-                profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
-            }else {
-                profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/${data.profile_img}" alt=""></a>`;
-            }
-
             // const profileImg = document.querySelector("#preview");
             // profileImg.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
-            preview.src = `https://andybyungjoopark.com/user_img/${data.profile_img}`;
+            preview.src = `http://127.0.0.1:8080/user_img/${data.profile_img}`;
 
             const nameInput = document.querySelector(".nameInput");
             nameInput.placeholder = data.user_name;
