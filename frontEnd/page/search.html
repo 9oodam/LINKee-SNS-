@@ -191,14 +191,14 @@
                     
                 // 자동완성 탭 누르면 페이지 이동
                 div.onclick = async () => {
-                  const { data } = await axios.get("http://127.0.0.1:8080/main/getProfile", {
+                  const { data } = await axios.get("https://andybyungjoopark.com/main/getProfile", {
                     withCredentials: true
                   });
 
                   if(data.nickname == suggested) {
-                    location.href = './mypage.html';
+                    location.href = './mypage';
                   }else {
-                    location.href = `./userpage.html#${suggested}`;
+                    location.href = `./userpage#${suggested}`;
                   }
                   console.log(data);
                 }
@@ -217,7 +217,7 @@
 
                 // 자동완성 탭 누르면 페이지 이동
                 div.onclick = () => {
-                  location.href = `./searchedPost.html#${suggested}`;
+                  location.href = `./searchedPost#${suggested}`;
                 }
             });
 
