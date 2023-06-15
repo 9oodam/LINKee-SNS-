@@ -22,6 +22,7 @@
         <div class="top_nav">
             <div class="logo"><img src="../nav_icon_img/icon_back.png" alt="" onclick="history.back()"></div>
             <div>알림</div>
+            <div class="empty_btn">알림 비우기</div>
         </div>
     </div>
 
@@ -33,27 +34,24 @@
                 withCredentials : true
             });
             
-            /*
             if(data == "0") {
-                middle_body.innerHTML = "새로운 알림이 없습니다."
-            }
-            */
-            if (true){
-                const {users, posts} = data;
-                console.log(users);
-                // let noti = [{id:1, receivedID:1, senderID:2, followNoti:"1"}, {id:2, receivedID:1, senderID:2, likePostNoti:1}];
-                let noti = [
-                    {id:1, receivedID:1, senderID:2, smallCommentNoti:25, createdAt:"2023-06-07 02:49:34"},
-                    {id:2, receivedID:1, senderID:2, followNoti:"1", createdAt:"2023-06-09 16:00:00"}
-                ];
+                middle_body.innerHTML = '<div class="no_noti">새로운 알림이 없습니다.</div>';
+            }else {
+                const {noti, user, users, posts} = data;
+                // let noti = [
+                //     {id:1, receivedID:1, senderID:2, smallCommentNoti:25, createdAt:"2023-06-07 02:49:34"},
+                //     {id:2, receivedID:1, senderID:2, followNoti:"1", createdAt:"2023-06-09 16:00:00"}
+                // ];
                 noti.reverse();
+                console.log(noti);
 
                 noti.forEach((el) => {
                     console.log(el);
+
                     // 알림 보낸 사람
-                    let sender = "";
-                    let senderID = "";
-                    let senderImg = "";
+                    let sender = ""; // 닉네임(users.nickname)
+                    let senderID = ""; // 번호(users.id)
+                    let senderImg = ""; // 프로필(users.profile_img
                     users.forEach((el2) => {
                         if(el2.id == el.senderID) {
                             sender = el2.nickname;
@@ -61,7 +59,6 @@
                             senderImg = el2.profile_img;
                         }
                     });
-                    console.log("알림 보낸 사람 : ", sender);
 
                     // 날짜 계산
                     let now = new Date();
@@ -91,6 +88,7 @@
                         dateText = `${year}.${month}.${date}`;
                     }
 
+                    // 알림 div 만들기
                     let wrapDiv = document.createElement("div");
                     wrapDiv.classList.add("noti_wrap");
                     let profileDiv = document.createElement("div");
@@ -103,13 +101,23 @@
                     let rightDiv = document.createElement("div");
                     rightDiv.classList.add("right");
 
+                    // 팔로우(상대방 -> 나)
                     if(el.followNoti == "1") {
                         textDiv.innerHTML = `<span class="nickname">${sender}</span>님이 회원님을 팔로우하기 시작했습니다. <span class="date">${dateText}</span>`;
                         
                         let followBtn = document.createElement("div");
-                        followBtn.classList.add("follow_btn");
-                        followBtn.innerHTML = '팔로잉';
 
+                        let followingArr = JSON.parse(user.following);
+                        // 내가 상대방을 이미 팔로우 하고 있는 경우
+                        if(followingArr.includes(senderID)) {
+                            followBtn.classList.add("follow_btn_already");
+                            followBtn.innerHTML = '팔로잉';
+                        }
+                        // 내가 상대방을 아직 팔로우 하고 있지 않은 경우
+                        else {
+                            followBtn.classList.add("follow_btn");
+                            followBtn.innerHTML = '팔로우';
+                        }
                         rightDiv.appendChild(followBtn);
 
                     }else {
@@ -189,5 +197,18 @@
         }
     }
     getNoti();
+
+    let emptyBtn = document.querySelector(".empty_btn");
+    emptyBtn.onclick = async () => {
+        if(confirm("확인을 누르시면 모든 알림이 삭제됩니다.") == true) {
+            const {data} = await axios.get('http://127.0.0.1:8080/noti/delBtn', {
+                withCredentials : true
+            });
+
+            if(data == "1") {
+                middle_body.innerHTML = '<div class="no_noti">새로운 알림이 없습니다.</div>';
+            }
+        }
+    }
 </script>
 </html>

@@ -128,7 +128,7 @@
     window.onload = async () =>{
         let x = location.hash;
         let xx = x.replace("#", "");
-        const {data} = await axios.get(`http://127.0.0.1:8080/detail/getcontents/${xx},`,{
+        const {data} = await axios.get(`http://127.0.0.1:8080/main/getcontents/${xx},`,{
             withCredentials : true
         });
         if(data.d == 1){
@@ -164,7 +164,7 @@
         }
 
         // 좋아요
-        const likeCheck = await axios.get("http://127.0.0.1:8080/detail/getlike",{
+        const likeCheck = await axios.get("http://127.0.0.1:8080/main/getlike",{
             withCredentials : true,
             params : {
                 user_id : data.b.id,
@@ -214,21 +214,26 @@
             `;
         }
         
-        document.querySelector(".updated_time").innerHTML = dateText;
-        document.querySelector("#deContent").innerHTML = data.a.content;
-        document.querySelector("#likecount").innerHTML = data.a.likes;
-        document.querySelector(".post_body").innerHTML = `<img src="../../backEnd/post_img/${data.a.img}">`;
         document.querySelector(".nickname").innerHTML = data.b.nickname;
         document.querySelector("p .nickname").innerHTML = data.b.nickname;
-        document.querySelector(".profile_img").innerHTML = `<img src="../user_img/${data.b.profile_img}" alt="">`;
+        document.querySelector(".profile_img").innerHTML = `<img src="http://127.0.0.1:8080/user_img/${data.b.profile_img}" alt="">`;
+        document.querySelector(".updated_time").innerHTML = dateText;
         
+        let content = data.a.content.replace(/(?:\r\n|\r|\n)/g, "<br>"); // 줄바꿈
+        document.querySelector("#deContent").innerHTML = content;
+        document.querySelector("#likecount").innerHTML = data.a.likes;
+        if(dadta.a.img) {
+            document.querySelector(".post_body").innerHTML = `<img src="http://127.0.0.1:8080/post_img/${data.a.img}">`;
+        }else {
+            document.querySelector(".post_body").innerHTML = "";
+        }
 
 
 
 
 
         document.querySelector(".delBtn").addEventListener("click", async function(){
-            const {data} = await axios.get(`http://127.0.0.1:8080/detail/delBtn/${xx}`);
+            const {data} = await axios.get(`http://127.0.0.1:8080/main/delBtn/${xx}`);
             if(data == 1){
                 window.location.href= "http://127.0.0.1:5500/frontEnd/page/search.html";
             }
@@ -249,7 +254,7 @@
                 let count = Number(lc) - 1;
                 document.querySelector("#likecount").innerHTML = count;
             }
-            const likeClick = await axios.get("http://127.0.0.1:8080/detail/likeClick",{
+            const likeClick = await axios.get("http://127.0.0.1:8080/main/likeClick",{
                 withCredentials : true,
                 params : {
                     user_id : data.b.id,
@@ -262,7 +267,7 @@
         document.querySelector(".commentBtn").addEventListener("click" , async function(){
             let inputvalue = document.querySelector(".comment_input").value;
 
-            const abc = await axios.get(`http://127.0.0.1:8080/detail/bigComment/${xx}`, {
+            const abc = await axios.get(`http://127.0.0.1:8080/main/bigComment/${xx}`, {
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -311,7 +316,7 @@
             el.addEventListener("click", async function(event){
                 
                 let smallinputvalue = event.target.closest('.input_wrap2').querySelector(".comment_input2").value;
-                const abc = await axios.get(`http://127.0.0.1:8080/detail/smallComment/${xx}`, {
+                const abc = await axios.get(`http://127.0.0.1:8080/main/smallComment/${xx}`, {
                     headers: {
                         "Content-Type": "application/json"
                     },
@@ -348,7 +353,7 @@
 
     async function getProfile() {
         try {
-            const {data} = await axios.get('http://127.0.0.1:8080/detail/getProfile', {
+            const {data} = await axios.get('http://127.0.0.1:8080/main/getProfile', {
                 // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
                 withCredentials : true
             });

@@ -139,13 +139,23 @@ exports.getNoti = async (req, res) => {
         console.log(users);
 
         if(noti.length == 0) { // 알림이 없으면 0 보냄
-            //res.json("0");
-            res.json({users, posts});
+            res.json("0");
 
         }else {
-            res.json({noti, users, posts});
+            res.json({noti, user, users, posts});
         }
         
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+exports.deleteNoti = async (req, res) => {
+    const {user_id} = req.acc_decoded;
+    try {
+        const user = await User.findOne({where : {user_id}});
+        await Noti.destroy({where : {receivedID : user.id}});
+        res.json("1");
     } catch (error) {
         console.log(error);
     }

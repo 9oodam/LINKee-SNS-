@@ -49,13 +49,13 @@ exports.searchedPost = async (req, res) => {
 }
 
 exports.searchUser = async (req, res) => {
+    const {user_id} = req.acc_decoded;
     const {id} = req.params;
-    console.log(id);
     try {
+        const loginUser = await User.findOne({where : {user_id}});
         const user = await User.findOne({where : {nickname : id}});
         const posts = await Post.findAll({where : {user_id : user.id}});
-
-        res.json({user, posts});
+        res.json({loginUser, user, posts});
     } catch (error) {
         console.log(error);
     }

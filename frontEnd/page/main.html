@@ -151,7 +151,7 @@
                             <div class="content">
                                 <p class="content_text${el.id}"><span class="nickname" onclick="moveToUser(${writer.nickname})">${writer.nickname}</span>
                                 <span>${content}</span></p>
-                                <p class="more${el.id} more" onclick="seeMore(${el.id})">more</p>
+                                <p class="more" id="more_btn${el.id}" onclick="seeMore(${el.id})">more</p>
                                 <p class="more" onclick="moveToDetail(${el.id})">Add a comment...</p>
                             </div>
                         </div>
@@ -204,6 +204,9 @@
         let contentText = document.querySelector(`.content_text${id}`);
         contentText.style.height = "auto";
         contentText.style.overflow = "visible";
+        
+        let moreBtn = document.querySelector(`#more_btn${id}`);
+        moreBtn.style.display = "none";
     }
 </script>
 </html>
