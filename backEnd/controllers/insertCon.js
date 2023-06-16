@@ -2,7 +2,6 @@ const {User, Post} = require("../models");
 
 exports.insertPost = async (req, res) => {
     try {
-        console.log(req);
         const {content} = req.body;
         const {user_id} = req.acc_decoded;
         const user = await User.findOne({where : {user_id}});
