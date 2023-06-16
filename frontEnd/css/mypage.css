@@ -47,8 +47,6 @@
     justify-content: space-evenly;
     align-items: center;
     align-content: center;
-
-    background-color: lightgray;
 }
 .button_box:hover{
     background-color: rgb(157, 157, 157);
