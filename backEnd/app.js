@@ -11,17 +11,19 @@ const {sequelize} = require("./models");
 // router
 const signupRouter = require("./routers/signupRouter");
 const loginRouter = require("./routers/loginRouter");
+
 const mainRouter = require("./routers/mainRouter");
 const mypageRouter = require("./routers/mypageRouter");
 const insertRouter = require("./routers/insertRouter");
 const searchRouter = require("./routers/searchRouter");
+
+const userpageRouter = require("./routers/userpageRouter");
+const searchedPostRouter = require("./routers/searchedPostRouter");
+
 const notiRouter = require("./routers/notiRouter");
 const livechatRouter = require("./routers/livechatRouter");
 
 const adminRouter = require("./routers/adminRouter");
-const chatRouter = require("./routers/chat");
-const userpageRouter = require("./routers/userpageRouter");
-const searchedPostRouter = require("./routers/searchedPostRouter");
 
 const app = express();
 
