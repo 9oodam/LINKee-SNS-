@@ -140,7 +140,6 @@ app.use("/mypage",mypageRouter);
 app.use("/noti", notiRouter);
 app.use("/chat", livechatRouter);
 app.use("/admin", adminRouter);
-app.use("/chat",chatRouter);
 app.use("/userpage",userpageRouter);
 app.use("/searchedPost",searchedPostRouter);
 
