@@ -115,11 +115,15 @@
             // 로그인 한 유저가 검색한 유저를 팔로우 하고 있는지 유무
             let isfollowArr = JSON.parse(loginUser.following);
             console.log(isfollowArr);
-            if(!isfollowArr.includes(user.id)) {
+            if(isfollowArr === 0){
                 btn_form.innerHTML = '<button class="followBtn">팔로우</button>';
-            }else {
-                btn_form.innerHTML = '<button class="followBtnAlready">팔로잉</button>';
-            }
+            }else{
+                if(!isfollowArr.includes(user.id)) {
+                    btn_form.innerHTML = '<button class="followBtn">팔로우</button>';
+                }else {
+                    btn_form.innerHTML = '<button class="followBtnAlready">팔로잉</button>';
+                };
+            };
 
             const allPosts = document.querySelector(".allPosts");
             posts.forEach((el,index)=>{
