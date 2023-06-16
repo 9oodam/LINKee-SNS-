@@ -52,7 +52,8 @@ app.use("/nav_icon_img",express.static(path.join(__dirname,"..","frontEnd","nav_
             path.extname(filePath) === ".webp" ||
             path.extname(filePath) === ".jpg" ||
             path.extname(filePath) === ".jpeg" ||
-            path.extname(filePath) === ".gif"){
+            path.extname(filePath) === ".gif" ||
+            path.extname(filePath) === ".jfif"){
             res.setHeader("Content-Type","image/jpeg");
         }
     }
@@ -64,7 +65,8 @@ app.use("/user_img",express.static(path.join(__dirname,"user_img"),{
             path.extname(filePath) === ".webp" ||
             path.extname(filePath) === ".jpg" ||
             path.extname(filePath) === ".jpeg" ||
-            path.extname(filePath) === ".gif"){
+            path.extname(filePath) === ".gif" ||
+            path.extname(filePath) === ".jfif"){
             res.setHeader("Content-Type","image/jpeg");
         }
     }
@@ -76,7 +78,8 @@ app.use("/post_img",express.static(path.join(__dirname,"post_img"),{
             path.extname(filePath) === ".webp" ||
             path.extname(filePath) === ".jpg" ||
             path.extname(filePath) === ".jpeg" ||
-            path.extname(filePath) === ".gif"){
+            path.extname(filePath) === ".gif" ||
+            path.extname(filePath) === ".jfif"){
             res.setHeader("Content-Type","image/jpeg");
         }
     }
