@@ -112,6 +112,15 @@ io.on("connection", (socket) => {
 
     // 채팅 방 요청 알림창
     socket.on("requestChat", (senderID, receiverID) => {
-        io.emit("requestChat", senderID, receiverID);
-    })
+        let index = userID.indexOf(receiverID);
+        console.log(index);
+        io.to(socketID[index]).emit("requestChat", senderID, receiverID);
+    });
+
+    // 대화 요청 거절
+    socket.on("reject", (senderID, receiverID) => {
+        let index = userID.indexOf(senderID);
+        console.log(index);
+        io.to(socketID[index]).emit("reject", senderID, receiverID);
+    });
 });

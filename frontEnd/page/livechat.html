@@ -14,18 +14,18 @@
 </head>
 <body>
     <!-- 실시간 알림창 -->
-    <div id="live_chat_noti_wrap" style="display: block">
+    <div id="live_chat_noti_wrap">
     </div>
 
     <!-- 게시글 보여지는 부분 -->
     <div id="middle_body" class="middle_body">
-        <div id="admin">
+        <!-- <div id="admin">
             <div class="user_wrap">
                 <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
                 <div class="nickname">LINKee 관리자</div>
                 <div class="inquiry_btn">문의 요청하기</div>
             </div>
-        </div>
+        </div> -->
         <div id="loginUser"></div>
         <div id="logoutUser"></div>
     </div>
@@ -53,7 +53,7 @@
             // let follower = JSON.parse(data.follower);
 
             let following = [1, 2, 3, 4, 5];
-            let follower = [1, 3, 5];
+            let follower = [1, 2, 3, 5];
             for (let i = 0; i < following.length; i++) {
                 for (let j = 0; j < follower.length; j++) {
                     if(following[i] == follower[j]) {
@@ -69,6 +69,8 @@
             socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
             
             // 접속 중인 유저 배열 가져오기
+            loginUser.innerHTML = "";
+            logoutUser.innerHTML = "";
             socket.on("userIn", (socketID, userID) => {
                 console.log(userID);
                 if(friendArr.length == 0) {
@@ -104,24 +106,21 @@
 
             // 채팅 방 요청 알림창
             socket.on("requestChat", (senderID, receiverID) => {
-                //let sender = userAll.find(item => item.id == senderID);
-                let sender = {nickname : "누구누구"};
+                let sender = userAll.find(item => item.id == senderID);
 
                 live_chat_noti_wrap.innerHTML = `
                 <div class="live_chat_noti">
-                    <p>${sender.nickname}님이</p>
+                    <p><span class="nickname">${sender.nickname}</span>님이</p>
                     <p>대화를 요청하였습니다.</p>
                     <p>승인 버튼을 누르면 대화방으로 이동합니다.</p>
                     <div class="btns">
-                        <div class="appBtn">승인</div>
-                        <div class="rejBtn">거절</div>
+                        <div id="appBtn" onclick="approve(${senderID}, ${receiverID})">승인</div>
+                        <div id="rejBtn" onclick="reject(${senderID}, ${receiverID})">거절</div>
                     </div>
                 </div>`;
 
                 live_chat_noti_wrap.style.display = "block";
             });
-            
-            
         } catch (error) {
             console.log(error)
         }
@@ -131,7 +130,19 @@
         console.log("대화 요청 하는 사람: ", senderID);
         console.log("대화 요청 받는 사람: ", receiverID);
 
+        const socket = io.connect('localhost:8080');
         socket.emit("requestChat", senderID, receiverID); // 로그인 한 유저 아이디 보내기
+    }
+
+    function approve(sesnderID, receiverID) {
+
+    }
+
+    function reject(senderID, receiverID) {
+        console.log("대화 방으로 이동");
+        const socket = io.connect('localhost:8080');
+        socket.emit("reject", senderID, receiverID); // 로그인 한 유저 아이디 보내기
+
     }
 </script>
 </html>

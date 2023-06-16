@@ -1,15 +1,21 @@
 .middle_body {
-    margin: 60px 0 0 0;
+    margin: 150px 0 100px 0;
     padding: 10px 0 0 0;
 }
 
 .user1_chat_wrap, .user2_chat_wrap {
     height: auto; min-height: 37px;
-    border: 1px solid;
     margin: 5px 0 5px 0;
-    display: flex; flex-direction: row;
+    display: flex; flex-direction: column;
+}
+.user1_chat_wrap {
+    align-items: flex-end;
+}
+.user2_chat_wrap {
+    align-items: flex-start;
 }
 .user1_chat_wrap p, .user2_chat_wrap p {
+    max-width: calc(100% - 40px);
     height: auto; min-height: 30px;
     background-color: rgb(230, 230, 230);
     margin: 0; padding: 10px 15px 10px 15px;
@@ -20,34 +26,45 @@
     flex-grow: 1;
 }
 .user1_chat_wrap p {
-    max-width: calc(100% - 30px);
-    /* position: absolute; top: 0; right: 0; */
+    justify-content: right;
 }
 .user2_chat_wrap p {
-    /* max-width: calc(100% - 80px); */
-    /* position: absolute; left: 50px; */
     background-color: white;
-    border: 1px solid rgb(230, 230, 230);
+    border: 1px solid rgb(200, 200, 200);
 }
-.user1_chat_wrap .profile_img,
-.user2_chat_wrap .profile_img {
-    /* position: absolute; top: 20px; left: 0; */
-    /* transform: translateY(-50%); */
-    border: 1px solid;
-    width: 30px;
-    position: relative;
+
+.profile_img_wrap {
+    width: 470px; height: 70px;
+    position: fixed;
+    top: 80px; left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
 }
-.user1_chat_wrap .profile_img img,
-.user2_chat_wrap .profile_img img {
-    width: 30px; height: 30px;
+.user1_profile_img, .user2_profile_img {
+    width: auto; height: 70px;
+    position: absolute;
+    box-sizing: border-box;
+    display: flex; justify-content: center; align-items: center;
+}
+.user1_profile_img {
+    right: 0;
+}
+.user1_profile_img img, .user2_profile_img img {
+    width: 60px; height: 60px;
     border-radius: 50%;
+    box-sizing: border-box;
+}
+.user1_profile_img p, .user2_profile_img p {
+    margin: 0 15px 0 15px;
+    font-size: 14px; font-weight: bold;
 }
 
 
 .input_wrap {
-    width: 100%; height: 30px;
+    width: 100%; height: 90px;
+    padding-top: 10px;
     display: flex; justify-content: center;
-    position: fixed; bottom: 60px;
+    position: fixed; bottom: 0px;
     background-color: white;
 }
 .input_wrap .chat_input {
