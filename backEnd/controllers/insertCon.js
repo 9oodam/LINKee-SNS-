@@ -22,8 +22,9 @@ exports.insertPost = async (req, res) => {
                 likes : 0,
                 view_cnt : 0
             });
-        }
-        res.redirect("/main");
+        };
+
+        
     } catch (error) {
         console.log(error);
     }
