@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>livechat</title>
-    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+    <script src="https://andybyungjoopark.com/socket.io/socket.io.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <link rel="stylesheet" href="../css/nav.css">
@@ -42,7 +42,7 @@
 <script>
     window.onload = async () => {
         try {
-            const {data} = await axios.get('http://127.0.0.1:8080/chat/getFriends', {
+            const {data} = await axios.get('https://andybyungjoopark.com/chat/getFriends', {
                 withCredentials : true
             });
             const {user, userAll} = data;
@@ -87,7 +87,7 @@
                             console.log("접속 중인 친구: ", el);
                             loginUser.innerHTML += `
                             <div class="user_wrap">
-                                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/${friend.profile_img}" alt=""></div>
+                                <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${friend.profile_img}" alt=""></div>
                                 <div class="nickname">${friend.nickname}</div>
                                 <div class="chat_btn" onclick="requestChat(${user.id}, ${friend.id})">대화 요청하기</div>
                             </div>`;
@@ -95,7 +95,7 @@
                             console.log("로그아웃 된 친구: ", el);
                             logoutUser.innerHTML += `
                             <div class="user_wrap">
-                                <div class="profile_img_x"><img src="http://127.0.0.1:8080/user_img/${friend.profile_img}" alt=""></div>
+                                <div class="profile_img_x"><img src="https://andybyungjoopark.com/user_img/${friend.profile_img}" alt=""></div>
                                 <div class="nickname_x">${el}</div>
                                 <div class="chat_btn_x">대화 요청하기</div>
                             </div>`;

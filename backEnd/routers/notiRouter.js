@@ -5,7 +5,11 @@ const {isLogin} = require("../middleware/isLogin");
 
 const {getNoti, deleteNoti} = require("../controllers/notiCon");
 
-router.get('/', isLogin, getNoti);
+router.get("/",isLogin,(req,res)=>{
+    res.sendFile("/home/ubuntu/frontEnd/page/noti.html");
+});
+
+router.get('/info', isLogin, getNoti);
 
 router.get('/delBtn', isLogin, deleteNoti);
 

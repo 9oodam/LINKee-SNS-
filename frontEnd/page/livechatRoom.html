@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>room</title>
-    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+    <script src="https://andybyungjoopark.com/socket.io/socket.io.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <link rel="stylesheet" href="../css/nav.css">
@@ -20,10 +20,10 @@
     <div class="profile_img_wrap">
         <div class="user1_profile_img">
             <p>nickname</p>
-            <img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt="">
+            <img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt="">
         </div>
         <div class="user2_profile_img">
-            <img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt="">
+            <img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt="">
             <p>nickname</p>
         </div>
     </div>
@@ -55,7 +55,7 @@
 <script>
     window.onload = async () => {
         try {
-            const {data} = await axios.get('http://127.0.0.1:8080/chat/makeRoom', {
+            const {data} = await axios.get('https://andybyungjoopark.com/chat/makeRoom', {
                 withCredentials : true
             });
 
