@@ -23,21 +23,9 @@
 <script>
     const testBtn = document.querySelector(".testBtn");
     testBtn.onclick = function(){
-        const socket = io("wss://andybyungjoopark.com",{
-            path: "/socket.io",
-            transports: ["websocket"],
-            query: {
-                EIO: "4",
-                transport: "websocket",
-                sid: "-tJMtlEGnLv7nlEgAAAA"
-            }
-        });
+        const socket = io.connect();
 
-        socket.on("connect",()=>{
-            console.log("connected to the server");
-
-            socket.emit("message","hello server");
-        });
+        socket.emit("message","hello server");
 
         socket.on("message",(data)=>{
             console.log(`received message from server : ${data}`)
