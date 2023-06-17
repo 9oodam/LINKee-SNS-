@@ -199,4 +199,12 @@ io.on("connection", (socket) => {
         console.log(index);
         io.to(socketID[index]).emit("reject", senderID, receiverID);
     });
+
+    // ----------------------------------- 테스트 중 -------------------------------------
+    socket.on("message",(data)=>{
+        console.log(`received message from client : ${data}`);
+
+        socket.emit("message",`server echoing : ${data}`);
+    });
+    // ----------------------------------- 테스트 중 -------------------------------------
 });

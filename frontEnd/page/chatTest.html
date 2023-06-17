@@ -17,7 +17,18 @@
 </style>
 <body>
     <div class="testDiv">
-        <button>test</button>
+        <button class="testBtn">test</button>
     </div>
 </body>
+<script>
+    const testBtn = document.querySelector(".testBtn");
+    testBtn.onclick = function(){
+        const socket = io("https://andybyungjoopark.com/chat/test");
+        socket.emit("message","hello server");
+
+        socket.on("message",(data)=>{
+            console.log(`received message from server : ${data}`)
+        });
+    };
+</script>
 </html>
