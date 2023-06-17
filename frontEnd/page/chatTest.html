@@ -23,7 +23,15 @@
 <script>
     const testBtn = document.querySelector(".testBtn");
     testBtn.onclick = function(){
-        const socket = io.connect();
+        const socket = io("wss://andybyungjoopark.com",{
+            path: "/socket.io",
+            transports: ["websocket"],
+            query: {
+                EIO: "4",
+                transport: "websocket",
+                sid: "-tJMtlEGnLv7nlEgAAAA"
+            }
+        });
         socket.emit("message","hello server");
 
         socket.on("message",(data)=>{
