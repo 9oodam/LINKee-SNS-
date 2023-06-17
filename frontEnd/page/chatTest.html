@@ -32,7 +32,12 @@
                 sid: "-tJMtlEGnLv7nlEgAAAA"
             }
         });
-        socket.emit("message","hello server");
+
+        socket.on("connect",()=>{
+            console.log("connected to the server");
+
+            socket.emit("message","hello server");
+        });
 
         socket.on("message",(data)=>{
             console.log(`received message from server : ${data}`)
