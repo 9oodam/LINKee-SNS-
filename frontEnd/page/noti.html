@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>notification</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://andybyungjoopark.com/socket.io/socket.io.js"></script>
 
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/noti.css">
@@ -177,7 +177,7 @@
                     // 알림을 클릭했을 때 페이지 넘어가는 함수
                     wrapDiv.onclick = () => {
                         if(el.followNoti) {
-                            location.href = `./userpage.html#${senderID}`;
+                            location.href = `/userpage#${senderID}`;
                         }else {
                             let postID = ""
                             if(el.bigCommentNoti) postID = el.bigCommentNoti;
@@ -186,7 +186,7 @@
                             if(el.likeBigNoti) postID = el.likeBigNoti;
                             if(el.likeSmallNoti) postID = el.likeSmallNoti;
 
-                            location.href = `./detail.html#${postID}`;
+                            location.href = `/detail#${postID}`;
                         }
                     }
                     

@@ -85,7 +85,7 @@
                                 console.log("접속 중인 친구: ", el);
                                 loginUser.innerHTML += `
                                 <div class="user_wrap">
-                                    <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/${friend.profile_img}" alt=""></div>
+                                    <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${friend.profile_img}" alt=""></div>
                                     <div class="nickname">${friend.nickname}</div>
                                     <div class="chat_btn" onclick="requestChat(${user.id}, ${friend.id})">대화 요청하기</div>
                                 </div>`;
@@ -95,7 +95,7 @@
                             console.log("로그아웃 된 친구: ", el);
                             logoutUser.innerHTML += `
                             <div class="user_wrap">
-                                <div class="profile_img_x"><img src="http://127.0.0.1:8080/user_img/${friend.profile_img}" alt=""></div>
+                                <div class="profile_img_x"><img src="https://andybyungjoopark.com/user_img/${friend.profile_img}" alt=""></div>
                                 <div class="nickname_x">${friend.nickname}</div>
                                 <div class="chat_btn_x">대화 요청하기</div>
                             </div>`;

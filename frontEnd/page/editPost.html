@@ -54,14 +54,14 @@
         console.log(xx);
 
         try {
-            const {data} = await axios.get(`http://127.0.0.1:8080/insert/editPost/${xx}`, {
+            const {data} = await axios.get(`https://andybyungjoopark.com/insert/editPost/${xx}`, {
                 withCredentials : true
             });
 
             console.log(data.img);
             console.log(data.content);
 
-            preview.setAttribute("src", `http://127.0.0.1:8080/post_img/${data.img}`);
+            preview.setAttribute("src", `https://andybyungjoopark.com/post_img/${data.img}`);
             preview.style.display = "block";
             content.innerText = data.content;
 
@@ -78,7 +78,7 @@
                 form.append("img", fileUpload.files[0]);
                 form.append("content", content.value);
         
-                axios.post(`http://127.0.0.1:8080/insert/editPost/${xx}`, form, {
+                axios.post(`https://andybyungjoopark.com/insert/editPost/${xx}`, form, {
                     "Content-Type" : "multipart/form-data",
                     withCredentials : true
                 }).then((e) => {

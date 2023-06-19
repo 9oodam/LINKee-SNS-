@@ -138,7 +138,7 @@
                     middle_body.innerHTML += `
                     <div class="post_container">
                         <div class="post_top">
-                            <div class="profile_img" onclick="moveToUser(${writer.nickname})"><img src="http://127.0.0.1:8080/user_img/${writer.profile_img}" alt="profile"></div>
+                            <div class="profile_img" onclick="moveToUser(${writer.nickname})"><img src="https://andybyungjoopark.com/user_img/${writer.profile_img}" alt="profile"></div>
                             <div class="profile_text">
                                 <p class="nickname" onclick="moveToUser(${writer.nickname})">${writer.nickname}</p>
                                 <span>·</span>
@@ -147,7 +147,7 @@
                         </div>
 
                         <div class="post_body">
-                            <img src="http://127.0.0.1:8080/post_img/${el.img}" alt="">
+                            <img src="https://andybyungjoopark.com/post_img/${el.img}" alt="">
                         </div>
 
                         <div class="post_bottom">
@@ -165,7 +165,7 @@
                     middle_body.innerHTML += `
                     <div class="post_container">
                         <div class="post_top">
-                            <div class="profile_img" onclick="moveToUser(${writer.nickname})"><img src="http://127.0.0.1:8080/user_img/${writer.profile_img}" alt="profile"></div>
+                            <div class="profile_img" onclick="moveToUser(${writer.nickname})"><img src="https://andybyungjoopark.com/user_img/${writer.profile_img}" alt="profile"></div>
                             <div class="profile_text">
                                 <p class="nickname" onclick="moveToUser(${writer.nickname})">${writer.nickname}</p>
                                 <span>·</span>
@@ -174,7 +174,7 @@
                         </div>
     
                         <div class="post_body">
-                            <img src="http://127.0.0.1:8080/post_img/${el.img}" alt="">
+                            <img src="https://andybyungjoopark.com/post_img/${el.img}" alt="">
                         </div>
     
                         <div class="post_bottom">
@@ -192,7 +192,7 @@
 
 
             // 모든 페이지에 다 들어갈 부분!!!
-            const socket = io.connect('localhost:8080'); // 소켓 연결 시도
+            const socket = io.connect('https://andybyungjoopark.com'); // 소켓 연결 시도
             socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
 
             socket.on("userIn", (socketID, userID) => {
@@ -233,7 +233,7 @@
 
             // 대화 요청 수락시 페이지 넘어감
             socket.on("approve", (senderID, receiverID) => {
-                location.href = `./livechatRoom.html#${senderID}#${receiverID}`;
+                location.href = `/livechatRoom#${senderID}#${receiverID}`;
             });
 
         } catch (error) {
@@ -243,12 +243,12 @@
 
     // 게시글 상세 페이지로 이동
     function moveToDetail(id) {
-        location.href = `http://127.0.0.1:5500/frontEnd/page/detail.html#${id}`;
+        location.href = `https://andybyungjoopark.com/frontEnd/page/detail.html#${id}`;
     }
 
     // 유저 페이지로 이동
     function moveToUser(nickname) {
-        location.href = `http://127.0.0.1:5500/frontEnd/page/userpage.html#${nickname}`;
+        location.href = `https://andybyungjoopark.com/frontEnd/page/userpage.html#${nickname}`;
     }
 
     // 게시글이 여러줄 이상일 경우 더보기 버튼

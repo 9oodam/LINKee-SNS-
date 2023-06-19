@@ -128,7 +128,7 @@
     window.onload = async () =>{
         let x = location.hash;
         let xx = x.replace("#", "");
-        const {data} = await axios.get(`http://127.0.0.1:8080/main/getcontents/${xx},`,{
+        const {data} = await axios.get(`https://andybyungjoopark.com/main/getcontents/${xx},`,{
             withCredentials : true
         });
         if(data.d == 1){
@@ -164,7 +164,7 @@
         }
 
         // 좋아요
-        const likeCheck = await axios.get("http://127.0.0.1:8080/main/getlike",{
+        const likeCheck = await axios.get("https://andybyungjoopark.com/main/getlike",{
             withCredentials : true,
             params : {
                 user_id : data.b.id,
@@ -183,7 +183,7 @@
         for(let i=0; i<data.e.length;i++){
             reply_container.innerHTML += `
             <div class="comments_wrap">
-                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></div>
                 <div id="commentlist">
                     <div class="nickname">${data.e_nick[i]}</div>
                     <div class="bigCommentText">${data.e_content[i].content}</div>
@@ -216,14 +216,14 @@
         
         document.querySelector(".nickname").innerHTML = data.b.nickname;
         document.querySelector("p .nickname").innerHTML = data.b.nickname;
-        document.querySelector(".profile_img").innerHTML = `<img src="http://127.0.0.1:8080/user_img/${data.b.profile_img}" alt="">`;
+        document.querySelector(".profile_img").innerHTML = `<img src="https://andybyungjoopark.com/user_img/${data.b.profile_img}" alt="">`;
         document.querySelector(".updated_time").innerHTML = dateText;
         
         let content = data.a.content.replace(/(?:\r\n|\r|\n)/g, "<br>"); // 줄바꿈
         document.querySelector("#deContent").innerHTML = content;
         document.querySelector("#likecount").innerHTML = data.a.likes;
         if(dadta.a.img) {
-            document.querySelector(".post_body").innerHTML = `<img src="http://127.0.0.1:8080/post_img/${data.a.img}">`;
+            document.querySelector(".post_body").innerHTML = `<img src="https://andybyungjoopark.com/post_img/${data.a.img}">`;
         }else {
             document.querySelector(".post_body").innerHTML = "";
         }
@@ -233,9 +233,9 @@
 
 
         document.querySelector(".delBtn").addEventListener("click", async function(){
-            const {data} = await axios.get(`http://127.0.0.1:8080/main/delBtn/${xx}`);
+            const {data} = await axios.get(`https://andybyungjoopark.com/main/delBtn/${xx}`);
             if(data == 1){
-                window.location.href= "http://127.0.0.1:5500/frontEnd/page/search.html";
+                window.location.href= "https://andybyungjoopark.com/frontEnd/page/search.html";
             }
         });
         document.querySelector("#heartImage").addEventListener("click", async function(){
@@ -254,7 +254,7 @@
                 let count = Number(lc) - 1;
                 document.querySelector("#likecount").innerHTML = count;
             }
-            const likeClick = await axios.get("http://127.0.0.1:8080/main/likeClick",{
+            const likeClick = await axios.get("https://andybyungjoopark.com/main/likeClick",{
                 withCredentials : true,
                 params : {
                     user_id : data.b.id,
@@ -267,7 +267,7 @@
         document.querySelector(".commentBtn").addEventListener("click" , async function(){
             let inputvalue = document.querySelector(".comment_input").value;
 
-            const abc = await axios.get(`http://127.0.0.1:8080/main/bigComment/${xx}`, {
+            const abc = await axios.get(`https://andybyungjoopark.com/main/bigComment/${xx}`, {
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -287,7 +287,7 @@
             console.log("큰 댓글 남길때 abc : ",abc);
             reply_container.innerHTML += `
             <div class="comments_wrap">
-                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/${abc.data.profile_img}" alt=""></div>
+                <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${abc.data.profile_img}" alt=""></div>
                 <div id="commentlist">
                     <div class="nickname">${abc.data.nickname}</div>
                     <div class="bigCommentText">${inputvalue}</div>
@@ -316,7 +316,7 @@
             el.addEventListener("click", async function(event){
                 
                 let smallinputvalue = event.target.closest('.input_wrap2').querySelector(".comment_input2").value;
-                const abc = await axios.get(`http://127.0.0.1:8080/main/smallComment/${xx}`, {
+                const abc = await axios.get(`https://andybyungjoopark.com/main/smallComment/${xx}`, {
                     headers: {
                         "Content-Type": "application/json"
                     },
@@ -336,7 +336,7 @@
 
                 event.target.closest('details').querySelector(".cw").innerHTML += `
                             <div class="comments_wrap">
-                                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                                <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></div>
                                 <div>
                                     <div class="nickname">${abc.data.nickname}</div>
                                     <div class="bigCommentText">${smallinputvalue}</div>
