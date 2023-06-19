@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <link rel="stylesheet" href="../css/login.css"/>
+    <script src="/socket.io/socket.io.js"></script>
+
     <!-- <link rel="stylesheet" href="/home/ubuntu/frontEnd/page/test.css"> -->
     <!-- 추가함 -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -47,6 +49,7 @@
     </div>
   </body>
   <script>
+    const socket = io.connect()
     document.querySelector("button").addEventListener("click", async function (event) {
         event.preventDefault();
         if (document.querySelector("input[name='user_id']").value == "") {
