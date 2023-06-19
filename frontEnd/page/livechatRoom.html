@@ -71,10 +71,10 @@
             user2Nickname.innerHTML = user2.nickname;
 
             let user1ProfileImg = document.querySelector(".user1_profile_img");
-            user1ProfileImg.innerHTML = `<p>${user1.nickname}</p><img src="http://127.0.0.1:8080/user_img/${user1.profile_img}" alt="">`;
+            user1ProfileImg.innerHTML = `<p>${user1.nickname}</p><img src="https://andybyungjoopark.com/user_img/${user1.profile_img}" alt="">`;
 
             let user2ProfileImg = document.querySelector(".user2_profile_img");
-            user2ProfileImg.innerHTML = `<img src="http://127.0.0.1:8080/user_img/${user2.profile_img}" alt=""><p>${user2.nickname}</p>`;
+            user2ProfileImg.innerHTML = `<img src="https://andybyungjoopark.com/user_img/${user2.profile_img}" alt=""><p>${user2.nickname}</p>`;
 
 
             // 모든 페이지에 다 들어갈 부분!!!
@@ -155,7 +155,7 @@
                 </div>
                 `;
 
-                user2ProfileImg.innerHTML = `<img src="http://127.0.0.1:8080/user_img/${user2.profile_img}" alt="" style="filter: grayscale(1);"><p style="color: rgb(170, 170, 170)">${user2.nickname}</p>`;
+                user2ProfileImg.innerHTML = `<img src="https://andybyungjoopark.com/user_img/${user2.profile_img}" alt="" style="filter: grayscale(1);"><p style="color: rgb(170, 170, 170)">${user2.nickname}</p>`;
             });
             
         } catch (error) {
