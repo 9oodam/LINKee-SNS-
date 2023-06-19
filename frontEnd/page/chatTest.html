@@ -23,7 +23,7 @@
 <script>
     const testBtn = document.querySelector(".testBtn");
     testBtn.onclick = function(){
-        const socket = io.connect();
+        const socket = io.connect('https://andybyungjoopark.com')
 
         socket.emit("message","hello server");
 

@@ -8,7 +8,7 @@ window.onload = () => {
     console.log("선택한 방의 value : ", room);
 
     // 소켓 연결 시도 (1)
-    const socket = io.connect();
+    const socket = io.connect('https://andybyungjoopark.com')
     socket.emit("joinRoom", room, name);
 
     rooms.onchange = (e) => {

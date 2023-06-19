@@ -130,7 +130,7 @@
         console.log("대화 요청 하는 사람: ", senderID);
         console.log("대화 요청 받는 사람: ", receiverID);
 
-        const socket = io.connect('andybyungjoopark.com');
+        const socket = io.connect('https://andybyungjoopark.com')
         socket.emit("requestChat", senderID, receiverID); // 로그인 한 유저 아이디 보내기
     };
 
@@ -140,7 +140,7 @@
 
     function reject(senderID, receiverID) {
         console.log("대화 방으로 이동");
-        const socket = io.connect('andybyungjoopark.com');
+        const socket = io.connect('https://andybyungjoopark.com')
         socket.emit("reject", senderID, receiverID); // 로그인 한 유저 아이디 보내기
 
     };
