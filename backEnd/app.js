@@ -156,6 +156,8 @@ const io = socketIo(server, {
     }
 });
 
+io.origin("*");
+
 let socketID = [];
 let userID = [];
 
