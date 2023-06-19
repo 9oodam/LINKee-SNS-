@@ -1,4 +1,4 @@
-const socket = io.connect('andybyungjoopark.com');
+const socket = io.connect('https://andybyungjoopark.com');
 let liveChatNoti = document.querySelector("#live_chat_noti_wrap");
 
 // 대화 요청 보내기
