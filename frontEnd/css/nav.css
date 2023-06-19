@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: "pacman";
-    src: url(../fonts/Rubik_Iso/RubikIso-Regular.ttf);
+    src: url(/home/ubuntu/frontEnd/fonts/Rubik_Iso/RubikIso-Regular.ttf);
 }
 
 body {
