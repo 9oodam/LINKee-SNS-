@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "pacman";
+    src: url(../fonts/Rubik_Iso/RubikIso-Regular.ttf) format("truetype");
+}
+
 body {
     height: 100vh;
     margin: 0; padding: 0;
@@ -23,7 +28,7 @@ body {
 .container0 .container1 .logo {
     height: 80px;
     text-align: center;
-    font-size: 50px;
+    font-size: 50px; font-family: "pacman";
     display: flex; justify-content: center; align-items: center;
 }
 .container0 .container1 h2 {

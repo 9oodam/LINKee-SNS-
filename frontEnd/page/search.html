@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>search</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://andybyungjoopark.com/socket.io/socket.io.js"></script>
     <link rel="stylesheet" href="../css/nav.css" />
     <link rel="stylesheet" href="../css/search.css" />
   </head>
@@ -101,7 +102,7 @@
           console.log(error);
         };
 
-      // 모든 게시글 가져오기
+        // 모든 게시글 가져오기
         try {
           const { data } = await axios.get("https://andybyungjoopark.com/search/post", {
             withCredentials: true,
@@ -118,8 +119,8 @@
           console.log(error);
         }
 
-      // 소켓
-      try {
+        // 소켓
+        try {
             const {data} = await axios.get('https://andybyungjoopark.com/main', {
                 withCredentials : true
             });
