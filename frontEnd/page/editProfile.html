@@ -90,7 +90,7 @@
             console.log("접속 중인 유저 : ", userID);
         });
         try {
-            const {data} = await axios.get('https://andybyungjoopark.com/main', {
+            const {data} = await axios.get('https://andybyungjoopark.com/main/posts', {
                 withCredentials : true
             });
             const {user, userAll} = data;

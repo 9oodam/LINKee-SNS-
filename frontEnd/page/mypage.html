@@ -180,7 +180,7 @@
 
         // 소켓
         try {
-            const {data} = await axios.get('https://andybyungjoopark.com/main', {
+            const {data} = await axios.get('https://andybyungjoopark.com/main/posts', {
                 withCredentials : true
             });
             const {user, userAll} = data;
