@@ -65,7 +65,7 @@
 
 
             // 모든 페이지에 다 들어갈 부분!!!
-            const socket = io.connect("andybyungjoopark.com"); // 소켓 연결 시도
+            const socket = io.connect("https://andybyungjoopark.com"); // 소켓 연결 시도
             socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
             
             // 접속 중인 유저 배열 가져오기
