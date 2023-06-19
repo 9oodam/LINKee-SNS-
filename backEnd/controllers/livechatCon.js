@@ -12,16 +12,3 @@ exports.loginUser = async (req, res) => {
         console.log(error);
     }
 }
-
-// 방 만들기
-exports.makeRoom = async (req, res) => {
-    const {user_id} = req.acc_decoded;
-
-    try {
-        await Livechat.create({
-
-        })
-    } catch (error) {
-        console.log(error);
-    }
-}
