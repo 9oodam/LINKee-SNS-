@@ -19,16 +19,32 @@
     <div class="testDiv">
         <div class="testBtn" style="width: 50px; height: 50px; border: 1px solid; cursor: pointer;">test</div>
     </div>
+    <div>
+        <input type="text" id="msg">
+        <button id="sendBtn">send</button>
+    </div>
+    <div id="messages">
+
+    </div>
 </body>
 <script>
     const testBtn = document.querySelector(".testBtn");
     testBtn.onclick = function(){
         const socket = io.connect()
-
+        console.log(socket.id);
         socket.emit("message","hello server");
 
         socket.on("message",(data)=>{
             console.log(`received message from server : ${data}`)
+        });
+
+        sendBtn.onclick = ()=>{
+            socket.emit("chat",msg.value);
+            msg.value = "";
+        };
+
+        socket.on("chat",(msg)=>{
+            messages.innerHTML += `<div>${msg}</div>`;
         });
     };
 </script>

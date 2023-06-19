@@ -72,6 +72,7 @@
             loginUser.innerHTML = "";
             logoutUser.innerHTML = "";
             socket.on("userIn", (socketID, userID) => {
+                console.log(socketID);
                 console.log(userID);
                 if(friendArr.length == 0) {
                     middle_body.innerHTML = '<div class="no_noti">현재 대화 가능한 상대가 없습니다.<br></div>';
