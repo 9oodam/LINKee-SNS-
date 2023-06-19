@@ -151,7 +151,7 @@ const server = app.listen(8080, () => {
 
 const io = socketIo(server, {
     cors: {
-        origin: '*',
+        origin: 'http://andybyungjoopark.com',
         credentials: true
     }
 });
