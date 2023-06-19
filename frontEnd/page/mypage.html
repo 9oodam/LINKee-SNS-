@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mypage</title>
+    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <link rel="stylesheet" href="../css/nav.css">
@@ -76,15 +77,14 @@
 
 
 </body>
-<script src="../js/main.js"></script>
+<script src="../js/notiSocket.js"></script>
 <script>
-    async function getProfile() {
+    window.onload = async () => {
+        // 로그인 한 유저의 프로필 이미지
         try {
             const {data} = await axios.get('http://127.0.0.1:8080/main/getProfile', {
-                // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
                 withCredentials : true
             });
-
             console.log(data);
 
             if(data.profile_img == null) {
@@ -92,16 +92,13 @@
             }else {
                 profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
             }
-
         } catch (error) {
             console.log(error);
         }
-    }
-    getProfile();
 
-    async function myPost(){
+        // 로그인 한 유저의 게시글 가져오기
         try {
-            const response = await axios.get("https://andybyungjoopark.com/mypage/mypost",{
+            const response = await axios.get("https://127.0.0.1:8080/mypage/mypost",{
                 withCredentials : true
             });
             console.log(response.data.data);
@@ -153,7 +150,6 @@
         } catch (error) {
             console.log(error);
         }
-    };
-    myPost();
+    }
 </script>
 </html>
