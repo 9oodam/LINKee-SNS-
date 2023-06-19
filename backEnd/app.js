@@ -174,8 +174,8 @@ io.on("connection", (socket) => {
         io.emit("userIn", socketID, userID);
     });
 
-    const socketID = socket.handshake.query.socketID;
-    console.log("new socket connection with ID : ", socketID);
+    const sameSocketID = socket.handshake.query.socketID;
+    console.log("new socket connection with ID : ", sameSocketID);
     socket.on("connect",()=>{
         console.log("keeping the same socket ID : ");
     });
