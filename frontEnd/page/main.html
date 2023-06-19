@@ -81,7 +81,7 @@
 
         } catch (error) {
             console.log(error);
-        }
+        };
 
         // 팔로잉 한 유저들의 게시글 가져오기
         try {
@@ -197,6 +197,7 @@
 
             socket.on("userIn", (socketID, userID) => {
                 console.log("접속 중인 유저 : ", userID);
+                console.log("접속 중인 유저의 소켓 아이디 : ", socketID);
             });
 
             // 채팅 방 요청 알림창
