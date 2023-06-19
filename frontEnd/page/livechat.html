@@ -102,7 +102,7 @@
                         }
                     });
                 }
-            })
+            });
 
             // 채팅 방 요청 알림창
             socket.on("requestChat", (senderID, receiverID) => {
@@ -124,7 +124,7 @@
         } catch (error) {
             console.log(error)
         }
-    }
+    };
 
     function requestChat(senderID, receiverID) {
         console.log("대화 요청 하는 사람: ", senderID);
@@ -132,17 +132,17 @@
 
         const socket = io.connect('andybyungjoopark.com');
         socket.emit("requestChat", senderID, receiverID); // 로그인 한 유저 아이디 보내기
-    }
+    };
 
     function approve(sesnderID, receiverID) {
 
-    }
+    };
 
     function reject(senderID, receiverID) {
         console.log("대화 방으로 이동");
         const socket = io.connect('andybyungjoopark.com');
         socket.emit("reject", senderID, receiverID); // 로그인 한 유저 아이디 보내기
 
-    }
+    };
 </script>
 </html>
