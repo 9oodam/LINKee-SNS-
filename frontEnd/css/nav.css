@@ -1,5 +1,10 @@
 /* 767px 이상 side_nav */
 
+@font-face {
+    font-family: "pacman";
+    src: url(../fonts/Rubik_Iso/RubikIso-Regular.ttf);
+}
+
 body {
     margin: 0; padding: 0;
     position: relative;
@@ -82,7 +87,7 @@ body {
     transform: translateX(-50%);
 }
 .top_nav .logo {
-    font-size: 32px;
+    font-size: 32px; font-family: "pacman";
     position: absolute; left: 15px;
 }
 .top_nav img, .bottom_nav img {
