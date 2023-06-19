@@ -33,6 +33,9 @@ app.set("view engine","html");
 app.set("views",path.join(__dirname,"..","frontEnd","page"));
 
 // 파일형식별 미들웨어 세팅 (static path)
+// fonts
+app.use("/fonts",express.static(path.join(__dirname,"..","frontEnd","fonts")));
+
 // css content type
 app.use("/css",express.static(path.join(__dirname,"..","frontEnd","css"),{
     setHeaders : (res,filePath) => {
