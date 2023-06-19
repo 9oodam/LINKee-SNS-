@@ -149,7 +149,12 @@ const server = app.listen(8080, () => {
     console.log("server opened");
 });
 
-const io = socketIo(server);
+const io = socketIo(server,{
+    cors : {
+        origin : "andybyungjoopark.com",
+        credentials : true
+    }
+});
 
 
 let socketID = [];
