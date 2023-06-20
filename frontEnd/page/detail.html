@@ -153,8 +153,8 @@
         for(let i=0; i<data.e.length;i++){
             reply_container.innerHTML += `
             <div class="comments_wrap">
-                <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></div>
-                <div id="commentlist">
+                <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${data.b.profile_img}" alt=""></div>
+                <div class="commentlist">
                     <div class="nickname">${data.e_nick[i]}</div>
                     <div class="bigCommentText">${data.e_content[i].content}</div>
                     <input type="text" class="i_comment_id" value="${data.d_comment_id[i]}">
@@ -240,7 +240,7 @@
         const bigClikeElement = document.querySelectorAll(".comments_wrap");
         bigClikeElement.forEach(el=>{
             console.log(el);
-            const inputValue = el.querySelector("#commentlist .i_comment_id").value; 
+            const inputValue = el.querySelector(".commentlist .i_comment_id").value; 
             inputArr[iii] = inputValue;
             iii++;
         });
@@ -267,7 +267,7 @@
         const bigClikeElement2 = document.querySelectorAll(".comments_wrap");
         bigClikeElement2.forEach((el)=>{
             console.log(el);
-            const inputValue = el.querySelector("#commentlist .i_comment_id").value;
+            const inputValue = el.querySelector(".commentlist .i_comment_id").value;
             console.log(inputValue);
             // console.log("현재 페이지의 큰댓글들 전체 id :", inputValue);
             for(let i=0; i<bigClikeCheck.data.length; i++){
@@ -366,7 +366,7 @@
             reply_container.innerHTML += `
             <div class="comments_wrap">
                 <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${abc.data.profile_img}" alt=""></div>
-                <div id="commentlist">
+                <div class="commentlist">
                     <div class="nickname">${abc.data.nickname}</div>
                     <div class="bigCommentText">${inputvalue}</div>
                     <input type="text" class="i_comment_id" value="${abc.data.b}">
@@ -468,7 +468,7 @@
                                         <img class="s_like_btn" data-value="0" src="../nav_icon_img/icon_noti.png">
                                         <div class="s_like_btn_count" style="margin-top:32px; margin-right:-32px;">0</div>
                                     </div>
-                                    <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></div>
+                                    <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${abc.data.a.profile_img}" alt=""></div>
                                     <div>
                                         <div class="nickname">${abc.data.a.nickname}</div>
                                         <div class="bigCommentText">${smallinputvalue}</div>
