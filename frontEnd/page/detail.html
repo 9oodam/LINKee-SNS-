@@ -266,7 +266,8 @@
             // 3 맞다고 넘어가고
         const bigClikeElement2 = document.querySelectorAll(".comments_wrap");
         bigClikeElement2.forEach((el)=>{
-            const inputValue = Number(el.querySelector(".commentlist .i_comment_id"));
+            console.log(el);
+            const inputValue = el.querySelector(".commentlist .i_comment_id").value;
             console.log(inputValue);
             // console.log("현재 페이지의 큰댓글들 전체 id :", inputValue);
             for(let i=0; i<bigClikeCheck.data.length; i++){
