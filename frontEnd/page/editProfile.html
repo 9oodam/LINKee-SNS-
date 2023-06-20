@@ -145,10 +145,8 @@
         const profileInfo = document.querySelector(".infoInput");
 
         if(nickname.value === "" || profileInfo.value === ""){
-            nickname.style.border = "1px solid red";
-            nickname.style.borderRadius = "5px";
-            profileInfo.style.border = "1px solid red";
-            profileInfo.style.borderRadius = "5px";
+            nickname.style.borderBottom = "1px solid red";
+            profileInfo.style.borderBottom = "1px solid red";
         }else{
             const form = new FormData();
             form.append("img", fileUpload.files[0]);
