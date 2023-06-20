@@ -150,7 +150,7 @@
         const profileInfo = document.querySelector(".infoInput");
 
         if(nickname.value === "" && profileInfo.value === ""){
-            location.href = "/mypage";
+            nickname.style.border = "1px solid red";
         }else{
             const form = new FormData();
             form.append("img", fileUpload.files[0]);
