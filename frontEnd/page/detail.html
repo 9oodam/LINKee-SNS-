@@ -258,19 +258,19 @@
             return html;
         }
 
-        document.querySelector(".nickname").innerHTML = data.b.nickname;
-        document.querySelector("p .nickname").innerHTML = data.b.nickname;
-        document.querySelector(".profile_img").innerHTML = `<img src="https://andybyungjoopark.com/user_img/${data.b.profile_img}" alt="">`;
-        document.querySelector(".updated_time").innerHTML = dateText;
+        // document.querySelector(".nickname").innerHTML = data.b.nickname;
+        // document.querySelector("p .nickname").innerHTML = data.b.nickname;
+        // document.querySelector(".profile_img").innerHTML = `<img src="https://andybyungjoopark.com/user_img/${data.b.profile_img}" alt="">`;
+        // document.querySelector(".updated_time").innerHTML = dateText;
         
-        let content = data.a.content.replace(/(?:\r\n|\r|\n)/g, "<br>"); // 줄바꿈
-        document.querySelector("#deContent").innerHTML = content;
-        document.querySelector("#likecount").innerHTML = data.a.likes;
-        if(dadta.a.img) {
-            document.querySelector(".post_body").innerHTML = `<img src="https://andybyungjoopark.com/post_img/${data.a.img}">`;
-        }else {
-            document.querySelector(".post_body").innerHTML = "";
-        }
+        // let content = data.a.content.replace(/(?:\r\n|\r|\n)/g, "<br>"); // 줄바꿈
+        // document.querySelector("#deContent").innerHTML = content;
+        // document.querySelector("#likecount").innerHTML = data.a.likes;
+        // if(dadta.a.img) {
+        //     document.querySelector(".post_body").innerHTML = `<img src="https://andybyungjoopark.com/post_img/${data.a.img}">`;
+        // }else {
+        //     document.querySelector(".post_body").innerHTML = "";
+        // }
 
         // 댓글 좋아요
         let inputArr = [];
