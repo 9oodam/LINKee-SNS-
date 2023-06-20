@@ -18,14 +18,6 @@ exports.getPost = async (req, res) => {
         // 로그인 된 유저가 팔로우 하고 있는 유저들
         const following = JSON.parse(user.following);
         console.log(following);
-        if(following !== 0){
-            following.push(user.id);
-        }else{
-            await User.update({
-                following : `[${user.id}]`
-            },
-            {where : {id : user.id}});
-        };
 
         // 팔로우 하고 있는 유저들의 게시글
         const followingPost = [];
