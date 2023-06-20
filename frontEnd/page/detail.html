@@ -81,27 +81,6 @@
                     <div class="nickname">9oodam</div>
                     <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
                     <details>
-<<<<<<< HEAD
-                        <div class="cw">
-                            <summary>답글 달기</summary>
-                            <div class="s_comments_wrap">
-                                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
-                                <div>
-                                    <div class="nickname">9oodam</div>
-                                    <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
-                                </div>
-                            </div>
-                            <div class="s_comments_wrap">
-                                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
-                                <div>
-                                    <div class="nickname">9oodam</div>
-                                    <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
-                                </div>
-                            </div>
-                            <div class="input_wrap2">
-                                <input class="comment_input2" name="smallComment" type="text" placeholder="대댓글 달기...">
-                                <div class="commentBtn2">전송</div>
-=======
                         <summary>답글 달기</summary>
                         <div class="comments_wrap">
                             <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></div>
@@ -115,7 +94,6 @@
                             <div>
                                 <div class="nickname">9oodam</div>
                                 <div class="bigCommentText">어쩌고저쩌고 답글 어쩌고<br>블라블라</div>
->>>>>>> e85b34041a5cc60ec18f7b208b4e80b2a5ce75a6
                             </div>
                         </div>
                     </details>
@@ -157,11 +135,7 @@
     window.onload = async () =>{
         let x = location.hash;
         let xx = x.replace("#", "");
-<<<<<<< HEAD
-        const {data} = await axios.get(`http://127.0.0.1:8080/detail/getcontents/${xx},`,{
-=======
         const {data} = await axios.get(`https://andybyungjoopark.com/main/getcontents/${xx},`,{
->>>>>>> e85b34041a5cc60ec18f7b208b4e80b2a5ce75a6
             withCredentials : true
         });
 
@@ -198,11 +172,7 @@
         }
 
         // 좋아요
-<<<<<<< HEAD
-        const likeCheck = await axios.get("http://127.0.0.1:8080/detail/getlike",{
-=======
         const likeCheck = await axios.get("https://andybyungjoopark.com/main/getlike",{
->>>>>>> e85b34041a5cc60ec18f7b208b4e80b2a5ce75a6
             withCredentials : true,
             params : {
                 user_id : data.b.id,
@@ -221,13 +191,8 @@
         for(let i=0; i<data.e.length;i++){
             reply_container.innerHTML += `
             <div class="comments_wrap">
-<<<<<<< HEAD
-                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
-                <div class="commentlist">
-=======
                 <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></div>
                 <div id="commentlist">
->>>>>>> e85b34041a5cc60ec18f7b208b4e80b2a5ce75a6
                     <div class="nickname">${data.e_nick[i]}</div>
                     <div class="bigCommentText">${data.e_content[i].content}</div>
                     <input type="text" class="i_comment_id" value="${data.d_comment_id[i]}">
@@ -251,11 +216,10 @@
             </div>
             `;
         }
-<<<<<<< HEAD
         async function add_s_Comment(a, b){
             let html = "";
             for(let i=0; i<a;i++){
-                const data = await axios.get(`http://127.0.0.1:8080/detail/c_comment_nick`, {
+                const data = await axios.get(`https://andybyungjoopark.com/detail/c_comment_nick`, {
                     withCredentials :true,
                     params : {
                         c_comment_nick : b[i].user_id,
@@ -280,7 +244,7 @@
                             <br><br>
                             <span class="s_like_btn_count">${data.data.b.likes}</span>
                         </div>
-                        <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/${data.data.a.profile_img}" alt=""></div>
+                        <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${data.data.a.profile_img}" alt=""></div>
                         <div>
                             <div class="nickname">${data.data.a.nickname}</div>
                             <div class="bigCommentText">${b[i].content}</div>
@@ -292,8 +256,8 @@
                 
             }
             return html;
-=======
-        
+        }
+
         document.querySelector(".nickname").innerHTML = data.b.nickname;
         document.querySelector("p .nickname").innerHTML = data.b.nickname;
         document.querySelector(".profile_img").innerHTML = `<img src="https://andybyungjoopark.com/user_img/${data.b.profile_img}" alt="">`;
@@ -306,7 +270,6 @@
             document.querySelector(".post_body").innerHTML = `<img src="https://andybyungjoopark.com/post_img/${data.a.img}">`;
         }else {
             document.querySelector(".post_body").innerHTML = "";
->>>>>>> e85b34041a5cc60ec18f7b208b4e80b2a5ce75a6
         }
 
         // 댓글 좋아요
@@ -319,7 +282,7 @@
             iii++;
         });
 
-        const bigClikeCheck = await axios.get("http://127.0.0.1:8080/detail/getbiglike", {
+        const bigClikeCheck = await axios.get("https://andybyungjoopark.com/detail/getbiglike", {
             withCredentials : true,
             params : {
                 user_id : data.b.id,
@@ -369,11 +332,7 @@
 
         // 삭제버튼 클릭시
         document.querySelector(".delBtn").addEventListener("click", async function(){
-<<<<<<< HEAD
-            const {data} = await axios.get(`http://127.0.0.1:8080/detail/delBtn/${xx}`);
-=======
             const {data} = await axios.get(`https://andybyungjoopark.com/main/delBtn/${xx}`);
->>>>>>> e85b34041a5cc60ec18f7b208b4e80b2a5ce75a6
             if(data == 1){
                 window.location.href= "https://andybyungjoopark.com/frontEnd/page/search.html";
             }
@@ -397,7 +356,6 @@
                 let count = Number(lc) - 1;
                 document.querySelector("#likecount").innerHTML = count;
             }
-<<<<<<< HEAD
             this.classList.add("disabled");
 
             await new Promise(resolve =>{
@@ -411,10 +369,7 @@
         });
 
         async function likeC1(checkval){
-            const likeClick = await axios.get("http://127.0.0.1:8080/detail/likeClick",{
-=======
-            const likeClick = await axios.get("https://andybyungjoopark.com/main/likeClick",{
->>>>>>> e85b34041a5cc60ec18f7b208b4e80b2a5ce75a6
+            const likeClick = await axios.get("https://andybyungjoopark.com/detail/likeClick",{
                 withCredentials : true,
                 params : {
                     user_id : data.b.id,
@@ -427,11 +382,7 @@
         document.querySelector(".commentBtn").addEventListener("click" , async function(){
             let inputvalue = document.querySelector(".comment_input").value;
 
-<<<<<<< HEAD
-            const abc = await axios.get(`http://127.0.0.1:8080/detail/bigComment/${xx}`, {
-=======
             const abc = await axios.get(`https://andybyungjoopark.com/main/bigComment/${xx}`, {
->>>>>>> e85b34041a5cc60ec18f7b208b4e80b2a5ce75a6
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -449,15 +400,9 @@
             
             reply_container.innerHTML += `
             <div class="comments_wrap">
-<<<<<<< HEAD
-                <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/${abc.data.a.profile_img}" alt=""></div>
-                <div class="commentlist">
-                    <div class="nickname">${abc.data.a.nickname}</div>
-=======
                 <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${abc.data.profile_img}" alt=""></div>
                 <div id="commentlist">
                     <div class="nickname">${abc.data.nickname}</div>
->>>>>>> e85b34041a5cc60ec18f7b208b4e80b2a5ce75a6
                     <div class="bigCommentText">${inputvalue}</div>
                     <input type="text" class="i_comment_id" value="${abc.data.b}">
                     <details>
@@ -481,7 +426,6 @@
 
         });
 
-<<<<<<< HEAD
         async function likeC2(a, b){
             const data = await axios.get(`http://127.0.0.1:8080/detail/likebigcomment`,{
                 withCredentials : true,
@@ -489,44 +433,8 @@
                     civalue1 : a, // comment-id
                     check : b
                 }
-=======
-
-        const Btn2 = document.querySelectorAll(".commentBtn2");
-        Btn2.forEach(function(el){
-            el.addEventListener("click", async function(event){
-                
-                let smallinputvalue = event.target.closest('.input_wrap2').querySelector(".comment_input2").value;
-                const abc = await axios.get(`https://andybyungjoopark.com/main/smallComment/${xx}`, {
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    withCredentials : true,
-                    params : {
-                        smallInputValue : smallinputvalue,
-                    }
-
-                    // post
-                    // bigInputValue : inputvalue,
-                    // data: { bigInputValue : inputvalue},
-                    // params:{
-                    //     bigInputValue: inputvalue,
-                    // }
-                });
-                console.log("현재", abc);
-
-                event.target.closest('details').querySelector(".cw").innerHTML += `
-                            <div class="comments_wrap">
-                                <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></div>
-                                <div>
-                                    <div class="nickname">${abc.data.nickname}</div>
-                                    <div class="bigCommentText">${smallinputvalue}</div>
-                                </div>
-                            </div>
-                `;
-
->>>>>>> e85b34041a5cc60ec18f7b208b4e80b2a5ce75a6
             });
-        }
+        };
 
         function btn2(){
             const likeBtn = document.querySelectorAll(".like_btn");
@@ -568,7 +476,7 @@
                 el.addEventListener("click", async function(event){
                     let smallinputvalue = event.target.closest('.input_wrap2').querySelector(".comment_input2").value;
                     let civalue = event.target.closest('.comments_wrap').querySelector('input.i_comment_id').value;
-                    const abc = await axios.get(`http://127.0.0.1:8080/detail/smallComment/${xx}`, {
+                    const abc = await axios.get(`https://andybyungjoopark.com/detail/smallComment/${xx}`, {
                         headers: {
                             "Content-Type": "application/json"
                         },
@@ -595,7 +503,7 @@
                                         <img class="s_like_btn" data-value="0" src="../nav_icon_img/icon_noti.png">
                                         <div class="s_like_btn_count" style="margin-top:32px; margin-right:-32px;">0</div>
                                     </div>
-                                    <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></div>
+                                    <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></div>
                                     <div>
                                         <div class="nickname">${abc.data.a.nickname}</div>
                                         <div class="bigCommentText">${smallinputvalue}</div>
@@ -648,7 +556,7 @@
             btn3();
         }
         async function likeC3(s_comment_id, check_val1){
-            const abc = await axios.get(`http://127.0.0.1:8080/detail/likesmallComment`, {
+            const abc = await axios.get(`https://andybyungjoopark.com/detail/likesmallComment`, {
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -665,19 +573,15 @@
 
     async function getProfile() {
         try {
-<<<<<<< HEAD
-            const {data} = await axios.get('http://127.0.0.1:8080/detail/getProfile', {
-=======
             const {data} = await axios.get('https://andybyungjoopark.com/main/getProfile', {
->>>>>>> e85b34041a5cc60ec18f7b208b4e80b2a5ce75a6
                 // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
                 withCredentials : true
             });
 
             if(data.profile_img == null) {
-                profile_img.innerHTML = `<a href="./mypage.html"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
+                profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
             }else {
-                profile_img.innerHTML = `<a href="./mypage.html"><img src="https://andybyungjoopark.com/user_img/${data.profile_img}" alt=""></a>`;
+                profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/${data.profile_img}" alt=""></a>`;
             }
 
         } catch (error) {

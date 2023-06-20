@@ -58,7 +58,7 @@ exports.editPost = async (req, res) => {
             }, {where : {id}});
         }
 
-        res.redirect(`http://127.0.0.1:5500/frontEnd/page/detail.html#${id}`);
+        res.redirect(`/detail#${id}`);
 
     } catch (error) {
         console.log(error);
@@ -93,7 +93,7 @@ exports.editPost = async (req, res) => {
             }, {where : {id}});
         }
 
-        res.redirect(`http://127.0.0.1:5500/frontEnd/page/detail.html#${id}`);
+        res.redirect(`/detail#${id}`);
 
     } catch (error) {
         console.log(error);

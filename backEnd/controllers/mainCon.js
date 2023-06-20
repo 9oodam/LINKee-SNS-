@@ -18,6 +18,7 @@ exports.getPost = async (req, res) => {
         // 로그인 된 유저가 팔로우 하고 있는 유저들
         const following = JSON.parse(user.following);
         console.log(following);
+        following.push(user.id);
 
         // 팔로우 하고 있는 유저들의 게시글
         const followingPost = [];
@@ -41,7 +42,7 @@ exports.getPost = async (req, res) => {
     } catch (error) {
         console.log(error);
     }
-}
+};
 
 
 exports.getProfile = async (req, res) => {
