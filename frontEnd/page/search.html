@@ -112,7 +112,7 @@
 
           posts.forEach((el) => {
             if (el.img) {
-              allPosts.innerHTML += `<div><img src="https://andybyungjoopark.com/post_img/${el.img}" alt=""></div>`;
+              allPosts.innerHTML += `<div><a href="/detail#${el.id}"><img src="https://andybyungjoopark.com/post_img/${el.img}" alt=""></a></div>`;
             }
           });
         } catch (error) {
