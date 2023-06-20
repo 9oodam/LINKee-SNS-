@@ -25,6 +25,7 @@ class SmallComment extends Sequelize.Model {
         db.SmallComment.belongsTo(db.BigComment, {foreignKey : "comment_id", targetKey : "id"});
         
         db.SmallComment.hasMany(db.LikeSmallComment, {foreignKey : "comment_id", sourceKey : "id"});
+        db.SmallComment.hasMany(db.LikeSmallComment, {foreignKey : "user_id", sourceKey : "id"});
     }
 }
 

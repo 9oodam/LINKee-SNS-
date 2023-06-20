@@ -50,8 +50,39 @@
 }
 .comments_wrap .likes_btn img {
     width: 27px; height: 27px;
-
 }
+
+/* 일단 추가해놈 - seonghyun */
+.s_comments_wrap .s_likes_btn img {
+    width: 27px; height: 27px;
+    margin-right: -51px;
+}
+.s_comments_wrap {
+    width: 40px; height: auto;
+    cursor: pointer;
+}
+
+.s_comments_wrap .s_likes_btn{
+    float: right;
+    width: 40px; height: auto;
+}
+.s_comments_wrap .s_likes_btn .s_like_btn, .s_comments_wrap .s_likes_btn .s_like_btn_count{
+    float: right;
+}
+.s_comments_wrap .s_likes_btn .s_like_btn_count{
+    margin-right: -41.5px;
+    margin-top: -11px;
+}
+.likes_btn{
+    position: relative;
+}
+.likes_btn .like_btn_count{
+    position: absolute;
+    left: 8px;
+}
+
+/* 일단 추가해놈 - seonghyun */
+
 
 /* 가운데 (닉네임/content/답글토글) */
 .comments_wrap div {

@@ -1,5 +1,5 @@
 const { where } = require("sequelize");
-const {User, Post, LikePost, BigComment, SmallComment} = require("../models");
+const {User, Post, LikePost, BigComment, SmallComment, LikeBigComment, LikeSmallComment} = require("../models");
 const {sequelize} = require("../models");
 
 exports.getPost = async (req, res) => {
@@ -151,6 +151,7 @@ exports.likeClick = async (req, res)=>{
     }else{
         await LikePost.destroy({where:{user_id:uf.dataValues.id, post_id : data.post_id}});
         await Post.update({likes: sequelize.literal('likes - 1') },{where: {id:data.post_id} });
+        res.json("0");
     }
 }
 
@@ -187,15 +188,16 @@ exports.smallComment1 = async (req,res) =>{
         let postbody = req.query;
         let se = req.session.iidd;
 
-        await SmallComment.create({
+        const smallcommentcreateId = await SmallComment.create({
             content : postbody.smallInputValue,
             likes : "0",
             user_id : se,
             comment_id : postbody.comment_id,
-        })
+        });
 
         const data = await User.findOne({where:{id:se}});
-        res.json(data.dataValues);
+        let a = data.dataValues;
+        res.json({a, smallcommentcreateId});
     } catch (error) {
         console.log(error);
     }
@@ -205,8 +207,118 @@ exports.c_comment_nick1 = async (req,res)=>{
     try {
         let param = req.query;
         const data = await User.findOne({where:{id:param.c_comment_nick}});
-        res.json(data.dataValues);
+
+        let se = req.session.user_id;
+        const uf = await User.findOne({where:{user_id:se}});
+
+
+        const data2 = await LikeSmallComment.findOne({where:{user_id: uf.dataValues.id, comment_id: param.comment_id}});
+
+        console.log("user_id",uf.dataValues.id );
+        console.log("comment_id",param.comment_id );
+
+        const data3 = await SmallComment.findOne({where:{user_id:uf.dataValues.id, id: param.comment_id}}); // 좋아요 표시해주기
+        // const data3 = await SmallComment.findOne({where:{id: param.comment_id}});
+
+        let a = data.dataValues;
+        let b;
+        if(data3 == null){
+            const data3 = await SmallComment.findOne({where:{id: param.comment_id}}); // 좋아요 표시해주기
+            b = data3.dataValues;
+        }else{
+            b = data3.dataValues;
+        }
+
+        res.json({a, data2, b});
     } catch (error) {
         console.log(error);
     }
 }
+
+exports.getbiglike1 = async (req, res)=>{
+    const data = req.query;
+    let x = req.session.user_id;
+    const val2 = await User.findOne({where:{user_id:x}});
+    let onuserId = val2.dataValues.id; // 접속한 유저의 id;
+ 
+    console.log("onuserId", onuserId);
+    console.log("check1", data.post_id); // 현재 페이지의 총 댓글value
+
+    let tda = [];
+    let data1;
+    let j=0;
+    if(data.post_id != undefined){
+        for(let i=0; i<data.post_id.length; i++){
+            data1 = await LikeBigComment.findOne({where:{user_id:onuserId, comment_id:data.post_id[i]}});
+            if(data1 != null){
+                // console.log("data1", data1);
+                // console.log("data1.dataValues", data1.dataValues);
+                tda[j] = data1.dataValues;
+                j++;
+            }
+        }
+    }
+    
+    if(tda.length>0){
+        res.json(tda);
+    }else{
+        res.json("0");
+    }
+}
+
+// 댓글 좋아요
+exports.likebigcomment1 = async (req,res)=>{
+    const data = req.query;
+    let se = req.session.user_id;
+    const uf = await User.findOne({where:{user_id:se}});
+    if(data.check == 0){
+        await LikeBigComment.create({
+            user_id : uf.dataValues.id,
+            comment_id : data.civalue1,
+        });
+        console.log("user_id :", uf.dataValues.id);
+        console.log("id : ", data.civalue1);
+        await BigComment.update({likes: sequelize.literal('likes + 1') },{where: {id:data.civalue1} });
+        res.json("1");
+    }
+    else{
+        await LikeBigComment.destroy({where:{user_id:uf.dataValues.id, comment_id : data.civalue1}});
+        await BigComment.update({likes: sequelize.literal('likes - 1') },{where: {id:data.civalue1} });
+        res.json("0");
+    }
+}
+
+// 작은댓글 좋아요
+exports.likesmallComment1 = async (req,res)=>{
+    const data = req.query;
+    let se = req.session.user_id;
+    const uf = await User.findOne({where:{user_id:se}});
+
+    if(data.check_val == 0){
+        await LikeSmallComment.create({
+            user_id : uf.dataValues.id,
+            comment_id : data.comment_id,
+        });
+
+        await SmallComment.update({
+            likes : sequelize.literal('likes+1')}, {where:{id:data.comment_id}
+        });
+    }else{
+        await LikeSmallComment.destroy({
+            where:{
+                user_id : uf.dataValues.id,
+                comment_id : data.comment_id,
+            }
+        });
+
+        await SmallComment.update({
+            likes : sequelize.literal('likes-1')}, {where:{id:data.comment_id}
+        });
+    }
+    // console.log("a",uf.dataValues.id);
+    // console.log("b", data.comment_id);
+    // console.log("checkval", data.check_val);
+    res.json("1");
+}
+
+
