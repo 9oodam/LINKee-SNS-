@@ -3,10 +3,14 @@ const {User, Post, LikePost, BigComment, SmallComment, LikeBigComment, LikeSmall
 const {sequelize} = require("../models");
 
 exports.getPost = async (req, res) => {
-    const {user_id} = req.acc_decoded;
+    const {acc_decoded} = req;
+    
+    const user_id = acc_decoded.user_id;
+
     try {
         // 로그인 된 유저
         const user = await User.findOne({where : {user_id}});
+        // console.log(user.dataValues);
 
         // 모든 유저
         const userAll = await User.findAll();

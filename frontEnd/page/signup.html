@@ -15,7 +15,7 @@
         <div class="container1">
             <div class="logo">LINKee</div>
             <h2>Sign up to see photos and videos from your friends.</h2>
-            <form action="http://127.0.0.1:8080/signup" method="post">
+            <form action="https://andybyungjoopark.com/signup" method="post">
                 <label for="">
                     <span class="labelText">ID</span>
                     <input type="text" name="user_id" aria-label="ID" aria-required="true">
@@ -37,14 +37,14 @@
             </form>
         </div>
         <div class="container2">
-            <p>Have an account? <a href="./login.html">Login</a></p>
+            <p>Have an account? <a href="/login">Login</a></p>
         </div>
     </div>
 </body>
 <script>
     document.querySelector("input[name='user_id']").addEventListener("input", async function(){
         let abc = document.querySelector("input[name='user_id']").value;
-        const { data } = await axios.get(`http://127.0.0.1:8080/signup/idCheck/${abc}`, {
+        const { data } = await axios.get(`https://andybyungjoopark.com/signup/idCheck/${abc}`, {
             withCredentials: true // 브라우저가 쿠키를 서버로 전달 할 수 있는 옵션
         });
         if(data == 0){
@@ -55,7 +55,7 @@
     });
     document.querySelector("input[name='nickname']").addEventListener("input", async function(){
         let abc = document.querySelector("input[name='nickname']").value;
-        const {data} = await axios.get(`http://127.0.0.1:8080/signup/nicknameCheck/${abc}`, {
+        const {data} = await axios.get(`https://andybyungjoopark.com/signup/nicknameCheck/${abc}`, {
             withCredentials: true // 브라우저가 쿠키를 서버로 전달 할 수 있는 옵션
         });
         if(data == 0){

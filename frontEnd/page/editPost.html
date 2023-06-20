@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>edit</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://andybyungjoopark.com/socket.io/socket.io.js"></script>
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/insert.css">
 </head>
@@ -54,14 +55,14 @@
         console.log(xx);
 
         try {
-            const {data} = await axios.get(`http://127.0.0.1:8080/insert/editPost/${xx}`, {
+            const {data} = await axios.get(`https://andybyungjoopark.com/insert/editPost/${xx}`, {
                 withCredentials : true
             });
 
             console.log(data.img);
             console.log(data.content);
 
-            preview.setAttribute("src", `http://127.0.0.1:8080/post_img/${data.img}`);
+            preview.setAttribute("src", `https://andybyungjoopark.com/post_img/${data.img}`);
             preview.style.display = "block";
             content.innerText = data.content;
 
@@ -78,7 +79,7 @@
                 form.append("img", fileUpload.files[0]);
                 form.append("content", content.value);
         
-                axios.post(`http://127.0.0.1:8080/insert/editPost/${xx}`, form, {
+                axios.post(`https://andybyungjoopark.com/insert/editPost/${xx}`, form, {
                     "Content-Type" : "multipart/form-data",
                     withCredentials : true
                 }).then((e) => {
@@ -90,8 +91,64 @@
                 content.value = "";
                 content.innerHTML = "";
             }
-        }
-    }
+        };
+
+        // 소켓
+        try {
+            const {data} = await axios.get('https://andybyungjoopark.com/main/posts', {
+                withCredentials : true
+            });
+            const {user, userAll} = data;
+
+            const socket = io.connect('https://andybyungjoopark.com'); // 소켓 연결 시도
+            socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
+
+            socket.on("userIn", (socketID, userID) => {
+                console.log("접속 중인 유저 : ", userID);
+                console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
+            });
+
+            // 채팅 방 요청 알림창
+            socket.on("requestChat", (senderID, receiverID) => {
+                let sender = userAll.find(item => item.id == senderID);
+
+                live_chat_noti_wrap.innerHTML = `
+                <div class="live_chat_noti">
+                    <p><span class="nickname">${sender.nickname}</span>님이</p>
+                    <p>대화를 요청하였습니다.</p>
+                    <p>승인 버튼을 누르면 대화방으로 이동합니다.</p>
+                    <div class="btns">
+                        <div id="appBtn" onclick="approve(${senderID}, ${receiverID})">승인</div>
+                        <div id="rejBtn" onclick="reject(${senderID}, ${receiverID})">거절</div>
+                    </div>
+                </div>`;
+
+                live_chat_noti_wrap.style.display = "block";
+            });
+
+            // 대화 요청 거절 알림창
+            socket.on("reject", (senderID, receiverID) => {
+                let receiver = userAll.find(item => item.id == receiverID);
+
+                live_chat_noti_wrap.innerHTML = `
+                <div class="live_chat_noti">
+                    <p><span class="nickname">${receiver.nickname}</span>님이</p>
+                    <p>대화를 요청을 거절하였습니다.</p>
+                    <div class="btns">
+                        <div id="appBtn" onclick="closeNoti()">확인</div>
+                    </div>
+                </div>`;
+            });
+
+            // 대화 요청 수락시 페이지 넘어감
+            socket.on("approve", (senderID, receiverID) => {
+                location.href = `/livechatRoom#${senderID}#${receiverID}`;
+            });
+
+        } catch (error) {
+            console.log(error);
+        };
+    };
 
 </script>
 <script src="../js/insert.js"></script>

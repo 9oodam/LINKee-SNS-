@@ -1,4 +1,4 @@
-const socket = io.connect('localhost:8080');
+const socket = io.connect('https://andybyungjoopark.com');
 let liveChatNoti = document.querySelector("#live_chat_noti_wrap");
 
 // 대화 요청 보내기
@@ -13,7 +13,7 @@ function requestChat(senderID, receiverID) {
 function approve(senderID, receiverID) {
     liveChatNoti.style.display = "none";
     socket.emit("approve", senderID, receiverID);
-    location.href = `./livechatRoom.html#${senderID}#${receiverID}`;
+    location.href = `/livechatRoom#${senderID}#${receiverID}`;
 }
 
 // 대화 요청 거절

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>searched</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://andybyungjoopark.com/socket.io/socket.io.js"></script>
 
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/main.css">
@@ -48,7 +48,7 @@
         console.log(xx);
 
         try {
-            const {data} = await axios.get(`http://127.0.0.1:8080/search/searched/${xx}`, {
+            const {data} = await axios.get(`https://andybyungjoopark.com/search/searched/${xx}`, {
                 withCredentials : true
             });
             const {userAll, posts} = data;
@@ -94,7 +94,7 @@
                     middle_body.innerHTML += `
                     <div class="post_container">
                         <div class="post_top">
-                            <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/${writer.profile_img}" alt="profile"></div>
+                            <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${writer.profile_img}" alt="profile"></div>
                             <div class="profile_text">
                                 <p class="nickname">${writer.nickname}</p>
                                 <span>·</span>
@@ -103,7 +103,7 @@
                         </div>
 
                         <div class="post_body">
-                            <img src="http://127.0.0.1:8080/post_img/${el.img}" alt="">
+                            <img src="https://andybyungjoopark.com/post_img/${el.img}" alt="">
                         </div>
 
                         <div class="post_bottom">
@@ -121,7 +121,7 @@
                     middle_body.innerHTML += `
                     <div class="post_container">
                         <div class="post_top">
-                            <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/${writer.profile_img}" alt="profile"></div>
+                            <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${writer.profile_img}" alt="profile"></div>
                             <div class="profile_text">
                                 <p class="nickname">${writer.nickname}</p>
                                 <span>·</span>
@@ -130,7 +130,7 @@
                         </div>
     
                         <div class="post_body">
-                            <img src="http://127.0.0.1:8080/post_img/${el.img}" alt="">
+                            <img src="https://andybyungjoopark.com/post_img/${el.img}" alt="">
                         </div>
     
                         <div class="post_bottom">
@@ -148,17 +148,79 @@
 
         } catch (error) {
             console.log(error);
-        }
-    }
+        };
+
+        // 소켓
+        // 모든 페이지에 다 들어갈 부분!!!
+        const socket = io.connect('https://andybyungjoopark.com'); // 소켓 연결 시도
+        socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
+        socket.on("userIn", (socketID, userID) => {
+            console.log("접속 중인 유저 : ", userID);
+        });
+        try {
+            const {data} = await axios.get('https://andybyungjoopark.com/main/posts', {
+                withCredentials : true
+            });
+            const {user, userAll} = data;
+
+            const socket = io.connect('https://andybyungjoopark.com'); // 소켓 연결 시도
+            socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
+
+            socket.on("userIn", (socketID, userID) => {
+                console.log("접속 중인 유저 : ", userID);
+                console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
+            });
+
+            // 채팅 방 요청 알림창
+            socket.on("requestChat", (senderID, receiverID) => {
+                let sender = userAll.find(item => item.id == senderID);
+
+                live_chat_noti_wrap.innerHTML = `
+                <div class="live_chat_noti">
+                    <p><span class="nickname">${sender.nickname}</span>님이</p>
+                    <p>대화를 요청하였습니다.</p>
+                    <p>승인 버튼을 누르면 대화방으로 이동합니다.</p>
+                    <div class="btns">
+                        <div id="appBtn" onclick="approve(${senderID}, ${receiverID})">승인</div>
+                        <div id="rejBtn" onclick="reject(${senderID}, ${receiverID})">거절</div>
+                    </div>
+                </div>`;
+
+                live_chat_noti_wrap.style.display = "block";
+            });
+
+            // 대화 요청 거절 알림창
+            socket.on("reject", (senderID, receiverID) => {
+                let receiver = userAll.find(item => item.id == receiverID);
+
+                live_chat_noti_wrap.innerHTML = `
+                <div class="live_chat_noti">
+                    <p><span class="nickname">${receiver.nickname}</span>님이</p>
+                    <p>대화를 요청을 거절하였습니다.</p>
+                    <div class="btns">
+                        <div id="appBtn" onclick="closeNoti()">확인</div>
+                    </div>
+                </div>`;
+            });
+
+            // 대화 요청 수락시 페이지 넘어감
+            socket.on("approve", (senderID, receiverID) => {
+                location.href = `/livechatRoom#${senderID}#${receiverID}`;
+            });
+
+        } catch (error) {
+            console.log(error);
+        };
+    };
 
     function moveToDetail(id) {
-            location.href = `http://127.0.0.1:5500/frontEnd/page/detail.html#${id}`;
-        }
+        location.href = `https://andybyungjoopark.com/frontEnd/page/detail.html#${id}`;
+    };
 
-        function seeMore(id) {
-            let contentText = document.querySelector(`.content_text${id}`);
-            contentText.style.height = "auto";
-            contentText.style.overflow = "visible";
-        }
+    function seeMore(id) {
+        let contentText = document.querySelector(`.content_text${id}`);
+        contentText.style.height = "auto";
+        contentText.style.overflow = "visible";
+    };
 </script>
 </html>

@@ -32,7 +32,7 @@ exports.signUp1 = async (req, res) => {
       following: 0,
       profile_img: "default_profile.jpeg"
     });
-    res.redirect("http://127.0.0.1:5500/frontEnd/page/login.html");
+    res.sendFile("/home/ubuntu/frontEnd/page/login.html");
     // 수정해야함
   } catch (error) {
     console.log(error);
@@ -88,7 +88,10 @@ exports.passwordalert = async (req, res) => {
     let user_id = param.user_id;
     let pw = param.user_pw;
     const user = await User.findOne({ where: { user_id: user_id } });
+<<<<<<< HEAD
 
+=======
+>>>>>>> e85b34041a5cc60ec18f7b208b4e80b2a5ce75a6
     if(user.level == 0){
       return res.json("2");
     }

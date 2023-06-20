@@ -21,3 +21,49 @@ exports.myPost = async (req,res)=>{
         console.log("Unable to show the table in the controller");
     }
 };
+
+exports.mypage = async (req,res,next)=>{
+    try {
+        const users = await User.findAll();
+        // console.log(users[0]);
+        // res.json(user);
+        req.user = users;
+        const posts = await Post.findAll();
+        req.post = posts;
+        next();
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+exports.editProfile = async (req,res)=>{
+    try {
+        const {nickname,profile_info} = req.body;
+        const {acc_decoded} = req;
+        const user_id = acc_decoded.user_id;
+        console.log(acc_decoded);
+
+        const user = await User.findOne({where : {user_id}});
+        console.log(user);
+
+        if(req.file == undefined){
+            await User.update({
+                nickname : nickname,
+                profile_img : user.profile_img,
+                profile_info : profile_info
+            },
+            {where : {user_id : user_id}});
+        }else{
+            await User.update({
+                nickname : nickname,
+                profile_img : req.file.filename,
+                profile_info : profile_info
+            },
+            {where : {user_id : acc_decoded.user_id}});
+        };
+
+        res.redirect("/mypage");
+    } catch (error) {
+        console.log(error);
+    };
+};

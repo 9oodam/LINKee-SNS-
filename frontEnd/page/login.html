@@ -5,7 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="../css/login.css" />
+    <link rel="stylesheet" href="../css/login.css"/>
+    <script src="https://andybyungjoopark.com/socket.io/socket.io.js"></script>
+
+    <!-- <link rel="stylesheet" href="/home/ubuntu/frontEnd/page/test.css"> -->
     <!-- 추가함 -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- 추가함 -->
@@ -41,11 +44,12 @@
         </form>
       </div>
       <div class="container2">
-        <p>Don't have an account? <a href="./signup.html">Sign up</a></p>
+        <p>Don't have an account? <a href="/signup">Sign up</a></p>
       </div>
     </div>
   </body>
   <script>
+    const socket = io.connect("https://andybyungjoopark.com");
     document.querySelector("button").addEventListener("click", async function (event) {
         event.preventDefault();
         if (document.querySelector("input[name='user_id']").value == "") {
@@ -56,7 +60,7 @@
           return;
         }
         let abc = document.querySelector("input[name='user_id']").value;
-        const { data } = await axios.get(`http://127.0.0.1:8080/login/loginalert/${abc}`,
+        const { data } = await axios.get(`https://andybyungjoopark.com/login/loginalert/${abc}`,
           {
             // withCredentials: true
             // 브라우저가 쿠키를 서버로 전달 할 수 있는 옵션
@@ -69,7 +73,7 @@
         }
 
         let abc2 = document.querySelector("input[name='user_pw']").value;
-        const data1 = await axios.get("http://127.0.0.1:8080/login/passwordalert",{
+        const data1 = await axios.get("https://andybyungjoopark.com/login/passwordalert",{
           withCredentials: true,
             params: {
               user_id: abc,
@@ -84,10 +88,10 @@
           document.querySelector("input[name='user_pw']").style.borderColor = "yellow";
         }
         else if(data1.data == 9){
-          window.location.href= "http://127.0.0.1:5500/frontEnd/page/admin.html";
+          window.location.href= "https://andybyungjoopark.com/admin";
         }
         else{
-            window.location.href= "http://127.0.0.1:5500/frontEnd/page/main.html";
+            window.location.href= "https://andybyungjoopark.com/main";
         }
       });
   </script>

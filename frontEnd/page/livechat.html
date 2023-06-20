@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>livechat</title>
-    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+    <script src="https://andybyungjoopark.com/socket.io/socket.io.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <link rel="stylesheet" href="../css/nav.css">
@@ -43,7 +43,7 @@
 <script>
     window.onload = async () => {
         try {
-            const {data} = await axios.get('http://127.0.0.1:8080/chat/getFriends', {
+            const {data} = await axios.get('https://andybyungjoopark.com/chat/getFriends', {
                 withCredentials : true
             });
             const {user, userAll} = data;
@@ -63,12 +63,15 @@
             console.log("맞팔 : ", friendArr);
 
 
-            ////////////////////////////////////////////
-            const socket = io.connect('localhost:8080');
+            // 모든 페이지에 다 들어갈 부분!!!
+            const socket = io.connect("https://andybyungjoopark.com"); // 소켓 연결 시도
             socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
 
             socket.on("userIn", (socketID, userID) => {
+                console.log(socketID);
+                console.log(userID);
                 console.log("접속 중인 유저 : ", userID);
+                console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
                 if(friendArr.length == 0) {
                     middle_body.innerHTML = '<div class="no_noti">현재 대화 가능한 상대가 없습니다.<br></div>';
                 }else {
@@ -83,7 +86,7 @@
                                 console.log("접속 중인 친구: ", el);
                                 loginUser.innerHTML += `
                                 <div class="user_wrap">
-                                    <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/${friend.profile_img}" alt=""></div>
+                                    <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${friend.profile_img}" alt=""></div>
                                     <div class="nickname">${friend.nickname}</div>
                                     <div class="chat_btn" onclick="requestChat(${user.id}, ${friend.id})">대화 요청하기</div>
                                 </div>`;
@@ -93,14 +96,14 @@
                             console.log("로그아웃 된 친구: ", el);
                             logoutUser.innerHTML += `
                             <div class="user_wrap">
-                                <div class="profile_img_x"><img src="http://127.0.0.1:8080/user_img/${friend.profile_img}" alt=""></div>
+                                <div class="profile_img_x"><img src="https://andybyungjoopark.com/user_img/${friend.profile_img}" alt=""></div>
                                 <div class="nickname_x">${friend.nickname}</div>
                                 <div class="chat_btn_x">대화 요청하기</div>
                             </div>`;
                         }
                     });
                 }
-            })
+            });
 
             // 채팅 방 요청 알림창
             socket.on("requestChat", (senderID, receiverID) => {
@@ -138,7 +141,7 @@
 
             // 대화 요청 수락시 페이지 넘어감
             socket.on("approve", (senderID, receiverID) => {
-                location.href = `./livechatRoom.html#${senderID}#${receiverID}`;
+                location.href = `/livechatRoom#${senderID}#${receiverID}`;
             });
 
 

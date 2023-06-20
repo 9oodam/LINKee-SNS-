@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Basic Line Chart</title>
-    <link href="../../assets/styles.css" rel="stylesheet" />
+    <!-- <link href="../../assets/styles.css" rel="stylesheet" /> -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
       window.Promise ||
@@ -146,8 +146,8 @@
     <script>
       // 회원가입 승인 거절
       window.onload = async () => {
-        const { data } = await axios.get("http://127.0.0.1:8080/admin/admin1");
-        const data2 = await axios.get("http://127.0.0.1:8080/admin/admin2");
+        const { data } = await axios.get("https://andybyungjoopark.com/admin/admin1");
+        const data2 = await axios.get("https://andybyungjoopark.com/admin/admin2");
         let data22 = data2.data;
 
         for (let i = 0; i < data.length; i++) {
@@ -168,7 +168,11 @@
         let arr = [];
         let random = day - 7;
 
+<<<<<<< HEAD
         let dayCnt = await axios.get(`http://127.0.0.1:8080/admin/dayCnt`);
+=======
+        let dayCnt = await axios.get(`https://andybyungjoopark.com/dayCnt`);
+>>>>>>> e85b34041a5cc60ec18f7b208b4e80b2a5ce75a6
 
         for (let i = 0; i <= 7; i++) {
           arr[i] = random;
@@ -257,7 +261,7 @@
       };
 
       async function accept(a, id) {
-        await axios.get(`http://127.0.0.1:8080/admin/levelchange/${id}`);
+        await axios.get(`https://andybyungjoopark.com/admin/levelchange/${id}`);
         // document.querySelector("#p" + a).style.display = "none";
         document.querySelector("#p" + a).remove();
         // document.querySelector("#accept").innerHTML += `<p>${id}</p>`;
@@ -265,11 +269,11 @@
 
       }
       async function deny(a, id) {
-        await axios.get(`http://127.0.0.1:8080/admin/deny/${id}`);
+        await axios.get(`https://andybyungjoopark.com/admin/deny/${id}`);
         document.querySelector("#p" + a).style.display = "none";
       }
       async function unAuth(id, a){
-        await axios.get(`http://127.0.0.1:8080/admin/unAuth/${a}`);
+        await axios.get(`https://andybyungjoopark.com/admin/unAuth/${a}`);
         console.log(id);
         // document.querySelector("#p"+id).style.display = "none";
         document.querySelector("#p" + id).remove();
