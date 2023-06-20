@@ -438,7 +438,7 @@
             const Btn2 = document.querySelectorAll(".commentBtn2");
             Btn2.forEach(function(el){
                 el.addEventListener("click", async function(event){
-                    let smallinputvalue = event.target.closest('.input_wrap2').querySelector(".comment_input2").value;
+                    let small_comment_input = event.target.closest('.input_wrap2').querySelector(".comment_input2");
                     let civalue = event.target.closest('.comments_wrap').querySelector('input.i_comment_id').value;
                     const abc = await axios.get(`https://andybyungjoopark.com/detail/smallComment/${xx}`, {
                         headers: {
@@ -446,7 +446,7 @@
                         },
                         withCredentials : true,
                         params : {
-                            smallInputValue : smallinputvalue,
+                            smallInputValue : small_comment_input.value,
                             comment_id : civalue,
                         }
     
@@ -470,12 +470,13 @@
                                     <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${abc.data.a.profile_img}" alt=""></div>
                                     <div>
                                         <div class="nickname">${abc.data.a.nickname}</div>
-                                        <div class="bigCommentText">${smallinputvalue}</div>
+                                        <div class="bigCommentText">${small_comment_input.value}</div>
                                     </div>
                                     
                                 </div>
                     `;
                     btn3();
+                    small_comment_input.value = "";
                 });
             });
 
