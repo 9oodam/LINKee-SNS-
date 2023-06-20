@@ -149,7 +149,7 @@
             document.querySelector("#heartImage").dataset.value = "1";
         }
 
-
+        console.log(data);
         for(let i=0; i<data.e.length;i++){
             reply_container.innerHTML += `
             <div class="comments_wrap">
@@ -265,9 +265,9 @@
             // 3 맞다고 넘어가고
         const bigClikeElement2 = document.querySelectorAll(".comments_wrap");
         bigClikeElement2.forEach((el)=>{
-            console.log(el);
+            // console.log(el);
             const inputValue = el.querySelector(".commentlist .i_comment_id").value;
-            console.log(inputValue);
+            // console.log(inputValue);
             // console.log("현재 페이지의 큰댓글들 전체 id :", inputValue);
             for(let i=0; i<bigClikeCheck.data.length; i++){
                 if(inputValue == bigClikeCheck.data[i].comment_id){
@@ -361,7 +361,7 @@
                 //     bigInputValue: inputvalue,
                 // }
             });
-            console.log(abc.data);
+            // console.log(abc.data);
             reply_container.innerHTML += `
             <div class="comments_wrap">
                 <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${abc.data.a.profile_img}" alt=""></div>
@@ -459,7 +459,7 @@
                     });
                     // console.log("abccccccccccccc", abc.data.smallcommentcreateId.id);
                     // console.log("abccccccccccccc", abc.data.a.nickname);
-                    console.log(abc.data);
+                    // console.log(abc.data);
                     event.target.closest('details').querySelector(".cw").innerHTML += `
                                 <div class="s_comments_wrap">
                                     <div class="s_likes_btn">
