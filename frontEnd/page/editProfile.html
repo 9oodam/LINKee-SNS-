@@ -144,22 +144,28 @@
         const nickname = document.querySelector(".nicknameInput");
         const profileInfo = document.querySelector(".infoInput");
 
-        const form = new FormData();
-        form.append("img", fileUpload.files[0]);
-        form.append("nickname",nickname.value);
-        form.append("profile_info",profileInfo.value);
+        if(nickname.value === null || profileInfo.value === null){
+            nickname.style.border = "1px solid red";
+            profileInfo.style.border = "1px solid red";
+        }else{
+            const form = new FormData();
+            form.append("img", fileUpload.files[0]);
+            form.append("nickname",nickname.value);
+            form.append("profile_info",profileInfo.value);
+    
+            axios.post('https://andybyungjoopark.com/mypage/edit', form, {
+                "Content-Type" : "multipart/form-data",
+                withCredentials : true
+            }).then((e) => {
+                console.log("전달 완료");
+                console.log(e.data);
+            }).catch((err) => {
+                console.log(error);
+            });
+    
+            location.href = "https://andybyungjoopark.com/mypage";
+        }
 
-        axios.post('https://andybyungjoopark.com/mypage/edit', form, {
-            "Content-Type" : "multipart/form-data",
-            withCredentials : true
-        }).then((e) => {
-            console.log("전달 완료");
-            console.log(e.data);
-        }).catch((err) => {
-            console.log(error);
-        });
-
-        location.href = "https://andybyungjoopark.com/mypage";
     };
 
     
