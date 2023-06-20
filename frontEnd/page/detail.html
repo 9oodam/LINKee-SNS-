@@ -99,7 +99,6 @@
         const {data} = await axios.get(`https://andybyungjoopark.com/main/getcontents/${xx},`,{
             withCredentials : true
         });
-        console.log(data);
 
         if(data.d == 1){
             document.querySelector("#useron").style.display = "block";
