@@ -58,7 +58,7 @@
                 </div> -->
                 <!-- <div class="button_box"><a href="./editProfile.html">edit profile</a></div> -->
                 <div class="button_box">
-                    <a class="edit_profile_btn" href="/mypage/edit">프로필 수정</a>
+                    <a class="edit_profile_btn" href="./editProfile.html">프로필 수정</a>
                 </div>
             </div>
             <div class="mypage_search_container2">
@@ -72,9 +72,9 @@
     <!-- home / search / insert / mypage -->
     <div class="bottom_nav_container">
         <div class="bottom_nav">
-            <div class="icon"><a href="/main"><img src="../nav_icon_img/icon_home.webp" alt=""></a></div>
-            <div class="icon"><a href="/search"><img src="../nav_icon_img/icon_search.png" alt=""></a></div>
-            <div class="icon"><a href="/insert"><img src="../nav_icon_img/icon_plus.png" alt=""></a></div>
+            <div class="icon"><a href="./main.html"><img src="../nav_icon_img/icon_home.webp" alt=""></a></div>
+            <div class="icon"><a href="./search.html"><img src="../nav_icon_img/icon_search.png" alt=""></a></div>
+            <div class="icon"><a href="./insert.html"><img src="../nav_icon_img/icon_plus.png" alt=""></a></div>
             <div id="profile_img" class="profile_img"></div>
         </div>
     </div>
@@ -111,10 +111,10 @@
 
             if(response.data.user.profile_img == null) {
                 // profile_img.innerHTML = `<a href="/mypage/${response.data.user.user_id}"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
-                profile_img.innerHTML = `<a href="/mypage/${response.data.user.user_id}"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></a>`;
+                profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></a>`;
             }else {
                 // profile_img.innerHTML = `<a href="/mypage/${response.data.user.user_id}"><img src="https://andybyungjoopark.com/user_img/${response.data.user.profile_img}" alt=""></a>`;
-                profile_img.innerHTML = `<a href="/mypage/${response.data.user.user_id}"><img src="http://127.0.0.1:8080/user_img/${response.data.user.profile_img}" alt=""></a>`;
+                profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${response.data.user.profile_img}" alt=""></a>`;
             };
 
             // console.log(response.data.user.user_id);
