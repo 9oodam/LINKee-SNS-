@@ -239,9 +239,10 @@
         let iii=0;
         const bigClikeElement = document.querySelectorAll(".comments_wrap");
         bigClikeElement.forEach(el=>{
-            const inputValue = el.querySelector(".commentlist .i_comment_id").value; 
-            inputArr[iii] = inputValue;
-            iii++;
+            console.log(el);
+            // const inputValue = el.querySelector(".commentlist .i_comment_id").value; 
+            // inputArr[iii] = inputValue;
+            // iii++;
         });
 
         const bigClikeCheck = await axios.get("https://andybyungjoopark.com/detail/getbiglike", {
