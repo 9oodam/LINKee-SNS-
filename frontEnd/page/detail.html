@@ -344,7 +344,7 @@
         }
 
         document.querySelector(".commentBtn").addEventListener("click" , async function(){
-            let inputvalue = document.querySelector(".comment_input").value;
+            let big_comment_input = document.querySelector(".comment_input");
 
             const abc = await axios.get(`https://andybyungjoopark.com/main/bigComment/${xx}`, {
                 headers: {
@@ -352,7 +352,7 @@
                 },
                 withCredentials : true,
                 params : {
-                    bigInputValue : inputvalue,
+                    bigInputValue : big_comment_input.value,
                 }
 
                 // bigInputValue : inputvalue,
@@ -387,7 +387,7 @@
             </div>
             `;
             btn2();
-            inputValue = "";
+            big_comment_input.value = "";
         });
 
         async function likeC2(a, b){
