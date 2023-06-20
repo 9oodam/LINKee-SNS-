@@ -152,6 +152,8 @@
         for(let i=0; i<data.e.length;i++){
             reply_container.innerHTML += `
             <div class="comments_wrap">
+                </div>
+                `;
                 // <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${data.b.profile_img}" alt=""></div>
                 // <div class="commentlist">
                 //     <div class="nickname">${data.e_nick[i]}</div>
@@ -174,8 +176,6 @@
                 //     <img class="like_btn" src="../nav_icon_img/icon_noti.png">
                 //     <div class="like_btn_count">${data.e_content[i].likes}</div>
                 // </div>
-            </div>
-            `;
         }
         async function add_s_Comment(a, b){
             let html = "";
