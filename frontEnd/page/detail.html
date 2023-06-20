@@ -152,28 +152,28 @@
         for(let i=0; i<data.e.length;i++){
             reply_container.innerHTML += `
             <div class="comments_wrap">
-                <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${data.b.profile_img}" alt=""></div>
-                <div class="commentlist">
-                    <div class="nickname">${data.e_nick[i]}</div>
-                    <div class="bigCommentText">${data.e_content[i].content}</div>
-                    <input type="text" class="i_comment_id" value="${data.d_comment_id[i]}">
-                    <details>
-                        <summary>답글 달기</summary>
+                // <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${data.b.profile_img}" alt=""></div>
+                // <div class="commentlist">
+                //     <div class="nickname">${data.e_nick[i]}</div>
+                //     <div class="bigCommentText">${data.e_content[i].content}</div>
+                //     <input type="text" class="i_comment_id" value="${data.d_comment_id[i]}">
+                //     <details>
+                //         <summary>답글 달기</summary>
 
-                        <div class="cw">${await add_s_Comment(data.s_comment[i].length, data.s_comment[i])}</div>
+                //         <div class="cw">${await add_s_Comment(data.s_comment[i].length, data.s_comment[i])}</div>
 
 
-                        <div class="input_wrap2">
-                            <input class="comment_input2" name="smallComment" type="text" placeholder="대댓글 달기...">
-                            <div class="commentBtn2">전송</div>
-                        </div>
-                    </details>
-                </div>
-                <div class="likes_btn">
-                    <br>
-                    <img class="like_btn" src="../nav_icon_img/icon_noti.png">
-                    <div class="like_btn_count">${data.e_content[i].likes}</div>
-                </div>
+                //         <div class="input_wrap2">
+                //             <input class="comment_input2" name="smallComment" type="text" placeholder="대댓글 달기...">
+                //             <div class="commentBtn2">전송</div>
+                //         </div>
+                //     </details>
+                // </div>
+                // <div class="likes_btn">
+                //     <br>
+                //     <img class="like_btn" src="../nav_icon_img/icon_noti.png">
+                //     <div class="like_btn_count">${data.e_content[i].likes}</div>
+                // </div>
             </div>
             `;
         }
