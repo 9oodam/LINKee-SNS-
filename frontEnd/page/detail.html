@@ -361,7 +361,7 @@
                 //     bigInputValue: inputvalue,
                 // }
             });
-            console.log(abc.data);
+            
             reply_container.innerHTML += `
             <div class="comments_wrap">
                 <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${abc.data.a.profile_img}" alt=""></div>
@@ -387,7 +387,7 @@
             </div>
             `;
             btn2();
-
+            inputValue = "";
         });
 
         async function likeC2(a, b){
