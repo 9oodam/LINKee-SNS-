@@ -146,7 +146,9 @@
 
         if(nickname.value === "" || profileInfo.value === ""){
             nickname.style.border = "1px solid red";
+            nickname.style.borderRadius = "5px";
             profileInfo.style.border = "1px solid red";
+            profileInfo.style.borderRadius = "5px";
         }else{
             const form = new FormData();
             form.append("img", fileUpload.files[0]);
