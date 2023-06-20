@@ -125,9 +125,10 @@
                 };
             };
 
-            console.log(typeof window.location.hash);
-
-            let followBtn = document.querySelector("followBtn");
+            console.log(window.location.hash);
+            let userpageID = window.location.hash.slice(1,window.location.hash.length);
+            console.log(userpageID);
+            let followBtn = document.querySelector(".followBtn");
             followBtn.onclick = ()=>{
 
             };
