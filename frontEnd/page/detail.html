@@ -228,7 +228,7 @@
         let content = data.a.content.replace(/(?:\r\n|\r|\n)/g, "<br>"); // 줄바꿈
         document.querySelector("#deContent").innerHTML = content;
         document.querySelector("#likecount").innerHTML = data.a.likes;
-        if(dadta.a.img) {
+        if(data.a.img) {
             document.querySelector(".post_body").innerHTML = `<img src="https://andybyungjoopark.com/post_img/${data.a.img}">`;
         }else {
             document.querySelector(".post_body").innerHTML = "";
