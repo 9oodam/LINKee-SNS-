@@ -22,9 +22,9 @@ exports.getPost = async (req, res) => {
             following.push(user.id);
         }else{
             await User.update({
-                following : `[${user_id}]`
+                following : `[${user.id}]`
             },
-            {where : {user_id : user_id}});
+            {where : {id : user.id}});
         };
 
         // 팔로우 하고 있는 유저들의 게시글
