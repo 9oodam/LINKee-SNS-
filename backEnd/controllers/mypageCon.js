@@ -46,6 +46,8 @@ exports.editProfile = async (req,res)=>{
         const user = await User.findOne({where : {user_id}});
         console.log(user);
 
+        console.log(req.file);
+
         if(req.file == undefined){
             await User.update({
                 nickname : nickname,
@@ -68,6 +70,6 @@ exports.editProfile = async (req,res)=>{
     };
 };
 
-exports.follow = async (req,res)=>{
-  
+exports.follow = async ()=>{
+
 };
