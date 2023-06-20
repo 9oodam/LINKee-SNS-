@@ -174,12 +174,6 @@ io.on("connection", (socket) => {
         io.emit("userIn", socketID, userID);
     });
 
-    const sameSocketID = socket.handshake.query.socketID;
-    console.log("new socket connection with ID : ", sameSocketID);
-    socket.on("connect",()=>{
-        console.log("keeping the same socket ID : ");
-    });
-
     // 유저 연결 해제
     socket.on("disconnect", () => {
         let index = socketID.indexOf(socket.id);
