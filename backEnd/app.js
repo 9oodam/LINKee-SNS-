@@ -145,15 +145,8 @@ app.use("/mypage",mypageRouter);
 app.use("/noti", notiRouter);
 app.use("/chat", livechatRouter);
 app.use("/admin", adminRouter);
-<<<<<<< HEAD
-app.use("/detail", detailRouter);
-
-
-// app.use('/socket.io', express.static(__dirname + 'node_modules/socket.io/client-dist'));
-=======
 app.use("/userpage",userpageRouter);
 app.use("/searchedPost",searchedPostRouter);
->>>>>>> e85b34041a5cc60ec18f7b208b4e80b2a5ce75a6
 
 const server = app.listen(8080, () => {
     console.log("server opened");
