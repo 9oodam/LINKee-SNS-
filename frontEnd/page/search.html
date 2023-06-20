@@ -133,18 +133,6 @@
                 console.log("접속 중인 유저의 소켓 아이디 : ", socketID);
             });
 
-<<<<<<< HEAD
-        posts.forEach((el) => {
-          if (el.img) {
-            allPosts.innerHTML += `<div><a href="./detail.html#${el.id}"><img src="http://127.0.0.1:8080/post_img/${el.img}" alt=""> </a></div>`;
-          }
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getAllPost();
-=======
             // 채팅 방 요청 알림창
             socket.on("requestChat", (senderID, receiverID) => {
                 let sender = userAll.find(item => item.id == senderID);
@@ -186,7 +174,6 @@
             console.log(error);
         }
     };
->>>>>>> e85b34041a5cc60ec18f7b208b4e80b2a5ce75a6
 
     // 검색 자동완성
     async function searchThings() {
