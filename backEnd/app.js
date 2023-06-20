@@ -135,6 +135,7 @@ app.use("/user_img", express.static(path.join(__dirname, "user_img")));
 
 
 // router 연결
+app.use("/detail",detailRouter);
 app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
 app.use("/main", mainRouter);
