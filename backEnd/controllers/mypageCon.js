@@ -67,3 +67,7 @@ exports.editProfile = async (req,res)=>{
         console.log(error);
     };
 };
+
+exports.follow = async (req,res)=>{
+  
+};
