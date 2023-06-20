@@ -127,10 +127,11 @@
 
             console.log(window.location.hash);
             let userpageID = window.location.hash.slice(1,window.location.hash.length);
-            console.log(typeof userpageID);
+            console.log(userpageID);
+            let followArr = [];
             let followBtn = document.querySelector(".followBtn");
             followBtn.onclick = ()=>{
-
+                followArr.push(userpageID);
             };
 
             const allPosts = document.querySelector(".allPosts");

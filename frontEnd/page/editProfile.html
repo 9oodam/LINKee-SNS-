@@ -140,13 +140,17 @@
     };
 
     const editBtn = document.querySelector(".editBtn");
-    editBtn.onclick = ()=>{
+    editBtn.onclick = async ()=>{
+        const {data} = await axios.get('https://andybyungjoopark.com/main/posts', {
+            withCredentials : true
+        });
+        const {user, userAll} = data;
+
         const nickname = document.querySelector(".nicknameInput");
         const profileInfo = document.querySelector(".infoInput");
 
         if(nickname.value === "" || profileInfo.value === ""){
-            nickname.style.border = "1px solid red";
-            profileInfo.style.border = "1px solid red";
+            location.href = "/mypage";
         }else{
             const form = new FormData();
             form.append("img", fileUpload.files[0]);
