@@ -9,6 +9,7 @@ let previewImg = document.querySelector("#preview");
 fileUpload.onclick = function() {
     fileUpload.onchange = function(){
         fileName = fileUpload.files[0];
+        console.log(fileName);
         console.log("선택된 파일: ", fileName.name);
         profile(fileName);
         label.style.display = "none";

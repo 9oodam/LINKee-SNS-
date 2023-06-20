@@ -17,7 +17,7 @@
     width: 470px;
     top: 20px; left: 50%;
     transform: translateX(-15%);
-    /* display: none; */
+    display: none;
 }
 .search_container form .no_searched.is-active {
     display: block;
@@ -80,6 +80,8 @@
 }
 .autocomplete_wrap #autoN, .autocomplete_wrap #autoP {
     border-bottom: 1px solid rgb(230, 230, 230);
+    max-height: 300px;
+    overflow: scroll;
 }
 .autocomplete_wrap #autoN div, .autocomplete_wrap #autoP div {
     width: 350px; height: auto;

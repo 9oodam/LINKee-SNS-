@@ -6,29 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
 
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
     <!-- 실시간 알림창 -->
-    <div class="live_chat_noti_container">
-        <div class="live_chat_noti">
-            <p>OOO님이</p>
-            <p>대화를 요청하였습니다.</p>
-            <p>승인 버튼을 누르면 대화방으로 이동합니다.</p>
-            <div class="btns">
-                <div class="appBtn">승인</div>
-                <div class="rejBtn">거절</div>
-            </div>
-        </div>
+    <div id="live_chat_noti_wrap">
     </div>
 
     <!-- 첫 가입자 (팔로잉X, 게시글X)일 경우에만 보여줌 -->
     <div id="forFreshman" style="display: none">
-        <h3>뉴비한테 머라 적어줄까</h3>
-        <h5>흥미로운 태그를 검색하거나 게시글을 작성해서 fllowing & follower를 늘려보세요!</h5>
+        <h3>안녕하세요! LINKee에 오신 것을 환영합니다.</h3>
+        <h5>LINKee에서는 다음과 같은 활동이 가능합니다.<br>즐거운 시간 보내세요!</h5>
+        <div class="firstInfo">
+            <img src="../nav_icon_img/icon_home.webp" alt="">
+            <p>팔로우 한 유저의 게시글 보기</p>
+            <img src="../nav_icon_img/icon_search.png" alt="">
+            <p>유저와 게시글의 태그를 검색</p>
+            <img src="../nav_icon_img/icon_plus.png" alt="">
+            <p>게시글 작성</p>
+            <img class="mypageimg" src="../nav_icon_img/default_profile.jpeg" alt="">
+            <p>마이페이지</p>
+            <img src="../nav_icon_img/icon_noti.png" alt="">
+            <p>알림창</p>
+            <img src="../nav_icon_img/icon_dm.png" alt="">
+            <p>라이브채팅</p>
+        </div>
     </div>
 
 
@@ -42,7 +47,7 @@
         <div class="top_nav">
             <div class="logo">LINKee</div>
             <div class="noti"><a href="./noti.html"><img src="../nav_icon_img/icon_noti.png" alt=""></a></div>
-            <div class="live_chat"><img src="../nav_icon_img/icon_dm.png" alt=""></div>
+            <div class="live_chat"><a href="./livechat.html"><img src="../nav_icon_img/icon_dm.png" alt=""></a></div>
         </div>
     </div>
 
@@ -56,12 +61,12 @@
         </div>
     </div>
 </body>
-<script src="../js/main.js"></script>
+<script src="../js/notiSocket.js"></script>
 <script>
-    async function getProfile() {
+    window.onload = async () => {
+        // 로그인 한 유저의 프로필 이미지
         try {
             const {data} = await axios.get('http://127.0.0.1:8080/main/getProfile', {
-                // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
                 withCredentials : true
             });
 
@@ -71,13 +76,12 @@
                 profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
             }
 
+
         } catch (error) {
             console.log(error);
         }
-    }
-    getProfile();
 
-    async function getPost() {
+        // 팔로잉 한 유저들의 게시글 가져오기
         try {
             const {data} = await axios.get('http://127.0.0.1:8080/main', {
                 withCredentials : true
@@ -91,25 +95,16 @@
                 forFreshman.style.display = "block";
             }
 
-            console.log(followingPost);
-
             followingPost.forEach((el) => {
+                //console.log(el)
                 // 해당 포스트를 작성한 유저의 nickname & profile_img
-                let writer = following.find(item => item == el.user_id);
-                let profile_img = "";
-                userAll.forEach((el2) => {
-                    if(el2.id == writer) {
-                        profile_img = el2.profile_img;
-                    }
-                });
+                let writer = userAll.find(item => item.id == el.user_id);
+                //console.log(writer);
 
                 // 날짜 계산
                 let now = new Date();
-                console.log(now);
                 let posteddate = new Date(el.createdAt);
-                console.log(posteddate)
                 let calc = (now.getTime() - posteddate.getTime()) / 1000;
-                console.log(calc);
 
                 let s = 1;
                 let m = s * 60;
@@ -120,7 +115,7 @@
                 if(calc < s) {
                     dateText = "방금 전";
                 }else if(calc < m) {
-                    dateText = calc + "초 전";
+                    dateText = Math.trunc(calc) + "초 전";
                 }else if(calc < h) {
                     dateText = Math.trunc(calc/m) + "분 전";
                 }else if(calc < d) {
@@ -134,38 +129,134 @@
                     dateText = `${year}.${month}.${date}`;
                 }
 
-                middle_body.innerHTML += `
-                <div class="post_container">
-                    <div class="post_top">
-                        <div class="profile_img"><img src="http://127.0.0.1:8080/user_img/${profile_img}" alt="profile"></div>
-                        <div class="profile_text">
-                            <p class="nickname">${writer}</p>
-                            <span>·</span>
-                            <p class="updated_time">${dateText}</p>
+                // text에 줄바꿈
+                let content = el.content.replace(/(?:\r\n|\r|\n)/g, "<br>");
+
+                if (content.includes('<br>')) {
+                    middle_body.innerHTML += `
+                    <div class="post_container">
+                        <div class="post_top">
+                            <div class="profile_img" onclick="moveToUser(${writer.nickname})"><img src="http://127.0.0.1:8080/user_img/${writer.profile_img}" alt="profile"></div>
+                            <div class="profile_text">
+                                <p class="nickname" onclick="moveToUser(${writer.nickname})">${writer.nickname}</p>
+                                <span>·</span>
+                                <p class="updated_time">${dateText}</p>
+                            </div>
+                        </div>
+
+                        <div class="post_body">
+                            <img src="http://127.0.0.1:8080/post_img/${el.img}" alt="">
+                        </div>
+
+                        <div class="post_bottom">
+                            <div class="likes"><img src="../nav_icon_img/icon_noti.png" alt=""><p>${el.likes} likes</p></div>
+                            <div class="content">
+                                <p class="content_text${el.id}"><span class="nickname" onclick="moveToUser(${writer.nickname})">${writer.nickname}</span>
+                                <span>${content}</span></p>
+                                <p class="more" id="more_btn${el.id}" onclick="seeMore(${el.id})">more</p>
+                                <p class="more" onclick="moveToDetail(${el.id})">Add a comment...</p>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="post_body">
-                        <img src="http://127.0.0.1:8080/post_img/${el.img}" alt="">
-                    </div>
-
-                    <div class="post_bottom">
-                        <div class="likes"><img src="../nav_icon_img/icon_noti.png" alt=""><p>${el.likes} likes</p></div>
-                        <div class="content">
-                            <p><span class="nickname">${writer}</span>
-                            <span>${el.content}</span></p>
-                            <p class="more">more</p>
-                            <p class="more">Add a comment...</p>
+                    `;
+                }else {
+                    middle_body.innerHTML += `
+                    <div class="post_container">
+                        <div class="post_top">
+                            <div class="profile_img" onclick="moveToUser(${writer.nickname})"><img src="http://127.0.0.1:8080/user_img/${writer.profile_img}" alt="profile"></div>
+                            <div class="profile_text">
+                                <p class="nickname" onclick="moveToUser(${writer.nickname})">${writer.nickname}</p>
+                                <span>·</span>
+                                <p class="updated_time">${dateText}</p>
+                            </div>
+                        </div>
+    
+                        <div class="post_body">
+                            <img src="http://127.0.0.1:8080/post_img/${el.img}" alt="">
+                        </div>
+    
+                        <div class="post_bottom">
+                            <div class="likes"><img src="../nav_icon_img/icon_noti.png" alt=""><p>${el.likes} likes</p></div>
+                            <div class="content">
+                                <p class="content_text"><span class="nickname" onclick="moveToUser(${writer.nickname})">${writer.nickname}</span>
+                                <span>${content}</span></p>
+                                <p class="more" onclick="moveToDetail(${el.id})">Add a comment...</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                `;
+                    `;
+                }
+            });
+
+
+            // 모든 페이지에 다 들어갈 부분!!!
+            const socket = io.connect('localhost:8080'); // 소켓 연결 시도
+            socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
+
+            socket.on("userIn", (socketID, userID) => {
+                console.log("접속 중인 유저 : ", userID);
+            });
+
+            // 채팅 방 요청 알림창
+            socket.on("requestChat", (senderID, receiverID) => {
+                let sender = userAll.find(item => item.id == senderID);
+
+                live_chat_noti_wrap.innerHTML = `
+                <div class="live_chat_noti">
+                    <p><span class="nickname">${sender.nickname}</span>님이</p>
+                    <p>대화를 요청하였습니다.</p>
+                    <p>승인 버튼을 누르면 대화방으로 이동합니다.</p>
+                    <div class="btns">
+                        <div id="appBtn" onclick="approve(${senderID}, ${receiverID})">승인</div>
+                        <div id="rejBtn" onclick="reject(${senderID}, ${receiverID})">거절</div>
+                    </div>
+                </div>`;
+
+                live_chat_noti_wrap.style.display = "block";
+            });
+
+            // 대화 요청 거절 알림창
+            socket.on("reject", (senderID, receiverID) => {
+                let receiver = userAll.find(item => item.id == receiverID);
+
+                live_chat_noti_wrap.innerHTML = `
+                <div class="live_chat_noti">
+                    <p><span class="nickname">${receiver.nickname}</span>님이</p>
+                    <p>대화를 요청을 거절하였습니다.</p>
+                    <div class="btns">
+                        <div id="appBtn" onclick="closeNoti()">확인</div>
+                    </div>
+                </div>`;
+            });
+
+            // 대화 요청 수락시 페이지 넘어감
+            socket.on("approve", (senderID, receiverID) => {
+                location.href = `./livechatRoom.html#${senderID}#${receiverID}`;
             });
 
         } catch (error) {
             console.log(error);
         }
     }
-    getPost();
+
+    // 게시글 상세 페이지로 이동
+    function moveToDetail(id) {
+        location.href = `http://127.0.0.1:5500/frontEnd/page/detail.html#${id}`;
+    }
+
+    // 유저 페이지로 이동
+    function moveToUser(nickname) {
+        location.href = `http://127.0.0.1:5500/frontEnd/page/userpage.html#${nickname}`;
+    }
+
+    // 게시글이 여러줄 이상일 경우 더보기 버튼
+    function seeMore(id) {
+        let contentText = document.querySelector(`.content_text${id}`);
+        contentText.style.height = "auto";
+        contentText.style.overflow = "visible";
+        
+        let moreBtn = document.querySelector(`#more_btn${id}`);
+        moreBtn.style.display = "none";
+    }
 </script>
 </html>

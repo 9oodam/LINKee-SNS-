@@ -5,130 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mypage</title>
+    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/search.css">
-    <style>
-        .middle_body {
-            width: 470px; height: auto;
-        }
-        .middle_body .post_container {
-            width: 100%; height: auto;
-            border-bottom: 1px solid silver;
-            padding: 20px 0 20px 0;
-        }
-
-        .post_container .post_top { /* 상단 유저 프로필, 이름 */
-            width: 100%; height: 170px;
-            position: relative;
-        }
-        .post_top .mypage_profile_img {
-            width: 100px; height: 100px;
-            position: absolute; left: 0;
-            display: flex; justify-content: center; align-items: center;
-        }
-        .post_top .mypage_profile_img img{
-            width: 70px; height: 70px;
-            border-radius: 50%;
-            border: 1px solid black;
-            cursor: pointer;
-        }
-        .post_top .mypage_profile_text {
-            width: calc(100%-60px); height: 60px;
-            position: absolute;
-            top: 20px;
-            left: 200px;
-            display: flex; flex-direction: row;
-            justify-content: center; align-items: center;
-        }
-        .post_top .button_box{
-            position: absolute;
-            bottom: 0;
-            width: 100%; height: 30px;
-            background-color: lightgray;
-            border-radius: 5px;
-
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            align-content: center;
-        }
-        .followBtn, .messageBtn{
-            width: 200px; height: 25px;
-        }
-        .followBtn{
-            background-color: lightskyblue;
-            border: none;
-            border-radius: 5px;
-        }
-        .followBtn:hover{
-            cursor: pointer;
-            background-color: rgb(50, 206, 250);
-        }
-        .messageBtn{
-            background-color: lightgray;
-            border: none;
-            border-radius: 5px;
-        }
-        .messageBtn:hover{
-            cursor: pointer;
-            background-color: rgb(159, 159, 159);
-        }
-        .edit_profile_btn{
-            width: 450px; height: 25px;
-        }
-        .edit_profile_btn:hover{
-            cursor: pointer;
-            background-color: rgb(188, 188, 188);
-        }
-        .edit_profile_btn{
-            background-color: lightgray;
-            border: none;
-            border-radius: 5px;
-        }
-        .mypage_nickname {
-            font-weight: 900;
-            font-size: 16px;
-            position: absolute;
-            top: 80px;
-            left: 17px;
-            cursor: pointer
-        }
-        .mypage_profile_text span {
-            margin: 0 5px 0 5px;
-        }
-        .my_post_num{
-            margin-right: 40px;
-
-            text-align: center;
-        }
-        .my_follower_num{
-            margin-right: 35px;
-
-            text-align: center;
-        }
-        .my_following_num{
-            text-align: center;
-        }
-        .profile_text .updated_time {
-            color: rgb(170, 170, 170);
-        }
-        .mypage_search_container2 {
-            width: 100%; height: auto;
-            position: relative; top: 10px;
-            border: 1px solid;
-        }
-        /* 전체 게시글 */
-        .mypage_search_container2 .allPosts {
-            width: 100%; height: 100%;
-            display: flex; flex-wrap: wrap;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/mypage.css">
 </head>
 <body>
-    <!-- <h2>mypage</h2> -->
+    <!-- 실시간 알림창 -->
+    <div id="live_chat_noti_wrap">
+    </div>
 
     <!-- noti / dm -->
     <div class="top_nav_container">
@@ -142,20 +30,23 @@
     <div class="middle_body">
         <div class="post_container">
             <div class="post_top">
-                <div class="mypage_profile_img"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></div>
+                <div class="profile_section">
+                    <img class="mypage_profile_img" src="" alt="">
+                </div>
                 <div class="mypage_profile_text">
                     <div class="my_post_num">
                         
                     </div>
                     <div class="my_follower_num">
-                        <span>3</span> <br/> <span>followers</span>
+                        <span></span> <br/> <span>followers</span>
                     </div>
                     <div class="my_following_num">
-                        <span>5</span> <br/> <span>following</span>
+                        <span></span> <br/> <span>following</span>
                     </div>
                 </div>
-                <div class="profile_info">
+                <div class="profile_content">
                     <p class="mypage_nickname">Nickname</p>
+                    <p class="mypage_info"></p>
                 </div>
                 <!-- <div class="button_box">
                     <form action="">
@@ -166,7 +57,9 @@
                     </form>
                 </div> -->
                 <!-- <div class="button_box"><a href="./editProfile.html">edit profile</a></div> -->
-                <a style="text-decoration: none; color: black;" href="./editProfile.html"><div class="button_box">edit profile</div></a>
+                <div class="button_box">
+                    <a class="edit_profile_btn" href="/mypage/edit">프로필 수정</a>
+                </div>
             </div>
             <div class="mypage_search_container2">
                 <div class="allPosts">
@@ -179,53 +72,162 @@
     <!-- home / search / insert / mypage -->
     <div class="bottom_nav_container">
         <div class="bottom_nav">
-            <div class="icon"><a href="./main.html"><img src="../nav_icon_img/icon_home.webp" alt=""></a></div>
-            <div class="icon"><a href="./search.html"><img src="../nav_icon_img/icon_search.png" alt=""></a></div>
-            <div class="icon"><a href="./insert.html"><img src="../nav_icon_img/icon_plus.png" alt=""></a></div>
-            <div class="profile_img"><a href="./mypage.html"><img src="../user_img/KakaoTalk_Photo_2023-05-15-10-35-59 001.jpeg" alt=""></a></div>
+            <div class="icon"><a href="/main"><img src="../nav_icon_img/icon_home.webp" alt=""></a></div>
+            <div class="icon"><a href="/search"><img src="../nav_icon_img/icon_search.png" alt=""></a></div>
+            <div class="icon"><a href="/insert"><img src="../nav_icon_img/icon_plus.png" alt=""></a></div>
+            <div id="profile_img" class="profile_img"></div>
         </div>
     </div>
 
 
 </body>
-<script src="../js/main.js"></script>
+<script src="../js/notiSocket.js"></script>
 <script>
-    async function myPost(){
+    window.onload = async () => {
+        // 로그인 한 유저의 프로필 이미지
         try {
-            const response = await axios.get("http://127.0.0.1:8080/mypage",{
+            const {data} = await axios.get('http://127.0.0.1:8080/main/getProfile', {
+                withCredentials : true
+            });
+            console.log(data);
+
+            if(data.profile_img == null) {
+                profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></a>`;
+            }else {
+                profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
+        // 로그인 한 유저의 게시글 가져오기
+        try {
+            const response = await axios.get("http://127.0.0.1:8080/mypage/mypost",{
                 withCredentials : true
             });
             console.log(response.data.data);
             console.log(response.data.user);
+            
+
+            if(response.data.user.profile_img == null) {
+                // profile_img.innerHTML = `<a href="/mypage/${response.data.user.user_id}"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
+                profile_img.innerHTML = `<a href="/mypage/${response.data.user.user_id}"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></a>`;
+            }else {
+                // profile_img.innerHTML = `<a href="/mypage/${response.data.user.user_id}"><img src="https://andybyungjoopark.com/user_img/${response.data.user.profile_img}" alt=""></a>`;
+                profile_img.innerHTML = `<a href="/mypage/${response.data.user.user_id}"><img src="http://127.0.0.1:8080/user_img/${response.data.user.profile_img}" alt=""></a>`;
+            };
+
             // console.log(response.data.user.user_id);
-            const myPosts = response.data.data;
+            const myPosts = response.data.data.reverse();
             const allPosts = document.querySelector(".allPosts");
             myPosts.forEach((el,index)=>{
                 // console.log(el);
                 if(el.img === ""){
                     const post = document.createElement("div");
+                    post.classList.add("only_text");
                     post.innerHTML = el.content;
                     console.log(post);
                     allPosts.append(post);
                 }else{
                     const post = document.createElement("div");
-                    post.innerHTML = `<img src="${el.img}" alt="">`;
+                    // post.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${el.img}" alt="">`;
+                    post.innerHTML = `<img src="http://127.0.0.1:8080/post_img/${el.img}" alt="">`;
                     console.log(post);
                     allPosts.append(post);
                 };
             });
 
-            const userID = response.data.user.user_id;
-            const myPostNum = document.querySelector(".my_post_num");
-            myPostNum.innerHTML = `<span>${myPosts.length}</span> <br/> <span>posts</span>`;
+            const mypageProfileImg = document.querySelector(".mypage_profile_img");
+            // mypageProfileImg.src = `https://andybyungjoopark.com/user_img/${response.data.user.profile_img}`;
+            mypageProfileImg.src = `http://127.0.0.1:8080/user_img/${response.data.user.profile_img}`;
 
-            profileImg = document.querySelector(".profile_img");
-            profileImg.innerHTML = `<a href="./mypage.html"><img src="../user_img/${response.data.user.profile_img}" alt=""></a>`
+            const mypageNick = document.querySelector(".mypage_nickname");
+            mypageNick.innerHTML = response.data.user.nickname;
+
+            const mypageDescription = document.querySelector(".mypage_info");
+            mypageDescription.innerHTML = response.data.user.profile_info;
+
+            const userID = response.data.user.user_id;
+            // 게시물 수
+            const myPostNum = document.querySelector(".my_post_num");
+            myPostNum.innerHTML = `<span>${myPosts.length}</span> <br/> <span>게시물</span>`;
+            
+            // 팔로워
+            let followerArr = JSON.parse(response.data.user.follower);
+            const myFollowers = document.querySelector(".my_follower_num");
+            if(followerArr == 0) {
+                myFollowers.innerHTML = `<span>0</span> <br/> <span>팔로워</span>`;
+            }else {
+                myFollowers.innerHTML = `<span>${followerArr.length}</span> <br/> <span>팔로워</span>`;
+            }
+
+            // 팔로잉
+            let followingArr = JSON.parse(response.data.user.following);
+            const myFollowings = document.querySelector(".my_following_num");
+            if(followingArr == 0) {
+                myFollowings.innerHTML = `<span>0</span> <br/> <span>팔로잉</span>`;
+            }else {
+                myFollowings.innerHTML = `<span>${followingArr.length}</span> <br/> <span>팔로잉</span>`;
+            }
 
         } catch (error) {
             console.log(error);
         }
-    };
-    myPost();
+
+        // 소켓
+        try {
+            const {data} = await axios.get('http://127.0.0.1:8080/main', {
+                withCredentials : true
+            });
+            const {user, userAll} = data;
+
+            const socket = io.connect('localhost:8080'); // 소켓 연결 시도
+            socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
+
+            socket.on("userIn", (socketID, userID) => {
+                console.log("접속 중인 유저 : ", userID);
+            });
+
+            // 채팅 방 요청 알림창
+            socket.on("requestChat", (senderID, receiverID) => {
+                let sender = userAll.find(item => item.id == senderID);
+
+                live_chat_noti_wrap.innerHTML = `
+                <div class="live_chat_noti">
+                    <p><span class="nickname">${sender.nickname}</span>님이</p>
+                    <p>대화를 요청하였습니다.</p>
+                    <p>승인 버튼을 누르면 대화방으로 이동합니다.</p>
+                    <div class="btns">
+                        <div id="appBtn" onclick="approve(${senderID}, ${receiverID})">승인</div>
+                        <div id="rejBtn" onclick="reject(${senderID}, ${receiverID})">거절</div>
+                    </div>
+                </div>`;
+
+                live_chat_noti_wrap.style.display = "block";
+            });
+
+            // 대화 요청 거절 알림창
+            socket.on("reject", (senderID, receiverID) => {
+                let receiver = userAll.find(item => item.id == receiverID);
+
+                live_chat_noti_wrap.innerHTML = `
+                <div class="live_chat_noti">
+                    <p><span class="nickname">${receiver.nickname}</span>님이</p>
+                    <p>대화를 요청을 거절하였습니다.</p>
+                    <div class="btns">
+                        <div id="appBtn" onclick="closeNoti()">확인</div>
+                    </div>
+                </div>`;
+            });
+
+            // 대화 요청 수락시 페이지 넘어감
+            socket.on("approve", (senderID, receiverID) => {
+                location.href = `./livechatRoom.html#${senderID}#${receiverID}`;
+            });
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
 </script>
 </html>

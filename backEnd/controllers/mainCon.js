@@ -21,9 +21,14 @@ exports.getPost = async (req, res) => {
         // for of : 순차적
         // forEach : 비순차적
         if(following != 0) {
-            for await (const el of following) {
-                const temp = await Post.findAll({ where: { user_id: el } });
-                followingPost.push(...temp);
+            const posts = await Post.findAll();
+
+            for await (const el of posts) {
+                for await (const el2 of following) {
+                    if(el.user_id == el2) {
+                        followingPost.push(el);
+                    }
+                }
             }
         }
 
