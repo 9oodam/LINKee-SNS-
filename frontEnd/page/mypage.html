@@ -113,19 +113,11 @@
             
 
             if(response.data.user.profile_img == null) {
-<<<<<<< HEAD
-                // profile_img.innerHTML = `<a href="/mypage/${response.data.user.user_id}"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
-                profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></a>`;
-            }else {
-                // profile_img.innerHTML = `<a href="/mypage/${response.data.user.user_id}"><img src="https://andybyungjoopark.com/user_img/${response.data.user.profile_img}" alt=""></a>`;
-                profile_img.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${response.data.user.profile_img}" alt=""></a>`;
-=======
                 profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
                 // profile_img.innerHTML = `<a href="/mypage/${response.data.user.user_id}"><img src="http://127.0.0.1:8080/user_img/default_profile.jpeg" alt=""></a>`;
             }else {
                 profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/${response.data.user.profile_img}" alt=""></a>`;
                 // profile_img.innerHTML = `<a href="/mypage/${response.data.user.user_id}"><img src="http://127.0.0.1:8080/user_img/${response.data.user.profile_img}" alt=""></a>`;
->>>>>>> e85b34041a5cc60ec18f7b208b4e80b2a5ce75a6
             };
 
             // console.log(response.data.user.user_id);
