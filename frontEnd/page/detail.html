@@ -323,10 +323,10 @@
         document.querySelector(".updated_time").innerHTML = dateText;
         document.querySelector("#deContent").innerHTML = data.a.content;
         document.querySelector("#likecount").innerHTML = data.a.likes;
-        document.querySelector(".post_body").innerHTML = `<img src="../../backEnd/post_img/${data.a.img}">`;
+        document.querySelector(".post_body").innerHTML = `<img src="https://andybyungjoopark.com/post_img/${data.a.img}" alt="">`;
         document.querySelector(".nickname").innerHTML = data.b.nickname;
         document.querySelector("p .nickname").innerHTML = data.b.nickname;
-        document.querySelector(".profile_img").innerHTML = `<img src="../user_img/${data.b.profile_img}" alt="">`;
+        document.querySelector(".profile_img").innerHTML = `<img src="https://andybyungjoopark.com/user_img/${data.b.profile_img}" alt="">`;
         
 
 
@@ -334,7 +334,7 @@
         document.querySelector(".delBtn").addEventListener("click", async function(){
             const {data} = await axios.get(`https://andybyungjoopark.com/main/delBtn/${xx}`);
             if(data == 1){
-                window.location.href= "https://andybyungjoopark.com/frontEnd/page/search.html";
+                window.location.href= "/search";
             }
         });
 
