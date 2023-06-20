@@ -48,8 +48,8 @@
                     <label for="">Info</label>
                     <textarea class="infoInput" name="profile_info" cols="30" rows="10" style="resize: none;"></textarea>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </body>
 <script>
@@ -144,7 +144,7 @@
         const nickname = document.querySelector(".nicknameInput");
         const profileInfo = document.querySelector(".infoInput");
 
-        if(nickname.value === null || profileInfo.value === null){
+        if(nickname.value === "" || profileInfo.value === ""){
             nickname.style.border = "1px solid red";
             profileInfo.style.border = "1px solid red";
         }else{
@@ -164,6 +164,7 @@
             });
     
             location.href = "https://andybyungjoopark.com/mypage";
+<<<<<<< HEAD
         }
 
 <<<<<<< HEAD
@@ -179,6 +180,9 @@
         location.href = "./mypage.html";
 =======
 >>>>>>> e85b34041a5cc60ec18f7b208b4e80b2a5ce75a6
+=======
+        };
+>>>>>>> 7eaae3f8e0569bbc1706a0b71f230c7552abae18
     };
 
     
