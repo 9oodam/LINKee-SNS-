@@ -87,12 +87,14 @@
             });
             const {user, userAll, following, followingPost} = data;
 
-            following.push(user.id);
-            console.log(following);
-            followingPost.reverse();
+            console.log(user);
 
             if(following == 0) {
                 forFreshman.style.display = "block";
+            }else{
+                following.push(user.id);
+                console.log(following);
+                followingPost.reverse();
             }
 
             followingPost.forEach((el) => {
