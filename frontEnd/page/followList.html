@@ -16,14 +16,14 @@
     </div>
 
     <div class="middle_body">
-        <div id="following_wrap">
-            <div class="text" id="followingNum">팔로잉 N명</div>
-            <div id="followings" class="followings">
-            </div>
-        </div>
         <div id="follower_wrap">
             <div class="text" id="followerNum">팔로워 N명</div>
             <div id="followers" class="followers">
+            </div>
+        </div>
+        <div id="following_wrap">
+            <div class="text" id="followingNum">팔로잉 N명</div>
+            <div id="followings" class="followings">
             </div>
         </div>
     </div>
@@ -70,17 +70,38 @@
 
         followerArr.forEach((el) => {
           let followerUser = userAll.find(user => user.id === el);
+
           let div = document.createElement("div");
-          div.innerHTML = `
-          <div class="profile_img">
-              <img src="http://127.0.0.1:8080/user_img/${followerUser.profile_img}" alt=""/>
-          </div>
-          <div class="nickname">${followerUser.nickname}</div>
-          `;
+
+          let profileImg = document.createElement("div");
+          profileImg.classList.add("profile_img");
+          profileImg.innerHTML = `<img src="http://127.0.0.1:8080/user_img/${followerUser.profile_img}" alt=""/>`;
+          
+          let nickname = document.createElement("div");
+          nickname.classList.add("nickname");
+          nickname.innerHTML = `${followerUser.nickname}`;
+          
+          let delBtn = document.createElement("p");
+          delBtn.classList.add("delFollow");
+          delBtn.innerHTML = "삭제";
+          
+          div.appendChild(profileImg);
+          div.appendChild(nickname);
+          div.appendChild(delBtn);
           followers.appendChild(div);
 
-          div.onclick = () => {
+          profileImg.onclick = () => {
             location.href = `./userpage.html#${followerUser.nickname}`;
+          }
+          nickname.onclick = () => {
+            location.href = `./userpage.html#${followerUser.nickname}`;
+          }
+          delBtn.onclick = () => {
+            console.log("눌림?")
+            axios.get(`http://127.0.0.1:8080/mypage/remove/${followerUser.id}`, {
+                withCredentials : true,
+            })
+            location.href = './followList.html';
           }
         });
 

@@ -35,13 +35,13 @@
                 </div>
                 <div class="mypage_profile_text">
                     <div class="my_post_num">
-                        
+                        <span></span> <br/> <span>게시물</span>
                     </div>
-                    <div class="my_follower_num">
-                        <span></span> <br/> <span>followers</span>
+                    <div class="my_follower_num" onclick="moveToList()">
+                        <span></span> <br/> <span>팔로워</span>
                     </div>
-                    <div class="my_following_num">
-                        <span></span> <br/> <span>following</span>
+                    <div class="my_following_num" onclick="moveToList()">
+                        <span></span> <br/> <span>팔로잉</span>
                     </div>
                 </div>
                 <div class="profile_content">
@@ -228,6 +228,11 @@
         } catch (error) {
             console.log(error);
         }
+    }
+
+
+    function moveToList() {
+        location.href = './followList.html'
     }
 </script>
 </html>

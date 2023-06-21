@@ -50,7 +50,7 @@ exports.follow = async (req, res) => {
         }else {
             if(followerArr.includes(loginUser.id)) {
                 let index = followingArr.indexOf(loginUser.id);
-                followerArr.splice(index, 1); // 이미 배열에 있으면 빼내기 == 팔로우 취소            }else {
+                followerArr.splice(index, 1); // 이미 배열에 있으면 빼내기 == 팔로우 취소
             }else {
                 followerArr.push(loginUser.id)
             }
@@ -63,6 +63,36 @@ exports.follow = async (req, res) => {
 
         await User.update({following : followingArrArr}, {where : {id : loginUser.id}});
         await User.update({follower : followerArrArr}, {where : {id : targetUser.id}});
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+exports.removeFollower = async (req, res) => {
+    const {id} = req.params; // 삭제한 유저의 아이디
+    const {user_id} = req.acc_decoded;
+    try {
+        const loginUser = await User.findOne({where : {user_id}});
+        const targetUser = await User.findOne({where : {id}});
+
+        let followerArr = JSON.parse(loginUser.follower); // 로그인 유저의 팔로워
+        let followingArr = JSON.parse(targetUser.following); // 타겟 유저의 팔로잉
+
+        if(followingArr.includes(loginUser.id)) {
+            let index = followingArr.indexOf(loginUser.id);
+            followingArr.splice(index, 1); // 이미 배열에 있으면 빼내기 == 팔로우 취소
+        }
+
+        if(followerArr.includes(targetUser.id)) {
+            let index = followingArr.indexOf(loginUser.id);
+            followerArr.splice(index, 1); // 이미 배열에 있으면 빼내기 == 팔로우 취소
+        }
+
+        let followingArrArr = JSON.stringify(followingArr)
+        let followerArrArr = JSON.stringify(followerArr)
+
+        await User.update({following : followingArrArr}, {where : {id : targetUser.id}});
+        await User.update({follower : followerArrArr}, {where : {id : loginUser.id}});
     } catch (error) {
         console.log(error);
     }
