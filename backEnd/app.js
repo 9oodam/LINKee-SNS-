@@ -108,7 +108,7 @@ app.use("/post_img",express.static(path.join(__dirname,"post_img"),{
         }else if(path.extname(filePath) === ".mp4" || 
                 path.extname(filePath) === ".webm" || 
                 path.extname(filePath) === ".ogg"){
-            res.setHeader("Content-Type","video/");
+            res.setHeader("Content-Type","video/mp4");
         };
     }
 }));
