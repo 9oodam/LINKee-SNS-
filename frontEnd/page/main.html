@@ -89,17 +89,14 @@
 
             console.log(followingPost);
 
-            // if(following == 0) {
-            //     forFreshman.style.display = "block";
-            // }else{
-            //     following.push(user.id);
-            //     console.log(following);
-            //     followingPost.reverse();
-            // };
-
-            following.push(user.id);
-            console.log(following);
-            followingPost.reverse();
+            if(following == 0) {
+                // forFreshman.style.display = "block";
+                followingPost.reverse();
+            }else{
+                following.push(user.id);
+                console.log(following);
+                followingPost.reverse();
+            };
 
             followingPost.forEach((el) => {
                 //console.log(el)
