@@ -158,7 +158,7 @@
         posts.forEach((el) => {
           if (el.img) {
             let ext = el.img.split('.').pop();
-            if(ext == "jpeg" || ext == "png" || ext == "gif" || ext == "jpg" || ext == "webp" || ext == "jfif") {
+            if(ext == "jpeg" || ext == "gif" || ext == "png" || ext == "jpg" || ext == "jfif" || ext == "webp") {
               allPosts.innerHTML += `<div onclick="moveToDetail(${el.id})"><img src="https://andybyungjoopark.com/post_img/${el.img}" alt=""></div>`;
             }else if(ext == "mp4") {
               allPosts.innerHTML += `<div onclick="moveToDetail(${el.id})"><video class="video" src="https://andybyungjoopark.com/post_img/${el.img}" autoplay loop muted></video></div>`;

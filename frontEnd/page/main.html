@@ -152,7 +152,7 @@
                 let postBody = document.createElement("div");
                 postBody.classList.add("post_body");
                 let ext = el.img.split('.').pop();
-                if(ext == "jpeg") {
+                if(ext == "jpeg" || ext == "gif" || ext == "png" || ext == "jpg" || ext == "jfif" || ext == "webp") {
                     postBody.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${el.img}" alt="">`;
                 }else if(ext == "mp4") {
                     postBody.innerHTML = `<video class="video" src="https://andybyungjoopark.com/post_img/${el.img}" autoplay loop muted controls></video>`;

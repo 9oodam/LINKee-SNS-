@@ -230,7 +230,7 @@
         if(data.a.img) {
             let ext = data.a.img.split('.').pop();
             console.log(ext);
-            if(ext == "jpeg") {
+            if(ext == "jpeg" || ext == "gif" || ext == "png" || ext == "jpg" || ext == "jfif" || ext == "webp") {
                 document.querySelector(".post_body").innerHTML = `<img src="https://andybyungjoopark.com/post_img/${data.a.img}">`;
             }else if(ext == "mp4") {
                 document.querySelector(".post_body").innerHTML = `<video class="video" src="https://andybyungjoopark.com/post_img/${data.a.img}" autoplay loop muted controls></video>`;
