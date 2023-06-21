@@ -26,6 +26,7 @@ const livechatRouter = require("./routers/livechatRouter");
 const adminRouter = require("./routers/adminRouter");
 const detailRouter = require("./routers/detailRouter");
 const editPostRouter = require("./routers/editPostRouter");
+const followListRouter = require("./routers/followListRouter");
 
 const app = express();
 
@@ -149,6 +150,7 @@ app.use("/admin", adminRouter);
 app.use("/userpage",userpageRouter);
 app.use("/searchedPost",searchedPostRouter);
 app.use("/editPost",editPostRouter);
+app.use("/followList",followListRouter);
 
 const server = app.listen(8080, () => {
     console.log("server opened");

@@ -91,24 +91,24 @@
           followers.appendChild(div);
 
           profileImg.onclick = () => {
-            location.href = `./userpage.html#${followerUser.nickname}`;
+            location.href = `/userpage#${followerUser.nickname}`;
           }
           nickname.onclick = () => {
-            location.href = `./userpage.html#${followerUser.nickname}`;
+            location.href = `/userpage#${followerUser.nickname}`;
           }
           delBtn.onclick = () => {
             console.log("눌림?")
             axios.get(`https://andybyungjoopark.com/mypage/remove/${followerUser.id}`, {
                 withCredentials : true,
             })
-            location.href = './followList.html';
+            location.href = '/followList';
           }
         });
 
 
 
         ////////////////////////////////////////////
-        const socket = io.connect('localhost:8080');
+        const socket = io.connect('https://andybyungjoopark.com');
         socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
 
         socket.on("userIn", (socketID, userID) => {

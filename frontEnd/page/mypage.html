@@ -136,9 +136,9 @@
                     // post.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${el.img}" alt="">`;
                     let ext = el.img.split('.').pop();
                     if(ext == "jpeg" || ext == "gif" || ext == "png" || ext == "jpg" || ext == "jfif" || ext == "webp") {
-                        post.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${el.img}" alt="">`;
+                        post.innerHTML = `<div onclick="moveToDetail(${el.id})"><img src="https://andybyungjoopark.com/post_img/${el.img}" alt=""></div>`;
                     }else if(ext == "mp4") {
-                        post.innerHTML += `<video class="video" src="https://andybyungjoopark.com/post_img/${el.img}" autoplay loop muted></video>`;
+                        post.innerHTML += `<div onclick="moveToDetail(${el.id})"><video class="video" src="https://andybyungjoopark.com/post_img/${el.img}" autoplay loop muted></video></div>`;
                     }
                     console.log(post);
                     allPosts.append(post);
@@ -240,9 +240,12 @@
         }
     }
 
-
     function moveToList() {
-        location.href = './followList.html'
-    }
+        location.href = '/followList';
+    };
+
+    function moveToDetail(postID) {
+      location.href = `/detail#${postID}`;
+    };
 </script>
 </html>
