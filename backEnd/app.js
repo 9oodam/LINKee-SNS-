@@ -83,20 +83,6 @@ app.use("/user_img",express.static(path.join(__dirname,"user_img"),{
     }
 }));
 
-// app.use("/post_img",express.static(path.join(__dirname,"post_img"),{
-//     setHeaders : (res,filePath) => {
-//         const fileExtension = path.extname(filePath).toLowerCase();
-//         if (fileExtension === ".png" ||
-//             fileExtension === ".webp" ||
-//             fileExtension === ".jpg" ||
-//             fileExtension === ".jpeg" ||
-//             fileExtension === ".gif" ||
-//             fileExtension === ".jfif"){
-//             res.setHeader("Content-Type","image/" + fileExtension.substring(1));
-//         };
-//     }
-// }));
-
 app.use("/post_img",express.static(path.join(__dirname,"post_img"),{
     setHeaders : (res,filePath) => {
         if (path.extname(filePath) === ".png" ||
