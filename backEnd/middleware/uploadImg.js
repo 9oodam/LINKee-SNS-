@@ -13,7 +13,7 @@ exports.uploadImg = multer({
         }
     }),
 
-    limits : {fileSize : 1000}
+    limits : {fileSize : 1000 * 1024 * 1024}
 });
 
 exports.updateProfileImg = multer({
