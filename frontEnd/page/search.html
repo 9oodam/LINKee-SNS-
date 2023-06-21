@@ -115,7 +115,12 @@
 
         posts.forEach((el) => {
           if (el.img) {
-            allPosts.innerHTML += `<div><img src="http://127.0.0.1:8080/post_img/${el.img}" alt=""></div>`;
+            let ext = el.img.split('.').pop();
+            if(ext == "jpeg") {
+              allPosts.innerHTML += `<div onclick="moveToDetail(${el.id})"><img src="http://127.0.0.1:8080/post_img/${el.img}" alt=""></div>`;
+            }else if(ext == "mp4") {
+              allPosts.innerHTML += `<div onclick="moveToDetail(${el.id})"><video class="video" src="http://127.0.0.1:8080/post_img/${el.img}" autoplay loop muted></video></div>`;
+            }
           }
         });
       } catch (error) {
@@ -234,5 +239,9 @@
       }
     }
     searchThings();
+
+    function moveToDetail(postID) {
+      location.href = `./detail.html#${postID}`;
+    }
   </script>
 </html>
