@@ -89,6 +89,7 @@ exports.getcontents = async (req,res)=>{
             for(let i=0;i<e.length;i++){
                 const data = await User.findOne({where:{id:e[i]}});
                 e_nick[i] = data.nickname;
+                e_profileImg[i] = data.profile_img;
             }
             for (let i = 0; i <d_comment_id.length; i++) {
                 s_comment[i] = [];
@@ -99,7 +100,6 @@ exports.getcontents = async (req,res)=>{
                     s_comment[i][j] = data[j].dataValues;
                 }
             }
-            console.log(e_content);
         }
         
         let users_id_ = b.user_id;
