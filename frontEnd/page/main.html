@@ -153,9 +153,9 @@
                 postBody.classList.add("post_body");
                 let ext = el.img.split('.').pop();
                 if(ext == "jpeg" || ext == "gif" || ext == "png" || ext == "jpg" || ext == "jfif" || ext == "webp") {
-                    postBody.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${el.img}" alt="">`;
+                    postBody.innerHTML = `<div onclick="moveToDetail(${el.id})"><img src="https://andybyungjoopark.com/post_img/${el.img}" alt=""></div>`;
                 }else if(ext == "mp4") {
-                    postBody.innerHTML = `<video class="video" src="https://andybyungjoopark.com/post_img/${el.img}" autoplay loop muted controls></video>`;
+                    postBody.innerHTML = `<div onclick="moveToDetail(${el.id})"><video class="video" src="https://andybyungjoopark.com/post_img/${el.img}" autoplay loop muted></video></div>`;
                 }
                 postContainer.appendChild(postBody);
 
