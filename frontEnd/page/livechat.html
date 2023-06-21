@@ -43,7 +43,7 @@
 <script>
     window.onload = async () => {
         try {
-            const {data} = await axios.get('https://andybyungjoopark.com/chat/getFriends', {
+            const {data} = await axios.get('https://andybyungjoopark.com/livechat/getFriends', {
                 withCredentials : true
             });
             const {user, userAll} = data;
