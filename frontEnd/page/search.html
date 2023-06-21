@@ -165,9 +165,9 @@
           if (el.img) {
             let ext = el.img.split('.').pop();
             if(ext == "jpeg") {
-              allPosts.innerHTML += `<div onclick="moveToDetail(${el.id})"><img src="http://127.0.0.1:8080/post_img/${el.img}" alt=""></div>`;
+              allPosts.innerHTML += `<div onclick="moveToDetail(${el.id})"><img src="https://andybyungjoopark.com/post_img/${el.img}" alt=""></div>`;
             }else if(ext == "mp4") {
-              allPosts.innerHTML += `<div onclick="moveToDetail(${el.id})"><video class="video" src="http://127.0.0.1:8080/post_img/${el.img}" autoplay loop muted></video></div>`;
+              allPosts.innerHTML += `<div onclick="moveToDetail(${el.id})"><video class="video" src="https://andybyungjoopark.com/post_img/${el.img}" autoplay loop muted></video></div>`;
             }
           }
         });

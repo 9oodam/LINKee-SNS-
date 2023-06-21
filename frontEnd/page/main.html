@@ -141,7 +141,7 @@
                 let postTop = document.createElement("div");
                 postTop.classList.add("post_top");
                 postTop.innerHTML = `
-                <div class="profile_img" onclick="moveToUser('${writer.nickname}')"><img src="http://127.0.0.1:8080/user_img/${writer.profile_img}" alt="profile"></div>
+                <div class="profile_img" onclick="moveToUser('${writer.nickname}')"><img src="https://andybyungjoopark.com/user_img/${writer.profile_img}" alt="profile"></div>
                 <div class="profile_text">
                     <p class="nickname" onclick="moveToUser('${writer.nickname}')">${writer.nickname}</p>
                     <span>·</span>
@@ -153,9 +153,9 @@
                 postBody.classList.add("post_body");
                 let ext = el.img.split('.').pop();
                 if(ext == "jpeg") {
-                    postBody.innerHTML = `<img src="http://127.0.0.1:8080/post_img/${el.img}" alt="">`;
+                    postBody.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${el.img}" alt="">`;
                 }else if(ext == "mp4") {
-                    postBody.innerHTML = `<video class="video" src="http://127.0.0.1:8080/post_img/${el.img}" autoplay loop muted controls></video>`;
+                    postBody.innerHTML = `<video class="video" src="https://andybyungjoopark.com/post_img/${el.img}" autoplay loop muted controls></video>`;
                 }
                 postContainer.appendChild(postBody);
 

@@ -75,7 +75,7 @@
 
           let profileImg = document.createElement("div");
           profileImg.classList.add("profile_img");
-          profileImg.innerHTML = `<img src="http://127.0.0.1:8080/user_img/${followerUser.profile_img}" alt=""/>`;
+          profileImg.innerHTML = `<img src="https://andybyungjoopark.com/user_img/${followerUser.profile_img}" alt=""/>`;
           
           let nickname = document.createElement("div");
           nickname.classList.add("nickname");
@@ -98,7 +98,7 @@
           }
           delBtn.onclick = () => {
             console.log("눌림?")
-            axios.get(`http://127.0.0.1:8080/mypage/remove/${followerUser.id}`, {
+            axios.get(`https://andybyungjoopark.com/mypage/remove/${followerUser.id}`, {
                 withCredentials : true,
             })
             location.href = './followList.html';
