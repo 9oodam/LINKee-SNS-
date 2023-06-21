@@ -72,6 +72,7 @@ exports.getcontents = async (req,res)=>{
         let e_content;
         let e = [];
         let e_nick = [];
+        let e_profileImg = [];
         let d_comment_id = [];
         let s_comment = [[]];
         
