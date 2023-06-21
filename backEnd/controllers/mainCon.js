@@ -13,25 +13,25 @@ exports.getPost = async (req, res) => {
 
         // 로그인 된 유저가 팔로우 하고 있는 유저들
         const following = JSON.parse(user.following);
+        following.push(user.id);
         console.log(following);
 
         // 팔로우 하고 있는 유저들의 게시글
-        // const followingPost = [];
-        const followingPost = await Post.findAll();
+        const followingPost = [];
 
         // for of : 순차적
         // forEach : 비순차적
-        // if(following != 0) {
-        //     const posts = await Post.findAll();
+        if(following != 0) {
+            const posts = await Post.findAll();
 
-        //     for await (const el of posts) {
-        //         for await (const el2 of following) {
-        //             if(el.user_id == el2) {
-        //                 followingPost.push(el);
-        //             }
-        //         }
-        //     }
-        // }
+            for await (const el of posts) {
+                for await (const el2 of following) {
+                    if(el.user_id == el2) {
+                        followingPost.push(el);
+                    }
+                }
+            }
+        }
 
         res.json({user, userAll, following, followingPost});
         
