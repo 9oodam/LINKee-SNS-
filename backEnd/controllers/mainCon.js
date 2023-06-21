@@ -34,11 +34,9 @@ exports.getPost = async (req, res) => {
                     }
                 }
             }
-        }
-
-        // if(following == 0){
-
-        // }
+        }else{
+            followingPost.push(user.dataValues.id);
+        };
 
         res.json({user, userAll, following, followingPost});
         
