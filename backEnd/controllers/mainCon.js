@@ -62,7 +62,7 @@ exports.getcontents = async (req,res)=>{
         const param = req.params.id;
         const data = await Post.findOne({where:{id:param}});
         let posts_User_id = data.dataValues.user_id;
-        const comments = await BigComment.findAll({where : {post_id : param}})
+        const [comments] = await BigComment.findAll({where : {post_id : param}})
         console.log("뭘 가져왔냐 : ",comments);
         // post의 user_id 가 users 컬럼의 id임!!!!!!!!!!!!!!!!!!!!
         const b = await User.findOne({where:{id:posts_User_id}});
