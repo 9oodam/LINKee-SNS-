@@ -89,10 +89,17 @@ app.use("/post_img",express.static(path.join(__dirname,"post_img"),{
             path.extname(filePath) === ".webp" ||
             path.extname(filePath) === ".jpg" ||
             path.extname(filePath) === ".jpeg" ||
-            path.extname(filePath) === ".gif" ||
             path.extname(filePath) === ".jfif"){
-            res.setHeader("Content-Type","image/" + fileExtenstion.substring(1));
-        }
+            res.setHeader("Content-Type","image/jpeg");
+        };
+    }
+}));
+
+app.use("/post_img",express.static(path.join(__dirname,"post_img"),{
+    setHeaders : (res,filePath) => {
+        if(path.extname(filePath) === ".gif"){
+            res.setHeader("Content-Type","image/gif");
+        };
     }
 }));
 
