@@ -97,7 +97,7 @@
     window.onload = async () =>{
         let x = location.hash;
         let xx = x.replace("#", "");
-        const {data} = await axios.get(`https://andybyungjoopark.com/main/getcontents/${xx},`,{
+        const {data} = await axios.get(`https://andybyungjoopark.com/main/getcontents/${xx}`,{
             withCredentials : true
         });
 
