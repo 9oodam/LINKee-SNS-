@@ -91,11 +91,12 @@ app.use("/post_img",express.static(path.join(__dirname,"post_img"),{
             path.extname(filePath) === ".jpeg" ||
             path.extname(filePath) === ".jfif"){
             res.setHeader("Content-Type","image/jpeg");
-        }else if(path.extname(filePath) === ".mp4" || 
-                path.extname(filePath) === ".webm" || 
-                path.extname(filePath) === ".ogg"){
-            res.setHeader("Content-Type","video/mp4");
         };
+        // else if(path.extname(filePath) === ".mp4" || 
+        //         path.extname(filePath) === ".webm" || 
+        //         path.extname(filePath) === ".ogg"){
+        //     res.setHeader("Content-Type","video/mp4");
+        // };
     }
 }));
 
