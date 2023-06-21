@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 const {isLogin} = require("../middleware/isLogin");
-const {myPost, follow, cancel,mypage,editProfile} = require("../controllers/mypageCon");
+const {myPost, follow, removeFollower,mypage,editProfile} = require("../controllers/mypageCon");
 const {uploadImg,updateProfileImg} = require("../middleware/uploadImg");
 
 const path = require("path");
@@ -30,5 +30,8 @@ router.post("/edit",isLogin, updateProfileImg.single("img"),(err,req,res,next)=>
 // router.post("/editPic",isLogin,updateProfileImg.single("img"),(req,res)=>{
 //     console.log(req);
 // });
+
+// followList
+router.get("/remove/:id", isLogin, removeFollower)
 
 module.exports = router;

@@ -117,6 +117,12 @@
 .my_following_num{
     text-align: center;
 }
+.my_follower_num, .my_following_num {
+    cursor: pointer;
+}
+.my_follower_num:hover, .my_following_num:hover {
+    transform: scale(105%);
+}
 .profile_text .updated_time {
     color: rgb(170, 170, 170);
 }

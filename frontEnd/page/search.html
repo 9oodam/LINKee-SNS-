@@ -73,55 +73,19 @@
   </body>
   <script>
     window.onload = async ()=>{
-        try {
-          const { data } = await axios.get(
-            "https://andybyungjoopark.com/main/getProfile",
-            {
-              // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
-              withCredentials: true,
-            }
-          );
-
-          console.log(data);
-
-          if (data.profile_img == null) {
-            profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
-          } else {
-            profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/${data.profile_img}" alt=""></a>`;
-          }
-        } catch (error) {
-          console.log(error);
-        };
-
-        // 모든 게시글 가져오기
-        try {
-          const { data } = await axios.get("https://andybyungjoopark.com/search/post", {
-            withCredentials: true,
-          });
-          const { users, posts } = data;
-          posts.reverse();
-
-          posts.forEach((el) => {
-            if (el.img) {
-              allPosts.innerHTML += `<div><a href="/detail#${el.id}"><img src="https://andybyungjoopark.com/post_img/${el.img}" alt=""></a></div>`;
-            }
-          });
-        } catch (error) {
-          console.log(error);
-        }
-
-        // 소켓
-        try {
+      // 소켓
+      try {
             const {data} = await axios.get('https://andybyungjoopark.com/main/posts', {
                 withCredentials : true
             });
             const {user, userAll} = data;
-            
+
             const socket = io.connect('https://andybyungjoopark.com'); // 소켓 연결 시도
             socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
+
             socket.on("userIn", (socketID, userID) => {
                 console.log("접속 중인 유저 : ", userID);
-                console.log("접속 중인 유저의 소켓 아이디 : ", socketID);
+                console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
             });
 
             // 채팅 방 요청 알림창
@@ -165,6 +129,53 @@
             console.log(error);
         }
     };
+      async function getProfile(){
+        try {
+          const { data } = await axios.get(
+            "https://andybyungjoopark.com/main/getProfile",
+            {
+              // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
+              withCredentials: true,
+            }
+          );
+
+          console.log(data);
+
+          if (data.profile_img == null) {
+            profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
+          } else {
+            profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/${data.profile_img}" alt=""></a>`;
+          }
+        } catch (error) {
+          console.log(error);
+        };
+      };
+      getProfile();
+
+      // 모든 게시글 가져오기
+      async function getAllPost(){
+        try {
+          const { data } = await axios.get("https://andybyungjoopark.com/search/post", {
+            withCredentials: true,
+          });
+          const { users, posts } = data;
+          posts.reverse();
+
+        posts.forEach((el) => {
+          if (el.img) {
+            let ext = el.img.split('.').pop();
+            if(ext == "jpeg") {
+              allPosts.innerHTML += `<div onclick="moveToDetail(${el.id})"><img src="http://127.0.0.1:8080/post_img/${el.img}" alt=""></div>`;
+            }else if(ext == "mp4") {
+              allPosts.innerHTML += `<div onclick="moveToDetail(${el.id})"><video class="video" src="http://127.0.0.1:8080/post_img/${el.img}" autoplay loop muted></video></div>`;
+            }
+          }
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getAllPost();
 
     // 검색 자동완성
     async function searchThings() {
@@ -276,5 +287,9 @@
       }
     }
     searchThings();
+
+    function moveToDetail(postID) {
+      location.href = `./detail.html#${postID}`;
+    }
   </script>
 </html>

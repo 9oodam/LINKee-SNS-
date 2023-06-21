@@ -228,7 +228,13 @@
         document.querySelector("#deContent").innerHTML = content;
         document.querySelector("#likecount").innerHTML = data.a.likes;
         if(data.a.img) {
-            document.querySelector(".post_body").innerHTML = `<img src="https://andybyungjoopark.com/post_img/${data.a.img}">`;
+            let ext = data.a.img.split('.').pop();
+            console.log(ext);
+            if(ext == "jpeg") {
+                document.querySelector(".post_body").innerHTML = `<img src="http://127.0.0.1:8080/post_img/${data.a.img}">`;
+            }else if(ext == "mp4") {
+                document.querySelector(".post_body").innerHTML = `<video class="video" src="http://127.0.0.1:8080/post_img/${data.a.img}" autoplay loop muted controls></video>`;
+            }
         }else {
             document.querySelector(".post_body").innerHTML = "";
         }

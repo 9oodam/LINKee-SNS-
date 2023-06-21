@@ -207,7 +207,8 @@ io.on("connection", (socket) => {
     socket.on("approve", (senderID, receiverID) => {
         let senderIndex = userID.indexOf(senderID);
         let receiverIndex = userID.indexOf(receiverID);
-        io.to(socketID[senderIndex], socketID[receiverIndex]).emit("approve", senderID, receiverID);
+        io.to(socketID[senderIndex]).emit("approve", senderID, receiverID);
+        io.to(socketID[receiverIndex]).emit("approve", senderID, receiverID);
     });
 
     // 채팅
