@@ -10,7 +10,7 @@ exports.getPost = async (req, res) => {
     try {
         // 로그인 된 유저
         const user = await User.findOne({where : {user_id}});
-        // console.log(user.dataValues);
+        console.log(user.dataValues);
 
         // 모든 유저
         const userAll = await User.findAll();
@@ -35,6 +35,10 @@ exports.getPost = async (req, res) => {
                 }
             }
         }
+
+        // if(following == 0){
+
+        // }
 
         res.json({user, userAll, following, followingPost});
         
