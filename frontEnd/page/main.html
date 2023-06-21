@@ -47,7 +47,7 @@
         <div class="top_nav">
             <div class="logo">LINKee</div>
             <div class="noti"><a href="/noti"><img src="../nav_icon_img/icon_noti.png" alt=""></a></div>
-            <div class="live_chat"><a href="/chat"><img src="../nav_icon_img/icon_dm.png" alt=""></a></div>
+            <div class="live_chat"><a href="/livechat"><img src="../nav_icon_img/icon_dm.png" alt=""></a></div>
         </div>
     </div>
 
@@ -235,7 +235,7 @@
 
             // 대화 요청 수락시 페이지 넘어감
             socket.on("approve", (senderID, receiverID) => {
-                location.href = `/livechatRoom#${senderID}#${receiverID}`;
+                location.href = `/livechat/room#${senderID}#${receiverID}`;
             });
 
         } catch (error) {

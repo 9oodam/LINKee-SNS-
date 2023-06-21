@@ -11,7 +11,7 @@ router.get("/",isLogin,(req,res)=>{
 });
 
 // livechatRoom.html 띄우기
-router.get("/livechatRoom",isLogin,(req,res)=>{
+router.get("/room",isLogin,(req,res)=>{
     res.sendFile("/home/ubuntu/frontEnd/page/livechatRoom.html");
 });
 

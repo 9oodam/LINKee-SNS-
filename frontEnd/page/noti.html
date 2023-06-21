@@ -82,7 +82,7 @@
 
             // 대화 요청 수락시 페이지 넘어감
             socket.on("approve", (senderID, receiverID) => {
-                location.href = `/livechatRoom#${senderID}#${receiverID}`;
+                location.href = `/livechat/room#${senderID}#${receiverID}`;
             });
 
         } catch (error) {

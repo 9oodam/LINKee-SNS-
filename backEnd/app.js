@@ -162,7 +162,7 @@ app.use("/insert", insertRouter);
 app.use("/search", searchRouter);
 app.use("/mypage",mypageRouter);
 app.use("/noti", notiRouter);
-app.use("/chat", livechatRouter);
+app.use("/livechat", livechatRouter);
 app.use("/admin", adminRouter);
 app.use("/userpage",userpageRouter);
 app.use("/searchedPost",searchedPostRouter);

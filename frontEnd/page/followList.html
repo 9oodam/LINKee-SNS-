@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>follow list</title>
-    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+    <script src="https://andybyungjoopark.com/socket.io/socket.io.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="../css/nav.css" />
     <link rel="stylesheet" href="../css/followList.css">
@@ -39,7 +39,7 @@
   <script>
     window.onload = async () => {
       try {
-        const {data} = await axios.get('http://127.0.0.1:8080/main', {
+        const {data} = await axios.get('https://andybyungjoopark.com/main', {
             withCredentials : true
         });
         const {user, userAll} = data;
@@ -53,14 +53,14 @@
           let div = document.createElement("div");
           div.innerHTML = `
           <div class="profile_img">
-              <img src="http://127.0.0.1:8080/user_img/${followingUser.profile_img}" alt=""/>
+              <img src="https://andybyungjoopark.com/user_img/${followingUser.profile_img}" alt=""/>
           </div>
           <div class="nickname">${followingUser.nickname}</div>
           `;
           followings.appendChild(div);
 
           div.onclick = () => {
-            location.href = `./userpage.html#${followingUser.nickname}`;
+            location.href = `/userpage#${followingUser.nickname}`;
           }
         });
 
@@ -73,7 +73,7 @@
           let div = document.createElement("div");
           div.innerHTML = `
           <div class="profile_img">
-              <img src="http://127.0.0.1:8080/user_img/${followerUser.profile_img}" alt=""/>
+              <img src="https://andybyungjoopark.com/user_img/${followerUser.profile_img}" alt=""/>
           </div>
           <div class="nickname">${followerUser.nickname}</div>
           `;
@@ -130,7 +130,7 @@
 
         // 대화 요청 수락시 페이지 넘어감
         socket.on("approve", (senderID, receiverID) => {
-            location.href = `./livechatRoom.html#${senderID}#${receiverID}`;
+            location.href = `/livechat/room#${senderID}#${receiverID}`;
         });
 
 
