@@ -31,11 +31,17 @@ exports.getPost = async (req, res) => {
                 for await (const el2 of following) {
                     if(el.user_id == el2) {
                         followingPost.push(el);
-                    }
-                }
-            }
+                        console.log(followingPost);
+                    };
+                };
+            };
         }else{
-            followingPost.push(user.dataValues.id);
+            const posts = await Post.findAll();
+            for await (const el of posts){
+                if(el.user_id == user.dataValues.id){
+                    followingPost.push(el);
+                };
+            };
         };
 
         res.json({user, userAll, following, followingPost});
