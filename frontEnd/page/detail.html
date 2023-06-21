@@ -292,7 +292,11 @@
         // document.querySelector("p .nickname").innerHTML = data.b.nickname;
         // document.querySelector(".profile_img").innerHTML = `<img src="https://andybyungjoopark.com/user_img/${data.b.profile_img}" alt="">`;
         
-
+        // 수정버튼 클릭시
+        const editBtn = document.querySelector(".editBtn");
+        editBtn.onclick = ()=>{
+            location.href = "/editPost";
+        };
 
         // 삭제버튼 클릭시
         document.querySelector(".delBtn").addEventListener("click", async function(){
