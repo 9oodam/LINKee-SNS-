@@ -25,7 +25,6 @@ exports.myPost = async (req,res)=>{
 exports.follow = async (req, res) => {
     const {user_id} = req.acc_decoded; // 로그인 한 유저
     const {id} = req.params; // 로그인 한 유저가 팔로우 한 유저
-    console.log(user_id, id);
     try {
         const loginUser = await User.findOne({where : {user_id}});
         const targetUser = await User.findOne({where : {id}});
