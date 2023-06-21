@@ -77,7 +77,6 @@ exports.getcontents = async (req,res)=>{
         
 
         // 댓글 가져오기
-        
         const comment = await BigComment.findAll({where:{post_id:param}});
         if(comment == ""){
             e = 1;
@@ -100,6 +99,7 @@ exports.getcontents = async (req,res)=>{
                     s_comment[i][j] = data[j].dataValues;
                 }
             }
+            console.log(e_content);
         }
         
         let users_id_ = b.user_id;
