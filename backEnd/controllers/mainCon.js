@@ -112,7 +112,7 @@ exports.getcontents = async (req,res)=>{
             d = 0;
         }
 
-        res.json({a, b, d, e_content, e, e_nick, d_comment_id, s_comment});
+        res.json({a, b, d, e_content, e, e_nick, e_profileImg, d_comment_id, s_comment});
     } catch (error) {
         console.log(error);
     }
