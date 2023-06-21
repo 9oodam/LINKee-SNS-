@@ -11,13 +11,8 @@ router.get("/",isLogin,(req,res)=>{
 });
 
 // livechatRoom.html 띄우기
-router.get("/room",isLogin,(req,res)=>{
+router.get("/livechatRoom",isLogin,(req,res)=>{
     res.sendFile("/home/ubuntu/frontEnd/page/livechatRoom.html");
-});
-
-// test chat html 띄우기
-router.get("/test",(req,res)=>{
-    res.sendFile("/home/ubuntu/frontEnd/page/chatTest.html");
 });
 
 // livechat.html : 맞팔 유저 중 로그인/로그아웃 확인
