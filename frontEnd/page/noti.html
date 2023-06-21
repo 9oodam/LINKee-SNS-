@@ -105,20 +105,26 @@
                     if(el.followNoti == "1") {
                         textDiv.innerHTML = `<span class="nickname">${sender}</span>님이 회원님을 팔로우하기 시작했습니다. <span class="date">${dateText}</span>`;
                         
+                        let isfollowArr = JSON.parse(user.following);
                         let followBtn = document.createElement("div");
-
-                        let followingArr = JSON.parse(user.following);
                         // 내가 상대방을 이미 팔로우 하고 있는 경우
-                        if(followingArr.includes(senderID)) {
-                            followBtn.classList.add("follow_btn_already");
-                            followBtn.innerHTML = '팔로잉';
-                        }
-                        // 내가 상대방을 아직 팔로우 하고 있지 않은 경우
-                        else {
+                        if(isfollowArr == 0 || !isfollowArr.includes(senderID)) {
                             followBtn.classList.add("follow_btn");
                             followBtn.innerHTML = '팔로우';
                         }
+                        // 내가 상대방을 아직 팔로우 하고 있지 않은 경우
+                        else {
+                            followBtn.classList.add("follow_btn_already");
+                            followBtn.innerHTML = '팔로잉';
+                        }
                         rightDiv.appendChild(followBtn);
+
+                        followBtn.onclick = () => {
+                            axios.get(`http://127.0.0.1:8080/mypage/follow/${user.id}`, {
+                                withCredentials : true,
+                            })
+                            location.reload();
+                        }
 
                     }else {
                         let postImgDiv = document.createElement("div");

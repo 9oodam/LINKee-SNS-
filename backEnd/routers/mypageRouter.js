@@ -1,8 +1,12 @@
 const router = require("express").Router();
 
 const {isLogin} = require("../middleware/isLogin");
-const {myPost} = require("../controllers/mypageCon");
+const {myPost, follow, cancel} = require("../controllers/mypageCon");
 
-router.get("/mypost",isLogin,myPost);
+// mypage
+router.get("/mypost", isLogin, myPost);
+
+// userpage
+router.get("/follow/:id", isLogin, follow); // 팔로우
 
 module.exports = router;
