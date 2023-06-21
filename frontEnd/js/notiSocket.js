@@ -13,7 +13,7 @@ function requestChat(senderID, receiverID) {
 function approve(senderID, receiverID) {
     liveChatNoti.style.display = "none";
     socket.emit("approve", senderID, receiverID);
-    location.href = `/livechatRoom#${senderID}#${receiverID}`;
+    location.href = `/livechat/room#${senderID}#${receiverID}`;
 }
 
 // 대화 요청 거절
