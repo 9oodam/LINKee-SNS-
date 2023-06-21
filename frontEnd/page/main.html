@@ -87,6 +87,7 @@
             });
             const {user, userAll, following, followingPost} = data;
 
+            following.push(user.id);
             console.log(following);
             followingPost.reverse();
 
@@ -137,7 +138,7 @@
                         <div class="post_top">
                             <div class="profile_img" onclick="moveToUser(${writer.nickname})"><img src="https://andybyungjoopark.com/user_img/${writer.profile_img}" alt="profile"></div>
                             <div class="profile_text">
-                                <p class="nickname" onclick="moveToUser(${writer.nickname})">${writer.nickname}</p>
+                                <p class="nickname" onclick="moveToUser('${writer.nickname}')">${writer.nickname}</p>
                                 <span>·</span>
                                 <p class="updated_time">${dateText}</p>
                             </div>

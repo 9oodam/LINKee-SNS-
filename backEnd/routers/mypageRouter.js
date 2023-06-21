@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 const {isLogin} = require("../middleware/isLogin");
-const {myPost,mypage,editProfile} = require("../controllers/mypageCon");
+const {myPost, follow, cancel,mypage,editProfile} = require("../controllers/mypageCon");
 const {uploadImg,updateProfileImg} = require("../middleware/uploadImg");
 
 const path = require("path");
@@ -11,6 +11,9 @@ router.get("/",async (req,res)=>{
 });
 
 router.get("/mypost",isLogin,myPost);
+
+// userpage
+router.get("/follow/:id", isLogin, follow); // 팔로우
 
 router.get("/users",isLogin,mypage);
 

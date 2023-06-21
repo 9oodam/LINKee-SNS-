@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>userpage</title>
+    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://andybyungjoopark.com/socket.io/socket.io.js"></script>
     <link rel="stylesheet" href="../css/nav.css">
@@ -47,11 +48,8 @@
                     <p class="mypage_info"></p>
                 </div>
                 <div class="button_box">
-                    <form action="" id="btn_form">
-                    </form>
-                    <form action="">
-                        <button class="messageBtn">메시지</button>
-                    </form>
+                    <div id="btn_form"></div>
+                    <button class="messageBtn" onclick="moveToChat()">메시지</button>
                 </div>
                 <!-- <div class="button_box"><a href="./editProfile.html">edit profile</a></div> -->
                 <!-- <a style="text-decoration: none; color: black;" href="/mypage/edit"><div class="button_box">edit profile</div></a> -->
@@ -65,7 +63,7 @@
     </div>
 
 </body>
-<script src="../js/main.js"></script>
+<script src="../js/notiSocket.js"></script>
 <script>
     window.onload = async () => {
         let x = location.hash;
@@ -119,29 +117,28 @@
             // 로그인 한 유저가 검색한 유저를 팔로우 하고 있는지 유무
             let isfollowArr = JSON.parse(loginUser.following);
             console.log(isfollowArr);
-            if(isfollowArr === 0){
-                btn_form.innerHTML = '<button class="followBtn">팔로우</button>';
-            }else{
-                if(!isfollowArr.includes(user.id)) {
-                    btn_form.innerHTML = '<button class="followBtn">팔로우</button>';
-                }else {
-                    btn_form.innerHTML = '<button class="followBtnAlready">팔로잉</button>';
-                };
-            };
+            let followBtn = document.createElement("button");
+            if(isfollowArr == 0 || !isfollowArr.includes(user.id)) {
+                followBtn.classList.add("followBtn");
+                followBtn.innerHTML = "팔로우";
+                btn_form.appendChild(followBtn);
+            }else if(isfollowArr.includes(user.id)) {
+                followBtn.classList.add("followBtnAlready");
+                followBtn.innerHTML = "팔로잉";
+                btn_form.appendChild(followBtn);
+            }
 
-            console.log(window.location.hash);
-            let userpageID = window.location.hash.slice(1,window.location.hash.length);
-            console.log(userpageID);
-            let followArr = [];
-            let followBtn = document.querySelector(".followBtn");
-            followBtn.onclick = ()=>{
-                followArr.push(userpageID);
-            };
+            followBtn.onclick = () => {
+                axios.get(`http:s//andybyungjoopark.com/mypage/follow/${user.id}`, {
+                    withCredentials : true,
+                })
+                location.reload();
+            }
 
             const allPosts = document.querySelector(".allPosts");
             posts.forEach((el,index)=>{
+                const post = document.createElement("div");
                 if(el.img === ""){
-                    const post = document.createElement("div");
                     post.classList.add("only_text");
                     let content = el.content.replace(/(?:\r\n|\r|\n)/g, "<br>");
                     post.innerHTML = content;
@@ -152,6 +149,9 @@
                     console.log(post);
                     allPosts.append(post);
                 };
+                post.onclick = () => {
+                    location.href = `./detail.html#${el.id}`;
+                }
             });
 
 
@@ -215,5 +215,10 @@
             console.log(error);
         };
     }
+
+    function moveToChat() {
+        console.log("눌림?")
+        location.href = './livechat.html';
+    };
 </script>
 </html>

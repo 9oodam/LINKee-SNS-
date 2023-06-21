@@ -22,6 +22,52 @@ exports.myPost = async (req,res)=>{
     }
 };
 
+exports.follow = async (req, res) => {
+    const {user_id} = req.acc_decoded; // 로그인 한 유저
+    const {id} = req.params; // 로그인 한 유저가 팔로우 한 유저
+    try {
+        const loginUser = await User.findOne({where : {user_id}});
+        const targetUser = await User.findOne({where : {id}});
+
+        let followingArr = JSON.parse(loginUser.following);
+        let followerArr = JSON.parse(targetUser.follower);
+        //console.log("로그인 유저의 following : ", followingArr)
+        //console.log("타겟 유저의 follower : ", followerArr);
+
+        if(loginUser.following == 0) {
+            followingArr = [targetUser.id];
+        }else {
+            if(followingArr.includes(targetUser.id)) {
+                let index = followingArr.indexOf(targetUser.id);
+                followingArr.splice(index, 1); // 이미 배열에 있으면 빼내기 == 팔로우 취소
+            }else {
+                followingArr.push(targetUser.id); // 배열에 없으면 넣기 == 팔로우
+            }
+        }
+
+        if(targetUser.follower == 0) {
+            followerArr = [loginUser.id];
+        }else {
+            if(followerArr.includes(loginUser.id)) {
+                let index = followingArr.indexOf(loginUser.id);
+                followerArr.splice(index, 1); // 이미 배열에 있으면 빼내기 == 팔로우 취소            }else {
+            }else {
+                followerArr.push(loginUser.id)
+            }
+        }
+        //console.log("로그인 유저의 following : ", followingArr);
+        //console.log("타겟 유저의 follower : ", followerArr);
+
+        let followingArrArr = JSON.stringify(followingArr)
+        let followerArrArr = JSON.stringify(followerArr)
+
+        await User.update({following : followingArrArr}, {where : {id : loginUser.id}});
+        await User.update({follower : followerArrArr}, {where : {id : targetUser.id}});
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 exports.mypage = async (req,res,next)=>{
     try {
         const users = await User.findAll();
@@ -68,8 +114,4 @@ exports.editProfile = async (req,res)=>{
     } catch (error) {
         console.log(error);
     };
-};
-
-exports.follow = async ()=>{
-
 };
