@@ -129,6 +129,7 @@
             }
 
             followBtn.onclick = () => {
+                console.log(user);
                 axios.get(`http:s//andybyungjoopark.com/mypage/follow/${user.id}`, {
                     withCredentials : true,
                 })
@@ -218,7 +219,7 @@
 
     function moveToChat() {
         console.log("눌림?")
-        location.href = './livechat.html';
+        location.href = '/livechat';
     };
 </script>
 </html>

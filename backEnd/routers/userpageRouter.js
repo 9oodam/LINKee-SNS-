@@ -5,6 +5,4 @@ router.get("/",isLogin,(req,res)=>{
     res.sendFile("/home/ubuntu/frontEnd/page/userpage.html");
 });
 
-router.post("/follow",isLogin,)
-
 module.exports = router;
