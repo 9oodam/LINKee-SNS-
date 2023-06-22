@@ -138,23 +138,15 @@
                 // text에 줄바꿈
                 let content = el.content.replace(/(?:\r\n|\r|\n)/g, "<br>");
 
-                function moveToUser(nickname){
-                    if(nickname == user.nickname){
-                        location.href = "/mypage";
-                    }else{
-                        location.href = `/userpage#${nickname}`;
-                    };
-                };
-
                 let postContainer = document.createElement("div");
                 postContainer.classList.add("post_container");
 
                 let postTop = document.createElement("div");
                 postTop.classList.add("post_top");
                 postTop.innerHTML = `
-                <div class="profile_img" onclick="moveToUser('${writer.nickname}')"><img src="https://andybyungjoopark.com/user_img/${writer.profile_img}" alt="profile"></div>
+                <div class="profile_img" onclick="moveToUser('${writer.nickname}','${user.nickname}')"><img src="https://andybyungjoopark.com/user_img/${writer.profile_img}" alt="profile"></div>
                 <div class="profile_text">
-                    <p class="nickname" onclick="moveToUser('${writer.nickname}')">${writer.nickname}</p>
+                    <p class="nickname" onclick="moveToUser('${writer.nickname}','${user.nickname}')">${writer.nickname}</p>
                     <span>·</span>
                     <p class="updated_time">${dateText}</p>
                 </div>`;
@@ -176,7 +168,7 @@
                     postBottom.innerHTML = ` 
                     <div class="likes"><img src="../nav_icon_img/icon_noti.png" alt=""><p>${el.likes} likes</p></div>
                     <div class="content">
-                        <p class="content_text${el.id}"><span class="nickname" onclick="moveToUser(${writer.nickname})">${writer.nickname}</span>
+                        <p class="content_text${el.id}"><span class="nickname" onclick="moveToUser('${writer.nickname}','${user.nickname}')">${writer.nickname}</span>
                         <span>${content}</span></p>
                         <p class="more" id="more_btn${el.id}" onclick="seeMore(${el.id})">more</p>
                         <p class="more" onclick="moveToDetail(${el.id})">Add a comment...</p>
@@ -251,6 +243,15 @@
     function moveToDetail(id) {
         location.href = `/detail#${id}`;
     }
+
+    // 유저 페이지로 이동
+    function moveToUser(nickname,me){
+        if(nickname == me){
+            location.href = "/mypage";
+        }else{
+            location.href = `/userpage#${nickname}`;
+        };
+    };
 
     // 게시글이 여러줄 이상일 경우 더보기 버튼
     function seeMore(id) {
