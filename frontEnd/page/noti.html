@@ -157,7 +157,7 @@
                     profileDiv.classList.add("profile_img");
                     profileDiv.innerHTML = `<img src="https://andybyungjoopark.com/user_img/${senderImg}" alt="">`;
                     profileDiv.onclick = () => {
-                        location.href = `/userpage#${sender}`
+                        location.href = `/userpage#${decodeURIComponent(sender)}`;
                     }
 
                     let textDiv = document.createElement("div");
