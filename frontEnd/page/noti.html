@@ -205,6 +205,7 @@
 
                         if(el.bigCommentNoti) {
                             posts.forEach((el3) => {
+                                console.log(el3);
                                 if(el3.id == el.bigCommentNoti) {
                                     let postImg = el3.img;
                                     let ext = postImg.split('.').pop();
@@ -219,6 +220,7 @@
                             textDiv.innerHTML = `<span class="nickname">${sender}</span>님이 회원님의 게시물에 댓글을 남겼습니다. <span class="date">${dateText}</span>`;
                         }else if(el.smallCommentNoti) {
                             posts.forEach((el3) => {
+                                console.log(el3);
                                 if(el3.id == el.smallCommentNoti) {
                                     let postImg = el3.img;
                                     let ext = postImg.split('.').pop();
@@ -234,6 +236,7 @@
                             textDiv.innerHTML = `<span class="nickname">${sender}</span>님이 회원님의 게시물에 대댓글을 남겼습니다. <span class="date">${dateText}</span>`;
                         }else if(el.likePostNoti) {
                             posts.forEach((el3) => {
+                                console.log(el3);
                                 if(el3.id == el.likePostNoti) {
                                     let postImg = el3.img;
                                     let ext = postImg.split('.').pop();
@@ -249,6 +252,7 @@
                             textDiv.innerHTML = `<span class="nickname">${sender}</span>님이 회원님의 게시물을 좋아합니다. <span class="date">${dateText}</span>`;
                         }else if(el.likeBigNoti) {
                             posts.forEach((el3) => {
+                                console.log(el3);
                                 if(el3.id == el.likeBigNoti) {
                                     let postImg = el3.img;
                                     let ext = postImg.split('.').pop();
@@ -264,6 +268,7 @@
                             textDiv.innerHTML = `<span class="nickname">${sender}</span>님이 회원님의 댓글을 좋아합니다. <span class="date">${dateText}</span>`;
                         }else if(el.likeSmallNoti) {
                             posts.forEach((el3) => {
+                                console.log(el3);
                                 if(el3.id == el.likeSmallNoti) {
                                     let postImg = el3.img;
                                     let ext = postImg.split('.').pop();
