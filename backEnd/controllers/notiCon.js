@@ -1,7 +1,7 @@
 const {User, Post, BigComment, Noti, SmallComment} = require("../models");
 
 // 팔로우 알림
-exports.addFollowNoti = async (req, res) => {
+exports.addFollowNoti = async (req, res, next) => {
     // 팔로우 보낸 사람 (현재 로그인 된 유저)
     const {user_id} = req.acc_decoded;
     const sender = await User.findOne({where : {user_id}});
@@ -14,6 +14,7 @@ exports.addFollowNoti = async (req, res) => {
             senderID : sender.id,
             followNoti : "1"
         })
+        next();
     } catch (error) {
         console.log(error);
     }

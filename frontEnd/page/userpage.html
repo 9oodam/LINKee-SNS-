@@ -132,6 +132,9 @@
                 axios.get(`https://andybyungjoopark.com/mypage/follow/${user.id}`, {
                     withCredentials : true,
                 })
+
+                socket.emit("detail_page_like_click_noti_emit", user.id);
+
                 location.reload();
             }
 

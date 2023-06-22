@@ -328,6 +328,9 @@
                 document.querySelector("#heartImage").src = '../nav_icon_img/icon_heart.png';
                 let count = Number(lc) + 1;
                 document.querySelector("#likecount").innerHTML = count;
+
+                // 좋아요 알림 소켓
+                socket.emit("detail_page_like_click_noti_emit", data.b.id);
             }else{
                 document.querySelector("#heartImage").dataset.value = "0";
                 document.querySelector("#heartImage").src = '../nav_icon_img/icon_noti.png';
@@ -355,6 +358,10 @@
                     check : checkval
                 }
             });
+            if(likeClick.data.noti_on == 1){
+                let receiver_ID = likeClick.data.receiver; // 알림이 뜨게 할 id
+                socket.emit("detail_page_like_click_noti_emit", receiver_ID);
+            }
         }
 
         document.querySelector(".commentBtn").addEventListener("click" , async function(){
@@ -375,6 +382,12 @@
                 //     bigInputValue: inputvalue,
                 // }
             });
+
+            if(abc.data.bigcomment_insert == 1){
+                let receiver_ID = abc.data.receiver_user_id; // 알림이 뜨게 할 id
+                socket.emit("detail_page_like_click_noti_emit", receiver_ID);
+            }
+
             // console.log(abc.data);
             reply_container.innerHTML += `
             <div class="comments_wrap">
@@ -412,6 +425,10 @@
                     check : b
                 }
             });
+            if(data.data.bigcomment_like_click_noti == 1){
+                let receiver_ID = data.data.receiver; // 알림이 뜨게 할 id
+                socket.emit("detail_page_like_click_noti_emit", receiver_ID);
+            }
         };
 
         function btn2(){
@@ -471,6 +488,12 @@
                         //     bigInputValue: inputvalue,
                         // }
                     });
+
+                    if(abc.data.smallcomment_insert == 1){
+                        let receiver_ID = abc.data.receiver_ID; // 알림이 뜨게 할 id
+                        socket.emit("detail_page_like_click_noti_emit", receiver_ID);
+                    }
+
                     // console.log("abccccccccccccc", abc.data.smallcommentcreateId.id);
                     // console.log("abccccccccccccc", abc.data.a.nickname);
                     // console.log(abc.data);
@@ -545,6 +568,11 @@
                 check_val : check_val1
             }
             });
+
+            if(abc.data.smallcomment_like_click_noti == 1){
+                let receiver_ID = abc.data.receiver; // 알림이 뜨게 할 id
+                socket.emit("detail_page_like_click_noti_emit", receiver_ID);
+            }
         }
 
         btn2();

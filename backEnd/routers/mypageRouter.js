@@ -3,6 +3,7 @@ const router = require("express").Router();
 const {isLogin} = require("../middleware/isLogin");
 const {myPost, follow, removeFollower,mypage,editProfile,AllUser} = require("../controllers/mypageCon");
 const {uploadImg,updateProfileImg} = require("../middleware/uploadImg");
+const {addFollowNoti} = require("../controllers/notiCon");
 
 const path = require("path");
 
@@ -13,7 +14,7 @@ router.get("/",async (req,res)=>{
 router.get("/mypost",isLogin,myPost);
 
 // userpage
-router.get("/follow/:id", isLogin, follow); // 팔로우
+router.get("/follow/:id", isLogin, addFollowNoti, follow); // 팔로우
 
 router.get("/users",isLogin,mypage);
 
