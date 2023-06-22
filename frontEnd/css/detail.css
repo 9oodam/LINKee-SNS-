@@ -158,3 +158,10 @@ details .input_wrap input {
     font-size: 14px;
     position: absolute; right: 4px;
 }
+
+.like_btn_count {
+    font-size: 12px;
+}
+.like_btn {
+    width: 25px; height: 25px;
+}
