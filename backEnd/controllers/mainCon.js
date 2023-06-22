@@ -454,4 +454,5 @@ exports.loginUser = async (req,res)=>{
     console.log(acc_decoded);
     const user = await User.findOne({where : {user_id : acc_decoded.user_id}});
     console.log(user.dataValues);
+    res.json(user);
 };
