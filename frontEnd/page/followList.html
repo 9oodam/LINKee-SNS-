@@ -43,7 +43,7 @@
             withCredentials : true
         });
         const {user, userAll} = data;
-
+        console.log(user);
         // 팔로잉
         let followingArr = JSON.parse(user.following);
         followingNum.innerHTML = `팔로잉 ${followingArr.length}명`;
