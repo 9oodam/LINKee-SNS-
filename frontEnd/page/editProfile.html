@@ -169,7 +169,7 @@
 
         if(nickname.value === "" && profileInfo.value === ""){
             nickname.style.border = "1px solid red";
-        }else if(nicknames.includes(nickname.value) == true && nickname.value !== ){
+        }else if(nicknames.includes(nickname.value) == true && nickname.value !== user.nickname){
             nickname.style.border = "1px solid red";
         }else{
             const form = new FormData();
