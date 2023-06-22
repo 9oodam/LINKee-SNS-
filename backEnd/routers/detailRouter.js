@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const {isLogin} = require("../middleware/isLogin");
 
-const {getProfile, getcontents, delBtn, getlike, likeClick, bigComment, smallComment1, c_comment_nick1, likebigcomment1, getbiglike1, likesmallComment1} = require("../controllers/mainCon");
+const {getProfile, getcontents, delBtn, getlike, likeClick, bigComment, smallComment1, c_comment_nick1, likebigcomment1, getbiglike1, likesmallComment1,loginUser} = require("../controllers/mainCon");
 const { SmallComment } = require("../models");
 
 router.get("/",isLogin,(req,res)=>{
@@ -31,10 +31,7 @@ router.get('/getbiglike', isLogin, getbiglike1);
 
 router.get('/likesmallComment', isLogin, likesmallComment1);
 
-router.get("/loginUser",isLogin,(req,res)=>{
-    const {acc_decoded} = req;
-    res.json(acc_decoded);
-})
+router.get("/loginUser",isLogin,loginUser);
 
 module.exports = router;
 

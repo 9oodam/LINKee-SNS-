@@ -448,3 +448,8 @@ exports.likesmallComment1 = async (req,res)=>{
     // console.log("checkval", data.check_val);
     
 };
+
+exports.loginUser = async (req,res)=>{
+    const {acc_decoded} = req;
+    console.log(acc_decoded);
+};

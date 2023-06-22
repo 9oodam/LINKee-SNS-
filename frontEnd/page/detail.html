@@ -103,7 +103,7 @@
         const {data} = await axios.get(`https://andybyungjoopark.com/main/getcontents/${xx}`,{
             withCredentials : true
         });
-        const {user} = await axios.get("https://andybyungjoopark.com/detail/loginUser");
+        const user = await axios.get("https://andybyungjoopark.com/detail/loginUser");
         console.log(user);
         if(data.d == 1){
             document.querySelector("#useron").style.display = "block";
