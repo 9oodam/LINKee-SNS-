@@ -196,7 +196,7 @@ io.on("connection", (socket) => {
     socket.on("requestChat", (senderID, receiverID) => {
         // let senderIndex = userID.indexOf(senderID);
         let receiverIndex = userID.indexOf(receiverID);
-        console.log("요청 받는 사람: ", userID[index]);
+        console.log("요청 받는 사람: ", userID[receiverIndex]);
         // io.to(socketID[senderIndex]).emit("requestChat", senderID, receiverID);
         io.to(socketID[receiverIndex]).emit("requestChat", senderID, receiverID);
     });
