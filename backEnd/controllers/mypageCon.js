@@ -133,7 +133,7 @@ exports.removeFollower = async (req, res) => {
         };
 
         if(followerArr.includes(targetUser.id)) {
-            let index = followingArr.indexOf(loginUser.id);
+            let index = followingArr.indexOf(targetUser.id);
             followerArr.splice(index, 1); // 이미 배열에 있으면 빼내기 == 팔로우 취소
         };
 
