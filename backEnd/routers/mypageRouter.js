@@ -27,7 +27,7 @@ router.post("/edit",isLogin, updateProfileImg.single("img"),(err,req,res,next)=>
     }
 } ,editProfile);
 
-router.get("/edit/profile",isLogin,AllUser);
+router.get("/nickname",isLogin,AllUser);
 
 // router.post("/editPic",isLogin,updateProfileImg.single("img"),(req,res)=>{
 //     console.log(req);
