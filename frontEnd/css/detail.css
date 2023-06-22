@@ -91,7 +91,8 @@
 .likes_btn .like_btn_count{
     position: absolute;
     left: 8px;
-    font-size: 12px
+    font-size: 12px;
+    text-align: center;
 }
 
 /* 일단 추가해놈 - seonghyun */

@@ -122,20 +122,25 @@
                 followBtn.classList.add("followBtn");
                 followBtn.innerHTML = "팔로우";
                 btn_form.appendChild(followBtn);
+
+                followBtn.onclick = () => {
+                    axios.get(`https://andybyungjoopark.com/mypage/follow/${user.id}`, {
+                        withCredentials : true,
+                    })
+                    socket.emit("detail_page_like_click_noti_emit", user.id);
+                    location.reload();
+                }
             }else if(isfollowArr.includes(user.id)) {
                 followBtn.classList.add("followBtnAlready");
                 followBtn.innerHTML = "팔로잉";
                 btn_form.appendChild(followBtn);
-            }
 
-            followBtn.onclick = () => {
-                axios.get(`https://andybyungjoopark.com/mypage/follow/${user.id}`, {
-                    withCredentials : true,
-                })
-
-                socket.emit("detail_page_like_click_noti_emit", user.id);
-
-                location.reload();
+                followBtn.onclick = () => {
+                    axios.get(`https://andybyungjoopark.com/mypage/follow/${user.id}`, {
+                        withCredentials : true,
+                    })
+                    location.reload();
+                }
             }
 
             const allPosts = document.querySelector(".allPosts");
