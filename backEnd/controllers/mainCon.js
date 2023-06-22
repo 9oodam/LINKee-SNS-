@@ -452,4 +452,6 @@ exports.likesmallComment1 = async (req,res)=>{
 exports.loginUser = async (req,res)=>{
     const {acc_decoded} = req;
     console.log(acc_decoded);
+    const user = await User.findOne({where : {user_id : acc_decoded.user_id}});
+    console.log(user);
 };
