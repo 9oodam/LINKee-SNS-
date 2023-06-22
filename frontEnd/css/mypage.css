@@ -149,3 +149,6 @@
 .imgDiv div {
     width: 100%;
 }
+.imgDiv div:hover{
+    cursor: pointer;
+}
