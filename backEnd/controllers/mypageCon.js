@@ -118,6 +118,7 @@ exports.editProfile = async (req,res)=>{
 
 exports.removeFollower = async (req, res) => {
     const {id} = req.params; // 삭제한 유저의 아이디
+    console.log(id);
     const {user_id} = req.acc_decoded;
     try {
         const loginUser = await User.findOne({where : {user_id}});
@@ -129,12 +130,12 @@ exports.removeFollower = async (req, res) => {
         if(followingArr.includes(loginUser.id)) {
             let index = followingArr.indexOf(loginUser.id);
             followingArr.splice(index, 1); // 이미 배열에 있으면 빼내기 == 팔로우 취소
-        }
+        };
 
         if(followerArr.includes(targetUser.id)) {
             let index = followingArr.indexOf(loginUser.id);
             followerArr.splice(index, 1); // 이미 배열에 있으면 빼내기 == 팔로우 취소
-        }
+        };
 
         let followingArrArr = JSON.stringify(followingArr)
         let followerArrArr = JSON.stringify(followerArr)
