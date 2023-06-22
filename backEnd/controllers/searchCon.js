@@ -38,7 +38,7 @@ exports.searchedPost = async (req, res) => {
     console.log(id);
     try {
         const posts = await Post.findAll({where: {content: {[Op.like]: `%#${id} %`,}}});
-        console.log(posts);
+        // console.log(posts);
         const userAll = await User.findAll();
 
         res.json({userAll, posts});

@@ -153,7 +153,7 @@ exports.removeFollower = async (req, res) => {
 exports.AllUser = async (req,res)=>{
     try {
         const allUser = await User.findAll();
-        console.log(allUser);
+        // console.log(allUser);
         res.json(allUser);
     } catch (error) {
         console.log(error);

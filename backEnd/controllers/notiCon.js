@@ -137,7 +137,7 @@ exports.getNoti = async (req, res) => {
         const users = await User.findAll();
         const posts = await Post.findAll();
 
-        console.log(users);
+        // console.log(users);
 
         if(noti.length == 0) { // 알림이 없으면 0 보냄
             res.json("0");
