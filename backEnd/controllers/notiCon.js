@@ -154,7 +154,7 @@ exports.deleteNoti = async (req, res) => {
     const {user_id} = req.acc_decoded;
     try {
         const user = await User.findOne({where : {user_id}});
-        await Noti.destroy({where : {receivedID : user.id}});
+        await Noti.destroy({where : {receiverID : user.id}});
         res.json("1");
     } catch (error) {
         console.log(error);
