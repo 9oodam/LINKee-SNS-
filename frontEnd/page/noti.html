@@ -272,7 +272,7 @@
             const {data} = await axios.get('https://andybyungjoopark.com/noti/delBtn', {
                 withCredentials : true
             });
-
+            console.log(data);
             if(data == "1") {
                 middle_body.innerHTML = '<div class="no_noti">새로운 알림이 없습니다.</div>';
             }
