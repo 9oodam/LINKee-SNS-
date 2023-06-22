@@ -420,6 +420,13 @@
                 </div>
             </div>
             `;
+            document.querySelector(".profile_img").onclick = ()=>{
+                if(data.b.nickname === user.data.nickname){
+                    location.href = "/mypage";
+                }else{
+                    location.href = `/userpage#${data.b.nickname}`;
+                }
+            };
             btn2();
             big_comment_input.value = "";
             location.reload();
@@ -520,6 +527,13 @@
                                     
                                 </div>
                     `;
+                    document.querySelector(".profile_img").onclick = ()=>{
+                        if(data.b.nickname === user.data.nickname){
+                            location.href = "/mypage";
+                        }else{
+                            location.href = `/userpage#${data.b.nickname}`;
+                        }
+                    };
                     btn3();
                     small_comment_input.value = "";
                 });
