@@ -81,6 +81,7 @@ exports.getcontents = async (req,res)=>{
         let e_nick = [];
         let d_comment_id = [];
         let s_comment = [[]];
+        let e_profile = [];
         
 
         // 댓글 가져오기
