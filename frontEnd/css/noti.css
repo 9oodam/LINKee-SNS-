@@ -91,3 +91,6 @@
 .noti_wrap .post_img img {
     width: 100%; height: 100%;
 }
+.noti_wrap .post_img video {
+    width: 100%; height: 100%;
+}
