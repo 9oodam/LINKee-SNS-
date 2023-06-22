@@ -89,7 +89,7 @@ exports.getcontents = async (req,res)=>{
         // 댓글 가져오기
         
         const comment = await BigComment.findAll({where:{post_id:param}});
-        console.log("adfasdfasdfasdfasdfasdf", comment);
+        // console.log("adfasdfasdfasdfasdfasdf", comment);
         if(comment == ""){
             e = 1;
             console.log("adfasdfasdfasdfasdfasdf");
