@@ -66,6 +66,7 @@
 }
 .allPosts div:hover {
     transform: scale(105%);
+    cursor: pointer;
 }
 .allPosts div img {
     width: 100%;
