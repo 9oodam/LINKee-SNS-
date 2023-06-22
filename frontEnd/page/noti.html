@@ -155,6 +155,7 @@
                     wrapDiv.classList.add("noti_wrap");
                     let profileDiv = document.createElement("div");
                     profileDiv.classList.add("profile_img");
+                    profileDiv.innerHTML = `<img src="http://127.0.0.1:8080/user_img/${senderImg}" alt="">`;
                     profileDiv.onclick = () => {
                         location.href = `/userpage.html#${sender}`
                     }
