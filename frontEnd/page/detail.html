@@ -221,7 +221,7 @@
 
         document.querySelector(".nickname").innerHTML = data.b.nickname;
         document.querySelector("p .nickname").innerHTML = data.b.nickname;
-        document.querySelector(".profile_img").innerHTML = `<img src="https://andybyungjoopark.com/user_img/${data.b.profile_img}" alt="">`;
+        document.querySelector(".profile_img").innerHTML = `<img onclick="moveToUser('${data.b.nickname} src="https://andybyungjoopark.com/user_img/${data.b.profile_img}" alt="">`;
         document.querySelector(".updated_time").innerHTML = dateText;
         
         let content = data.a.content.replace(/(?:\r\n|\r|\n)/g, "<br>"); // 줄바꿈
@@ -620,5 +620,9 @@
         }
     }
     getProfile();
+
+    function moveToUser(nickname) {
+        location.href = `/userpage#${nickname}`;
+    };
 </script>
 </html>
