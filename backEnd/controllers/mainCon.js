@@ -68,6 +68,7 @@ exports.getProfile = async (req, res) => {
 exports.getcontents = async (req,res)=>{
     try {
         const param = req.params.id;
+        console.log(param);
         const data = await Post.findOne({where:{id:param}});
         console.log(data);
         let posts_User_id = data.dataValues.user_id;
