@@ -90,8 +90,11 @@
             console.log(followingPost);
 
             if(following == 0) {
-                // forFreshman.style.display = "block";
-                followingPost.reverse();
+                if(followingPost == []){
+                    forFreshman.style.display = "block";
+                }else{
+                    followingPost.reverse();
+                };
             }else{
                 // following.push(user.id);
                 // console.log(following);
