@@ -139,19 +139,24 @@
             posts.forEach((el,index)=>{
                 const post = document.createElement("div");
                 if(el.img === ""){
+                    const post = document.createElement("div");
                     post.classList.add("only_text");
-                    let content = el.content.replace(/(?:\r\n|\r|\n)/g, "<br>");
-                    post.innerHTML = content;
+                    post.innerHTML = el.content;
+                    console.log(post);
                     allPosts.append(post);
                 }else{
                     const post = document.createElement("div");
-                    post.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${el.img}" alt="">`;
+                    post.classList.add("imgDiv");
+                    // post.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${el.img}" alt="">`;
+                    let ext = el.img.split('.').pop();
+                    if(ext == "jpeg" || ext == "gif" || ext == "png" || ext == "jpg" || ext == "jfif" || ext == "webp") {
+                        post.innerHTML = `<div onclick="moveToDetail(${el.id})"><img src="https://andybyungjoopark.com/post_img/${el.img}" alt=""></div>`;
+                    }else if(ext == "mp4") {
+                        post.innerHTML += `<div onclick="moveToDetail(${el.id})"><video class="video" src="https://andybyungjoopark.com/post_img/${el.img}" autoplay loop muted></video></div>`;
+                    }
                     console.log(post);
                     allPosts.append(post);
                 };
-                post.onclick = () => {
-                    location.href = `./detail.html#${el.id}`;
-                }
             });
 
 
