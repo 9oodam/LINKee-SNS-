@@ -69,6 +69,10 @@
                 withCredentials : true
             });
             console.log(data2.data);
+            const allUsers = data2.data;
+            allUsers.forEach((el)=>{
+                console.log(el.nickname);
+            });
 
             // const profileImg = document.querySelector("#preview");
             // profileImg.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
