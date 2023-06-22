@@ -39,11 +39,12 @@
   <script>
     window.onload = async () => {
       try {
-        const {data} = await axios.get('https://andybyungjoopark.com/main/getProfile', {
+        const {data} = await axios.get('https://andybyungjoopark.com/main/posts', {
             withCredentials : true
         });
         console.log(data);
         const {user, userAll} = data;
+        console.log(user);
         // 팔로잉
         let followingArr = JSON.parse(user.following);
         followingNum.innerHTML = `팔로잉 ${followingArr.length}명`;
