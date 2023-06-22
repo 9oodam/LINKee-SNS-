@@ -48,9 +48,9 @@
         // 팔로잉
         let followingArr = JSON.parse(user.following);
         console.log(followingArr);
-        followingNum.innerHTML = `팔로잉 ${followingArr.length}명`;
-
-        if(followingArr.length != 0){
+        
+        if(followingArr != 0){
+          followingNum.innerHTML = `팔로잉 ${followingArr.length}명`;
           followingArr.forEach((el) => {
             let followingUser = userAll.find(user => user.id === el);
             let div = document.createElement("div");
@@ -66,48 +66,54 @@
               location.href = `/userpage#${followingUser.nickname}`;
             }
           });
+        }else{
+          followingNum.innerHTML = "팔로잉 0명";
         };
 
         // 팔로워
         let followerArr = JSON.parse(user.follower);
-        followerNum.innerHTML = `팔로워 ${followerArr.length}명`;
+        console.log(followerArr);
+        if(followerArr != 0){
+          followerNum.innerHTML = `팔로워 ${followerArr.length}명`;
+          followerArr.forEach((el) => {
+            let followerUser = userAll.find(user => user.id === el);
 
-        followerArr.forEach((el) => {
-          let followerUser = userAll.find(user => user.id === el);
+            let div = document.createElement("div");
 
-          let div = document.createElement("div");
+            let profileImg = document.createElement("div");
+            profileImg.classList.add("profile_img");
+            profileImg.innerHTML = `<img src="https://andybyungjoopark.com/user_img/${followerUser.profile_img}" alt=""/>`;
 
-          let profileImg = document.createElement("div");
-          profileImg.classList.add("profile_img");
-          profileImg.innerHTML = `<img src="https://andybyungjoopark.com/user_img/${followerUser.profile_img}" alt=""/>`;
-          
-          let nickname = document.createElement("div");
-          nickname.classList.add("nickname");
-          nickname.innerHTML = `${followerUser.nickname}`;
-          
-          let delBtn = document.createElement("p");
-          delBtn.classList.add("delFollow");
-          delBtn.innerHTML = "삭제";
-          
-          div.appendChild(profileImg);
-          div.appendChild(nickname);
-          div.appendChild(delBtn);
-          followers.appendChild(div);
+            let nickname = document.createElement("div");
+            nickname.classList.add("nickname");
+            nickname.innerHTML = `${followerUser.nickname}`;
 
-          profileImg.onclick = () => {
-            location.href = `/userpage#${followerUser.nickname}`;
-          }
-          nickname.onclick = () => {
-            location.href = `/userpage#${followerUser.nickname}`;
-          }
-          delBtn.onclick = () => {
-            console.log("눌림?")
-            axios.get(`https://andybyungjoopark.com/mypage/remove/${followerUser.id}`, {
-                withCredentials : true,
-            })
-            location.href = '/followList';
-          }
-        });
+            let delBtn = document.createElement("p");
+            delBtn.classList.add("delFollow");
+            delBtn.innerHTML = "삭제";
+
+            div.appendChild(profileImg);
+            div.appendChild(nickname);
+            div.appendChild(delBtn);
+            followers.appendChild(div);
+
+            profileImg.onclick = () => {
+              location.href = `/userpage#${followerUser.nickname}`;
+            }
+            nickname.onclick = () => {
+              location.href = `/userpage#${followerUser.nickname}`;
+            }
+            delBtn.onclick = () => {
+              console.log("눌림?")
+              axios.get(`https://andybyungjoopark.com/mypage/remove/${followerUser.id}`, {
+                  withCredentials : true,
+              })
+              location.href = '/followList';
+            }
+          });
+        }else{
+          followerNum.innerHTML = `팔로워 0명`;
+        };
 
 
 
