@@ -1,5 +1,5 @@
 const { where } = require("sequelize");
-const {User, Post, LikePost, BigComment, SmallComment, LikeBigComment, LikeSmallComment} = require("../models");
+const {User, Post, LikePost, BigComment, SmallComment, LikeBigComment, LikeSmallComment,Noti} = require("../models");
 const {sequelize} = require("../models");
 
 exports.getPost = async (req, res) => {
