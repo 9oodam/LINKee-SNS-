@@ -69,6 +69,7 @@ exports.getcontents = async (req,res)=>{
     try {
         const param = req.params.id;
         const data = await Post.findOne({where:{id:param}});
+        console.log(data);
         let posts_User_id = data.dataValues.user_id;
         // post의 user_id 가 users 컬럼의 id임!!!!!!!!!!!!!!!!!!!!
         const b = await User.findOne({where:{id:posts_User_id}});
