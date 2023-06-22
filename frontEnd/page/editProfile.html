@@ -150,6 +150,7 @@
             withCredentials : true
         });
         const {user, userAll} = data;
+        console.log(user);
 
         const data2 = await axios.get("https://andybyungjoopark.com/mypage/nickname",{
             withCredentials : true
@@ -168,7 +169,7 @@
 
         if(nickname.value === "" && profileInfo.value === ""){
             nickname.style.border = "1px solid red";
-        }else if(nicknames.includes(nickname.value) == true){
+        }else if(nicknames.includes(nickname.value) == true && nickname.value !== ){
             nickname.style.border = "1px solid red";
         }else{
             const form = new FormData();
