@@ -157,7 +157,7 @@
                     profileDiv.classList.add("profile_img");
                     profileDiv.innerHTML = `<img src="https://andybyungjoopark.com/user_img/${senderImg}" alt="">`;
                     profileDiv.onclick = () => {
-                        location.href = `/userpage.html#${sender}`
+                        location.href = `/userpage#${sender}`
                     }
 
                     let textDiv = document.createElement("div");
@@ -213,7 +213,7 @@
                                     }else if(ext == "mp4") {
                                         postImgDiv.innerHTML = `<video class="video" src="https://andybyungjoopark.com/post_img/${postImg}" autoplay loop muted></video>`;
                                     }
-                                    postImgDiv.onclick = () => {location.href = `/detail.html#${el3}`;}
+                                    postImgDiv.onclick = () => {location.href = `/detail#${el3}`;}
                                 }
                             });
                             textDiv.innerHTML = `<span class="nickname">${sender}</span>님이 회원님의 게시물에 댓글을 남겼습니다. <span class="date">${dateText}</span>`;
@@ -227,7 +227,7 @@
                                     }else if(ext == "mp4") {
                                         postImgDiv.innerHTML = `<video class="video" src="https://andybyungjoopark.com/post_img/${postImg}" autoplay loop muted></video>`;
                                     }
-                                    postImgDiv.onclick = () => {location.href = `/detail.html#${el3}`;}
+                                    postImgDiv.onclick = () => {location.href = `/detail#${el3}`;}
 
                                 }
                             });
@@ -242,7 +242,7 @@
                                     }else if(ext == "mp4") {
                                         postImgDiv.innerHTML = `<video class="video" src="https://andybyungjoopark.com/post_img/${postImg}" autoplay loop muted></video>`;
                                     }
-                                    postImgDiv.onclick = () => {location.href = `/detail.html#${el3}`;}
+                                    postImgDiv.onclick = () => {location.href = `/detail#${el3}`;}
 
                                 }
                             });
@@ -257,7 +257,7 @@
                                     }else if(ext == "mp4") {
                                         postImgDiv.innerHTML = `<video class="video" src="https://andybyungjoopark.com/post_img/${postImg}" autoplay loop muted></video>`;
                                     }
-                                    postImgDiv.onclick = () => {location.href = `/detail.html#${el3}`;}
+                                    postImgDiv.onclick = () => {location.href = `/detail#${el3}`;}
 
                                 }
                             });
@@ -272,14 +272,14 @@
                                     }else if(ext == "mp4") {
                                         postImgDiv.innerHTML = `<video class="video" src="https://andybyungjoopark.com/post_img/${postImg}" autoplay loop muted></video>`;
                                     }
-                                    postImgDiv.onclick = () => {location.href = `/detail.html#${el3}`;}
+                                    postImgDiv.onclick = () => {location.href = `/detaiㅣ#${el3}`;}
 
                                 }
                             });
                             textDiv.innerHTML = `<span class="nickname">${sender}</span>님이 회원님의 대댓글을 좋아합니다. <span class="date">${dateText}</span>`;
                         }
                         postImgDiv.onclick = () => {
-                            location.href = `/detail.html#${el3.id}`;
+                            location.href = `/detail#${el3.id}`;
                         }
                         rightDiv.appendChild(postImgDiv);
                     }
