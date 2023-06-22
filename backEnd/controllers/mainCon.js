@@ -67,29 +67,30 @@ exports.getProfile = async (req, res) => {
 
 exports.getcontents = async (req,res)=>{
     try {
-        console.log(req.params.id);
         const param = req.params.id;
         const data = await Post.findOne({where:{id:param}});
         let posts_User_id = data.dataValues.user_id;
-        const comments = await BigComment.findAll({where : {post_id : param}})
-        console.log("뭘 가져왔냐 : ",comments);
         // post의 user_id 가 users 컬럼의 id임!!!!!!!!!!!!!!!!!!!!
         const b = await User.findOne({where:{id:posts_User_id}});
         let a = data.dataValues; // 해당글의 모든 컬럼값들
         let c = req.session.user_id;
+        let user_id = req.session.iidd;
         let d;
         let e_content;
         let e = [];
         let e_nick = [];
-        let e_profileImg = [];
         let d_comment_id = [];
         let s_comment = [[]];
         
 
         // 댓글 가져오기
+        
         const comment = await BigComment.findAll({where:{post_id:param}});
+        console.log("adfasdfasdfasdfasdfasdf", comment);
         if(comment == ""){
             e = 1;
+            console.log("adfasdfasdfasdfasdfasdf");
+            
         }else{
             e_content = comment;
             for(let i=0; i<comment.length; i++){
@@ -99,7 +100,6 @@ exports.getcontents = async (req,res)=>{
             for(let i=0;i<e.length;i++){
                 const data = await User.findOne({where:{id:e[i]}});
                 e_nick[i] = data.nickname;
-                e_profileImg[i] = data.profile_img;
             }
             for (let i = 0; i <d_comment_id.length; i++) {
                 s_comment[i] = [];
@@ -121,7 +121,7 @@ exports.getcontents = async (req,res)=>{
             d = 0;
         }
 
-        res.json({a, b, d, e_content, e, e_nick, e_profileImg, d_comment_id, s_comment});
+        res.json({a, b, d, e_content, e, e_nick, d_comment_id, s_comment, user_id});
     } catch (error) {
         console.log(error);
     }
@@ -165,11 +165,27 @@ exports.likeClick = async (req, res)=>{
             user_id : uf.dataValues.id,
             post_id : data.post_id,
         });
+
+        // 게시글 좋아요 알림 sql 만들기
+        const sender = uf.dataValues.id;
+        const receiver = data.user_id;
+        console.log(sender);
+        console.log(receiver);
+        let noti_on = 0;
+        if(sender != receiver){
+            await Noti.create({
+                receiverID : receiver,
+                senderID : sender,
+                likePostNoti : data.post_id,
+            });
+            noti_on = 1;
+        }
+
         await Post.update({likes: sequelize.literal('likes + 1') },{where: {id:data.post_id} });
         // await Post.update({likes: "5" },{where: {id:data.post_id} });
 
         const send = await Post.findOne({where:{id:data.post_id}});
-        res.json(send.dataValues.likes);
+        res.json({noti_on, receiver});
     }else{
         await LikePost.destroy({where:{user_id:uf.dataValues.id, post_id : data.post_id}});
         await Post.update({likes: sequelize.literal('likes - 1') },{where: {id:data.post_id} });
@@ -182,7 +198,6 @@ exports.bigComment = async (req,res) =>{
     try {
         // let postbody = req.body; // post
         // console.log("확인", postbody.bigInputValue);
-
         
         let param = req.params.id;
         let postbody = req.query; // get
@@ -194,11 +209,31 @@ exports.bigComment = async (req,res) =>{
             post_id : param,
         });
 
+        // param 은 현재 게시글의 ID - (posts - id)
+        // 수신자 아이디 필요하니 조회
+        const posts_id = await Post.findOne({where:{id:param}});
+        let receiver_user_id = posts_id.user_id;
+        let sender = se;
+        let bigCommentNoti_id = posts_id.id;
+        let bigcomment_insert;
+
+        // 게시글 등록 알림 sql에 추가하기
+        if(receiver_user_id != sender){
+            await Noti.create({
+                receiverID : receiver_user_id,
+                senderID : sender,
+                bigCommentNoti : bigCommentNoti_id
+            });
+            bigcomment_insert = 1;
+        }else{
+            bigcomment_insert = 0;
+        }
+
         const data = await User.findOne({where:{id:se}});
         let a = data.dataValues;
         let b = createId.id;
 
-        res.json({a, b});
+        res.json({a, b, bigcomment_insert, receiver_user_id});
     } catch (error) {
         console.log(error);
     }
@@ -217,9 +252,28 @@ exports.smallComment1 = async (req,res) =>{
             comment_id : postbody.comment_id,
         });
 
+        let sender = se;
+        let bigcomment_id = postbody.comment_id; // 큰 댓글의 id
+        const bigcomment = await BigComment.findOne({where:{id:bigcomment_id}});
+        const bigcomment_user_id = bigcomment.user_id;
+        const receiver_ID = bigcomment_user_id;
+        // console.log("ddddddddddddddddd", bigcomment_user_id);
+        let smallcomment_insert = 0;
+        if(sender != receiver_ID){
+            // 작은댓글 알림 sql 만들기
+            await Noti.create({
+                receiverID : receiver_ID,
+                senderID : sender,
+                smallCommentNoti : bigcomment_id,
+            });
+            smallcomment_insert = 1;
+        }
+
+        // ------------------------------------------------------
+
         const data = await User.findOne({where:{id:se}});
         let a = data.dataValues;
-        res.json({a, smallcommentcreateId});
+        res.json({a, smallcommentcreateId, smallcomment_insert, receiver_ID});
     } catch (error) {
         console.log(error);
     }
@@ -263,8 +317,8 @@ exports.getbiglike1 = async (req, res)=>{
     const val2 = await User.findOne({where:{user_id:x}});
     let onuserId = val2.dataValues.id; // 접속한 유저의 id;
  
-    console.log("onuserId", onuserId);
-    console.log("check1", data.post_id); // 현재 페이지의 총 댓글value
+    // console.log("onuserId", onuserId);
+    // console.log("check1", data.post_id); // 현재 페이지의 총 댓글value
 
     let tda = [];
     let data1;
@@ -298,10 +352,29 @@ exports.likebigcomment1 = async (req,res)=>{
             user_id : uf.dataValues.id,
             comment_id : data.civalue1,
         });
+        
         console.log("user_id :", uf.dataValues.id);
         console.log("id : ", data.civalue1);
+        const bigComments_id = data.civalue1;
+
+        // 큰댓글 남긴 사람 찾기
+        const bigcomment_search = await BigComment.findOne({where:{id:bigComments_id}});
+        const receiver = bigcomment_search.user_id;
+        const sender = uf.dataValues.id;
+        let bigcomment_like_click_noti = 0;
+
+        // 큰댓글 좋아요 알림 sql 만들기
+        if(receiver != sender){
+            await Noti.create({
+                receiverID : receiver,
+                senderID : sender,
+                likeBigNoti : bigComments_id,
+            });
+            bigcomment_like_click_noti = 1;
+        }
+
         await BigComment.update({likes: sequelize.literal('likes + 1') },{where: {id:data.civalue1} });
-        res.json("1");
+        res.json({bigcomment_like_click_noti, receiver});
     }
     else{
         await LikeBigComment.destroy({where:{user_id:uf.dataValues.id, comment_id : data.civalue1}});
@@ -321,10 +394,36 @@ exports.likesmallComment1 = async (req,res)=>{
             user_id : uf.dataValues.id,
             comment_id : data.comment_id,
         });
-
         await SmallComment.update({
             likes : sequelize.literal('likes+1')}, {where:{id:data.comment_id}
         });
+
+        // 작은댓글 알림 sql 추가하기
+        const sender = uf.dataValues.id;
+        // data.comment_id는 smallcomment의 id
+        const smallComments_id = data.comment_id;
+        const comment = await SmallComment.findOne({where : {id: smallComments_id}});
+        const receiver = comment.user_id;
+        console.log("sender", sender);
+        console.log("receiver", receiver);
+        let smallcomment_like_click_noti = 0;
+
+        if(sender != receiver){
+            try {
+                await Noti.create({
+                    receiverID : receiver,
+                    senderID : sender,
+                    likeSmallNoti : smallComments_id
+                });
+                smallcomment_like_click_noti= 1;
+                res.json({smallcomment_like_click_noti, receiver});
+            } catch (error) {
+                console.log(error);
+            }
+        }else{
+            res.json("0");
+        }
+
     }else{
         await LikeSmallComment.destroy({
             where:{
@@ -336,11 +435,10 @@ exports.likesmallComment1 = async (req,res)=>{
         await SmallComment.update({
             likes : sequelize.literal('likes-1')}, {where:{id:data.comment_id}
         });
+        res.json("0");
     }
     // console.log("a",uf.dataValues.id);
     // console.log("b", data.comment_id);
     // console.log("checkval", data.check_val);
-    res.json("1");
-}
-
-
+    
+};

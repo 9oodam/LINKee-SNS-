@@ -151,10 +151,10 @@
         let data22 = data2.data;
 
         for (let i = 0; i < data.length; i++) {
-          document.querySelector("#await").innerHTML += `<p id="p${i}"><span>${data[i].user_id}</span> <button onclick="accept(${i}, '${data[i].user_id}')">Auth</button> <button onclick="deny(${i}, ${data[i].user_id})">deny</button></p>`;
+          document.querySelector("#await").innerHTML += `<p id="p${i}"><span class="nickname">${data[i].user_id}</span> <button class="authBtn" onclick="accept(${i}, '${data[i].user_id}')">Auth</button> <button class="denyBtn" onclick="deny(${i}, ${data[i].user_id})">deny</button></p>`;
         }
         for (let i = 0; i < data22.length; i++) {
-          document.querySelector("#accept").innerHTML += `<p id="p99${i}">${data22[i].user_id} <button onclick="unAuth(99${i} ,'${data22[i].user_id}')" class="neon">UnAuthorization</button></p>`;
+          document.querySelector("#accept").innerHTML += `<p id="p99${i}"<span class="nickname">${data22[i].user_id}</span> <button class="unAuthBtn" onclick="unAuth(99${i} ,'${data22[i].user_id}')" class="neon">unAuth</button></p>`;
         }
 
 
@@ -168,7 +168,7 @@
         let arr = [];
         let random = day - 7;
 
-        let dayCnt = await axios.get(`https://andybyungjoopark.com/dayCnt`);
+        let dayCnt = await axios.get(`https://andybyungjoopark.com/admin/dayCnt`);
 
         for (let i = 0; i <= 7; i++) {
           arr[i] = random;
@@ -261,7 +261,7 @@
         // document.querySelector("#p" + a).style.display = "none";
         document.querySelector("#p" + a).remove();
         // document.querySelector("#accept").innerHTML += `<p>${id}</p>`;
-        document.querySelector("#accept").innerHTML += `<p id="p${a}">${id} <button onclick="unAuth(${a} ,'${id}')" class="neon">UnAuthorization</button></p>`;
+        document.querySelector("#accept").innerHTML += `<p id="p${a}">${id} <button class="unAuthBtn" onclick="unAuth(${a} ,'${id}')" class="neon">UnAuthorization</button></p>`;
 
       }
       async function deny(a, id) {
@@ -273,7 +273,7 @@
         console.log(id);
         // document.querySelector("#p"+id).style.display = "none";
         document.querySelector("#p" + id).remove();
-        document.querySelector("#await").innerHTML += `<p id="p${id}"><span>${a}</span> <button onclick="accept(${id}, '${a}')">Auth</button> <button onclick="deny(${id}, ${a})">deny</button></p>`;
+        document.querySelector("#await").innerHTML += `<p id="p${id}"><span>${a}</span> <button class="authBtn" onclick="accept(${id}, '${a}')">Auth</button> <button class="denyBtn" onclick="deny(${id}, ${a})">deny</button></p>`;      
       }
     </script>
   </body>

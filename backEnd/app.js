@@ -228,4 +228,12 @@ io.on("connection", (socket) => {
         let leftIndex = userID.indexOf(leftUser);
         io.to(socketID[leftIndex]).emit("leaveRoom", leavedUser);
     });
+
+    // 게시글 좋아요 클릭시
+    socket.on("detail_page_like_click_noti_emit", (receiverID) =>{
+        let receiverIndex = userID.indexOf(Number(receiverID));
+        console.log("receiverIndex :",receiverIndex);
+        io.to(socketID[receiverIndex]).emit("detail_page_like_click_noti_send");
+        console.log("게시글 클릭됨");
+    });
 });
