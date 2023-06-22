@@ -96,6 +96,8 @@
 </body>
 <script>
     window.onload = async () =>{
+        const socket = io.connect('https://andybyungjoopark.com'); // 소켓 연결 시도
+
         let x = location.hash;
         let xx = x.replace("#", "");
         const {data} = await axios.get(`https://andybyungjoopark.com/main/getcontents/${xx}`,{
@@ -585,7 +587,6 @@
             });
             const {user, userAll} = data;
 
-            const socket = io.connect('https://andybyungjoopark.com'); // 소켓 연결 시도
             socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
 
             socket.on("userIn", (socketID, userID) => {
