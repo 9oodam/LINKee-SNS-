@@ -102,7 +102,8 @@ exports.getcontents = async (req,res)=>{
                 const data = await User.findOne({where:{id:e[i]}});
                 e_nick[i] = data.nickname;
                 e_profile[i] = data.profile_img;
-                console.log(e_profile[i]);
+                // console.log(e_profile[i]);
+                
             }
             for (let i = 0; i <d_comment_id.length; i++) {
                 s_comment[i] = [];
@@ -124,7 +125,7 @@ exports.getcontents = async (req,res)=>{
             d = 0;
         }
 
-        res.json({a, b, d, e_content, e, e_nick, d_comment_id, s_comment, user_id});
+        res.json({a, b, d, e_content, e, e_nick, d_comment_id, s_comment, user_id, e_profile});
     } catch (error) {
         console.log(error);
     }
