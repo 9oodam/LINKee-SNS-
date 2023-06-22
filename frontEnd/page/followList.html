@@ -47,23 +47,26 @@
         console.log(user);
         // 팔로잉
         let followingArr = JSON.parse(user.following);
+        console.log(followingArr);
         followingNum.innerHTML = `팔로잉 ${followingArr.length}명`;
 
-        followingArr.forEach((el) => {
-          let followingUser = userAll.find(user => user.id === el);
-          let div = document.createElement("div");
-          div.innerHTML = `
-          <div class="profile_img">
-              <img src="https://andybyungjoopark.com/user_img/${followingUser.profile_img}" alt=""/>
-          </div>
-          <div class="nickname">${followingUser.nickname}</div>
-          `;
-          followings.appendChild(div);
+        if(followingArr.length != 0){
+          followingArr.forEach((el) => {
+            let followingUser = userAll.find(user => user.id === el);
+            let div = document.createElement("div");
+            div.innerHTML = `
+            <div class="profile_img">
+                <img src="https://andybyungjoopark.com/user_img/${followingUser.profile_img}" alt=""/>
+            </div>
+            <div class="nickname">${followingUser.nickname}</div>
+            `;
+            followings.appendChild(div);
 
-          div.onclick = () => {
-            location.href = `/userpage#${followingUser.nickname}`;
-          }
-        });
+            div.onclick = () => {
+              location.href = `/userpage#${followingUser.nickname}`;
+            }
+          });
+        };
 
         // 팔로워
         let followerArr = JSON.parse(user.follower);
