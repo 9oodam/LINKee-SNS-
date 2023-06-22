@@ -60,7 +60,7 @@
           return;
         }
         let abc = document.querySelector("input[name='user_id']").value;
-        const { data } = await axios.get(`https://andybyungjoopark.com/login/loginalert/${abc}`,
+        const { data } = await axios.get(`https://andybyungjoopark.com/loginalert/${abc}`,
           {
             // withCredentials: true
             // 브라우저가 쿠키를 서버로 전달 할 수 있는 옵션
@@ -73,7 +73,7 @@
         }
 
         let abc2 = document.querySelector("input[name='user_pw']").value;
-        const data1 = await axios.get("https://andybyungjoopark.com/login/passwordalert",{
+        const data1 = await axios.get("https://andybyungjoopark.com/passwordalert",{
           withCredentials: true,
             params: {
               user_id: abc,
