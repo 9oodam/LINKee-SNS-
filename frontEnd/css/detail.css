@@ -84,6 +84,8 @@
 }
 .likes_btn{
     position: relative;
+}
+.like_btn {
     width: 23px; height: 23px;
 }
 .likes_btn .like_btn_count{
