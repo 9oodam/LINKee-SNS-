@@ -157,6 +157,10 @@
                     profileDiv.classList.add("profile_img");
                     profileDiv.innerHTML = `<img src="https://andybyungjoopark.com/user_img/${senderImg}" alt="">`;
 
+                    profileDiv.onclick = () => {
+                        location.href = `/userpage.html#${sender}`
+                    }
+
                     let textDiv = document.createElement("div");
                     textDiv.classList.add("noti_text");
 
@@ -173,23 +177,28 @@
                         if(isfollowArr == 0 || !isfollowArr.includes(senderID)) {
                             followBtn.classList.add("follow_btn");
                             followBtn.innerHTML = '팔로우';
+                            followBtn.onclick = () => {
+                                axios.get(`https://andybyungjoopark.com/mypage/follow/${user.id}`, {
+                                    withCredentials : true,
+                                })
+                                socket.emit("detail_page_like_click_noti_emit", user.id);
+                                location.reload();
+                            }
                         }
                         // 내가 상대방을 아직 팔로우 하고 있지 않은 경우
                         else {
                             followBtn.classList.add("follow_btn_already");
                             followBtn.innerHTML = '팔로잉';
+                            followBtn.onclick = () => {
+                                axios.get(`https://andybyungjoopark.com/mypage/follow/${user.id}`, {
+                                    withCredentials : true,
+                                })
+                                location.reload();
+                            }
                         }
                         rightDiv.appendChild(followBtn);
 
-                        followBtn.onclick = () => {
-                            axios.get(`https://andybyungjoopark.com/mypage/follow/${user.id}`, {
-                                withCredentials : true,
-                            })
 
-                            socket.emit("detail_page_like_click_noti_emit", user.id);
-
-                            location.reload();
-                        }
 
                     }else {
                         let postImgDiv = document.createElement("div");
@@ -235,6 +244,9 @@
                                 }
                             });
                             textDiv.innerHTML = `<span class="nickname">${sender}</span>님이 회원님의 대댓글을 좋아합니다. <span class="date">${dateText}</span>`;
+                        }
+                        postImgDiv.onclick = () => {
+                            location.href = `/detail.html#${el3.id}`;
                         }
                         rightDiv.appendChild(postImgDiv);
                     }
