@@ -123,6 +123,7 @@ exports.removeFollower = async (req, res) => {
     try {
         const loginUser = await User.findOne({where : {user_id}});
         const targetUser = await User.findOne({where : {id}});
+        console.log("target id", targetUser.id)
 
         let followerArr = JSON.parse(loginUser.follower); // 로그인 유저의 팔로워
         let followingArr = JSON.parse(targetUser.following); // 타겟 유저의 팔로잉
@@ -140,6 +141,8 @@ exports.removeFollower = async (req, res) => {
         let followingArrArr = JSON.stringify(followingArr)
         let followerArrArr = JSON.stringify(followerArr)
 
+        console.log(followingArr)
+        console.log(followerArr)
         await User.update({following : followingArrArr}, {where : {id : targetUser.id}});
         await User.update({follower : followerArrArr}, {where : {id : loginUser.id}});
     } catch (error) {
