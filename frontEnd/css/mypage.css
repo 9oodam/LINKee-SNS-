@@ -146,6 +146,6 @@
     box-sizing: border-box;
     overflow: hidden;
 }
-.imgDiv{
+.imgDiv div {
     width: 100%;
 }
