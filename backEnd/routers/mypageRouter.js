@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 const {isLogin} = require("../middleware/isLogin");
-const {myPost, follow, removeFollower,mypage,editProfile} = require("../controllers/mypageCon");
+const {myPost, follow, removeFollower,mypage,editProfile,AllUser} = require("../controllers/mypageCon");
 const {uploadImg,updateProfileImg} = require("../middleware/uploadImg");
 
 const path = require("path");
@@ -26,6 +26,8 @@ router.post("/edit",isLogin, updateProfileImg.single("img"),(err,req,res,next)=>
         res.status(400).json({error : "파일이 너무 크네요"});
     }
 } ,editProfile);
+
+router.get("/edit/profile",isLogin,AllUser);
 
 // router.post("/editPic",isLogin,updateProfileImg.single("img"),(req,res)=>{
 //     console.log(req);
