@@ -155,8 +155,6 @@
                     wrapDiv.classList.add("noti_wrap");
                     let profileDiv = document.createElement("div");
                     profileDiv.classList.add("profile_img");
-                    profileDiv.innerHTML = `<img src="https://andybyungjoopark.com/user_img/${senderImg}" alt="">`;
-
                     profileDiv.onclick = () => {
                         location.href = `/userpage.html#${sender}`
                     }
@@ -208,7 +206,13 @@
                             posts.forEach((el3) => {
                                 if(el3.id == el.bigCommentNoti) {
                                     let postImg = el3.img;
-                                    postImgDiv.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${postImg}" alt="">`;
+                                    let ext = postImg.split('.').pop();
+                                    if(ext == "jpeg" || ext == "gif" || ext == "png" || ext == "jpg" || ext == "jfif" || ext == "webp") {
+                                        postImgDiv.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${postImg}" alt="">`;
+                                    }else if(ext == "mp4") {
+                                        postImgDiv.innerHTML = `<video class="video" src="https://andybyungjoopark.com/post_img/${postImg}" autoplay loop muted></video>`;
+                                    }
+                                    postImgDiv.onclick = () => {location.href = `/detail.html#${el3}`;}
                                 }
                             });
                             textDiv.innerHTML = `<span class="nickname">${sender}</span>님이 회원님의 게시물에 댓글을 남겼습니다. <span class="date">${dateText}</span>`;
@@ -216,7 +220,14 @@
                             posts.forEach((el3) => {
                                 if(el3.id == el.smallCommentNoti) {
                                     let postImg = el3.img;
-                                    postImgDiv.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${postImg}" alt="">`;
+                                    let ext = postImg.split('.').pop();
+                                    if(ext == "jpeg" || ext == "gif" || ext == "png" || ext == "jpg" || ext == "jfif" || ext == "webp") {
+                                        postImgDiv.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${postImg}" alt="">`;
+                                    }else if(ext == "mp4") {
+                                        postImgDiv.innerHTML = `<video class="video" src="https://andybyungjoopark.com/post_img/${postImg}" autoplay loop muted></video>`;
+                                    }
+                                    postImgDiv.onclick = () => {location.href = `/detail.html#${el3}`;}
+
                                 }
                             });
                             textDiv.innerHTML = `<span class="nickname">${sender}</span>님이 회원님의 게시물에 대댓글을 남겼습니다. <span class="date">${dateText}</span>`;
@@ -224,7 +235,14 @@
                             posts.forEach((el3) => {
                                 if(el3.id == el.likePostNoti) {
                                     let postImg = el3.img;
-                                    postImgDiv.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${postImg}" alt="">`;
+                                    let ext = postImg.split('.').pop();
+                                    if(ext == "jpeg" || ext == "gif" || ext == "png" || ext == "jpg" || ext == "jfif" || ext == "webp") {
+                                        postImgDiv.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${postImg}" alt="">`;
+                                    }else if(ext == "mp4") {
+                                        postImgDiv.innerHTML = `<video class="video" src="https://andybyungjoopark.com/post_img/${postImg}" autoplay loop muted></video>`;
+                                    }
+                                    postImgDiv.onclick = () => {location.href = `/detail.html#${el3}`;}
+
                                 }
                             });
                             textDiv.innerHTML = `<span class="nickname">${sender}</span>님이 회원님의 게시물을 좋아합니다. <span class="date">${dateText}</span>`;
@@ -232,7 +250,14 @@
                             posts.forEach((el3) => {
                                 if(el3.id == el.likeBigNoti) {
                                     let postImg = el3.img;
-                                    postImgDiv.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${postImg}" alt="">`;
+                                    let ext = postImg.split('.').pop();
+                                    if(ext == "jpeg" || ext == "gif" || ext == "png" || ext == "jpg" || ext == "jfif" || ext == "webp") {
+                                        postImgDiv.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${postImg}" alt="">`;
+                                    }else if(ext == "mp4") {
+                                        postImgDiv.innerHTML = `<video class="video" src="https://andybyungjoopark.com/post_img/${postImg}" autoplay loop muted></video>`;
+                                    }
+                                    postImgDiv.onclick = () => {location.href = `/detail.html#${el3}`;}
+
                                 }
                             });
                             textDiv.innerHTML = `<span class="nickname">${sender}</span>님이 회원님의 댓글을 좋아합니다. <span class="date">${dateText}</span>`;
@@ -240,7 +265,14 @@
                             posts.forEach((el3) => {
                                 if(el3.id == el.likeSmallNoti) {
                                     let postImg = el3.img;
-                                    postImgDiv.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${postImg}" alt="">`;
+                                    let ext = postImg.split('.').pop();
+                                    if(ext == "jpeg" || ext == "gif" || ext == "png" || ext == "jpg" || ext == "jfif" || ext == "webp") {
+                                        postImgDiv.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${postImg}" alt="">`;
+                                    }else if(ext == "mp4") {
+                                        postImgDiv.innerHTML = `<video class="video" src="https://andybyungjoopark.com/post_img/${postImg}" autoplay loop muted></video>`;
+                                    }
+                                    postImgDiv.onclick = () => {location.href = `/detail.html#${el3}`;}
+
                                 }
                             });
                             textDiv.innerHTML = `<span class="nickname">${sender}</span>님이 회원님의 대댓글을 좋아합니다. <span class="date">${dateText}</span>`;
