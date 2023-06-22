@@ -155,7 +155,7 @@
                     wrapDiv.classList.add("noti_wrap");
                     let profileDiv = document.createElement("div");
                     profileDiv.classList.add("profile_img");
-                    profileDiv.innerHTML = `<img src="http://127.0.0.1:8080/user_img/${senderImg}" alt="">`;
+                    profileDiv.innerHTML = `<img src="https://andybyungjoopark.com/user_img/${senderImg}" alt="">`;
                     profileDiv.onclick = () => {
                         location.href = `/userpage.html#${sender}`
                     }
@@ -288,23 +288,6 @@
                     wrapDiv.appendChild(rightDiv);
 
                     middle_body.appendChild(wrapDiv);
-
-
-                    // 알림을 클릭했을 때 페이지 넘어가는 함수
-                    wrapDiv.onclick = () => {
-                        if(el.followNoti) {
-                            location.href = `/userpage#${senderID}`;
-                        }else {
-                            let postID = ""
-                            if(el.bigCommentNoti) postID = el.bigCommentNoti;
-                            if(el.smallCommentNoti) postID = el.smallCommentNoti;
-                            if(el.likePostNoti) postID = el.likePostNoti;
-                            if(el.likeBigNoti) postID = el.likeBigNoti;
-                            if(el.likeSmallNoti) postID = el.likeSmallNoti;
-
-                            location.href = `/detail#${postID}`;
-                        }
-                    }
                     
                 });
             }
