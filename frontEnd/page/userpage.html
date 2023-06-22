@@ -69,7 +69,7 @@
         let x = location.hash;
         let xx = x.replace("#", "");
 
-        nickname.innerHTML = xx;
+        nickname.innerHTML = decodeURIComponent(xx);
 
         try {
             const {data} = await axios.get(`https://andybyungjoopark.com/search/user/${xx}`, {
