@@ -118,7 +118,7 @@ exports.editProfile = async (req,res)=>{
 
 exports.removeFollower = async (req, res) => {
     const {id} = req.params; // 삭제한 유저의 아이디
-    console.log(id);
+    console.log("이거다",id);
     const {user_id} = req.acc_decoded;
     try {
         const loginUser = await User.findOne({where : {user_id}});
