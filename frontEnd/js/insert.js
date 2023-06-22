@@ -11,10 +11,16 @@ fileUpload.onclick = function() {
         fileName = fileUpload.files[0];
         console.log(fileName);
         console.log("선택된 파일: ", fileName.name);
-        profile(fileName);
-        label.style.display = "none";
-    }
-}
+
+        let ext = fileName.name.split('.').pop();
+        if(ext == "mp4"){
+            label.innerHTML = fileName.name;
+        }else{
+            profile(fileName);
+            label.style.display = "none";
+        };
+    };
+};
   
 // 업로드한 파일을 base64 형태로 변환
 function profile(value) {
