@@ -119,6 +119,7 @@ body {
 .post_bottom .content .nickname {
     font-weight: 900;
     font-size: 16px;
+    cursor: pointer;
 }
 .post_bottom .content .more {
     font-weight: 900;
