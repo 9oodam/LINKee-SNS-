@@ -31,5 +31,10 @@ router.get('/getbiglike', isLogin, getbiglike1);
 
 router.get('/likesmallComment', isLogin, likesmallComment1);
 
+router.get("/loginUser",isLogin,(req,res)=>{
+    const {acc_decoded} = req;
+    res.json(acc_decoded);
+})
+
 module.exports = router;
 
