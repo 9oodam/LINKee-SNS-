@@ -39,7 +39,7 @@
   <script>
     window.onload = async () => {
       try {
-        const {data} = await axios.get('https://andybyungjoopark.com/main', {
+        const {data} = await axios.get('https://andybyungjoopark.com/main/getProfile', {
             withCredentials : true
         });
         const {user, userAll} = data;
