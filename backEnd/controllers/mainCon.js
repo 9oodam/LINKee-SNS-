@@ -101,6 +101,7 @@ exports.getcontents = async (req,res)=>{
                 const data = await User.findOne({where:{id:e[i]}});
                 e_nick[i] = data.nickname;
                 e_profile[i] = data.profile_img;
+                console.log(e_profile[i]);
             }
             for (let i = 0; i <d_comment_id.length; i++) {
                 s_comment[i] = [];
