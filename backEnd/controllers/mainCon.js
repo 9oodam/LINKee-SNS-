@@ -3,7 +3,10 @@ const {User, Post, LikePost, BigComment, SmallComment, LikeBigComment, LikeSmall
 const {sequelize} = require("../models");
 
 exports.getPost = async (req, res) => {
-    const {user_id} = req.acc_decoded;
+    const {acc_decoded} = req;
+    
+    const user_id = acc_decoded.user_id;
+    // orchid
     try {
         // 로그인 된 유저
         const user = await User.findOne({where : {user_id}});
@@ -13,7 +16,7 @@ exports.getPost = async (req, res) => {
 
         // 로그인 된 유저가 팔로우 하고 있는 유저들
         const following = JSON.parse(user.following);
-        console.log(following);
+        // console.log(following);
 
         // 팔로우 하고 있는 유저들의 게시글
         const followingPost = [];
@@ -21,24 +24,44 @@ exports.getPost = async (req, res) => {
         // for of : 순차적
         // forEach : 비순차적
         if(following != 0) {
+            following.push(user.id);
             const posts = await Post.findAll();
 
             for await (const el of posts) {
                 for await (const el2 of following) {
                     if(el.user_id == el2) {
                         followingPost.push(el);
-                    }
-                }
-            }
-        }
+                        // console.log(followingPost);
+                    };
+                };
+            };
+        }else{
+            const posts = await Post.findAll();
+            for await (const el of posts){
+                if(el.user_id == user.dataValues.id){
+                    followingPost.push(el);
+                };
+            };
+        };
 
         res.json({user, userAll, following, followingPost});
         
     } catch (error) {
         console.log(error);
     }
-}
+};
 
+exports.mainpage_heart_show1 = async (req,res)=>{
+    const logon_id = req.session.iidd;
+    const post_id = req.params.id;
+    const value = await LikePost.findOne({ where:{post_id: post_id,user_id:logon_id}});
+    
+    if(value == null){
+        res.json("0");
+    }else{
+        res.json("1");
+    }
+}
 
 exports.getProfile = async (req, res) => {
     const {user_id} = req.acc_decoded;
@@ -250,12 +273,10 @@ exports.smallComment1 = async (req,res) =>{
             await Noti.create({
                 receiverID : receiver_ID,
                 senderID : sender,
-                smallCommentNoti : bigcomment_id,
+                smallCommentNoti : param,
             });
             smallcomment_insert = 1;
         }
-
-        // ------------------------------------------------------
 
         const data = await User.findOne({where:{id:se}});
         let a = data.dataValues;
@@ -354,7 +375,7 @@ exports.likebigcomment1 = async (req,res)=>{
             await Noti.create({
                 receiverID : receiver,
                 senderID : sender,
-                likeBigNoti : bigComments_id,
+                likeBigNoti : data.hashvalue,
             });
             bigcomment_like_click_noti = 1;
         }
@@ -399,7 +420,7 @@ exports.likesmallComment1 = async (req,res)=>{
                 await Noti.create({
                     receiverID : receiver,
                     senderID : sender,
-                    likeSmallNoti : smallComments_id
+                    likeSmallNoti : data.hashvalue
                 });
                 smallcomment_like_click_noti= 1;
                 res.json({smallcomment_like_click_noti, receiver});
@@ -423,8 +444,5 @@ exports.likesmallComment1 = async (req,res)=>{
         });
         res.json("0");
     }
-    // console.log("a",uf.dataValues.id);
-    // console.log("b", data.comment_id);
-    // console.log("checkval", data.check_val);
     
 }

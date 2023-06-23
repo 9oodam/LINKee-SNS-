@@ -18,7 +18,7 @@ class Noti extends Sequelize.Model {
                 type : Sequelize.INTEGER
             },
             smallCommentNoti : { // 대댓글 알림 (해당 댓글의 아이디 bigComments.id)
-                // bigComments.id -> posts.id
+                // bigComments.id -> posts.id oooooooo
                 type : Sequelize.INTEGER
             },
             likePostNoti : { // 게시물 좋아요 알림 (해당 게시글의 아이디 posts.id)

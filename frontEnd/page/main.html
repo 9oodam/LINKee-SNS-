@@ -90,18 +90,28 @@
             });
             const {user, userAll, following, followingPost} = data;
 
-            console.log(following);
             followingPost.reverse();
 
             if(following == 0) {
                 forFreshman.style.display = "block";
             }
 
-            followingPost.forEach((el) => {
+            followingPost.forEach(async (el) => {
                 //console.log(el)
                 // 해당 포스트를 작성한 유저의 nickname & profile_img
                 let writer = userAll.find(item => item.id == el.user_id);
-                //console.log(writer);
+
+                const mainpage_heart_show = await axios.get(`http://127.0.0.1:8080/main/mainpage_heart_show/${el.id}`,{
+                    withCredentials : true
+                });
+                // console.log(mainpage_heart_show.data);
+
+                // 좋아요 on
+                let heart_on = "icon_noti.png";
+                if(mainpage_heart_show.data == 1){
+                    heart_on = "icon_heart.png";
+                }
+            
 
                 // 날짜 계산
                 let now = new Date();
@@ -151,7 +161,7 @@
                         </div>
 
                         <div class="post_bottom">
-                            <div class="likes"><img src="../nav_icon_img/icon_noti.png" alt=""><p>${el.likes} likes</p></div>
+                            <div class="likes"><img src="../nav_icon_img/${heart_on}" alt=""><p>${el.likes} likes</p></div>
                             <div class="content">
                                 <p class="content_text${el.id}"><span class="nickname" onclick="moveToUser(${writer.nickname})">${writer.nickname}</span>
                                 <span>${content}</span></p>
@@ -178,7 +188,7 @@
                         </div>
     
                         <div class="post_bottom">
-                            <div class="likes"><img src="../nav_icon_img/icon_noti.png" alt=""><p>${el.likes} likes</p></div>
+                            <div class="likes"><img src="../nav_icon_img/${heart_on}" alt=""><p>${el.likes} likes</p></div>
                             <div class="content">
                                 <p class="content_text"><span class="nickname" onclick="moveToUser(${writer.nickname})">${writer.nickname}</span>
                                 <span>${content}</span></p>
