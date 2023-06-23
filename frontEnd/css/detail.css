@@ -46,6 +46,7 @@
 .reply_container .comments_wrap .likes_btn {
     width: 40px; height: auto;
     cursor: pointer;
+    display: flex; justify-content: center;
 }
 .comments_wrap .profile_img img {
     border: 1px solid black;
@@ -90,7 +91,6 @@
 }
 .likes_btn .like_btn_count{
     position: absolute;
-    left: 8px;
     font-size: 12px;
     text-align: center;
 }
