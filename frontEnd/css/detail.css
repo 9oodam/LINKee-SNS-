@@ -90,21 +90,22 @@ details .input_wrap input {
 .s_comments_wrap {
     width: 100%; height: auto;
     cursor: pointer;
+    margin-right: -50px;
+    display: flex; justify-content: center;
 }
 
 .s_comments_wrap .s_likes_btn{
     float: right;
     width: 40px; height: auto;
-}
-.s_comments_wrap .s_likes_btn .s_like_btn, .s_comments_wrap .s_likes_btn .s_like_btn_count{
-    float: right;
+    position: relative;
 }
 .s_comments_wrap .s_likes_btn .s_like_btn {
+    position: absolute; top: 0;
     width: 18px; height: 18px;
 }
 .s_comments_wrap .s_likes_btn .s_like_btn_count{
-    margin-right: -41.5px;
-    margin-top: -11px;
+    position: absolute;
+    top: 17px;
     font-size: 12px;
 }
 .likes_btn{
