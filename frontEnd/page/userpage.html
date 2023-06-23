@@ -83,8 +83,8 @@
             console.log(posts);
 
             // text에 줄바꿈
-            let content = "";
-            if(user.profile_info != ""){
+            let content = user.profile_info;
+            if(user.profile_info){
                 content = user.profile_info.replace(/(?:\r\n|\r|\n)/g, "<br>");
             };
 
