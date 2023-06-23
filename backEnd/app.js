@@ -96,7 +96,6 @@ app.use("/post_img",express.static(path.join(__dirname,"post_img"),{
     }
 }));
 
-// image content type
 app.use("/socket.io",express.static(path.join(__dirname,"..","frontEnd","js"),{
     setHeaders : (res,filePath) => {
         if(path.extname(filePath) === ".js"){

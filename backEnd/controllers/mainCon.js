@@ -185,7 +185,7 @@ exports.likeClick = async (req, res)=>{
                 likePostNoti : data.post_id,
             });
             noti_on = 1;
-        }
+        };
 
         await Post.update({likes: sequelize.literal('likes + 1') },{where: {id:data.post_id} });
         // await Post.update({likes: "5" },{where: {id:data.post_id} });
