@@ -71,7 +71,9 @@
             preview.src = `https://andybyungjoopark.com/user_img/${data.profile_img}`;
 
             // text에 줄바꿈
+            console.log(data.profile_info);
             let content = data.profile_info.replace(/(?:\r\n|\r|\n)/g, "<br>");
+            console.log(content);
 
             const nameInput = document.querySelector(".nameInput");
             nameInput.placeholder = data.user_name;
