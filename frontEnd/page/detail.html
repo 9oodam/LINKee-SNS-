@@ -224,8 +224,15 @@
         }
 
         document.querySelector(".nickname").innerHTML = data.b.nickname;
+        document.querySelector(".nickname").onclick = ()=>{
+            if(data.b.nickname === user.data.nickname){
+                location.href = "/mypage";
+            }else{
+                location.href = `/userpage#${data.b.nickname}`;
+            }
+        };
         document.querySelector("p .nickname").innerHTML = data.b.nickname;
-        document.querySelectorAll(".nickname").onclick = ()=>{
+        document.querySelector("p .nickname").onclick = ()=>{
             if(data.b.nickname === user.data.nickname){
                 location.href = "/mypage";
             }else{
