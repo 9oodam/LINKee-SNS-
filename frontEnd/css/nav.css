@@ -28,6 +28,10 @@ input::placeholder {
     font-family: "DungGeunMo";
 }
 
+textarea::placeholder {
+    font-family: "DungGeunMo";
+}
+
 body {
     margin: 0; padding: 0;
     position: relative;
