@@ -25,3 +25,11 @@ function reject(senderID, receiverID) {
 function closeNoti() {
     liveChatNoti.style.display = "none";
 }
+
+// 로딩창
+function moveToMain() {
+    loading.style.display = "block";
+    setTimeout(() => {
+        location.href = "/main";
+    }, 3000);
+}
