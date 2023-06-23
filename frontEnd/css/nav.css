@@ -24,6 +24,10 @@
     font-style: normal;
 }
 
+input::placeholder {
+    font-family: "DungGeunMo";
+}
+
 body {
     margin: 0; padding: 0;
     position: relative;
