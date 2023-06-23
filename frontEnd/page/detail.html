@@ -154,6 +154,9 @@
             document.querySelector("#heartImage").dataset.value = "1";
         }
 
+        const allBigComments = await axios.get("https://andybyungjoopark.com/detail/allComments");
+        console.log(allBigComments);
+
         for(let i=0; i<data.e.length;i++){
             reply_container.innerHTML += `
             <div class="comments_wrap">

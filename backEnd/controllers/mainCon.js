@@ -456,3 +456,8 @@ exports.loginUser = async (req,res)=>{
     console.log(user.dataValues);
     res.json(user);
 };
+
+exports.allBigComments = async (req,res)=>{
+    const bigComments = await BigComment.findAll();
+    res.json(bigComments);
+};
