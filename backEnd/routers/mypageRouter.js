@@ -7,7 +7,7 @@ const {addFollowNoti} = require("../controllers/notiCon");
 
 const path = require("path");
 
-router.get("/",async (req,res)=>{
+router.get("/", isLogin, async (req,res)=>{
     res.sendFile("/home/ubuntu/frontEnd/page/mypage.html");
 });
 

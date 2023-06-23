@@ -4,7 +4,7 @@ const {isLogin} = require("../middleware/isLogin");
 // levelCheck 가져오기
 
 const path = require("path");
-router.get("/",(req,res)=>{
+router.get("/", isLogin, (req,res)=>{
     const filePath = "/home/ubuntu/frontEnd/page/main.html";
     res.sendFile(filePath);
 });
