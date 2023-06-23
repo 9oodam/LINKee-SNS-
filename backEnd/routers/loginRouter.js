@@ -3,7 +3,7 @@ const {isLogin} = require("../middleware/isLogin");
 const {signUp1, login1, idCheck, nicknameCheck, loginalert, passwordalert, admin1, admin2, levelchange, deny, dayCnt, unAuth} = require("../controllers/userCon");
 
 const path = require("path");
-router.get("/",(req,res)=>{
+router.get("/",isLogin,(req,res)=>{
     const filePath = "/home/ubuntu/frontEnd/page/login.html";
     res.sendFile(filePath);
 });
