@@ -54,7 +54,9 @@
             console.log(data.content);
 
             let ext = data.img.split('.').pop();
+            console.log(ext);
             if(ext == "mp4") {
+                console.log("video?")
                 let fileUpload = document.querySelector(".fileUpload");
                 fileUpload.innerHTML = data.img;
             }else {
