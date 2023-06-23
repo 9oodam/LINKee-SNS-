@@ -157,9 +157,9 @@
         for(let i=0; i<data.e.length;i++){
             reply_container.innerHTML += `
             <div class="comments_wrap">
-                <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${data.e_profile[i]}" alt=""></div>
+                <div class="profile_img" onclick="moveToUser('${data.b.nickname}','${user.data.nickname}')"><img src="https://andybyungjoopark.com/user_img/${data.e_profile[i]}" alt=""></div>
                 <div class="commentlist">
-                    <div class="nickname">${data.e_nick[i]}</div>
+                    <div class="nickname" onclick="moveToUser('${data.b.nickname}','${user.data.nickname}')">${data.e_nick[i]}</div>
                     <div class="bigCommentText">${data.e_content[i].content}</div>
                     <input type="text" class="i_comment_id" value="${data.d_comment_id[i]}">
                     <details>
@@ -210,9 +210,9 @@
                             <br><br>
                             <span class="s_like_btn_count">${data.data.b.likes}</span>
                         </div>
-                        <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${data.data.a.profile_img}" alt=""></div>
+                        <div class="profile_img" onclick="moveToUser('${data.b.nickname}','${user.data.nickname}')"><img src="https://andybyungjoopark.com/user_img/${data.data.a.profile_img}" alt=""></div>
                         <div>
-                            <div class="nickname">${data.data.a.nickname}</div>
+                            <div class="nickname" onclick="moveToUser('${data.b.nickname}','${user.data.nickname}')">${data.data.a.nickname}</div>
                             <div class="bigCommentText">${b[i].content}</div>
                         </div>
                     </div>
@@ -398,9 +398,9 @@
             // console.log(abc.data);
             reply_container.innerHTML += `
             <div class="comments_wrap">
-                <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${abc.data.a.profile_img}" alt=""></div>
+                <div class="profile_img" onclick="moveToUser('${data.b.nickname}','${user.data.nickname}')"><img src="https://andybyungjoopark.com/user_img/${abc.data.a.profile_img}" alt=""></div>
                 <div class="commentlist">
-                    <div class="nickname">${abc.data.a.nickname}</div>
+                    <div class="nickname" onclick="moveToUser('${data.b.nickname}','${user.data.nickname}')">${abc.data.a.nickname}</div>
                     <div class="bigCommentText">${big_comment_input.value}</div>
                     <input type="text" class="i_comment_id" value="${abc.data.b}">
                     <details>
@@ -420,13 +420,6 @@
                 </div>
             </div>
             `;
-            document.querySelector(".profile_img").onclick = ()=>{
-                if(data.b.nickname === user.data.nickname){
-                    location.href = "/mypage";
-                }else{
-                    location.href = `/userpage#${data.b.nickname}`;
-                }
-            };
             btn2();
             big_comment_input.value = "";
             location.reload();
@@ -519,21 +512,14 @@
                                         <img class="s_like_btn" data-value="0" src="../nav_icon_img/icon_noti.png">
                                         <div class="s_like_btn_count" style="margin-top:32px; margin-right:-32px;">0</div>
                                     </div>
-                                    <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${abc.data.a.profile_img}" alt=""></div>
+                                    <div class="profile_img" onclick="moveToUser('${data.b.nickname}','${user.data.nickname}')"><img src="https://andybyungjoopark.com/user_img/${abc.data.a.profile_img}" alt=""></div>
                                     <div>
-                                        <div class="nickname">${abc.data.a.nickname}</div>
+                                        <div class="nickname" onclick="moveToUser('${data.b.nickname}','${user.data.nickname}')">${abc.data.a.nickname}</div>
                                         <div class="bigCommentText">${small_comment_input.value}</div>
                                     </div>
                                     
                                 </div>
                     `;
-                    document.querySelector(".profile_img").onclick = ()=>{
-                        if(data.b.nickname === user.data.nickname){
-                            location.href = "/mypage";
-                        }else{
-                            location.href = `/userpage#${data.b.nickname}`;
-                        }
-                    };
                     btn3();
                     small_comment_input.value = "";
                 });
@@ -680,8 +666,13 @@
     }
     getProfile();
 
-    function moveToUser(nickname) {
-        location.href = `/userpage#${nickname}`;
+    // 유저 페이지로 이동
+    function moveToUser(nickname,me){
+        if(nickname == me){
+            location.href = "/mypage";
+        }else{
+            location.href = `/userpage#${nickname}`;
+        };
     };
 </script>
 </html>
