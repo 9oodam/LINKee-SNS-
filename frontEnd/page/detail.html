@@ -350,9 +350,6 @@
                 document.querySelector("#heartImage").src = '../nav_icon_img/icon_heart.png';
                 let count = Number(lc) + 1;
                 document.querySelector("#likecount").innerHTML = count;
-
-                // // 좋아요 알림 소켓
-                // socket.emit("detail_page_like_click_noti_emit", data.b.id);
             }else{
                 document.querySelector("#heartImage").dataset.value = "0";
                 document.querySelector("#heartImage").src = '../nav_icon_img/icon_noti.png';
@@ -380,7 +377,6 @@
                     check : checkval
                 }
             });
-            console.log(likeClick);
             if(likeClick.data.noti_on == 1){
                 let receiver_ID = likeClick.data.receiver; // 알림이 뜨게 할 id
                 socket.emit("detail_page_like_click_noti_emit", receiver_ID);
@@ -519,9 +515,8 @@
                         socket.emit("detail_page_like_click_noti_emit", receiver_ID);
                     }
 
-                    // console.log("abccccccccccccc", abc.data.smallcommentcreateId.id);
-                    // console.log("abccccccccccccc", abc.data.a.nickname);
-                    // console.log(abc.data);
+                    console.log(abc);
+                    console.log(abc.data);
                     event.target.closest('details').querySelector(".cw").innerHTML += `
                                 <div class="s_comments_wrap">
                                     <div class="s_likes_btn">
