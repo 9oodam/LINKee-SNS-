@@ -12,11 +12,11 @@ class User extends Sequelize.Model{
                 allowNull : false,
             },
             user_name : {
-                type : Sequelize.STRING(20),
+                type : Sequelize.STRING(10),
                 allowNull : false,
             },
             nickname : {
-                type : Sequelize.STRING(100),
+                type : Sequelize.STRING(10),
                 allowNull : false,
             },
             profile_img : {
