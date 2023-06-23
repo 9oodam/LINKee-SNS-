@@ -93,6 +93,7 @@
 .mypage_info {
     margin: 0;
     font-size: 14px;
+    overflow: hidden;
 }
 .profile_content{
     position: absolute;
