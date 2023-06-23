@@ -157,8 +157,9 @@
             mypageNick.innerHTML = response.data.user.nickname;
 
             // text에 줄바꿈
-            let content = "";
-            if(response.data.user.profile_info != ""){
+            // text에 줄바꿈
+            let content = response.data.user.profile_info;
+            if(response.data.user.profile_info){
                 content = response.data.user.profile_info.replace(/(?:\r\n|\r|\n)/g, "<br>");
             };
 

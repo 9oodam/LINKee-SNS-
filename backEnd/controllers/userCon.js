@@ -103,7 +103,7 @@ exports.passwordalert = async (req, res) => {
         },
         process.env.ACCESS_TOKEN_KEY,
         {
-          expiresIn: "15m",
+          expiresIn: "1m",
         },
       );
       req.session.access_token = token;
