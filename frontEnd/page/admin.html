@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Basic Line Chart</title>
     <!-- <link href="../../assets/styles.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="../css/admin.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
       window.Promise ||
@@ -34,105 +35,19 @@
       };
     </script>
     <!-- --------------------------------------------------------------- -->
-    <style>
-      /* #chart {
-        max-width: 650px;
-        margin: 35px auto;
-      } */
-      #chart1,
-      #chart2 {
-        /* display: inline-block; */
-        /* max-width: 650px; */
-        width: 799px;
-        margin: 35px auto;
-      }
-      * {
-        text-align: center;
-      }
-      #center {
-        margin: auto;
-        width: 799px;
-        height: 500px;
-        /* border: 1px solid black; */
-      }
-      #left {
-        float: left;
-      }
-      #right {
-        float: right;
-        overflow: scroll;
-      }
-      #left,
-      #right {
-        width: 349px;
-        height: 461px;
-        border: 1px solid lightgray;
-        border-radius: 10px;
-        box-shadow: 0px 10px 10px #26a0fc;
-      }
-
-      /* @keyframes ring {
-        0% {
-          width: 30px;
-          height: 30px;
-          opacity: 1;
-        }
-        100% {
-          width: 300px;
-          height: 300px;
-          opacity: 0;
-        }
-      } */
-
-      .neon {
-        position: relative;
-        border: none;
-        min-width: 200px;
-        min-height: 50px;
-        background: linear-gradient(
-          90deg,
-          #9AC5F4 0%,
-          rgba(79, 209, 197, 1) 100%
-        );
-        border-radius: 1000px;
-        color: A7ECEE;
-        cursor: pointer;
-        box-shadow: 12px 12px 24px #9AC5F4;
-        font-weight: 700;
-        font-size: 15px;
-        transition: 0.3s;
-      }
-      .neon:hover::after {
-        content: "";
-        width: 30px;
-        height: 30px;
-        border-radius: 100%;
-        border: 6px solid #99DBF5;
-        position: absolute;
-        z-index: -1;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        /* animation: ring 1.5s infinite; */
-      }
-      .neon:hover{
-        transform: scale(1.2);
-      }
-    </style>
+    
   </head>
 
   <body>
-    <h1>admin</h1>
+    <h1>Admin Page</h1>
     <br /><br />
     <div id="center">
       <div id="left">
-        <div>Waiting for authorization</div>
-        <hr />
+        <div class="subject">Waiting for authorization</div>
         <div id="await"></div>
       </div>
       <div id="right">
-        <div>Authorized</div>
-        <hr />
+        <div class="subject">Authorized</div>
         <div id="accept"></div>
       </div>
     </div>
