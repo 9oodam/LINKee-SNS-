@@ -9,7 +9,7 @@ router.get("/", isLogin, (req,res)=>{
     res.sendFile(filePath);
 });
 
-const {getPost, getProfile, getcontents, delBtn, getlike, likeClick, bigComment, smallComment1} = require("../controllers/mainCon");
+const {getPost, getProfile, getcontents, delBtn, getlike, likeClick, bigComment, smallComment1, mainpage_heart_show1} = require("../controllers/mainCon");
 
 router.get('/posts', isLogin, getPost);
 
@@ -27,6 +27,9 @@ router.get('/likeClick', isLogin, likeClick);
 router.get('/bigComment/:id', bigComment);
 
 router.get('/smallComment/:id', smallComment1);
+
+// 접속한 유저가 누른 하트 보여주기
+router.get("/mainpage_heart_show/:id",isLogin,mainpage_heart_show1);
 
 
 module.exports = router;

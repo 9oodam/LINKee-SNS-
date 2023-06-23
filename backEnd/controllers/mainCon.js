@@ -52,6 +52,18 @@ exports.getPost = async (req, res) => {
     }
 };
 
+exports.mainpage_heart_show1 = async (req,res)=>{
+    const login_id = req.session.iidd;
+    const post_id = req.params.id;
+    const value = await LikePost.findOne({where : {post_id : post_id, user_id : login_id}});
+
+    if(value == null){
+        res.json("0");
+    }else{
+        res.json("1");
+    };
+};
+
 
 exports.getProfile = async (req, res) => {
     const {user_id} = req.acc_decoded;
