@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const {isLogin} = require("../middleware/isLogin");
 const {signUp1, login1, idCheck, nicknameCheck, loginalert, passwordalert, admin1, admin2, levelchange, deny, dayCnt, unAuth} = require("../controllers/userCon");
 
 const path = require("path");
