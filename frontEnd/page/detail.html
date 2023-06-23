@@ -435,7 +435,7 @@
             `;
             btn2();
             big_comment_input.value = "";
-            location.reload();
+            // location.reload();
         });
 
         async function likeC2(a, b){
@@ -515,8 +515,6 @@
                         socket.emit("detail_page_like_click_noti_emit", receiver_ID);
                     }
 
-                    console.log(abc);
-                    console.log(abc.data);
                     event.target.closest('details').querySelector(".cw").innerHTML += `
                                 <div class="s_comments_wrap">
                                     <div class="s_likes_btn">
@@ -524,9 +522,9 @@
                                         <img class="s_like_btn" data-value="0" src="../nav_icon_img/icon_noti.png">
                                         <div class="s_like_btn_count" style="margin-top:32px; margin-right:-32px;">0</div>
                                     </div>
-                                    <div class="profile_img" onclick="moveToUser('${data.b.nickname}','${user.data.nickname}')"><img src="https://andybyungjoopark.com/user_img/${abc.data.a.profile_img}" alt=""></div>
+                                    <div class="profile_img" onclick="moveToUser('${abc.data.a.nickname}','${user.data.nickname}')"><img src="https://andybyungjoopark.com/user_img/${abc.data.a.profile_img}" alt=""></div>
                                     <div>
-                                        <div class="nickname" onclick="moveToUser('${data.b.nickname}','${user.data.nickname}')">${abc.data.a.nickname}</div>
+                                        <div class="nickname" onclick="moveToUser('${abc.data.a.nickname}','${user.data.nickname}')">${abc.data.a.nickname}</div>
                                         <div class="bigCommentText">${small_comment_input.value}</div>
                                     </div>
                                     
