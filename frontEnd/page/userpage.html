@@ -83,7 +83,10 @@
             console.log(posts);
 
             // text에 줄바꿈
-            let content = user.profile_info.replace(/(?:\r\n|\r|\n)/g, "<br>");
+            let content = "";
+            if(user.profile_info != ""){
+                content = user.profile_info.replace(/(?:\r\n|\r|\n)/g, "<br>");
+            };
 
             // 유저 정보 들어가는 부분
             const mypageProfileImg = document.querySelector(".mypage_profile_img");
