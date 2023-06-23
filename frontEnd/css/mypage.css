@@ -87,11 +87,11 @@
 .mypage_nickname {
     font-weight: 900;
     font-size: 16px;
-    
+    margin-bottom: 5px;
     cursor: pointer
 }
 .mypage_info {
-    margin: 0; height: 72px;
+    margin: 0; height: 54px;
     font-size: 14px;
     overflow: hidden;
 }
