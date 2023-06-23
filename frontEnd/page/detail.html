@@ -203,6 +203,8 @@
                     src = "icon_noti";
                 }
 
+                console.log(data);
+
                 html += `
                     <div class="s_comments_wrap">
                         <div class="s_likes_btn">
@@ -529,7 +531,6 @@
                                         <div class="nickname" onclick="moveToUser('${abc.data.a.nickname}','${user.data.nickname}')">${abc.data.a.nickname}</div>
                                         <div class="bigCommentText">${small_comment_input.value}</div>
                                     </div>
-                                    
                                 </div>
                     `;
                     btn3();
