@@ -459,5 +459,6 @@ exports.loginUser = async (req,res)=>{
 
 exports.allBigComments = async (req,res)=>{
     const bigComments = await BigComment.findAll();
+    console.log(bigComments);
     res.json(bigComments);
 };
