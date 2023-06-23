@@ -225,7 +225,7 @@
 
         document.querySelector(".nickname").innerHTML = data.b.nickname;
         document.querySelector("p .nickname").innerHTML = data.b.nickname;
-        document.querySelector(".nickname").onclick = ()=>{
+        document.querySelectorAll(".nickname").onclick = ()=>{
             if(data.b.nickname === user.data.nickname){
                 location.href = "/mypage";
             }else{
