@@ -117,6 +117,7 @@ body {
 .top_nav .logo {
     font-size: 32px; font-family: "pacman";
     position: absolute; left: 15px;
+    cursor: pointer;
 }
 .top_nav img, .bottom_nav img {
     width: 27px; height: 27px;
@@ -165,3 +166,10 @@ body {
     border-radius: 50%;
 }
 
+#loading {
+    width: 100vx; height: 100vh;
+    background-color: black;
+}
+#loading img {
+    width: 100%;
+}
