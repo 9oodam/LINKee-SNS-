@@ -91,7 +91,7 @@
     cursor: pointer
 }
 .mypage_info {
-    margin: 0;
+    margin: 0; height: 72px;
     font-size: 14px;
     overflow: hidden;
 }
