@@ -70,11 +70,6 @@
             // profileImg.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
             preview.src = `https://andybyungjoopark.com/user_img/${data.profile_img}`;
 
-            // text에 줄바꿈
-            console.log(data.profile_info);
-            let content = data.profile_info.replace(/(?:\r\n|\r|\n)/g, "<br>");
-            console.log(content);
-
             const nameInput = document.querySelector(".nameInput");
             nameInput.placeholder = data.user_name;
             const idInput = document.querySelector(".idInput");
@@ -83,7 +78,7 @@
             nicknameInput.value = data.nickname;
             const infoInput = document.querySelector(".infoInput");
             if(data.profile_info !== null){
-                infoInput.value = content;
+                infoInput.value = data.profile_info;
             };
             
 

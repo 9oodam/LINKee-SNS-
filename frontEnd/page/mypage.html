@@ -97,7 +97,9 @@
                 profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
             }else {
                 profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/${data.profile_img}" alt=""></a>`;
-            }
+            };
+
+
         } catch (error) {
             console.log(error);
         }
@@ -154,8 +156,11 @@
             const mypageNick = document.querySelector(".mypage_nickname");
             mypageNick.innerHTML = response.data.user.nickname;
 
+            // text에 줄바꿈
+            let content = response.data.user.profile_info.replace(/(?:\r\n|\r|\n)/g, "<br>");
+
             const mypageDescription = document.querySelector(".mypage_info");
-            mypageDescription.innerHTML = response.data.user.profile_info;
+            mypageDescription.innerHTML = content;
 
             // 게시글
             const userID = response.data.user.user_id;
