@@ -103,6 +103,7 @@
         const {data} = await axios.get(`https://andybyungjoopark.com/main/getcontents/${xx}`,{
             withCredentials : true
         });
+        console.log(data);
         const user = await axios.get("https://andybyungjoopark.com/detail/loginUser");
         console.log(user);
         if(data.d == 1){
@@ -153,7 +154,6 @@
             document.querySelector("#heartImage").dataset.value = "1";
         }
 
-        console.log(data);
         for(let i=0; i<data.e.length;i++){
             reply_container.innerHTML += `
             <div class="comments_wrap">
