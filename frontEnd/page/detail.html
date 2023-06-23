@@ -351,8 +351,8 @@
                 let count = Number(lc) + 1;
                 document.querySelector("#likecount").innerHTML = count;
 
-                // 좋아요 알림 소켓
-                socket.emit("detail_page_like_click_noti_emit", data.b.id);
+                // // 좋아요 알림 소켓
+                // socket.emit("detail_page_like_click_noti_emit", data.b.id);
             }else{
                 document.querySelector("#heartImage").dataset.value = "0";
                 document.querySelector("#heartImage").src = '../nav_icon_img/icon_noti.png';
