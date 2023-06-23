@@ -98,6 +98,8 @@ details .input_wrap input {
     float: right;
     width: 40px; height: auto;
     position: relative;
+    right: -60px;
+    display: flex; justify-content: center;
 }
 .s_comments_wrap .s_likes_btn .s_like_btn {
     position: absolute; top: 0;
@@ -107,6 +109,8 @@ details .input_wrap input {
     position: absolute;
     top: 17px;
     font-size: 12px;
+    text-align: center;
+    width: 100%;
 }
 .likes_btn{
     position: relative;
@@ -119,6 +123,7 @@ details .input_wrap input {
     font-size: 12px;
     text-align: center;
     top: 17px;
+    width: 100%;
 }
 
 /* 일단 추가해놈 - seonghyun */
