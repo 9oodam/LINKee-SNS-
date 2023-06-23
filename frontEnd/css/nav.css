@@ -166,13 +166,16 @@ body {
     border-radius: 50%;
 }
 
+header {
+    width: 100vw; height: 100vh;
+}
 #loading {
-    width: 100vx; height: 100vh;
+    width: 100vw; height: 100vh;
     background-color: black;
     overflow: hidden;
     display: flex; justify-content: center;
     z-index: 200;
 }
 #loading img {
-    width: 470px;
+    width: 100%;
 }
