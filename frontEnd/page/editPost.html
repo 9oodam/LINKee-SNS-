@@ -53,8 +53,14 @@
             console.log(data.img);
             console.log(data.content);
 
-            preview.setAttribute("src", `https://andybyungjoopark.com/post_img/${data.img}`);
-            preview.style.display = "block";
+            let ext = data.img.split('.').pop();
+            if(ext == "mp4") {
+                let fileUpload = document.querySelector(".fileUpload");
+                fileUpload.innerHTML = data.img;
+            }else {
+                preview.setAttribute("src", `https://andybyungjoopark.com/post_img/${data.img}`);
+                preview.style.display = "block";
+            }
             content.innerText = data.content;
 
         } catch (error) {
