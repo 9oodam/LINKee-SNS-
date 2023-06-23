@@ -82,13 +82,16 @@
             console.log("검색 된 유저: ", user);
             console.log(posts);
 
+            // text에 줄바꿈
+            let content = user.profile_info.replace(/(?:\r\n|\r|\n)/g, "<br>");
+
             // 유저 정보 들어가는 부분
             const mypageProfileImg = document.querySelector(".mypage_profile_img");
             mypageProfileImg.src = `https://andybyungjoopark.com/user_img/${user.profile_img}`;
             const mypageNick = document.querySelector(".mypage_nickname");
             mypageNick.innerHTML = user.nickname;
             const mypageDescription = document.querySelector(".mypage_info");
-            mypageDescription.innerHTML = user.profile_info;
+            mypageDescription.innerHTML = content;
 
             // 게시물 수
             const myPostNum = document.querySelector(".my_post_num");
