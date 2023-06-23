@@ -54,12 +54,12 @@
     display: flex; justify-content: center; align-items: center;
 }
 .comments_wrap .likes_btn img {
-    width: 27px; height: 27px;
+    width: 18px; height: 18px;
 }
 
 /* 일단 추가해놈 - seonghyun */
 .s_comments_wrap .s_likes_btn img {
-    width: 27px; height: 27px;
+    width: 18px; height: 18px;
     margin-right: -51px;
 }
 .s_comments_wrap {
@@ -75,7 +75,7 @@
     float: right;
 }
 .s_comments_wrap .s_likes_btn .s_like_btn {
-    width: 23px; height: 23px;
+    width: 18px; height: 18px;
 }
 .s_comments_wrap .s_likes_btn .s_like_btn_count{
     margin-right: -41.5px;
