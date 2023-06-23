@@ -169,7 +169,10 @@ body {
 #loading {
     width: 100vx; height: 100vh;
     background-color: black;
+    overflow: hidden;
+    display: flex; justify-content: center;
+    z-index: 200;
 }
 #loading img {
-    width: 100%;
+    width: 470px;
 }
