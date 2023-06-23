@@ -116,7 +116,7 @@
                 if(mainpage_heart_show.data == 1){
                     heart_on = "icon_heart.png";
                 };
-                
+
                 // 날짜 계산
                 let now = new Date();
                 let posteddate = new Date(el.createdAt);
@@ -186,7 +186,7 @@
                     postContainer.appendChild(postBottom);
                 }else {
                     postBottom.innerHTML = `
-                    <div class="likes"><img src="../nav_icon_img/icon_noti.png" alt=""><p>${el.likes} likes</p></div>
+                    <div class="likes"><img src="../nav_icon_img/${heart_on}" alt=""><p>${el.likes} likes</p></div>
                     <div class="content">
                         <p class="content_text${el.id}"><span class="nickname" onclick="moveToUser('${writer.nickname}','${user.nickname}')">${writer.nickname}</span>
                         <span>${content}</span></p>
