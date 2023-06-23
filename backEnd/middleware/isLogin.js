@@ -6,7 +6,7 @@ exports.isLogin = (req,res,next) =>{
 
     jwt.verify(access_token, process.env.ACCESS_TOKEN_KEY, (err, acc_decoded)=>{
         if(err){
-            next();
+            res.sendFile("/home/ubuntu/frontEnd/page/login.html");
         }else{
             req.acc_decoded = acc_decoded;
             // 다음 미들웨어 실행
