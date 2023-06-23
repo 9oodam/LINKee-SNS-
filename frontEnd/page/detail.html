@@ -213,9 +213,9 @@
                             <br><br>
                             <span class="s_like_btn_count">${data.data.b.likes}</span>
                         </div>
-                        <div class="profile_img" onclick="moveToUser('${data.data.b.nickname}','${user.data.nickname}')"><img src="https://andybyungjoopark.com/user_img/${data.data.a.profile_img}" alt=""></div>
+                        <div class="profile_img" onclick="moveToUser('${data.data.a.nickname}','${user.data.nickname}')"><img src="https://andybyungjoopark.com/user_img/${data.data.a.profile_img}" alt=""></div>
                         <div>
-                            <div class="nickname" onclick="moveToUser('${data.data.b.nickname}','${user.data.nickname}')">${data.data.a.nickname}</div>
+                            <div class="nickname" onclick="moveToUser('${data.data.a.nickname}','${user.data.nickname}')">${data.data.a.nickname}</div>
                             <div class="bigCommentText">${b[i].content}</div>
                         </div>
                     </div>
@@ -410,7 +410,7 @@
                 socket.emit("detail_page_like_click_noti_emit", receiver_ID);
             }
 
-            // console.log(abc.data);
+            console.log(abc.data);
             reply_container.innerHTML += `
             <div class="comments_wrap">
                 <div class="profile_img" onclick="moveToUser('${data.b.nickname}','${user.data.nickname}')"><img src="https://andybyungjoopark.com/user_img/${abc.data.a.profile_img}" alt=""></div>
