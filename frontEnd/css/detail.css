@@ -58,13 +58,37 @@
     width: 18px; height: 18px;
 }
 
+/* 가운데 (닉네임/content/답글토글) */
+.comments_wrap div {
+    width: calc(100% - 60px);
+}
+.comments_wrap div .bigCommentText {
+    font-size: 14px;
+    margin: 3px 0 3px 0;
+}
+
+/* 답글토글 */
+details {
+    width: 100%; height: auto;
+}
+details summary {
+    font-size: 14px;
+    margin: 3px 0 3px 0;
+    cursor: pointer;
+}
+details .input_wrap input {
+    width: 100%; height: 24px;
+    box-sizing: border-box;
+    position: absolute;
+}
+
+
 /* 일단 추가해놈 - seonghyun */
 .s_comments_wrap .s_likes_btn img {
     width: 18px; height: 18px;
-    margin-right: -51px;
 }
 .s_comments_wrap {
-    width: 40px; height: auto;
+    width: 100%; height: auto;
     cursor: pointer;
 }
 
@@ -93,34 +117,13 @@
     position: absolute;
     font-size: 12px;
     text-align: center;
+    top: 17px;
 }
 
 /* 일단 추가해놈 - seonghyun */
 
 
-/* 가운데 (닉네임/content/답글토글) */
-.comments_wrap div {
-    width: calc(100% - 60px);
-}
-.comments_wrap div .bigCommentText {
-    font-size: 14px;
-    margin: 3px 0 3px 0;
-}
 
-/* 답글토글 */
-details {
-    width: 100%; height: auto;
-}
-details summary {
-    font-size: 14px;
-    margin: 3px 0 3px 0;
-    cursor: pointer;
-}
-details .input_wrap input {
-    width: 100%; height: 24px;
-    box-sizing: border-box;
-    position: absolute;
-}
 
 
 /* bigComment input */
