@@ -1,4 +1,4 @@
-const { User, LoginCount } = require("../models");
+const { User, LoginCount, Post } = require("../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { where } = require("sequelize");
@@ -206,12 +206,20 @@ exports.deny = async (req,res)=>{
 }
 
 exports.dayCnt = async (req,res)=>{
-  console.log("들어오나?");
   let currentDate = new Date();
   let koreanDateTime = currentDate.toLocaleString('ko-KR');
   let split1 = koreanDateTime.split("오");
   let aaa= await LoginCount.findOne({where:{date: split1[0]}});
-  res.json(aaa.dataValues.cnt);
+  if(aaa != null){
+    res.json(aaa.dataValues.cnt);
+  }else{
+    res.json("0");
+  }
+}
+
+exports.postCnt = async (req,res)=>{
+  let allpostNumber = await Post.findAll({});
+  res.json(allpostNumber.length);
 }
 
 exports.unAuth = async (req,res)=>{
