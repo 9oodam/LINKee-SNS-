@@ -84,6 +84,7 @@
         let random = day - 7;
 
         let dayCnt = await axios.get(`https://andybyungjoopark.com/admin/dayCnt`);
+        let postCnt = await axios.get("https://andybyungjoopark.com/admin/postCnt");
 
         for (let i = 0; i <= 7; i++) {
           arr[i] = random;

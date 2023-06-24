@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const {signUp1, login1, idCheck, nicknameCheck, loginalert, passwordalert, admin1, admin2, levelchange, deny, dayCnt, unAuth} = require("../controllers/userCon");
+const {signUp1, login1, idCheck, nicknameCheck, loginalert, passwordalert, admin1, admin2, levelchange, deny, dayCnt, unAuth, postCnt} = require("../controllers/userCon");
 
 const path = require("path");
 router.get("/",(req,res)=>{
@@ -14,6 +14,8 @@ router.get("/levelchange/:id", levelchange);
 router.get("/deny/:id", deny);
 
 router.get("/dayCnt", dayCnt);
+router.get("/postCnt",postCnt)
+
 router.get("/unAuth/:id", unAuth);
 
 module.exports = router;

@@ -178,6 +178,11 @@ exports.dayCnt = async (req,res)=>{
   res.json(aaa.dataValues.cnt);
 }
 
+exports.postCnt = async (req,res)=>{
+  let allpostNumber = await Post.findAll({});
+  res.json(allpostNumber.length);
+}
+
 exports.unAuth = async (req,res)=>{
   let param = req.params.id;
   await User.update({level: 0}, {where:{user_id:param}});
