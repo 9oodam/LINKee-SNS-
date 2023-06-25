@@ -44,8 +44,8 @@
             socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
 
             socket.on("userIn", (socketID, userID) => {
-                console.log("접속 중인 유저 : ", userID);
-                console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
+                // console.log("접속 중인 유저 : ", userID);
+                // console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
             });
 
             // 채팅 방 요청 알림창
@@ -105,10 +105,10 @@
                 //     {id:2, receivedID:1, senderID:2, followNoti:"1", createdAt:"2023-06-09 16:00:00"}
                 // ];
                 noti.reverse();
-                console.log(noti);
+                // console.log(noti);
 
                 noti.forEach((el) => {
-                    console.log(el);
+                    // console.log(el);
 
                     // 알림 보낸 사람
                     let sender = ""; // 닉네임(users.nickname)
@@ -205,7 +205,7 @@
 
                         if(el.bigCommentNoti) {
                             posts.forEach((el3) => {
-                                console.log(el3);
+                                // console.log(el3);
                                 if(el3.id == el.bigCommentNoti) {
                                     let postImg = el3.img;
                                     let ext = postImg.split('.').pop();
@@ -220,7 +220,7 @@
                             textDiv.innerHTML = `<span class="nickname">${sender}</span>님이 회원님의 게시물에 댓글을 남겼습니다. <span class="date">${dateText}</span>`;
                         }else if(el.smallCommentNoti) {
                             posts.forEach((el3) => {
-                                console.log(el3);
+                                // console.log(el3);
                                 if(el3.id == el.smallCommentNoti) {
                                     let postImg = el3.img;
                                     let ext = postImg.split('.').pop();
@@ -236,7 +236,7 @@
                             textDiv.innerHTML = `<span class="nickname">${sender}</span>님이 회원님의 게시물에 대댓글을 남겼습니다. <span class="date">${dateText}</span>`;
                         }else if(el.likePostNoti) {
                             posts.forEach((el3) => {
-                                console.log(el3);
+                                // console.log(el3);
                                 if(el3.id == el.likePostNoti) {
                                     let postImg = el3.img;
                                     let ext = postImg.split('.').pop();
@@ -252,7 +252,7 @@
                             textDiv.innerHTML = `<span class="nickname">${sender}</span>님이 회원님의 게시물을 좋아합니다. <span class="date">${dateText}</span>`;
                         }else if(el.likeBigNoti) {
                             posts.forEach((el3) => {
-                                console.log(el3);
+                                // console.log(el3);
                                 if(el3.id == el.likeBigNoti) {
                                     let postImg = el3.img;
                                     let ext = postImg.split('.').pop();
@@ -268,7 +268,7 @@
                             textDiv.innerHTML = `<span class="nickname">${sender}</span>님이 회원님의 댓글을 좋아합니다. <span class="date">${dateText}</span>`;
                         }else if(el.likeSmallNoti) {
                             posts.forEach((el3) => {
-                                console.log(el3);
+                                // console.log(el3);
                                 if(el3.id == el.likeSmallNoti) {
                                     let postImg = el3.img;
                                     let ext = postImg.split('.').pop();
@@ -308,7 +308,7 @@
             const {data} = await axios.get('https://andybyungjoopark.com/noti/delBtn', {
                 withCredentials : true
             });
-            console.log(data);
+            // console.log(data);
             if(data == "1") {
                 middle_body.innerHTML = '<div class="no_noti">새로운 알림이 없습니다.</div>';
             }

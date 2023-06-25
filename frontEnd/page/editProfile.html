@@ -64,7 +64,7 @@
                 // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
                 withCredentials : true
             });
-            console.log(data);
+            // console.log(data);
 
             // const profileImg = document.querySelector("#preview");
             // profileImg.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
@@ -99,8 +99,8 @@
             socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
 
             socket.on("userIn", (socketID, userID) => {
-                console.log("접속 중인 유저 : ", userID);
-                console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
+                // console.log("접속 중인 유저 : ", userID);
+                // console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
             });
 
             // 채팅 방 요청 알림창
@@ -151,7 +151,7 @@
             withCredentials : true
         });
         const {user, userAll} = data;
-        console.log(user);
+        // console.log(user);
 
         const data2 = await axios.get("https://andybyungjoopark.com/mypage/nickname",{
             withCredentials : true
@@ -182,8 +182,8 @@
                 "Content-Type" : "multipart/form-data",
                 withCredentials : true
             }).then((e) => {
-                console.log("전달 완료");
-                console.log(e.data);
+                // console.log("전달 완료");
+                // console.log(e.data);
             }).catch((err) => {
                 console.log(error);
             });

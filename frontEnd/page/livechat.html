@@ -60,7 +60,7 @@
                     } 
                 }
             }
-            console.log("맞팔 : ", friendArr);
+            // console.log("맞팔 : ", friendArr);
 
 
             // 모든 페이지에 다 들어갈 부분!!!
@@ -68,10 +68,10 @@
             socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
 
             socket.on("userIn", (socketID, userID) => {
-                console.log(socketID);
-                console.log(userID);
-                console.log("접속 중인 유저 : ", userID);
-                console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
+                // console.log(socketID);
+                // console.log(userID);
+                // console.log("접속 중인 유저 : ", userID);
+                // console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
                 if(friendArr.length == 0) {
                     middle_body.innerHTML = '<div class="no_noti">현재 대화 가능한 상대가 없습니다.<br></div>';
                 }else {
@@ -81,9 +81,9 @@
                         let friend = userAll.find(item => item.id == el);
 
                         if(userID.includes(el)) {
-                            console.log(el);
+                            // console.log(el);
                             if(user.id!=el) { // 로그인 한 본인 제외
-                                console.log("접속 중인 친구: ", el);
+                                // console.log("접속 중인 친구: ", el);
                                 loginUser.innerHTML += `
                                 <div class="user_wrap">
                                     <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${friend.profile_img}" alt=""></div>
@@ -93,7 +93,7 @@
                             }
 
                         }else {
-                            console.log("로그아웃 된 친구: ", el);
+                            // console.log("로그아웃 된 친구: ", el);
                             logoutUser.innerHTML += `
                             <div class="user_wrap">
                                 <div class="profile_img_x"><img src="https://andybyungjoopark.com/user_img/${friend.profile_img}" alt=""></div>

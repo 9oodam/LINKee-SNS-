@@ -65,8 +65,8 @@
                 user1 = userAll.find(item => item.id == user2ID);
                 user2 = userAll.find(item => item.id == user1ID);
             }
-            console.log(user1);
-            console.log(user2);
+            // console.log(user1);
+            // console.log(user2);
 
             user2Nickname.innerHTML = user2.nickname;
 
@@ -82,7 +82,7 @@
             socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
 
             socket.on("userIn", (socketID, userID) => {
-                console.log("접속 중인 유저 : ", userID);
+                // console.log("접속 중인 유저 : ", userID);
             });
 
             // 채팅 방 요청 알림창
@@ -148,7 +148,7 @@
             }
 
             socket.on("leaveRoom", (leavedUser) => {
-                console.log("떠난사람 ", leavedUser)
+                // console.log("떠난사람 ", leavedUser);
                 middle_body.innerHTML += `
                 <div class="leaved">
                     <p>${user2.nickname}님이 방을 나가셨습니다.</p>

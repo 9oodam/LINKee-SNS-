@@ -36,7 +36,7 @@
         let xxx = x.replace("#", "");
         let xx = decodeURIComponent(xxx); // 한글 인코딩
         subject.innerHTML = `#${xx}`;
-        console.log(xx);
+        // console.log(xx);
 
         try {
             const {data} = await axios.get(`https://andybyungjoopark.com/search/searched/${xx}`, {
@@ -152,8 +152,8 @@
             socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
 
             socket.on("userIn", (socketID, userID) => {
-                console.log("접속 중인 유저 : ", userID);
-                console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
+                // console.log("접속 중인 유저 : ", userID);
+                // console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
             });
 
             // 채팅 방 요청 알림창

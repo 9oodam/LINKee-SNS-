@@ -200,7 +200,7 @@
                     src = "icon_noti";
                 }
 
-                console.log(data);
+                // console.log(data);
 
                 html += `
                     <div class="s_comments_wrap">
@@ -254,7 +254,7 @@
         document.querySelector("#likecount").innerHTML = data.a.likes;
         if(data.a.img) {
             let ext = data.a.img.split('.').pop();
-            console.log(ext);
+            // console.log(ext);
             if(ext == "jpeg" || ext == "gif" || ext == "png" || ext == "jpg" || ext == "jfif" || ext == "webp") {
                 document.querySelector(".post_body").innerHTML = `<img src="https://andybyungjoopark.com/post_img/${data.a.img}">`;
             }else if(ext == "mp4") {
@@ -269,7 +269,7 @@
         let iii=0;
         const bigClikeElement = document.querySelectorAll(".comments_wrap");
         bigClikeElement.forEach(el=>{
-            console.log(el);
+            // console.log(el);
             const inputValue = el.querySelector(".commentlist .i_comment_id").value; 
             inputArr[iii] = inputValue;
             iii++;
@@ -604,13 +604,13 @@
             socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
 
             socket.on("userIn", (socketID, userID) => {
-                console.log("접속 중인 유저 : ", userID);
-                console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
+                // console.log("접속 중인 유저 : ", userID);
+                // console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
             });
 
             // 알림 소켓 받아오기
             socket.on("detail_page_like_click_noti_send", () =>{
-                console.log("red dot?")
+                // console.log("red dot?");
                 document.querySelector("#red_dot").style.display = "block";
             });
 

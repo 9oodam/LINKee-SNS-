@@ -85,8 +85,8 @@
             socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
 
             socket.on("userIn", (socketID, userID) => {
-                console.log("접속 중인 유저 : ", userID);
-                console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
+                // console.log("접속 중인 유저 : ", userID);
+                // console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
             });
 
             // 알림 소켓 받아오기
@@ -144,7 +144,7 @@
             withCredentials: true,
           }
         );
-        console.log(data);
+        // console.log(data);
         if (data.profile_img == null) {
           profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
         } else {
@@ -183,7 +183,7 @@
           withCredentials: true,
         });
         const { users, posts } = data;
-        console.log(users);
+        // console.log(users);
 
         // users.nickname 담는 배열
         let userName = [];
@@ -191,7 +191,7 @@
           let temp = users[i].nickname;
           userName.push(temp);
         }
-        console.log(userName);
+        // console.log(userName);
 
         // posts.content 담는 배열
         let postContent = [];
@@ -199,7 +199,7 @@
           let temp = posts[i].content;
           postContent.push(temp);
         }
-        console.log(postContent);
+        // console.log(postContent);
 
         // 그 중 태그만 담는 배열
         let postTagPrev = [];
@@ -215,7 +215,7 @@
             }
         });
         let postTag = [...new Set(postTagPrev)]; // 중복제거
-        console.log(postTag);
+        // console.log(postTag);
 
         // input 창에 키보드 입력했을 때
         keyword_input.addEventListener("keyup", function () {
@@ -252,7 +252,7 @@
                   }else {
                     location.href = `/userpage#${suggested}`;
                   }
-                  console.log(data);
+                  // console.log(data);
                 }
             });
 

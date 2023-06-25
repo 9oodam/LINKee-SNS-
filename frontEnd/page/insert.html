@@ -58,7 +58,7 @@
                 // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
                 withCredentials : true
             });
-            console.log(data);
+            // console.log(data);
             if(data.profile_img == null) {
                 profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
             }else {
@@ -84,8 +84,8 @@
                     "Content-Type" : "multipart/form-data",
                     withCredentials : true
                 }).then((e) => {
-                    console.log("전달 완료");
-                    console.log(e.data);
+                    // console.log("전달 완료");
+                    // console.log(e.data);
                 }).catch((err) => {
                     console.log(error);
                 });
@@ -108,8 +108,8 @@
             socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
 
             socket.on("userIn", (socketID, userID) => {
-                console.log("접속 중인 유저 : ", userID);
-                console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
+                // console.log("접속 중인 유저 : ", userID);
+                // console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
             });
 
             // 알림 소켓 받아오기

@@ -91,7 +91,7 @@
                 // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
                 withCredentials : true
             });
-            console.log(data);
+            // console.log(data);
 
             if(data.profile_img == null) {
                 profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
@@ -111,8 +111,8 @@
             const response = await axios.get("https://andybyungjoopark.com/mypage/mypost",{
                 withCredentials : true
             });
-            console.log(response.data.data);
-            console.log(response.data.user);
+            // console.log(response.data.data);
+            // console.log(response.data.user);
             
 
             if(response.data.user.profile_img == null) {
@@ -132,7 +132,7 @@
                     const post = document.createElement("div");
                     post.classList.add("only_text");
                     post.innerHTML = `<div onclick="moveToDetail(${el.id})"><p>${el.content}</p></div>`;
-                    console.log(post);
+                    // console.log(post);
                     allPosts.append(post);
                 }else{
                     const post = document.createElement("div");
@@ -144,7 +144,7 @@
                     }else if(ext == "mp4") {
                         post.innerHTML += `<div onclick="moveToDetail(${el.id})"><video class="video" src="https://andybyungjoopark.com/post_img/${el.img}" autoplay loop muted></video></div>`;
                     }
-                    console.log(post);
+                    // console.log(post);
                     allPosts.append(post);
                 };
             });
@@ -205,8 +205,8 @@
             socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
 
             socket.on("userIn", (socketID, userID) => {
-                console.log("접속 중인 유저 : ", userID);
-                console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
+                // console.log("접속 중인 유저 : ", userID);
+                // console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
             });
 
             // 알림 소켓 받아오기

@@ -42,12 +42,12 @@
         const {data} = await axios.get('https://andybyungjoopark.com/main/posts', {
             withCredentials : true
         });
-        console.log(data);
+        // console.log(data);
         const {user, userAll} = data;
-        console.log(user);
+        // console.log(user);
         // 팔로잉
         let followingArr = JSON.parse(user.following);
-        console.log(followingArr);
+        // console.log(followingArr);
         
         if(followingArr != 0){
           followingNum.innerHTML = `팔로잉 ${followingArr.length}명`;
@@ -72,7 +72,7 @@
 
         // 팔로워
         let followerArr = JSON.parse(user.follower);
-        console.log(followerArr);
+        // console.log(followerArr);
         if(followerArr != 0){
           followerNum.innerHTML = `팔로워 ${followerArr.length}명`;
           followerArr.forEach((el) => {
@@ -104,8 +104,8 @@
               location.href = `/userpage#${followerUser.nickname}`;
             }
             delBtn.onclick = () => {
-              console.log("눌림?")
-              console.log(followerUser.id)
+              // console.log("눌림?");
+              // console.log(followerUser.id);
               axios.get(`https://andybyungjoopark.com/mypage/remove/${followerUser.id}`, {
                   withCredentials : true,
               });
@@ -123,7 +123,7 @@
         socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
 
         socket.on("userIn", (socketID, userID) => {
-            console.log("접속 중인 유저 : ", userID);
+            // console.log("접속 중인 유저 : ", userID);
         });
 
         // 채팅 방 요청 알림창

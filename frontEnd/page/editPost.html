@@ -43,15 +43,15 @@
     window.onload = async () => {
         let x = location.hash;
         let xx = x.replace("#", "");
-        console.log(xx);
+        // console.log(xx);
 
         try {
             const {data} = await axios.get(`https://andybyungjoopark.com/insert/editPost/${xx}`, {
                 withCredentials : true
             });
 
-            console.log(data.img);
-            console.log(data.content);
+            // console.log(data.img);
+            // console.log(data.content);
 
             let ext = data.img.split('.').pop();
             if(ext == "mp4") {
@@ -80,7 +80,7 @@
                     "Content-Type" : "multipart/form-data",
                     withCredentials : true
                 }).then((e) => {
-                    console.log("전달 완료");
+                    // console.log("전달 완료");
                 }).catch((err) => {
                     console.log(err);
                 });
@@ -102,8 +102,8 @@
             socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
 
             socket.on("userIn", (socketID, userID) => {
-                console.log("접속 중인 유저 : ", userID);
-                console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
+                // console.log("접속 중인 유저 : ", userID);
+                // console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
             });
 
             // 채팅 방 요청 알림창
