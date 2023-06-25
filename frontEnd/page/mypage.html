@@ -205,8 +205,8 @@
             socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
 
             socket.on("userIn", (socketID, userID) => {
-                // console.log("접속 중인 유저 : ", userID);
-                // console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
+                console.log("접속 중인 유저 : ", userID);
+                console.log("접속 중인 유저의 소켓 아이디 : ",socketID);
             });
 
             // 알림 소켓 받아오기
