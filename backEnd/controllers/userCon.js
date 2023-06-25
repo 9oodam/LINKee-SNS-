@@ -9,9 +9,9 @@ exports.signUp1 = async (req, res) => {
     if (user_id == "") {
       return;
     }
-    console.log(user_id);
+    // console.log(user_id);
     const user = await User.findOne({ where: { user_id: user_id } });
-    console.log(user);
+    // console.log(user);
     if (user != null) {
       // return res.send("중복 회원가입임!");
       return;
@@ -34,6 +34,7 @@ exports.signUp1 = async (req, res) => {
       following: 0,
       profile_img: "default_profile.jpeg"
     });
+    res.json("1");
     // res.sendFile("/home/ubuntu/frontEnd/page/login.html");
     // 수정해야함
   } catch (error) {
