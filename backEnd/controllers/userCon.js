@@ -9,7 +9,9 @@ exports.signUp1 = async (req, res) => {
     if (user_id == "") {
       return;
     }
+    console.log(user_id);
     const user = await User.findOne({ where: { user_id: user_id } });
+    console.log(user);
     if (user != null) {
       // return res.send("중복 회원가입임!");
       return;
