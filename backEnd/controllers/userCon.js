@@ -1,4 +1,4 @@
-const { User, LoginCount } = require("../models");
+const { User, Post, LoginCount } = require("../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { where } = require("sequelize");
