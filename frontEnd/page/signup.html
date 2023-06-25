@@ -37,7 +37,7 @@
             </form>
         </div>
         <div class="container2">
-            <p>Have an account? <a href="/login">Login</a></p>
+            <p>Have an account? <a href="/">Login</a></p>
         </div>
     </div>
 </body>
@@ -105,7 +105,7 @@
 
         // 아이디 테두리
         let abc = document.querySelector("input[name='user_id']").value;
-        const { data } = await axios.get(`http://127.0.0.1:8080/signup/idCheck/${abc}`, {
+        const { data } = await axios.get(`https://andybyungjoopark.com/signup/idCheck/${abc}`, {
             withCredentials: true // 브라우저가 쿠키를 서버로 전달 할 수 있는 옵션
         });
         if(data == 0){
@@ -116,7 +116,7 @@
 
         // 닉네임 테두리
         let abc2 = document.querySelector("input[name='nickname']").value;
-        const data2 = await axios.get(`http://127.0.0.1:8080/signup/nicknameCheck/${abc2}`, {
+        const data2 = await axios.get(`https://andybyungjoopark.com/signup/nicknameCheck/${abc2}`, {
             withCredentials: true // 브라우저가 쿠키를 서버로 전달 할 수 있는 옵션
         });
         if(data2.data == 0){
@@ -134,7 +134,7 @@
         }
 
         // 회원가입 시키기
-        const data3 = await axios.post("http://127.0.0.1:8080/signup",
+        const data3 = await axios.post("https://andybyungjoopark.com/signup",
          {
             headers: {
                 "Content-Type": "application/json"
@@ -149,7 +149,7 @@
         });
         console.log("뭔데", data3.data);
         if(data3.data == 1){
-            location.href = "http://127.0.0.1:5500/frontEnd/page/login.html";
+            location.href = "https://andybyungjoopark.com/frontEnd/page/login.html";
         }
 
     });

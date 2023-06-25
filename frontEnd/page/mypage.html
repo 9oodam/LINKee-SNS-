@@ -131,7 +131,7 @@
                 if(el.img === ""){
                     const post = document.createElement("div");
                     post.classList.add("only_text");
-                    post.innerHTML = el.content;
+                    post.innerHTML = `<div onclick="moveToDetail(${el.id})"><p>${el.content}</p></div>`;
                     console.log(post);
                     allPosts.append(post);
                 }else{
