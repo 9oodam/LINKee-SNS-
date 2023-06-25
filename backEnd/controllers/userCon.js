@@ -178,7 +178,11 @@ exports.dayCnt = async (req,res)=>{
   let koreanDateTime = currentDate.toLocaleString('ko-KR');
   let split1 = koreanDateTime.split("오");
   let aaa= await LoginCount.findOne({where:{date: split1[0]}});
-  res.json(aaa.dataValues.cnt);
+  if(aaa != null){
+    res.json(aaa.dataValues.cnt);
+  }else{
+    res.json("0");
+  };
 }
 
 exports.postCnt = async (req,res)=>{
