@@ -5,7 +5,7 @@ const { where } = require("sequelize");
 
 exports.signUp1 = async (req, res) => {
   try {
-    const { user_id, user_name, nickname, user_pw } = req.body;
+    const { user_id, user_name, nickname, user_pw } = req.body.data;
     if (user_id == "") {
       return;
     }
