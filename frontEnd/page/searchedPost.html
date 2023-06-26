@@ -45,8 +45,8 @@
             const {userAll, posts} = data;
 
             posts.reverse();
-
-            posts.forEach((el) => {
+            for await (const el of posts){
+            // posts.forEach((el) => {
                 //console.log(el);
                 // 해당 포스트를 작성한 유저의 nickname & profile_img
                 let writer = userAll.find(item => item.id == el.user_id);
@@ -130,7 +130,7 @@
                     postContainer.appendChild(postBottom);
                 }
                 middle_body.appendChild(postContainer);
-            });
+            };
 
         } catch (error) {
             console.log(error);
