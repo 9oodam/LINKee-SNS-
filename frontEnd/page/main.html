@@ -176,7 +176,7 @@
                 postBottom.classList.add("post_bottom");
                 if (content.includes('<br>')) {
                     postBottom.innerHTML = ` 
-                    <div class="likes"><img src="../nav_icon_img/icon_noti.png" alt=""><p>${el.likes} likes</p></div>
+                    <div class="likes"><img src="../nav_icon_img/${heart_on}" alt=""><p>${el.likes} likes</p></div>
                     <div class="content">
                         <p class="content_text${el.id}"><span class="nickname" onclick="moveToUser('${writer.nickname}','${user.nickname}')">${writer.nickname}</span>
                         <span>${content}</span></p>

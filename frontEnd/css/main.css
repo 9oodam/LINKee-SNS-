@@ -112,7 +112,7 @@ body {
 }
 .post_bottom .content p {
     margin: 0 5px 0 0;
-    height: 19px;
+    height: 17px;
     overflow: hidden;
     text-overflow: ellipsis;
 }

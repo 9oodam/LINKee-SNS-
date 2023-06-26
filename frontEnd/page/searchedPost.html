@@ -80,61 +80,56 @@
                     dateText = `${year}.${month}.${date}`;
                 }
 
+                // text에 줄바꿈
                 let content = el.content.replace(/(?:\r\n|\r|\n)/g, "<br>");
-                if (content.includes('<br>')) {
-                    middle_body.innerHTML += `
-                    <div class="post_container">
-                        <div class="post_top">
-                            <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${writer.profile_img}" alt="profile"></div>
-                            <div class="profile_text">
-                                <p class="nickname">${writer.nickname}</p>
-                                <span>·</span>
-                                <p class="updated_time">${dateText}</p>
-                            </div>
-                        </div>
 
-                        <div class="post_body">
-                            <img src="https://andybyungjoopark.com/post_img/${el.img}" alt="">
-                        </div>
+                let postContainer = document.createElement("div");
+                postContainer.classList.add("post_container");
 
-                        <div class="post_bottom">
-                            <div class="likes"><img src="../nav_icon_img/icon_noti.png" alt=""><p>${el.likes} likes</p></div>
-                            <div class="content">
-                                <p class="content_text${el.id}"><span class="nickname">${writer.nickname}</span>
-                                <span>${content}</span></p>
-                                <p class="more${el.id} more" onclick="seeMore(${el.id})">more</p>
-                                <p class="more" onclick="moveToDetail(${el.id})">Add a comment...</p>
-                            </div>
-                        </div>
-                    </div>
-                    `;
-                }else {
-                    middle_body.innerHTML += `
-                    <div class="post_container">
-                        <div class="post_top">
-                            <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${writer.profile_img}" alt="profile"></div>
-                            <div class="profile_text">
-                                <p class="nickname">${writer.nickname}</p>
-                                <span>·</span>
-                                <p class="updated_time">${dateText}</p>
-                            </div>
-                        </div>
-    
-                        <div class="post_body">
-                            <img src="https://andybyungjoopark.com/post_img/${el.img}" alt="">
-                        </div>
-    
-                        <div class="post_bottom">
-                            <div class="likes"><img src="../nav_icon_img/icon_noti.png" alt=""><p>${el.likes} likes</p></div>
-                            <div class="content">
-                                <p class="content_text"><span class="nickname">${writer.nickname}</span>
-                                <span>${content}</span></p>
-                                <p class="more" onclick="moveToDetail(${el.id})">Add a comment...</p>
-                            </div>
-                        </div>
-                    </div>
-                    `;
+                let postTop = document.createElement("div");
+                postTop.classList.add("post_top");
+                postTop.innerHTML = `
+                <div class="profile_img" onclick="moveToUser('${writer.nickname}','${user.nickname}')"><img src="https://andybyungjoopark.com/user_img/${writer.profile_img}" alt="profile"></div>
+                <div class="profile_text">
+                    <p class="nickname" onclick="moveToUser('${writer.nickname}','${user.nickname}')">${writer.nickname}</p>
+                    <span>·</span>
+                    <p class="updated_time">${dateText}</p>
+                </div>`;
+                postContainer.appendChild(postTop);
+                
+                let postBody = document.createElement("div");
+                postBody.classList.add("post_body");
+                let ext = el.img.split('.').pop();
+                if(ext == "jpeg" || ext == "gif" || ext == "png" || ext == "jpg" || ext == "jfif" || ext == "webp") {
+                    postBody.innerHTML = `<div onclick="moveToDetail(${el.id})"><img src="https://andybyungjoopark.com/post_img/${el.img}" alt=""></div>`;
+                }else if(ext == "mp4") {
+                    postBody.innerHTML = `<div onclick="moveToDetail(${el.id})"><video class="video" src="https://andybyungjoopark.com/post_img/${el.img}" autoplay loop muted></video></div>`;
                 }
+                postContainer.appendChild(postBody);
+
+                let postBottom = document.createElement("div");
+                postBottom.classList.add("post_bottom");
+                if (content.includes('<br>')) {
+                    postBottom.innerHTML = ` 
+                    <div class="likes"><img src="../nav_icon_img/${heart_on}" alt=""><p>${el.likes} likes</p></div>
+                    <div class="content">
+                        <p class="content_text${el.id}"><span class="nickname" onclick="moveToUser('${writer.nickname}','${user.nickname}')">${writer.nickname}</span>
+                        <span>${content}</span></p>
+                        <p class="more" id="more_btn${el.id}" onclick="seeMore(${el.id})">more</p>
+                        <p class="more" onclick="moveToDetail(${el.id})">Add a comment...</p>
+                    </div>`;
+                    postContainer.appendChild(postBottom);
+                }else {
+                    postBottom.innerHTML = `
+                    <div class="likes"><img src="../nav_icon_img/${heart_on}" alt=""><p>${el.likes} likes</p></div>
+                    <div class="content">
+                        <p class="content_text${el.id}"><span class="nickname" onclick="moveToUser('${writer.nickname}','${user.nickname}')">${writer.nickname}</span>
+                        <span>${content}</span></p>
+                        <p class="more" onclick="moveToDetail(${el.id})">Add a comment...</p>
+                    </div>`;
+                    postContainer.appendChild(postBottom);
+                }
+                middle_body.appendChild(postContainer);
             });
 
         } catch (error) {
