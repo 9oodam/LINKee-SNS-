@@ -103,8 +103,8 @@
                 followingPost.reverse();
                 console.log(followingPost);
             };
-
-            followingPost.forEach(async (el) => {
+            for await (const el of followingPost){
+            // followingPost.forEach(async (el) => {
                 //console.log(el)
                 // 해당 포스트를 작성한 유저의 nickname & profile_img
                 let writer = userAll.find(item => item.id == el.user_id);
@@ -197,7 +197,7 @@
                     postContainer.appendChild(postBottom);
                 }
                 middle_body.appendChild(postContainer);
-            });
+            };
 
 
             // 모든 페이지에 다 들어갈 부분!!!
