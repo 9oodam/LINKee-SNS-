@@ -101,7 +101,7 @@
         const {data} = await axios.get(`https://andybyungjoopark.com/main/getcontents/${xx}`,{
             withCredentials : true
         });
-        // console.log(data);
+        console.log(data);
         const user = await axios.get("https://andybyungjoopark.com/detail/loginUser");
         // console.log(user);
         if(data.d == 1){
