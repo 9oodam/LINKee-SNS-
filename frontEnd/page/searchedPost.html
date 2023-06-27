@@ -43,7 +43,7 @@
                 withCredentials : true
             });
             const {userAll, posts} = data;
-
+            console.log(data);
             posts.reverse();
 
             // for await (const el of posts){
@@ -51,7 +51,7 @@
                 console.log(el);
                 // 해당 포스트를 작성한 유저의 nickname & profile_img
                 let writer = userAll.find(item => item.id == el.user_id);
-                //console.log(writer);
+                console.log(writer);
 
                 // 날짜 계산
                 let now = new Date();
