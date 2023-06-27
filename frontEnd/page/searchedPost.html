@@ -42,16 +42,16 @@
             const {data} = await axios.get(`https://andybyungjoopark.com/search/searched/${xx}`, {
                 withCredentials : true
             });
-            const {userAll, posts} = data;
-            console.log(data);
+            const {user, userAll, posts} = data;
+            console.log(user);
             posts.reverse();
 
             // for await (const el of posts){
             posts.forEach((el) => {
-                console.log(el);
+                // console.log(el);
                 // 해당 포스트를 작성한 유저의 nickname & profile_img
                 let writer = userAll.find(item => item.id == el.user_id);
-                console.log(writer);
+                // console.log(writer);
 
                 // 날짜 계산
                 let now = new Date();
@@ -202,6 +202,15 @@
         let contentText = document.querySelector(`.content_text${id}`);
         contentText.style.height = "auto";
         contentText.style.overflow = "visible";
+    };
+
+    // 유저 페이지로 이동
+    function moveToUser(nickname,me){
+        if(nickname == me){
+            location.href = "/mypage";
+        }else{
+            location.href = `/userpage#${nickname}`;
+        };
     };
 </script>
 </html>

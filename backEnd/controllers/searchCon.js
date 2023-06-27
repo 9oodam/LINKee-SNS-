@@ -36,12 +36,15 @@ exports.searchName = async (req, res) => {
 exports.searchedPost = async (req, res) => {
     const {id} = req.params;
     console.log(id);
+    const {user_id} = req.acc_decoded;
     try {
         const posts = await Post.findAll({where: {content: {[Op.like]: `%#${id} %`,}}});
         // console.log(posts);
         const userAll = await User.findAll();
 
-        res.json({userAll, posts});
+        const user = await User.findOne({where : {user_id}});
+
+        res.json({userAll, posts, user});
 
     } catch (error) {
         console.log(error);
