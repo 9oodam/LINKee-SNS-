@@ -61,8 +61,8 @@
     <script>
       // 회원가입 승인 거절
       window.onload = async () => {
-        const { data } = await axios.get("https://andybyungjoopark.com/admin/admin1");
-        const data2 = await axios.get("https://andybyungjoopark.com/admin/admin2");
+        const { data } = await axios.get("https://linkee.kr/admin/admin1");
+        const data2 = await axios.get("https://linkee.kr/admin/admin2");
         let data22 = data2.data;
 
         for (let i = 0; i < data.length; i++) {
@@ -83,8 +83,8 @@
         let arr = [];
         let random = day - 7;
 
-        let dayCnt = await axios.get(`https://andybyungjoopark.com/admin/dayCnt`);
-        let postCnt = await axios.get("https://andybyungjoopark.com/admin/postCnt");
+        let dayCnt = await axios.get(`https://linkee.kr/admin/dayCnt`);
+        let postCnt = await axios.get("https://linkee.kr/admin/postCnt");
 
         for (let i = 0; i <= 7; i++) {
           arr[i] = random;
@@ -173,7 +173,7 @@
       };
 
       async function accept(a, id) {
-        await axios.get(`https://andybyungjoopark.com/admin/levelchange/${id}`);
+        await axios.get(`https://linkee.kr/admin/levelchange/${id}`);
         // document.querySelector("#p" + a).style.display = "none";
         document.querySelector("#p" + a).remove();
         // document.querySelector("#accept").innerHTML += `<p>${id}</p>`;
@@ -181,11 +181,11 @@
 
       }
       async function deny(a, id) {
-        await axios.get(`https://andybyungjoopark.com/admin/deny/${id}`);
+        await axios.get(`https://linkee.kr/admin/deny/${id}`);
         document.querySelector("#p" + a).style.display = "none";
       }
       async function unAuth(id, a){
-        await axios.get(`https://andybyungjoopark.com/admin/unAuth/${a}`);
+        await axios.get(`https://linkee.kr/admin/unAuth/${a}`);
         // console.log(id);
         // document.querySelector("#p"+id).style.display = "none";
         document.querySelector("#p" + id).remove();

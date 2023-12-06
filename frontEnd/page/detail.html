@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>detail</title>
-    <script src="https://andybyungjoopark.com/socket.io/socket.io.js"></script>
+    <script src="https://linkee.kr/socket.io/socket.io.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <link rel="stylesheet" href="../css/nav.css">
@@ -94,15 +94,15 @@
 <script src="../js/notiSocket.js"></script>
 <script>
     window.onload = async () =>{
-        const socket = io.connect('https://andybyungjoopark.com'); // 소켓 연결 시도
+        const socket = io.connect('https://linkee.kr'); // 소켓 연결 시도
 
         let x = location.hash;
         let xx = x.replace("#", "");
-        const {data} = await axios.get(`https://andybyungjoopark.com/main/getcontents/${xx}`,{
+        const {data} = await axios.get(`https://linkee.kr/main/getcontents/${xx}`,{
             withCredentials : true
         });
         // console.log(data);
-        const user = await axios.get("https://andybyungjoopark.com/detail/loginUser");
+        const user = await axios.get("https://linkee.kr/detail/loginUser");
         // console.log(user);
         if(data.d == 1){
             document.querySelector("#useron").style.display = "block";
@@ -137,7 +137,7 @@
         }
 
         // 좋아요
-        const likeCheck = await axios.get("https://andybyungjoopark.com/main/getlike",{
+        const likeCheck = await axios.get("https://linkee.kr/main/getlike",{
             withCredentials : true,
             params : {
                 user_id : data.b.id,
@@ -155,7 +155,7 @@
         for(let i=0; i<data.e.length;i++){
             reply_container.innerHTML += `
             <div class="comments_wrap">
-                <div class="profile_img" onclick="moveToUser('${data.e_nick[i]}','${user.data.nickname}')"><img src="https://andybyungjoopark.com/user_img/${data.e_profile[i]}" alt=""></div>
+                <div class="profile_img" onclick="moveToUser('${data.e_nick[i]}','${user.data.nickname}')"><img src="https://linkee.kr/user_img/${data.e_profile[i]}" alt=""></div>
                 <div class="commentlist">
                     <div class="nickname" onclick="moveToUser('${data.e_nick[i]}','${user.data.nickname}')">${data.e_nick[i]}</div>
                     <div class="bigCommentText">${data.e_content[i].content}</div>
@@ -183,7 +183,7 @@
         async function add_s_Comment(a, b){
             let html = "";
             for(let i=0; i<a;i++){
-                const data = await axios.get(`https://andybyungjoopark.com/detail/c_comment_nick`, {
+                const data = await axios.get(`https://linkee.kr/detail/c_comment_nick`, {
                     withCredentials :true,
                     params : {
                         c_comment_nick : b[i].user_id,
@@ -205,7 +205,7 @@
                 html += `
                     <div class="s_comments_wrap">
 
-                        <div class="profile_img" onclick="moveToUser('${data.data.a.nickname}','${user.data.nickname}')"><img src="https://andybyungjoopark.com/user_img/${data.data.a.profile_img}" alt=""></div>
+                        <div class="profile_img" onclick="moveToUser('${data.data.a.nickname}','${user.data.nickname}')"><img src="https://linkee.kr/user_img/${data.data.a.profile_img}" alt=""></div>
                         <div>
                             <div class="nickname" onclick="moveToUser('${data.data.a.nickname}','${user.data.nickname}')">${data.data.a.nickname}</div>
                             <div class="bigCommentText">${b[i].content}</div>
@@ -239,7 +239,7 @@
                 location.href = `/userpage#${data.b.nickname}`;
             }
         };
-        document.querySelector(".profile_img").innerHTML = `<img src="https://andybyungjoopark.com/user_img/${data.b.profile_img}" alt="">`;
+        document.querySelector(".profile_img").innerHTML = `<img src="https://linkee.kr/user_img/${data.b.profile_img}" alt="">`;
         document.querySelector(".profile_img").onclick = ()=>{
             if(data.b.nickname === user.data.nickname){
                 location.href = "/mypage";
@@ -256,9 +256,9 @@
             let ext = data.a.img.split('.').pop();
             // console.log(ext);
             if(ext == "jpeg" || ext == "gif" || ext == "png" || ext == "jpg" || ext == "jfif" || ext == "webp") {
-                document.querySelector(".post_body").innerHTML = `<img src="https://andybyungjoopark.com/post_img/${data.a.img}">`;
+                document.querySelector(".post_body").innerHTML = `<img src="https://linkee.kr/post_img/${data.a.img}">`;
             }else if(ext == "mp4") {
-                document.querySelector(".post_body").innerHTML = `<video class="video" src="https://andybyungjoopark.com/post_img/${data.a.img}" autoplay loop muted controls></video>`;
+                document.querySelector(".post_body").innerHTML = `<video class="video" src="https://linkee.kr/post_img/${data.a.img}" autoplay loop muted controls></video>`;
             }
         }else {
             document.querySelector(".post_body").innerHTML = "";
@@ -275,7 +275,7 @@
             iii++;
         });
 
-        const bigClikeCheck = await axios.get("https://andybyungjoopark.com/detail/getbiglike", {
+        const bigClikeCheck = await axios.get("https://linkee.kr/detail/getbiglike", {
             withCredentials : true,
             params : {
                 user_id : data.b.id,
@@ -318,10 +318,10 @@
         // document.querySelector(".updated_time").innerHTML = dateText;
         // document.querySelector("#deContent").innerHTML = data.a.content;
         // document.querySelector("#likecount").innerHTML = data.a.likes;
-        // document.querySelector(".post_body").innerHTML = `<img src="https://andybyungjoopark.com/post_img/${data.a.img}" alt="">`;
+        // document.querySelector(".post_body").innerHTML = `<img src="https://linkee.kr/post_img/${data.a.img}" alt="">`;
         // document.querySelector(".nickname").innerHTML = data.b.nickname;
         // document.querySelector("p .nickname").innerHTML = data.b.nickname;
-        // document.querySelector(".profile_img").innerHTML = `<img src="https://andybyungjoopark.com/user_img/${data.b.profile_img}" alt="">`;
+        // document.querySelector(".profile_img").innerHTML = `<img src="https://linkee.kr/user_img/${data.b.profile_img}" alt="">`;
         
         // 수정버튼 클릭시
         const editBtn = document.querySelector(".editBtn");
@@ -331,7 +331,7 @@
 
         // 삭제버튼 클릭시
         document.querySelector(".delBtn").addEventListener("click", async function(){
-            const {data} = await axios.get(`https://andybyungjoopark.com/main/delBtn/${xx}`);
+            const {data} = await axios.get(`https://linkee.kr/main/delBtn/${xx}`);
             if(data == 1){
                 window.location.href= "/search";
             }
@@ -368,7 +368,7 @@
         });
 
         async function likeC1(checkval){
-            const likeClick = await axios.get("https://andybyungjoopark.com/detail/likeClick",{
+            const likeClick = await axios.get("https://linkee.kr/detail/likeClick",{
                 withCredentials : true,
                 params : {
                     user_id : data.b.id,
@@ -386,7 +386,7 @@
         document.querySelector(".commentBtn").addEventListener("click" , async function(){
             let big_comment_input = document.querySelector(".comment_input");
 
-            const abc = await axios.get(`https://andybyungjoopark.com/main/bigComment/${xx}`, {
+            const abc = await axios.get(`https://linkee.kr/main/bigComment/${xx}`, {
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -410,7 +410,7 @@
             // console.log(abc.data);
             reply_container.innerHTML += `
             <div class="comments_wrap">
-                <div class="profile_img" onclick="moveToUser('${abc.data.a.nickname}','${user.data.nickname}')"><img src="https://andybyungjoopark.com/user_img/${abc.data.a.profile_img}" alt=""></div>
+                <div class="profile_img" onclick="moveToUser('${abc.data.a.nickname}','${user.data.nickname}')"><img src="https://linkee.kr/user_img/${abc.data.a.profile_img}" alt=""></div>
                 <div class="commentlist">
                     <div class="nickname" onclick="moveToUser('${abc.data.a.nickname}','${user.data.nickname}')">${abc.data.a.nickname}</div>
                     <div class="bigCommentText">${big_comment_input.value}</div>
@@ -437,7 +437,7 @@
         });
 
         async function likeC2(a, b){
-            const data = await axios.get(`https://andybyungjoopark.com/detail/likebigcomment`,{
+            const data = await axios.get(`https://linkee.kr/detail/likebigcomment`,{
                 withCredentials : true,
                 params:{
                     civalue1 : a, // comment-id
@@ -490,7 +490,7 @@
                 el.addEventListener("click", async function(event){
                     let small_comment_input = event.target.closest('.input_wrap2').querySelector(".comment_input2");
                     let civalue = event.target.closest('.comments_wrap').querySelector('input.i_comment_id').value;
-                    const abc = await axios.get(`https://andybyungjoopark.com/detail/smallComment/${xx}`, {
+                    const abc = await axios.get(`https://linkee.kr/detail/smallComment/${xx}`, {
                         headers: {
                             "Content-Type": "application/json"
                         },
@@ -517,7 +517,7 @@
 
                     event.target.closest('details').querySelector(".cw").innerHTML += `
                                 <div class="s_comments_wrap">
-                                    <div class="profile_img" onclick="moveToUser('${abc.data.a.nickname}','${user.data.nickname}')"><img src="https://andybyungjoopark.com/user_img/${abc.data.a.profile_img}" alt=""></div>
+                                    <div class="profile_img" onclick="moveToUser('${abc.data.a.nickname}','${user.data.nickname}')"><img src="https://linkee.kr/user_img/${abc.data.a.profile_img}" alt=""></div>
                                     <div>
                                         <div class="nickname" onclick="moveToUser('${abc.data.a.nickname}','${user.data.nickname}')">${abc.data.a.nickname}</div>
                                         <div class="bigCommentText">${small_comment_input.value}</div>
@@ -575,7 +575,7 @@
             btn3();
         }
         async function likeC3(s_comment_id, check_val1){
-            const abc = await axios.get(`https://andybyungjoopark.com/detail/likesmallComment`, {
+            const abc = await axios.get(`https://linkee.kr/detail/likesmallComment`, {
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -596,7 +596,7 @@
 
         // 소켓
         try {
-            const {data} = await axios.get('https://andybyungjoopark.com/main/posts', {
+            const {data} = await axios.get('https://linkee.kr/main/posts', {
                 withCredentials : true
             });
             const {user, userAll} = data;
@@ -658,15 +658,15 @@
 
     async function getProfile() {
         try {
-            const {data} = await axios.get('https://andybyungjoopark.com/main/getProfile', {
+            const {data} = await axios.get('https://linkee.kr/main/getProfile', {
                 // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
                 withCredentials : true
             });
 
             if(data.profile_img == null) {
-                profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
+                profile_img.innerHTML = `<a href="/mypage"><img src="https://linkee.kr/user_img/default_profile.jpeg" alt=""></a>`;
             }else {
-                profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/${data.profile_img}" alt=""></a>`;
+                profile_img.innerHTML = `<a href="/mypage"><img src="https://linkee.kr/user_img/${data.profile_img}" alt=""></a>`;
             }
 
         } catch (error) {

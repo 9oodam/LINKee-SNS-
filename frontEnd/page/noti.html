@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>notification</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://andybyungjoopark.com/socket.io/socket.io.js"></script>
+    <script src="https://linkee.kr/socket.io/socket.io.js"></script>
 
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/noti.css">
@@ -35,12 +35,12 @@
     window.onload = async ()=>{
         // 소켓
         try {
-            const {data} = await axios.get('https://andybyungjoopark.com/main/posts', {
+            const {data} = await axios.get('https://linkee.kr/main/posts', {
                 withCredentials : true
             });
             const {user, userAll} = data;
 
-            const socket = io.connect('https://andybyungjoopark.com'); // 소켓 연결 시도
+            const socket = io.connect('https://linkee.kr'); // 소켓 연결 시도
             socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
 
             socket.on("userIn", (socketID, userID) => {
@@ -92,7 +92,7 @@
 
     async function getNoti() {
         try {
-            const {data} = await axios.get('https://andybyungjoopark.com/noti/info', {
+            const {data} = await axios.get('https://linkee.kr/noti/info', {
                 withCredentials : true
             });
             
@@ -155,7 +155,7 @@
                     wrapDiv.classList.add("noti_wrap");
                     let profileDiv = document.createElement("div");
                     profileDiv.classList.add("profile_img");
-                    profileDiv.innerHTML = `<img src="https://andybyungjoopark.com/user_img/${senderImg}" alt="">`;
+                    profileDiv.innerHTML = `<img src="https://linkee.kr/user_img/${senderImg}" alt="">`;
                     profileDiv.onclick = () => {
                         location.href = `/userpage#${decodeURIComponent(sender)}`;
                     }
@@ -177,7 +177,7 @@
                             followBtn.classList.add("follow_btn");
                             followBtn.innerHTML = '팔로우';
                             followBtn.onclick = () => {
-                                axios.get(`https://andybyungjoopark.com/mypage/follow/${user.id}`, {
+                                axios.get(`https://linkee.kr/mypage/follow/${user.id}`, {
                                     withCredentials : true,
                                 })
                                 socket.emit("detail_page_like_click_noti_emit", user.id);
@@ -189,7 +189,7 @@
                             followBtn.classList.add("follow_btn_already");
                             followBtn.innerHTML = '팔로잉';
                             followBtn.onclick = () => {
-                                axios.get(`https://andybyungjoopark.com/mypage/follow/${user.id}`, {
+                                axios.get(`https://linkee.kr/mypage/follow/${user.id}`, {
                                     withCredentials : true,
                                 })
                                 location.reload();
@@ -210,9 +210,9 @@
                                     let postImg = el3.img;
                                     let ext = postImg.split('.').pop();
                                     if(ext == "jpeg" || ext == "gif" || ext == "png" || ext == "jpg" || ext == "jfif" || ext == "webp") {
-                                        postImgDiv.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${postImg}" alt="">`;
+                                        postImgDiv.innerHTML = `<img src="https://linkee.kr/post_img/${postImg}" alt="">`;
                                     }else if(ext == "mp4") {
-                                        postImgDiv.innerHTML = `<video class="video" src="https://andybyungjoopark.com/post_img/${postImg}" autoplay loop muted></video>`;
+                                        postImgDiv.innerHTML = `<video class="video" src="https://linkee.kr/post_img/${postImg}" autoplay loop muted></video>`;
                                     }
                                     postImgDiv.onclick = () => {location.href = `/detail#${el3.id}`;}
                                 }
@@ -225,9 +225,9 @@
                                     let postImg = el3.img;
                                     let ext = postImg.split('.').pop();
                                     if(ext == "jpeg" || ext == "gif" || ext == "png" || ext == "jpg" || ext == "jfif" || ext == "webp") {
-                                        postImgDiv.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${postImg}" alt="">`;
+                                        postImgDiv.innerHTML = `<img src="https://linkee.kr/post_img/${postImg}" alt="">`;
                                     }else if(ext == "mp4") {
-                                        postImgDiv.innerHTML = `<video class="video" src="https://andybyungjoopark.com/post_img/${postImg}" autoplay loop muted></video>`;
+                                        postImgDiv.innerHTML = `<video class="video" src="https://linkee.kr/post_img/${postImg}" autoplay loop muted></video>`;
                                     }
                                     postImgDiv.onclick = () => {location.href = `/detail#${el3.id}`;}
 
@@ -241,9 +241,9 @@
                                     let postImg = el3.img;
                                     let ext = postImg.split('.').pop();
                                     if(ext == "jpeg" || ext == "gif" || ext == "png" || ext == "jpg" || ext == "jfif" || ext == "webp") {
-                                        postImgDiv.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${postImg}" alt="">`;
+                                        postImgDiv.innerHTML = `<img src="https://linkee.kr/post_img/${postImg}" alt="">`;
                                     }else if(ext == "mp4") {
-                                        postImgDiv.innerHTML = `<video class="video" src="https://andybyungjoopark.com/post_img/${postImg}" autoplay loop muted></video>`;
+                                        postImgDiv.innerHTML = `<video class="video" src="https://linkee.kr/post_img/${postImg}" autoplay loop muted></video>`;
                                     }
                                     postImgDiv.onclick = () => {location.href = `/detail#${el3.id}`;}
 
@@ -257,9 +257,9 @@
                                     let postImg = el3.img;
                                     let ext = postImg.split('.').pop();
                                     if(ext == "jpeg" || ext == "gif" || ext == "png" || ext == "jpg" || ext == "jfif" || ext == "webp") {
-                                        postImgDiv.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${postImg}" alt="">`;
+                                        postImgDiv.innerHTML = `<img src="https://linkee.kr/post_img/${postImg}" alt="">`;
                                     }else if(ext == "mp4") {
-                                        postImgDiv.innerHTML = `<video class="video" src="https://andybyungjoopark.com/post_img/${postImg}" autoplay loop muted></video>`;
+                                        postImgDiv.innerHTML = `<video class="video" src="https://linkee.kr/post_img/${postImg}" autoplay loop muted></video>`;
                                     }
                                     postImgDiv.onclick = () => {location.href = `/detail#${el3.id}`;}
 
@@ -273,9 +273,9 @@
                                     let postImg = el3.img;
                                     let ext = postImg.split('.').pop();
                                     if(ext == "jpeg" || ext == "gif" || ext == "png" || ext == "jpg" || ext == "jfif" || ext == "webp") {
-                                        postImgDiv.innerHTML = `<img src="https://andybyungjoopark.com/post_img/${postImg}" alt="">`;
+                                        postImgDiv.innerHTML = `<img src="https://linkee.kr/post_img/${postImg}" alt="">`;
                                     }else if(ext == "mp4") {
-                                        postImgDiv.innerHTML = `<video class="video" src="https://andybyungjoopark.com/post_img/${postImg}" autoplay loop muted></video>`;
+                                        postImgDiv.innerHTML = `<video class="video" src="https://linkee.kr/post_img/${postImg}" autoplay loop muted></video>`;
                                     }
                                     postImgDiv.onclick = () => {location.href = `/detail#${el3.id}`;}
 
@@ -305,7 +305,7 @@
     let emptyBtn = document.querySelector(".empty_btn");
     emptyBtn.onclick = async () => {
         if(confirm("확인을 누르시면 모든 알림이 삭제됩니다.") == true) {
-            const {data} = await axios.get('https://andybyungjoopark.com/noti/delBtn', {
+            const {data} = await axios.get('https://linkee.kr/noti/delBtn', {
                 withCredentials : true
             });
             // console.log(data);

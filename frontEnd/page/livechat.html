@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>livechat</title>
-    <script src="https://andybyungjoopark.com/socket.io/socket.io.js"></script>
+    <script src="https://linkee.kr/socket.io/socket.io.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <link rel="stylesheet" href="../css/nav.css">
@@ -43,7 +43,7 @@
 <script>
     window.onload = async () => {
         try {
-            const {data} = await axios.get('https://andybyungjoopark.com/livechat/getFriends', {
+            const {data} = await axios.get('https://linkee.kr/livechat/getFriends', {
                 withCredentials : true
             });
             const {user, userAll} = data;
@@ -64,7 +64,7 @@
 
 
             // 모든 페이지에 다 들어갈 부분!!!
-            const socket = io.connect("https://andybyungjoopark.com"); // 소켓 연결 시도
+            const socket = io.connect("https://linkee.kr"); // 소켓 연결 시도
             socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
 
             socket.on("userIn", (socketID, userID) => {
@@ -86,7 +86,7 @@
                                 // console.log("접속 중인 친구: ", el);
                                 loginUser.innerHTML += `
                                 <div class="user_wrap">
-                                    <div class="profile_img"><img src="https://andybyungjoopark.com/user_img/${friend.profile_img}" alt=""></div>
+                                    <div class="profile_img"><img src="https://linkee.kr/user_img/${friend.profile_img}" alt=""></div>
                                     <div class="nickname">${friend.nickname}</div>
                                     <div class="chat_btn" onclick="requestChat(${user.id}, ${friend.id})">대화 요청</div>
                                 </div>`;
@@ -96,7 +96,7 @@
                             // console.log("로그아웃 된 친구: ", el);
                             logoutUser.innerHTML += `
                             <div class="user_wrap">
-                                <div class="profile_img_x"><img src="https://andybyungjoopark.com/user_img/${friend.profile_img}" alt=""></div>
+                                <div class="profile_img_x"><img src="https://linkee.kr/user_img/${friend.profile_img}" alt=""></div>
                                 <div class="nickname_x">${friend.nickname}</div>
                                 <div class="chat_btn_x">대화 요청</div>
                             </div>`;

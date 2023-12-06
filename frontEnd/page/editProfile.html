@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>edit profile</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://andybyungjoopark.com/socket.io/socket.io.js"></script>
+    <script src="https://linkee.kr/socket.io/socket.io.js"></script>
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/editProfile.css">
 </head>
@@ -60,7 +60,7 @@
     window.onload = async ()=>{
         // 로그인 된 유저 프로필 가져오기
         try {
-            const {data} = await axios.get('https://andybyungjoopark.com/main/getProfile', {
+            const {data} = await axios.get('https://linkee.kr/main/getProfile', {
                 // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
                 withCredentials : true
             });
@@ -68,7 +68,7 @@
 
             // const profileImg = document.querySelector("#preview");
             // profileImg.innerHTML = `<a href="./mypage.html"><img src="http://127.0.0.1:8080/user_img/${data.profile_img}" alt=""></a>`;
-            preview.src = `https://andybyungjoopark.com/user_img/${data.profile_img}`;
+            preview.src = `https://linkee.kr/user_img/${data.profile_img}`;
 
             const nameInput = document.querySelector(".nameInput");
             nameInput.placeholder = data.user_name;
@@ -90,12 +90,12 @@
 
         // 소켓
         try {
-            const {data} = await axios.get('https://andybyungjoopark.com/main/posts', {
+            const {data} = await axios.get('https://linkee.kr/main/posts', {
                 withCredentials : true
             });
             const {user, userAll} = data;
 
-            const socket = io.connect('https://andybyungjoopark.com'); // 소켓 연결 시도
+            const socket = io.connect('https://linkee.kr'); // 소켓 연결 시도
             socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
 
             socket.on("userIn", (socketID, userID) => {
@@ -147,13 +147,13 @@
 
     const editBtn = document.querySelector(".editBtn");
     editBtn.onclick = async ()=>{
-        const {data} = await axios.get('https://andybyungjoopark.com/main/posts', {
+        const {data} = await axios.get('https://linkee.kr/main/posts', {
             withCredentials : true
         });
         const {user, userAll} = data;
         // console.log(user);
 
-        const data2 = await axios.get("https://andybyungjoopark.com/mypage/nickname",{
+        const data2 = await axios.get("https://linkee.kr/mypage/nickname",{
             withCredentials : true
         });
 
@@ -178,7 +178,7 @@
             form.append("nickname",nickname.value);
             form.append("profile_info",profileInfo.value);
     
-            axios.post('https://andybyungjoopark.com/mypage/edit', form, {
+            axios.post('https://linkee.kr/mypage/edit', form, {
                 "Content-Type" : "multipart/form-data",
                 withCredentials : true
             }).then((e) => {
@@ -188,7 +188,7 @@
                 console.log(error);
             });
     
-            location.href = "https://andybyungjoopark.com/mypage";
+            location.href = "https://linkee.kr/mypage";
         }
     };
 

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>search</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://andybyungjoopark.com/socket.io/socket.io.js"></script>
+    <script src="https://linkee.kr/socket.io/socket.io.js"></script>
     <link rel="stylesheet" href="../css/nav.css" />
     <link rel="stylesheet" href="../css/search.css" />
   </head>
@@ -76,12 +76,12 @@
     window.onload = async ()=>{
       // 소켓
       try {
-            const {data} = await axios.get('https://andybyungjoopark.com/main/posts', {
+            const {data} = await axios.get('https://linkee.kr/main/posts', {
                 withCredentials : true
             });
             const {user, userAll} = data;
 
-            const socket = io.connect('https://andybyungjoopark.com'); // 소켓 연결 시도
+            const socket = io.connect('https://linkee.kr'); // 소켓 연결 시도
             socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
 
             socket.on("userIn", (socketID, userID) => {
@@ -138,7 +138,7 @@
       // 로그인 된 유저 프로필 가져오기
       try {
         const { data } = await axios.get(
-          "https://andybyungjoopark.com/main/getProfile",
+          "https://linkee.kr/main/getProfile",
           {
             // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
             withCredentials: true,
@@ -146,9 +146,9 @@
         );
         // console.log(data);
         if (data.profile_img == null) {
-          profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
+          profile_img.innerHTML = `<a href="/mypage"><img src="https://linkee.kr/user_img/default_profile.jpeg" alt=""></a>`;
         } else {
-          profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/${data.profile_img}" alt=""></a>`;
+          profile_img.innerHTML = `<a href="/mypage"><img src="https://linkee.kr/user_img/${data.profile_img}" alt=""></a>`;
         }
       } catch (error) {
         console.log(error);
@@ -156,7 +156,7 @@
 
       // 모든 게시글 가져오기
       try {
-        const { data } = await axios.get("https://andybyungjoopark.com/search/post", {
+        const { data } = await axios.get("https://linkee.kr/search/post", {
           withCredentials: true,
         });
         const { users, posts } = data;
@@ -165,9 +165,9 @@
           if (el.img) {
             let ext = el.img.split('.').pop();
             if(ext == "jpeg" || ext == "gif" || ext == "png" || ext == "jpg" || ext == "jfif" || ext == "webp") {
-              allPosts.innerHTML += `<div onclick="moveToDetail(${el.id})"><img src="https://andybyungjoopark.com/post_img/${el.img}" alt=""></div>`;
+              allPosts.innerHTML += `<div onclick="moveToDetail(${el.id})"><img src="https://linkee.kr/post_img/${el.img}" alt=""></div>`;
             }else if(ext == "mp4") {
-              allPosts.innerHTML += `<div onclick="moveToDetail(${el.id})"><video class="video" src="https://andybyungjoopark.com/post_img/${el.img}" autoplay loop muted></video></div>`;
+              allPosts.innerHTML += `<div onclick="moveToDetail(${el.id})"><video class="video" src="https://linkee.kr/post_img/${el.img}" autoplay loop muted></video></div>`;
             }
           }
         });
@@ -179,7 +179,7 @@
     // 검색 자동완성
     async function searchThings() {
       try {
-        const { data } = await axios.get("https://andybyungjoopark.com/search/post", {
+        const { data } = await axios.get("https://linkee.kr/search/post", {
           withCredentials: true,
         });
         const { users, posts } = data;
@@ -235,7 +235,7 @@
                 let div = document.createElement("div");
                 div.innerHTML = `
                 <div class="profile_img">
-                    <img src="https://andybyungjoopark.com/user_img/${suggestedUser.profile_img}" alt=""/>
+                    <img src="https://linkee.kr/user_img/${suggestedUser.profile_img}" alt=""/>
                 </div>
                 <div class="nickname">${suggested}</div>`;
                     
@@ -243,7 +243,7 @@
                     
                 // 자동완성 탭 누르면 페이지 이동
                 div.onclick = async () => {
-                  const { data } = await axios.get("https://andybyungjoopark.com/main/getProfile", {
+                  const { data } = await axios.get("https://linkee.kr/main/getProfile", {
                     withCredentials: true
                   });
 

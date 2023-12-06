@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://andybyungjoopark.com/socket.io/socket.io.js"></script>
+    <script src="https://linkee.kr/socket.io/socket.io.js"></script>
 
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/main.css">
@@ -67,15 +67,15 @@
     window.onload = async () => {
         // 로그인 한 유저의 프로필 이미지
         try {
-            const {data} = await axios.get('https://andybyungjoopark.com/main/getProfile', {
+            const {data} = await axios.get('https://linkee.kr/main/getProfile', {
                 // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
                 withCredentials : true
             });
 
             if(data.profile_img == null) {
-                profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
+                profile_img.innerHTML = `<a href="/mypage"><img src="https://linkee.kr/user_img/default_profile.jpeg" alt=""></a>`;
             }else {
-                profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/${data.profile_img}" alt=""></a>`;
+                profile_img.innerHTML = `<a href="/mypage"><img src="https://linkee.kr/user_img/${data.profile_img}" alt=""></a>`;
             };
         } catch (error) {
             console.log(error);
@@ -83,7 +83,7 @@
 
         // 팔로잉 한 유저들의 게시글 가져오기
         try {
-            const {data} = await axios.get('https://andybyungjoopark.com/main/posts', {
+            const {data} = await axios.get('https://linkee.kr/main/posts', {
                 withCredentials : true
             });
             const {user, userAll, following, followingPost} = data;
@@ -109,7 +109,7 @@
                 // 해당 포스트를 작성한 유저의 nickname & profile_img
                 let writer = userAll.find(item => item.id == el.user_id);
                 //console.log(writer);
-                const mainpage_heart_show = await axios.get(`https://andybyungjoopark.com/main/mainpage_heart_show/${el.id}`,{
+                const mainpage_heart_show = await axios.get(`https://linkee.kr/main/mainpage_heart_show/${el.id}`,{
                     withCredentials : true
                 });
 
@@ -156,7 +156,7 @@
                 let postTop = document.createElement("div");
                 postTop.classList.add("post_top");
                 postTop.innerHTML = `
-                <div class="profile_img" onclick="moveToUser('${writer.nickname}','${user.nickname}')"><img src="https://andybyungjoopark.com/user_img/${writer.profile_img}" alt="profile"></div>
+                <div class="profile_img" onclick="moveToUser('${writer.nickname}','${user.nickname}')"><img src="https://linkee.kr/user_img/${writer.profile_img}" alt="profile"></div>
                 <div class="profile_text">
                     <p class="nickname" onclick="moveToUser('${writer.nickname}','${user.nickname}')">${writer.nickname}</p>
                     <span>·</span>
@@ -168,9 +168,9 @@
                 postBody.classList.add("post_body");
                 let ext = el.img.split('.').pop();
                 if(ext == "jpeg" || ext == "gif" || ext == "png" || ext == "jpg" || ext == "jfif" || ext == "webp") {
-                    postBody.innerHTML = `<div onclick="moveToDetail(${el.id})"><img src="https://andybyungjoopark.com/post_img/${el.img}" alt=""></div>`;
+                    postBody.innerHTML = `<div onclick="moveToDetail(${el.id})"><img src="https://linkee.kr/post_img/${el.img}" alt=""></div>`;
                 }else if(ext == "mp4") {
-                    postBody.innerHTML = `<div onclick="moveToDetail(${el.id})"><video class="video" src="https://andybyungjoopark.com/post_img/${el.img}" autoplay loop muted></video></div>`;
+                    postBody.innerHTML = `<div onclick="moveToDetail(${el.id})"><video class="video" src="https://linkee.kr/post_img/${el.img}" autoplay loop muted></video></div>`;
                 }
                 postContainer.appendChild(postBody);
 
@@ -201,7 +201,7 @@
 
 
             // 모든 페이지에 다 들어갈 부분!!!
-            const socket = io.connect('https://andybyungjoopark.com'); // 소켓 연결 시도
+            const socket = io.connect('https://linkee.kr'); // 소켓 연결 시도
             socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
 
             socket.on("userIn", (socketID, userID) => {

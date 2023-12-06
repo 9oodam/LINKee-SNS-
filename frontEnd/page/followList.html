@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>follow list</title>
-    <script src="https://andybyungjoopark.com/socket.io/socket.io.js"></script>
+    <script src="https://linkee.kr/socket.io/socket.io.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="../css/nav.css" />
     <link rel="stylesheet" href="../css/followList.css">
@@ -39,7 +39,7 @@
   <script>
     window.onload = async () => {
       try {
-        const {data} = await axios.get('https://andybyungjoopark.com/main/posts', {
+        const {data} = await axios.get('https://linkee.kr/main/posts', {
             withCredentials : true
         });
         // console.log(data);
@@ -56,7 +56,7 @@
             let div = document.createElement("div");
             div.innerHTML = `
             <div class="profile_img">
-                <img src="https://andybyungjoopark.com/user_img/${followingUser.profile_img}" alt=""/>
+                <img src="https://linkee.kr/user_img/${followingUser.profile_img}" alt=""/>
             </div>
             <div class="nickname">${followingUser.nickname}</div>
             `;
@@ -82,7 +82,7 @@
 
             let profileImg = document.createElement("div");
             profileImg.classList.add("profile_img");
-            profileImg.innerHTML = `<img src="https://andybyungjoopark.com/user_img/${followerUser.profile_img}" alt=""/>`;
+            profileImg.innerHTML = `<img src="https://linkee.kr/user_img/${followerUser.profile_img}" alt=""/>`;
 
             let nickname = document.createElement("div");
             nickname.classList.add("nickname");
@@ -106,7 +106,7 @@
             delBtn.onclick = () => {
               // console.log("눌림?");
               // console.log(followerUser.id);
-              axios.get(`https://andybyungjoopark.com/mypage/remove/${followerUser.id}`, {
+              axios.get(`https://linkee.kr/mypage/remove/${followerUser.id}`, {
                   withCredentials : true,
               });
               location.href = '/followList';
@@ -119,7 +119,7 @@
 
 
         ////////////////////////////////////////////
-        const socket = io.connect('https://andybyungjoopark.com');
+        const socket = io.connect('https://linkee.kr');
         socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
 
         socket.on("userIn", (socketID, userID) => {

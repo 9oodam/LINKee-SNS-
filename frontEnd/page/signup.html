@@ -44,7 +44,7 @@
 <script>
     // document.querySelector("input[name='user_id']").addEventListener("input", async function(){
     //     let abc = document.querySelector("input[name='user_id']").value;
-    //     const { data } = await axios.get(`https://andybyungjoopark.com/signup/idCheck/${abc}`, {
+    //     const { data } = await axios.get(`https://linkee.kr/signup/idCheck/${abc}`, {
     //         withCredentials: true // 브라우저가 쿠키를 서버로 전달 할 수 있는 옵션
     //     });
     //     if(data == 0){
@@ -55,7 +55,7 @@
     // });
     // document.querySelector("input[name='nickname']").addEventListener("input", async function(){
     //     let abc = document.querySelector("input[name='nickname']").value;
-    //     const {data} = await axios.get(`https://andybyungjoopark.com/signup/nicknameCheck/${abc}`, {
+    //     const {data} = await axios.get(`https://linkee.kr/signup/nicknameCheck/${abc}`, {
     //         withCredentials: true // 브라우저가 쿠키를 서버로 전달 할 수 있는 옵션
     //     });
     //     if(data == 0){
@@ -105,7 +105,7 @@
 
         // 아이디 테두리
         let abc = document.querySelector("input[name='user_id']").value;
-        const { data } = await axios.get(`https://andybyungjoopark.com/signup/idCheck/${abc}`, {
+        const { data } = await axios.get(`https://linkee.kr/signup/idCheck/${abc}`, {
             withCredentials: true // 브라우저가 쿠키를 서버로 전달 할 수 있는 옵션
         });
         if(data == 0){
@@ -116,7 +116,7 @@
 
         // 닉네임 테두리
         let abc2 = document.querySelector("input[name='nickname']").value;
-        const data2 = await axios.get(`https://andybyungjoopark.com/signup/nicknameCheck/${abc2}`, {
+        const data2 = await axios.get(`https://linkee.kr/signup/nicknameCheck/${abc2}`, {
             withCredentials: true // 브라우저가 쿠키를 서버로 전달 할 수 있는 옵션
         });
         if(data2.data == 0){
@@ -134,7 +134,7 @@
         }
 
         // 회원가입 시키기
-        const data3 = await axios.post("https://andybyungjoopark.com/signup",
+        const data3 = await axios.post("https://linkee.kr/signup",
          {
             headers: {
                 "Content-Type": "application/json"

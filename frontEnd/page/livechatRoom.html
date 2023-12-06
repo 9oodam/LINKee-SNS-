@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>room</title>
-    <script src="https://andybyungjoopark.com/socket.io/socket.io.js"></script>
+    <script src="https://linkee.kr/socket.io/socket.io.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <link rel="stylesheet" href="../css/nav.css">
@@ -50,7 +50,7 @@
         let user2ID = xx[1];
 
         try {
-            const {data} = await axios.get('https://andybyungjoopark.com/livechat/getFriends', {
+            const {data} = await axios.get('https://linkee.kr/livechat/getFriends', {
                 withCredentials : true
             });
 
@@ -71,14 +71,14 @@
             user2Nickname.innerHTML = user2.nickname;
 
             let user1ProfileImg = document.querySelector(".user1_profile_img");
-            user1ProfileImg.innerHTML = `<p>${user1.nickname}</p><img src="https://andybyungjoopark.com/user_img/${user1.profile_img}" alt="">`;
+            user1ProfileImg.innerHTML = `<p>${user1.nickname}</p><img src="https://linkee.kr/user_img/${user1.profile_img}" alt="">`;
 
             let user2ProfileImg = document.querySelector(".user2_profile_img");
-            user2ProfileImg.innerHTML = `<img src="https://andybyungjoopark.com/user_img/${user2.profile_img}" alt=""><p>${user2.nickname}</p>`;
+            user2ProfileImg.innerHTML = `<img src="https://linkee.kr/user_img/${user2.profile_img}" alt=""><p>${user2.nickname}</p>`;
 
 
             // 모든 페이지에 다 들어갈 부분!!!
-            const socket = io.connect("https://andybyungjoopark.com") // 소켓 연결 시도
+            const socket = io.connect("https://linkee.kr") // 소켓 연결 시도
             socket.emit("userIn", user.id); // 로그인 한 유저 아이디 보내기
 
             socket.on("userIn", (socketID, userID) => {
@@ -156,7 +156,7 @@
                 </div>
                 `;
 
-                user2ProfileImg.innerHTML = `<img src="https://andybyungjoopark.com/user_img/${user2.profile_img}" alt="" style="filter: grayscale(1);"><p style="color: rgb(170, 170, 170)">${user2.nickname}</p>`;
+                user2ProfileImg.innerHTML = `<img src="https://linkee.kr/user_img/${user2.profile_img}" alt="" style="filter: grayscale(1);"><p style="color: rgb(170, 170, 170)">${user2.nickname}</p>`;
             });
             
         } catch (error) {

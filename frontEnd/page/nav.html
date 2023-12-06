@@ -47,7 +47,7 @@
 <script>
     async function getProfile() {
         try {
-            const {data} = await axios.get('https://andybyungjoopark.com/main/getProfile', {
+            const {data} = await axios.get('https://linkee.kr/main/getProfile', {
                 // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
                 withCredentials : true
             });
@@ -55,9 +55,9 @@
             // console.log(data);
 
             if(data.profile_img == null) {
-                profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/default_profile.jpeg" alt=""></a>`;
+                profile_img.innerHTML = `<a href="/mypage"><img src="https://linkee.kr/user_img/default_profile.jpeg" alt=""></a>`;
             }else {
-                profile_img.innerHTML = `<a href="/mypage"><img src="https://andybyungjoopark.com/user_img/${data.profile_img}" alt=""></a>`;
+                profile_img.innerHTML = `<a href="/mypage"><img src="https://linkee.kr/user_img/${data.profile_img}" alt=""></a>`;
             }
 
         } catch (error) {
